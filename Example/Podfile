@@ -1,0 +1,6 @@
+use_frameworks!
+target 'AntBus_Tests' do
+  pod 'AntBus', :path => '../'
+  
+  
+end
