@@ -7,61 +7,78 @@
 
 import UIKit
 
-public typealias AntBusResult = (success:Bool,object:Any?)
-public typealias AntBusNotiFilterBlock = (_ owner:AnyObject?) -> Bool
-public typealias AntBusResponseBlock = (_ data:Any?) -> Void
-public typealias AntBusDataHandlerBlock = (_ params:Any?) -> Any?
-public typealias AntBusRouterHandlerBlock = (_ params:Any?,_ responseBlock:AntBusResponseBlock?) -> Any?
+public typealias AntBusResult = (success:Bool,data:Any?)
+public typealias AntBusResultBlock = (_ data:Any?) -> Void
+public typealias AntBusTaskBlock = (_ data:Any?) -> Void
+public typealias AntBusDataHandler = (_ params:Any?) -> Any?
+public typealias AntBusRouterHandler = (_ params:Any?,_ resultBlock:AntBusResultBlock,_ taskBlock:AntBusTaskBlock?) -> Void
+public typealias AntBusNotificaitonFilterBlock = (_ owner:AnyObject?) -> Bool
 
 //MARK:AntBusUtil
 class AntBusUtil{
-    class func createKey(proto:Protocol!,selector:Selector!) -> String! {
-        let protoKey:String = NSStringFromProtocol(proto)
-        let selKey:String = NSStringFromSelector(selector)
-        let key:String = protoKey+"."+selKey
+    class func createKey(service:Protocol!,method:Selector!) -> String! {
+        let serviceKey:String = NSStringFromProtocol(service)
+        let methodKey:String = NSStringFromSelector(method)
+        let key:String = serviceKey+"."+methodKey
         return key
     }
 }
 
 //MARK:AntBusNotiProtocol
 public protocol AntBusNotificationProtocol {
-    func register(_ key:String!,owner:AnyObject!,handler:AntBusResponseBlock!)
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusResultBlock!)
+    func post(_ key:String!,data:Any?,filter:AntBusNotificaitonFilterBlock?)
     func post(_ key:String!,data:Any?)
-    func post(_ key:String!,data:Any?,filter:AntBusNotiFilterBlock?)
+    func post(_ key:String!)
     func remove(_ key:String!,owner:AnyObject!)
     func remove(_ key:String!)
     func remove(owner:AnyObject!)
     func removeAll()
 }
+
 //MARK:AntBusDataProtocol
 public protocol AntBusDataProtocol {
-    func register(_ key:String!,owner:AnyObject!,handler:AntBusDataHandlerBlock!)
-    func register(_ key:String!,handler:AntBusDataHandlerBlock!)
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusDataHandler!)
+    func register(_ key:String!,handler:AntBusDataHandler!)
+    @discardableResult
+    func canCall(_ key:String!) -> Bool
     @discardableResult
     func call(_ key:String!,params:Any?) -> AntBusResult
+    @discardableResult
+    func call(_ key:String!) -> AntBusResult
     func remove(_ key:String!)
     func removeAll()
 }
+
 //MARK:AntBusRouterProtocol
 public protocol AntBusRouterProtocol {
-    func register(_ url:String!,owner:AnyObject!,handler:AntBusRouterHandlerBlock!)
-    func register(_ url:String!,handler:AntBusRouterHandlerBlock!)
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusRouterHandler!)
+    func register(_ key:String!,handler:AntBusRouterHandler!)
     @discardableResult
-    func canOpen(_ url:String!) -> Bool
+    func canCall(_ key:String!) -> Bool
     @discardableResult
-    func open(_ url:String!,params:Any?,response:AntBusResponseBlock?) -> AntBusResult
-    func remove(_ url:String!)
+    func call(_ key:String!,params:Any?,taskBlock:AntBusTaskBlock?) -> AntBusResult
+    @discardableResult
+    func call(_ key:String!,params:Any?) -> AntBusResult
+    @discardableResult
+    func call(_ key:String!) -> AntBusResult
+    func remove(_ key:String!)
     func removeAll()
 }
-//MARK:AntBusRouterProtocolV2
-public protocol AntBusRouterProtocolV2 {
-    func register(_ proto:Protocol!,selector:Selector!,owner:AnyObject!,handler:AntBusRouterHandlerBlock!)
-    func register(_ proto:Protocol!,selector:Selector!,handler:AntBusRouterHandlerBlock!)
+
+//MARK:AntBusServiceProtocol
+public protocol AntBusServiceProtocol {
+    func register(_ service:Protocol!,method:Selector!,owner:AnyObject!,handler:AntBusRouterHandler!)
+    func register(_ service:Protocol!,method:Selector!,handler:AntBusRouterHandler!)
     @discardableResult
-    func canCall(_ proto:Protocol!,selector:Selector!) -> Bool
+    func canCall(_ service:Protocol!,method:Selector!) -> Bool
     @discardableResult
-    func call(_ proto:Protocol!,selector:Selector!,params:Any?,response:AntBusResponseBlock?) -> AntBusResult
-    func remove(_ proto:Protocol!,selector:Selector!)
+    func call(_ service:Protocol!,method:Selector!,params:Any?,taskBlock:AntBusTaskBlock?) -> AntBusResult
+    @discardableResult
+    func call(_ service:Protocol!,method:Selector!,params:Any?) -> AntBusResult
+    @discardableResult
+    func call(_ service:Protocol!,method:Selector!) -> AntBusResult
+    func remove(_ service:Protocol!,method:Selector!)
     func removeAll()
 }
 
@@ -73,7 +90,7 @@ class AntBusNotificationChannel: AntBusNotificationProtocol {
     private var koMap = Dictionary<String,NSHashTable<AnyObject>>()
     private var ohMap = NSMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.weakToStrongObjects()
 
-    func register(_ key:String!,owner:AnyObject!,handler:AntBusResponseBlock!){
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusResultBlock!){
         var oTable:NSHashTable<AnyObject>? = self.koMap[key]
         if(oTable == nil){
             oTable = NSHashTable<AnyObject>.weakObjects();
@@ -90,10 +107,7 @@ class AntBusNotificationChannel: AntBusNotificationProtocol {
         hMap!.setObject(handler as AnyObject,forKey:key as NSString?)
     }
 
-    func post(_ key:String!,data:Any?){
-        self.post(key, data: data, filter: nil)
-    }
-    func post(_ key:String!,data:Any?,filter:AntBusNotiFilterBlock?){
+    func post(_ key:String!,data:Any?,filter:AntBusNotificaitonFilterBlock?){
         if let oTable:NSHashTable<AnyObject> = self.koMap[key] {
             for owner:AnyObject in oTable.allObjects {
 
@@ -104,12 +118,19 @@ class AntBusNotificationChannel: AntBusNotificationProtocol {
                     }
                 }
                 if let hMap:NSMapTable<NSString,AnyObject> = self.ohMap.object(forKey:owner) {
-                    if let handler:AntBusResponseBlock = hMap.object(forKey:key as NSString?) as? AntBusResponseBlock {
+                    if let handler:AntBusResultBlock = hMap.object(forKey:key as NSString?) as? AntBusResultBlock {
                         handler(data)
                     }
                 }
             }
         }
+    }
+    func post(_ key:String!,data:Any?){
+        self.post(key, data: data, filter: nil)
+    }
+    
+    func post(_ key:String!){
+        self.post(key, data: nil, filter: nil)
     }
 
     func remove(_ key:String!,owner:AnyObject!){
@@ -160,7 +181,21 @@ class AntBusDataChannel: AntBusDataProtocol{
         }
     }
     
-    func register(_ key:String!,owner:AnyObject!,handler:AntBusDataHandlerBlock!){
+    private func getHandler(_ key: String!) -> AntBusDataHandler?{
+        if let handler:AntBusDataHandler = self.khMap[key] as? AntBusDataHandler {
+            return handler
+        }
+        if let owner = self.koMap.object(forKey: key as NSString) {
+            if let omhMap:NSMapTable<NSString,AnyObject> = self.ohMap.object(forKey: owner) {
+                if let handler:AntBusDataHandler = omhMap.object(forKey: key as NSString?) as? AntBusDataHandler {
+                    return handler
+                }
+            }
+        }
+        return nil
+    }
+    
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusDataHandler!){
         self.clearOldOwner(key)
         self.khMap[key] = nil
         self.koMap.setObject(owner, forKey: key as NSString)
@@ -171,32 +206,33 @@ class AntBusDataChannel: AntBusDataProtocol{
         }
         omhMap?.setObject(handler as AnyObject, forKey: key as NSString?)
     }
-    func register(_ key:String!,handler:AntBusDataHandlerBlock!){
+    func register(_ key:String!,handler:AntBusDataHandler!){
         self.clearOldOwner(key)
         self.khMap[key] = handler
     }
     
-    private func getHandler(_ key: String!) -> AntBusDataHandlerBlock?{
-        if let handler:AntBusDataHandlerBlock = self.khMap[key] as? AntBusDataHandlerBlock {
-            return handler
+    @discardableResult
+    func canCall(_ key:String!) -> Bool {
+        if let _:AntBusDataHandler = self.getHandler(key) {
+            return true
         }
-        if let owner = self.koMap.object(forKey: key as NSString) {
-            if let omhMap:NSMapTable<NSString,AnyObject> = self.ohMap.object(forKey: owner) {
-                if let handler:AntBusDataHandlerBlock = omhMap.object(forKey: key as NSString?) as? AntBusDataHandlerBlock {
-                    return handler
-                }
-            }
-        }
-        return nil
+        return false
     }
     
     @discardableResult
     func call(_ key:String!,params:Any?) -> AntBusResult{
-        if let handler:AntBusDataHandlerBlock = self.getHandler(key) {
-            return (success:true, object:handler(params))
+        if let handler:AntBusDataHandler = self.getHandler(key) {
+            let data:Any? = handler(params)
+            return (success:true, data:data)
         }
-        return (success:false, object:nil)
+        return (success:false, data:nil)
     }
+    
+    @discardableResult
+    func call(_ key:String!) -> AntBusResult{
+        return self.call(key, params: nil)
+    }
+    
     func remove(_ key:String!){
         self.khMap[key] = nil
         self.clearOldOwner(key)
@@ -225,31 +261,13 @@ class AntBusRouterChannel: AntBusRouterProtocol {
             }
         }
     }
-    
-    func register(_ url:String!,owner:AnyObject!,handler:AntBusRouterHandlerBlock!){
-        self.clearOldOwner(url)
-        self.khMap[url] = nil
-        self.koMap.setObject(owner, forKey: url as NSString)
-        var omhMap:NSMapTable<NSString,AnyObject>? = self.ohMap.object(forKey: owner)
-        if omhMap == nil {
-            omhMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-            self.ohMap.setObject(omhMap, forKey: owner)
-        }
-        omhMap?.setObject(handler as AnyObject, forKey: url as NSString?)
-    }
-    
-    func register(_ url:String!,handler:AntBusRouterHandlerBlock!){
-        self.clearOldOwner(url)
-        self.khMap[url] = handler
-    }
-    
-    private func getHandler(_ url: String!) -> AntBusRouterHandlerBlock?{
-        if let handler:AntBusRouterHandlerBlock = self.khMap[url] as? AntBusRouterHandlerBlock {
+    private func getHandler(_ url: String!) -> AntBusRouterHandler?{
+        if let handler:AntBusRouterHandler = self.khMap[url] as? AntBusRouterHandler {
             return handler
         }
         if let owner = self.koMap.object(forKey: url as NSString) {
             if let omhMap:NSMapTable<NSString,AnyObject> = self.ohMap.object(forKey: owner) {
-                if let handler:AntBusRouterHandlerBlock = omhMap.object(forKey: url as NSString?) as? AntBusRouterHandlerBlock {
+                if let handler:AntBusRouterHandler = omhMap.object(forKey: url as NSString?) as? AntBusRouterHandler {
                     return handler
                 }
             }
@@ -257,29 +275,60 @@ class AntBusRouterChannel: AntBusRouterProtocol {
         return nil
     }
     
+    func register(_ key:String!,owner:AnyObject!,handler:AntBusRouterHandler!){
+        self.clearOldOwner(key)
+        self.khMap[key] = nil
+        self.koMap.setObject(owner, forKey: key as NSString)
+        var omhMap:NSMapTable<NSString,AnyObject>? = self.ohMap.object(forKey: owner)
+        if omhMap == nil {
+            omhMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
+            self.ohMap.setObject(omhMap, forKey: owner)
+        }
+        omhMap?.setObject(handler as AnyObject, forKey: key as NSString?)
+    }
+    
+    func register(_ key:String!,handler:AntBusRouterHandler!){
+        self.clearOldOwner(key)
+        self.khMap[key] = handler
+    }
+    
     @discardableResult
-    func canOpen(_ url: String!) -> Bool {
-        if let _:AntBusRouterHandlerBlock = self.getHandler(url) {
+    func canCall(_ key:String!) -> Bool{
+        if let _:AntBusRouterHandler = self.getHandler(key) {
             return true
         }
         return false
     }
     
     @discardableResult
-    func open(_ url:String!,params:Any?,response:AntBusResponseBlock?) -> AntBusResult{
-        if let handler:AntBusRouterHandlerBlock = self.getHandler(url) {
-            return (success:true, object:handler(params,{ (data) in
-                if(response != nil){
-                    response!(data)
+    func call(_ key:String!,params:Any?,taskBlock:AntBusTaskBlock?) -> AntBusResult{
+        if let handler:AntBusRouterHandler = self.getHandler(key) {
+            var data:Any? = nil
+            handler(params,{ (resData) in
+                data = resData
+            },{ (resData) in
+                if(taskBlock != nil){
+                    taskBlock!(resData)
                 }
-            }))
+            })
+            return (success:true, data:data)
         }
-        return (success:false, object:nil)
+        return (success:false, data:nil)
     }
     
-    func remove(_ url:String!){
-        self.khMap[url] = nil
-        self.clearOldOwner(url)
+    @discardableResult
+    func call(_ key:String!,params:Any?) -> AntBusResult{
+        self.call(key, params: params, taskBlock: nil)
+    }
+    
+    @discardableResult
+    func call(_ key:String!) -> AntBusResult{
+        self.call(key, params: nil, taskBlock: nil)
+    }
+    
+    func remove(_ key:String!){
+        self.khMap[key] = nil
+        self.clearOldOwner(key)
     }
     
     func removeAll(){
@@ -290,36 +339,41 @@ class AntBusRouterChannel: AntBusRouterProtocol {
 }
 
 
-//MARK:AntBusRouterChannelV2
-class AntBusRouterChannelV2: AntBusRouterProtocolV2 {
+//MARK:AntBusServiceChannel
+class AntBusServiceChannel: AntBusServiceProtocol {
     
-    func register(_ proto:Protocol!,selector:Selector!,owner:AnyObject!,handler:AntBusRouterHandlerBlock!){
-        let key:String = AntBusUtil.createKey(proto: proto, selector: selector)
+    func register(_ service:Protocol!,method:Selector!,owner:AnyObject!,handler:AntBusRouterHandler!){
+        let key:String = AntBusUtil.createKey(service: service, method: method)
         AntBus.router.register(key, owner: owner, handler: handler)
     }
-    
-    func register(_ proto:Protocol!,selector:Selector!,handler:AntBusRouterHandlerBlock!){
-        let key:String = AntBusUtil.createKey(proto: proto, selector: selector)
+    func register(_ service:Protocol!,method:Selector!,handler:AntBusRouterHandler!){
+        let key:String = AntBusUtil.createKey(service: service, method: method)
         AntBus.router.register(key, handler: handler)
     }
-    
     @discardableResult
-    func canCall(_ proto: Protocol!, selector: Selector!) -> Bool {
-        let key:String = AntBusUtil.createKey(proto: proto, selector: selector)
-        return AntBus.router.canOpen(key)
+    func canCall(_ service:Protocol!,method:Selector!) -> Bool{
+        let key:String = AntBusUtil.createKey(service: service, method: method)
+        return AntBus.router.canCall(key)
     }
-    
     @discardableResult
-    func call(_ proto:Protocol!,selector:Selector!,params:Any?,response:AntBusResponseBlock?) -> AntBusResult{
-        let key:String = AntBusUtil.createKey(proto: proto, selector: selector)
-        return AntBus.router.open(key, params: params, response: response)
+    func call(_ service:Protocol!,method:Selector!,params:Any?,taskBlock:AntBusTaskBlock?) -> AntBusResult{
+        let key:String = AntBusUtil.createKey(service: service, method: method)
+        return AntBus.router.call(key, params: params, taskBlock: taskBlock)
     }
-    
-    func remove(_ proto:Protocol!,selector:Selector!){
-        let key:String = AntBusUtil.createKey(proto: proto, selector: selector)
+    @discardableResult
+    func call(_ service:Protocol!,method:Selector!,params:Any?) -> AntBusResult{
+        let key:String = AntBusUtil.createKey(service: service, method: method)
+        return AntBus.router.call(key, params: params)
+    }
+    @discardableResult
+    func call(_ service:Protocol!,method:Selector!) -> AntBusResult{
+        let key:String = AntBusUtil.createKey(service: service, method: method)
+        return AntBus.router.call(key)
+    }
+    func remove(_ service:Protocol!,method:Selector!){
+        let key:String = AntBusUtil.createKey(service: service, method: method)
         AntBus.router.remove(key)
     }
-    
     func removeAll(){
         AntBus.router.removeAll()
     }
@@ -329,5 +383,6 @@ public class AntBus{
     public static let notification:AntBusNotificationProtocol = AntBusNotificationChannel()
     public static let data:AntBusDataProtocol = AntBusDataChannel()
     public static let router:AntBusRouterProtocol = AntBusRouterChannel()
-    public static let routerV2:AntBusRouterProtocolV2 = AntBusRouterChannelV2()
+    public static let service:AntBusServiceProtocol = AntBusServiceChannel()
+    
 }
