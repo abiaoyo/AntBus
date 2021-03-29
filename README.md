@@ -1,5 +1,6 @@
 # AntBus
 
+```swift
 1.shared
 //注册数据：是否已经登录
 AntBus.shared.register("LoginModel.hasLogin", owner: self) { () -> Any? in
@@ -95,3 +96,4 @@ AntBus.notification.remove("login.success")
 AntBus.notification.remove(owner: self)
 AntBus.notification.remove("login.success", owner: self)
 AntBus.notification.removeAll()
+```
