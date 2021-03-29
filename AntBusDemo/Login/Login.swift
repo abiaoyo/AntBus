@@ -7,8 +7,9 @@
 
 import Foundation
 
-@objc public protocol LoginService {
-    func logout(account:String)
-    func login()
+@objc public protocol LoginModule{
+    func login(account:String,password:String) -> String
+    func logout()
     
+    func popLoginPage()
 }

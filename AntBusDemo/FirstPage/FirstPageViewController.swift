@@ -22,26 +22,14 @@ class FirstPageViewController: UIViewController {
         self.refreshView()
     }
     func refreshView(){
-        let result:AntBusResult = AntBus.data.call("login.user.account")
+        let result:AntBusResult = AntBus.shared.call("login.user.account")
         self.label.text = result.data as? String
     }
     @IBOutlet weak var label: UILabel!
     
 
     @IBAction func clickLogout(_ sender: Any) {
-//        AntBus.router.call("LoginService.logout")
-        
-//        AntBus.router.call("AntBusDemo.LoginService.logout")
-        AntBus.service.call(LoginService.self, method: #selector(LoginService.logout))
+//        AntBus.router.call("LoginModule", key: "logout", params: nil, taskBlock: nil)
+        AntBus.service.call(LoginModule.self, method: #selector(LoginModule.logout), params: nil, taskBlock: nil)
     }
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		181E9EC126116C0C0002FB8C /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E9EC026116C0C0002FB8C /* AntBus.swift */; };
 		633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7925FA657A002967DB /* AppDelegate.swift */; };
 		633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7B25FA657A002967DB /* SceneDelegate.swift */; };
 		633D4A7E25FA657A002967DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7D25FA657A002967DB /* ViewController.swift */; };
@@ -20,10 +21,10 @@
 		633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A9425FA659A002967DB /* SecondPageViewController.swift */; };
 		633D4A9E25FA659A002967DB /* TabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A9625FA659A002967DB /* TabBarViewController.swift */; };
 		633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A9825FA659A002967DB /* FirstPageViewController.swift */; };
-		633D4AA325FA6609002967DB /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4AA225FA6609002967DB /* AntBus.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		181E9EC026116C0C0002FB8C /* AntBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBus.swift; sourceTree = "<group>"; };
 		633D4A7625FA657A002967DB /* AntBusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntBusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D4A7925FA657A002967DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D4A7B25FA657A002967DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -39,7 +40,6 @@
 		633D4A9425FA659A002967DB /* SecondPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPageViewController.swift; sourceTree = "<group>"; };
 		633D4A9625FA659A002967DB /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		633D4A9825FA659A002967DB /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
-		633D4AA225FA6609002967DB /* AntBus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AntBus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,7 +126,7 @@
 		633D4AA125FA6609002967DB /* AntBus */ = {
 			isa = PBXGroup;
 			children = (
-				633D4AA225FA6609002967DB /* AntBus.swift */,
+				181E9EC026116C0C0002FB8C /* AntBus.swift */,
 			);
 			path = AntBus;
 			sourceTree = SOURCE_ROOT;
@@ -208,7 +208,7 @@
 				633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */,
 				633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */,
 				633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */,
-				633D4AA325FA6609002967DB /* AntBus.swift in Sources */,
+				181E9EC126116C0C0002FB8C /* AntBus.swift in Sources */,
 				633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */,
 				633D4A9A25FA659A002967DB /* LoginAppDelegate.swift in Sources */,
 				633D4A9925FA659A002967DB /* Login.swift in Sources */,
@@ -361,6 +361,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X77K95YFU8;
 				INFOPLIST_FILE = AntBusDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -380,6 +381,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = X77K95YFU8;
 				INFOPLIST_FILE = AntBusDemo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -12,13 +12,12 @@ class TabBarViewController: UITabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.data.register("app.current.controller", owner: self) { (_) -> Any? in
+        AntBus.shared.register("app.current.controller", owner: self) { () -> Any? in
             if let navCtl:UINavigationController = self.selectedViewController as? UINavigationController {
                 return navCtl.visibleViewController
             }
             return self.selectedViewController
         }
-        
     }
 
 }
