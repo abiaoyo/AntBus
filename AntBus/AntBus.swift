@@ -309,8 +309,8 @@ fileprivate class AntBusNotification:IAntBusNotification{
 
 /// AntBus 主要用于代码解耦合
 public class AntBus{
-    static let shared:IAntBusShared = AntBusShared()
-    static let router:IAntBusRouter = AntBusRouter()
-    static let service:IAntBusService = AntBusService()
-    static let notification:IAntBusNotification = AntBusNotification()
+    public static let shared:IAntBusShared = AntBusShared()
+    public static let router:IAntBusRouter = AntBusRouter()
+    public static let service:IAntBusService = AntBusService()
+    public static let notification:IAntBusNotification = AntBusNotification()
 }
