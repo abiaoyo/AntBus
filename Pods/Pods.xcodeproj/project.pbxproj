@@ -1,0 +1,616 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		40E9A636CCE91D1A713EAEB1A6DEEA85 /* Pods-AntBusDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B3A71D2E42FB8BE434FE23F8C8D8BE1 /* Pods-AntBusDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		5076983AA8AD52EE50F36795BB8E1EC1 /* Pods-AntBusDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 4D9451CDF51F72D761BCB8F003E9217A /* Pods-AntBusDemo-dummy.m */; };
+		7DEDD78D346CBD08E03E1B5018598C26 /* AntBus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AA3A1C50E9DD60374E11031CA648DAAD /* AntBus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		A3A13B3F362A9C79004FC4DCAD55DE5B /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90CC6281553EAC13C7C24F3090C7CF09 /* AntBus.swift */; };
+		AA45E150C4B5AE732DAF850D342137A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		C439EDB41989DBA0E2B3BDB679349E19 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
+		CA603C1F712277B9A0123ACB8424BB93 /* AntBus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E560870C20F1ED6A940B88AD958E9CF5 /* AntBus-dummy.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		A804409D62522ACD94921DAAC9A184F3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 352B366B4076D649FC859124AA0AAF4D;
+			remoteInfo = AntBus;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		1A2E4F13E2CC5B4DB340F01E6D611320 /* AntBus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AntBus.framework; path = AntBus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		243032FB6F044914C72B79497BA1C3D5 /* AntBus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AntBus.modulemap; sourceTree = "<group>"; };
+		2D87E0277152DE7AC3B1D6A951F8D93E /* Pods-AntBusDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-Info.plist"; sourceTree = "<group>"; };
+		3140642228365FCC69B13855E9289CEE /* Pods-AntBusDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo.release.xcconfig"; sourceTree = "<group>"; };
+		3B15E2D459B542D7EF35C061977C2124 /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		3C0E5EEE5A12A31CFDA707FD851E902F /* Pods-AntBusDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AntBusDemo.modulemap"; sourceTree = "<group>"; };
+		4843114FD2165C358CD4240AB34C0B4C /* AntBus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-prefix.pch"; sourceTree = "<group>"; };
+		4D9451CDF51F72D761BCB8F003E9217A /* Pods-AntBusDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AntBusDemo-dummy.m"; sourceTree = "<group>"; };
+		540E310A6702AEEA7B902EB7A1C9CA41 /* AntBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.release.xcconfig; sourceTree = "<group>"; };
+		66CFE04CCB47A7C35B150473915EDA8D /* Pods-AntBusDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AntBusDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
+		67B6085ED256FB1DFE720FC348176850 /* AntBus-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AntBus-Info.plist"; sourceTree = "<group>"; };
+		6D62B1FA0CA6D3908827EEC0234001E9 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		6F3E8F9887375DE8E7BAC6FE6A53FE7B /* Pods-AntBusDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AntBusDemo-frameworks.sh"; sourceTree = "<group>"; };
+		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		7A2F422B145CE3C55FE7FA7D5009C7FC /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		7B3A71D2E42FB8BE434FE23F8C8D8BE1 /* Pods-AntBusDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AntBusDemo-umbrella.h"; sourceTree = "<group>"; };
+		901B432EEFCB2367F9A9BD8D1072A887 /* Pods-AntBusDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-acknowledgements.plist"; sourceTree = "<group>"; };
+		90CC6281553EAC13C7C24F3090C7CF09 /* AntBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBus.swift; path = AntBus/Classes/AntBus.swift; sourceTree = "<group>"; };
+		954776921A60A391DB3AD845278E0BE0 /* Pods_AntBusDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_AntBusDemo.framework; path = "Pods-AntBusDemo.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AA3A1C50E9DD60374E11031CA648DAAD /* AntBus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-umbrella.h"; sourceTree = "<group>"; };
+		BBB7E041F8929DA2EA0F61BC8D314501 /* AntBus.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AntBus.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		CE12169BA472FB9FC1239C8FA045F060 /* AntBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.debug.xcconfig; sourceTree = "<group>"; };
+		E560870C20F1ED6A940B88AD958E9CF5 /* AntBus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AntBus-dummy.m"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1433771DA80A2203CD6DA880A38F392C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AA45E150C4B5AE732DAF850D342137A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D3BE7F46458B9454345D8E96161A18F1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C439EDB41989DBA0E2B3BDB679349E19 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		05E5DA625DE8A6E6C29C902A8F212779 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				243032FB6F044914C72B79497BA1C3D5 /* AntBus.modulemap */,
+				E560870C20F1ED6A940B88AD958E9CF5 /* AntBus-dummy.m */,
+				67B6085ED256FB1DFE720FC348176850 /* AntBus-Info.plist */,
+				4843114FD2165C358CD4240AB34C0B4C /* AntBus-prefix.pch */,
+				AA3A1C50E9DD60374E11031CA648DAAD /* AntBus-umbrella.h */,
+				CE12169BA472FB9FC1239C8FA045F060 /* AntBus.debug.xcconfig */,
+				540E310A6702AEEA7B902EB7A1C9CA41 /* AntBus.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Pods/Target Support Files/AntBus";
+			sourceTree = "<group>";
+		};
+		3A5CAD4C1ABBC5BA92AD755F21192F9D /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				B4F3BAE196E924896D97F63E4F27B9BD /* AntBus */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		813F0273061DD000B97ECFC8157273A8 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				BBB7E041F8929DA2EA0F61BC8D314501 /* AntBus.podspec */,
+				7A2F422B145CE3C55FE7FA7D5009C7FC /* LICENSE */,
+				6D62B1FA0CA6D3908827EEC0234001E9 /* README.md */,
+			);
+			name = Pod;
+			sourceTree = "<group>";
+		};
+		AC272B855069E9A13CC827E35F584300 /* Pods-AntBusDemo */ = {
+			isa = PBXGroup;
+			children = (
+				3C0E5EEE5A12A31CFDA707FD851E902F /* Pods-AntBusDemo.modulemap */,
+				66CFE04CCB47A7C35B150473915EDA8D /* Pods-AntBusDemo-acknowledgements.markdown */,
+				901B432EEFCB2367F9A9BD8D1072A887 /* Pods-AntBusDemo-acknowledgements.plist */,
+				4D9451CDF51F72D761BCB8F003E9217A /* Pods-AntBusDemo-dummy.m */,
+				6F3E8F9887375DE8E7BAC6FE6A53FE7B /* Pods-AntBusDemo-frameworks.sh */,
+				2D87E0277152DE7AC3B1D6A951F8D93E /* Pods-AntBusDemo-Info.plist */,
+				7B3A71D2E42FB8BE434FE23F8C8D8BE1 /* Pods-AntBusDemo-umbrella.h */,
+				3B15E2D459B542D7EF35C061977C2124 /* Pods-AntBusDemo.debug.xcconfig */,
+				3140642228365FCC69B13855E9289CEE /* Pods-AntBusDemo.release.xcconfig */,
+			);
+			name = "Pods-AntBusDemo";
+			path = "Target Support Files/Pods-AntBusDemo";
+			sourceTree = "<group>";
+		};
+		B4F3BAE196E924896D97F63E4F27B9BD /* AntBus */ = {
+			isa = PBXGroup;
+			children = (
+				90CC6281553EAC13C7C24F3090C7CF09 /* AntBus.swift */,
+				813F0273061DD000B97ECFC8157273A8 /* Pod */,
+				05E5DA625DE8A6E6C29C902A8F212779 /* Support Files */,
+			);
+			name = AntBus;
+			path = ../AntBus;
+			sourceTree = "<group>";
+		};
+		B6E44552E68731098377393C619962D6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				AC272B855069E9A13CC827E35F584300 /* Pods-AntBusDemo */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		C955811BEEC675A4F8981329E28D546E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1A2E4F13E2CC5B4DB340F01E6D611320 /* AntBus.framework */,
+				954776921A60A391DB3AD845278E0BE0 /* Pods_AntBusDemo.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		CF1408CF629C7361332E53B88F7BD30C = {
+			isa = PBXGroup;
+			children = (
+				9D940727FF8FB9C785EB98E56350EF41 /* Podfile */,
+				3A5CAD4C1ABBC5BA92AD755F21192F9D /* Development Pods */,
+				D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */,
+				C955811BEEC675A4F8981329E28D546E /* Products */,
+				B6E44552E68731098377393C619962D6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		D210D550F4EA176C3123ED886F8F87F5 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				578452D2E740E91742655AC8F1636D1F /* iOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXHeadersBuildPhase section */
+		5E982A6215CFF153D0FCD3E6FFD741BB /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				40E9A636CCE91D1A713EAEB1A6DEEA85 /* Pods-AntBusDemo-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		87FE0099B2DBA4F2E5FC76CD780BF6A1 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7DEDD78D346CBD08E03E1B5018598C26 /* AntBus-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXHeadersBuildPhase section */
+
+/* Begin PBXNativeTarget section */
+		352B366B4076D649FC859124AA0AAF4D /* AntBus */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EE4393A32BA7FDAF9E61F66FD95409E3 /* Build configuration list for PBXNativeTarget "AntBus" */;
+			buildPhases = (
+				87FE0099B2DBA4F2E5FC76CD780BF6A1 /* Headers */,
+				8AB949626FDCE592731983E999EC2D8D /* Sources */,
+				D3BE7F46458B9454345D8E96161A18F1 /* Frameworks */,
+				01BE47E4065A4B30D0895C20BA5181CD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = AntBus;
+			productName = AntBus;
+			productReference = 1A2E4F13E2CC5B4DB340F01E6D611320 /* AntBus.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		A121C3CD29968F07214B7FBCE9226D79 /* Pods-AntBusDemo */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F95BCF964000F059B926201D7D572136 /* Build configuration list for PBXNativeTarget "Pods-AntBusDemo" */;
+			buildPhases = (
+				5E982A6215CFF153D0FCD3E6FFD741BB /* Headers */,
+				843FCCF7E9C9E9F743C0F5F413896B23 /* Sources */,
+				1433771DA80A2203CD6DA880A38F392C /* Frameworks */,
+				202384462D600CBDCEAB8B6F6E88FAD8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6DDAA0A76ED55CA10D68AEBCB6BBF838 /* PBXTargetDependency */,
+			);
+			name = "Pods-AntBusDemo";
+			productName = "Pods-AntBusDemo";
+			productReference = 954776921A60A391DB3AD845278E0BE0 /* Pods_AntBusDemo.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		BFDFE7DC352907FC980B868725387E98 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1100;
+				LastUpgradeCheck = 1100;
+			};
+			buildConfigurationList = 4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CF1408CF629C7361332E53B88F7BD30C;
+			productRefGroup = C955811BEEC675A4F8981329E28D546E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				352B366B4076D649FC859124AA0AAF4D /* AntBus */,
+				A121C3CD29968F07214B7FBCE9226D79 /* Pods-AntBusDemo */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		01BE47E4065A4B30D0895C20BA5181CD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		202384462D600CBDCEAB8B6F6E88FAD8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		843FCCF7E9C9E9F743C0F5F413896B23 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5076983AA8AD52EE50F36795BB8E1EC1 /* Pods-AntBusDemo-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8AB949626FDCE592731983E999EC2D8D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA603C1F712277B9A0123ACB8424BB93 /* AntBus-dummy.m in Sources */,
+				A3A13B3F362A9C79004FC4DCAD55DE5B /* AntBus.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		6DDAA0A76ED55CA10D68AEBCB6BBF838 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = AntBus;
+			target = 352B366B4076D649FC859124AA0AAF4D /* AntBus */;
+			targetProxy = A804409D62522ACD94921DAAC9A184F3 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		3236B76DAF49E755A21896FC9D2D0257 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CE12169BA472FB9FC1239C8FA045F060 /* AntBus.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AntBus/AntBus-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AntBus/AntBus-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AntBus/AntBus.modulemap";
+				PRODUCT_MODULE_NAME = AntBus;
+				PRODUCT_NAME = AntBus;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		4672BC550A45576B51EA0D4C6F2DF4BF /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 540E310A6702AEEA7B902EB7A1C9CA41 /* AntBus.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				GCC_PREFIX_HEADER = "Target Support Files/AntBus/AntBus-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/AntBus/AntBus-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MODULEMAP_FILE = "Target Support Files/AntBus/AntBus.modulemap";
+				PRODUCT_MODULE_NAME = AntBus;
+				PRODUCT_NAME = AntBus;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "$(inherited) ";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		8936B6F2D3807BDF5A3C8BA7C9EA76FC /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3140642228365FCC69B13855E9289CEE /* Pods-AntBusDemo.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		B3B23FE0D132D88AF96C0C513EDDCB4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3B15E2D459B542D7EF35C061977C2124 /* Pods-AntBusDemo.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO;
+				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				"CODE_SIGN_IDENTITY[sdk=watchos*]" = "";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				INFOPLIST_FILE = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo-Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.modulemap";
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.${PRODUCT_NAME:rfc1034identifier}";
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		C14E932D4C3EFCC589F7DEABCEC18F22 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_RELEASE=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Release;
+		};
+		EF3BAAA889B17377BE8F3254633FA0A7 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"POD_CONFIGURATION_DEBUG=1",
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRIP_INSTALLED_PRODUCT = NO;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				SYMROOT = "${SRCROOT}/../build";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4821239608C13582E20E6DA73FD5F1F9 /* Build configuration list for PBXProject "Pods" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EF3BAAA889B17377BE8F3254633FA0A7 /* Debug */,
+				C14E932D4C3EFCC589F7DEABCEC18F22 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EE4393A32BA7FDAF9E61F66FD95409E3 /* Build configuration list for PBXNativeTarget "AntBus" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				3236B76DAF49E755A21896FC9D2D0257 /* Debug */,
+				4672BC550A45576B51EA0D4C6F2DF4BF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F95BCF964000F059B926201D7D572136 /* Build configuration list for PBXNativeTarget "Pods-AntBusDemo" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B3B23FE0D132D88AF96C0C513EDDCB4C /* Debug */,
+				8936B6F2D3807BDF5A3C8BA7C9EA76FC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = BFDFE7DC352907FC980B868725387E98 /* Project object */;
+}

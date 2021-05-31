@@ -1,0 +1,16 @@
+PODS:
+  - AntBus (0.1.0)
+
+DEPENDENCIES:
+  - AntBus (from `AntBus`)
+
+EXTERNAL SOURCES:
+  AntBus:
+    :path: AntBus
+
+SPEC CHECKSUMS:
+  AntBus: 497a4aa1e98dd9145b96d25a0b6d0cf637474f00
+
+PODFILE CHECKSUM: 9fa5c5fafdaed3f5770a27d6a2bca755f760c7dc
+
+COCOAPODS: 1.9.3

@@ -3,11 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		181E9EC126116C0C0002FB8C /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181E9EC026116C0C0002FB8C /* AntBus.swift */; };
+		1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */; };
 		633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7925FA657A002967DB /* AppDelegate.swift */; };
 		633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7B25FA657A002967DB /* SceneDelegate.swift */; };
 		633D4A7E25FA657A002967DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7D25FA657A002967DB /* ViewController.swift */; };
@@ -24,7 +24,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		181E9EC026116C0C0002FB8C /* AntBus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBus.swift; sourceTree = "<group>"; };
+		53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		633D4A7625FA657A002967DB /* AntBusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntBusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D4A7925FA657A002967DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D4A7B25FA657A002967DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -40,6 +40,8 @@
 		633D4A9425FA659A002967DB /* SecondPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPageViewController.swift; sourceTree = "<group>"; };
 		633D4A9625FA659A002967DB /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		633D4A9825FA659A002967DB /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
+		CC8DC6849A78503D36F38B70 /* Pods-AntBusDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.release.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.release.xcconfig"; sourceTree = "<group>"; };
+		EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AntBusDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,17 +49,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0ECC620F20DB2A2A52608E39 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		633D4A6D25FA657A002967DB = {
 			isa = PBXGroup;
 			children = (
 				633D4A7825FA657A002967DB /* AntBusDemo */,
 				633D4A7725FA657A002967DB /* Products */,
+				6DF18DCF75588A1519957D5C /* Pods */,
+				0ECC620F20DB2A2A52608E39 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,7 +85,6 @@
 		633D4A7825FA657A002967DB /* AntBusDemo */ = {
 			isa = PBXGroup;
 			children = (
-				633D4AA125FA6609002967DB /* AntBus */,
 				633D4A9725FA659A002967DB /* FirstPage */,
 				633D4A8E25FA659A002967DB /* Login */,
 				633D4A9325FA659A002967DB /* SecondPage */,
@@ -123,13 +135,14 @@
 			path = FirstPage;
 			sourceTree = "<group>";
 		};
-		633D4AA125FA6609002967DB /* AntBus */ = {
+		6DF18DCF75588A1519957D5C /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				181E9EC026116C0C0002FB8C /* AntBus.swift */,
+				53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */,
+				CC8DC6849A78503D36F38B70 /* Pods-AntBusDemo.release.xcconfig */,
 			);
-			path = AntBus;
-			sourceTree = SOURCE_ROOT;
+			path = Pods;
+			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
@@ -138,9 +151,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 633D4A8A25FA657D002967DB /* Build configuration list for PBXNativeTarget "AntBusDemo" */;
 			buildPhases = (
+				8DE651463E2B5776C86A454A /* [CP] Check Pods Manifest.lock */,
 				633D4A7225FA657A002967DB /* Sources */,
 				633D4A7325FA657A002967DB /* Frameworks */,
 				633D4A7425FA657A002967DB /* Resources */,
+				8A002AC6BB27A0E06BCB686D /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -197,6 +212,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		8A002AC6BB27A0E06BCB686D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8DE651463E2B5776C86A454A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AntBusDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		633D4A7225FA657A002967DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -208,7 +265,6 @@
 				633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */,
 				633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */,
 				633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */,
-				181E9EC126116C0C0002FB8C /* AntBus.swift in Sources */,
 				633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */,
 				633D4A9A25FA659A002967DB /* LoginAppDelegate.swift in Sources */,
 				633D4A9925FA659A002967DB /* Login.swift in Sources */,
@@ -355,6 +411,7 @@
 		};
 		633D4A8B25FA657D002967DB /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -375,6 +432,7 @@
 		};
 		633D4A8C25FA657D002967DB /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC8DC6849A78503D36F38B70 /* Pods-AntBusDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

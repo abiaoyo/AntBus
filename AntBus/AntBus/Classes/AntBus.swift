@@ -237,9 +237,7 @@ fileprivate class AntBusNotification:IAntBusNotification{
             ownersTable = NSHashTable<AnyObject>.weakObjects();
             self.keyOwnersMap[key] = ownersTable
         }
-        if(ownersTable!.contains(owner) == false){
-            ownersTable!.add(owner)
-        }
+        ownersTable!.add(owner)
         var keyHandlerMap:NSMapTable<NSString,AnyObject>? = self.ownerKeyHandlerMap.object(forKey:owner)
         if(keyHandlerMap == nil){
             keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
@@ -276,9 +274,7 @@ fileprivate class AntBusNotification:IAntBusNotification{
 
     func remove(_ key:String!,owner:AnyObject!){
         if let ownersTable:NSHashTable<AnyObject> = self.keyOwnersMap[key] {
-            if(ownersTable.contains(owner)){
-                ownersTable.remove(owner)
-            }
+            ownersTable.remove(owner)
         }
         if let keyHandlerMap:NSMapTable<NSString,AnyObject> = self.ownerKeyHandlerMap.object(forKey:owner) {
             keyHandlerMap.removeObject(forKey:key as NSString?)
