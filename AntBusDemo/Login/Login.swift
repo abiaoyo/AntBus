@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public protocol LoginModule{
+@objc public protocol LoginModule: NSObjectProtocol{
     func login(account:String,password:String) -> String
     func logout()
     
