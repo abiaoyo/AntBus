@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AntBus'
-  s.version          = '0.2.2'
+  s.version          = '0.2.3'
   s.summary          = 'A short description of AntBus.'
 
 
@@ -15,5 +15,5 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/abiaoyo/AntBus.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
-  s.source_files = 'AntBus/*'
+  s.source_files = 'AntBus/AntBus/Classes/*'
 end
