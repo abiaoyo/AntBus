@@ -1,5 +1,11 @@
 # AntBus
 
+
+```bash
+pod 'AntBus', '~> 0.2.1'
+```
+
+
 ```swift
 1.shared
 //注册数据：是否已经登录
