@@ -7,9 +7,10 @@
 
 import UIKit
 import AntBus
+import LoginModule
 
 class SecondPageViewController: UIViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         

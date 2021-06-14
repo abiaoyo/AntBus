@@ -6,16 +6,57 @@
 //
 
 import UIKit
+import AntBus
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var loginAppDelegate:LoginAppDelegate = LoginAppDelegate.init()
-
+    
+    var modules:[UIApplicationDelegate] = []
+    
+    func registerModules(){
+        if let moduleNames = NSArray.init(contentsOfFile: Bundle.main.path(forResource: "antbus_modules", ofType: "plist")!) {
+            for moduleName in moduleNames {
+                if let name:String = moduleName as? String {
+                    let vcClass: AnyClass? = NSClassFromString(name)
+                    guard let moduleType = vcClass as? NSObject.Type else {
+                        print("\(name)不能当做AntBusBaseModule")
+                        break
+                    }
+                    let module = moduleType.init()
+                    self.modules.append(module as! UIApplicationDelegate)
+                    print("AppDelegate registerModules(): .module:\(module)")
+                }
+            }
+        }
+        
+//        let defaultModuleNames = ["LoginModule.LoginAppDelegate","AntBusDemo.ModuleA"]
+//        for moduleName in self.defaultModuleNames {
+//            let vcClass: AnyClass? = NSClassFromString(moduleName)
+//            guard let moduleType = vcClass as? AntBusBaseModule.Type else {
+//                print("\(moduleName)不能当做AntBusBaseModule")
+//                break
+//            }
+//            let module = moduleType.init()
+//            self.modules.append(module)
+//            print("module:\(module)")
+//        }
+        
+    }
+    
+    func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
+        AntBusContainer.showLog = false
+        self.registerModules()
+        return true
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        for module:UIApplicationDelegate in self.modules {
+            if module.responds(to: #selector(UIApplicationDelegate.application(_:didFinishLaunchingWithOptions:))) {
+                module.application!(application, didFinishLaunchingWithOptions: launchOptions)
+            }
+        }
         
-        self.loginAppDelegate.application(application, didFinishLaunchingWithOptions: launchOptions)
         return true
     }
 

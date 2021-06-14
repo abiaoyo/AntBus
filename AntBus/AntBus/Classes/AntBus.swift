@@ -311,32 +311,3 @@ public class AntBus{
     public static let service:IAntBusService = AntBusService()
     public static let notification:IAntBusNotification = AntBusNotification()
 }
-
-
-
-
-
-
-
-//MARK:多代理容器
-public class AntBusWeekDelegateContainer<T:NSObjectProtocol>: NSObject{
-    
-    public static func createContainer() -> AntBusWeekDelegateContainer<T>{
-        return AntBusWeekDelegateContainer<T>.init()
-    }
-    
-    private var container: NSHashTable<T> = NSHashTable<T>.weakObjects()
-    
-    public func allDelegate() -> [T] {
-        return self.container.allObjects
-    }
-    
-    public func addDelegate(_ delegate:T) -> Void {
-        self.container.add(delegate)
-    }
-    
-    public func removeDelegate(_ delegate:T) -> Void {
-        self.container.remove(delegate)
-    }
-    
-}

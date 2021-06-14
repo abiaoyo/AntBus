@@ -7,12 +7,76 @@
 
 import UIKit
 import AntBus
+import LoginModule
 
 class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        /*
+         AntBusContainer
+         
+         1 to 1 delegate
+         AntBusContainer<LoginModule>.single.register(self)
+         AntBusContainer<LoginModule>.single.responser()
+         AntBusContainer<LoginModule>.single.remove()
+         
+         multi delegate
+         AntBusContainer<LoginModule>.multi.register(["H6143","H6159"],self)
+         AntBusContainer<LoginModule>.multi.responsers("H6143")
+         AntBusContainer<LoginModule>.multi.responsers()
+         AntBusContainer<LoginModule>.multi.remove("H6143",self)
+         AntBusContainer<LoginModule>.multi.remove("H6143")
+         AntBusContainer<LoginModule>.multi.remove()
+         
+         1.ThirdPageViewController_A
+         AntBusContainer<ThirdPageProtocol>.multi.register(["ThirdPageA","PageA"], self)
+         AntBusContainer<ThirdPageProtocolA>.multi.register(["PageA"], self)
+         
+         2.ThirdPageViewController_B
+         AntBusContainer<ThirdPageProtocol>.multi.register(["ThirdPageB"], self)
+         
+         
+         3.ThirdPageViewController_C
+         AntBusContainer<ThirdPageProtocol>.multi.register(["ThirdPageC"], self)
+         
+         @IBAction func removePageB(_ sender: Any) {
+             AntBusContainer<ThirdPageProtocol>.multi.remove("ThirdPageB")
+         }
+         
+         @IBAction func callResponsers(_ sender: Any) {
+             let responserA = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageA")
+             print("ThirdPageProtocol.responserA:\(responserA)")
+             
+             let responserA2 = AntBusContainer<ThirdPageProtocol>.multi.responsers("PageA")
+             print("ThirdPageProtocol.responserA2:\(responserA2)")
+             
+             let responserB = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageB")
+             print("ThirdPageProtocol.responserB:\(responserB)")
+             
+             let responserC = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageC")
+             print("ThirdPageProtocol.responserC:\(responserC)")
+             
+             let responsers = AntBusContainer<ThirdPageProtocol>.multi.responsers()
+             print("ThirdPageProtocol:  .count:\(responsers?.count)   .responsers:\(responsers)")
+             
+             
+             let PageA = AntBusContainer<ThirdPageProtocolA>.multi.responsers("PageA")
+             print("ThirdPageProtocolA.PageA:\(PageA)")
+         }
+         
+         
+         
+         
+         */
         
+        
+
+        /*
+
+         AntBus
+         
         //注册数据：是否已经登录
         AntBus.shared.register("LoginModel.hasLogin", owner: self) { () -> Any? in
             if let account:String = UserDefaults.standard.value(forKey: "login.token") as? String {
@@ -105,6 +169,7 @@ class ViewController: UIViewController {
         AntBus.notification.remove("login.success", owner: self)
         AntBus.notification.removeAll()
         
+         */
     }
 }
 

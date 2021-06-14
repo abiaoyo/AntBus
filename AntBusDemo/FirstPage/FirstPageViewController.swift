@@ -7,6 +7,7 @@
 
 import UIKit
 import AntBus
+import LoginModule
 
 class FirstPageViewController: UIViewController {
 
