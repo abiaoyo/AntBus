@@ -7,7 +7,6 @@
 
 import UIKit
 import AntBus
-import LoginModule
 
 
 @objc protocol FourthPageProtocol: NSObjectProtocol{

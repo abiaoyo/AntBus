@@ -8,6 +8,5 @@ target 'AntBusDemo' do
   # Pods for AntBusDemo
 
   pod 'AntBus', :path => 'AntBus'
-  pod 'LoginModule', :path => 'SubPro/LoginModule'
 
 end
