@@ -19,13 +19,6 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
         }
         self.container.setObject(responser, forKey: module as NSString)
     }
-    public func remove() -> Void{
-        let module:String = "\(T.self)"
-        if AntBusContainer.showLog {
-            print("AntBusSingleContainer remove: .module:\(module)")
-        }
-        self.container.removeObject(forKey: module as NSString)
-    }
     
     public func responser() -> T? {
         let module:String = "\(T.self)"
@@ -34,6 +27,26 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
         }
         return self.container.object(forKey: module as NSString) as? T
     }
+    
+    public func remove() -> Void{
+        let module:String = "\(T.self)"
+        if AntBusContainer.showLog {
+            print("AntBusSingleContainer remove: .module:\(module)")
+        }
+        self.container.removeObject(forKey: module as NSString)
+        
+    }
+    
+    public func removeAll() {
+        self.container.removeAllObjects()
+        
+        let module:String = "\(T.self)"
+        if AntBusContainer.showLog {
+            print("AntBusSingleContainer removeAll: .module:\(module)")
+        }
+    }
+    
+    
 }
 
 //MARK:AntBusMultiContainer
