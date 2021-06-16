@@ -7,7 +7,6 @@
 
 import UIKit
 import AntBus
-import LoginModule
 
 class ViewController: UIViewController {
     
