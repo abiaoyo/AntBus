@@ -42,83 +42,117 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
     //<Key,[AnyObject]>
     var container = NSMapTable<NSString,NSHashTable<T>>.strongToStrongObjects()
     
+    private func getResponserSet(key:String) -> NSHashTable<T> {
+        var responsers = self.container.object(forKey: key as NSString)
+        if responsers == nil {
+            responsers = NSHashTable<T>.weakObjects()
+            self.container.setObject(responsers, forKey: key as NSString)
+        }
+        return responsers!
+    }
+    
+    
     public func register(_ keys:[String], _ responser:T) -> Void{
-        
+        for key in keys {
+            self.getResponserSet(key: key).add(responser)
+        }
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
             print("AntBusMultiContainer register: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
         }
-
-        for key in keys {
-            var responsers = self.container.object(forKey: key as NSString)
-            if responsers == nil {
-                responsers = NSHashTable<T>.weakObjects()
-                self.container.setObject(responsers, forKey: key as NSString)
-            }
-            responsers!.add(responser)
+    }
+    
+    public func register(_ key:String, _ responsers:[T]) -> Void{
+        let responserSet = self.getResponserSet(key: key)
+        for responser in responsers {
+            responserSet.add(responser)
+        }
+        if AntBusContainer.showLog {
+            let module:String = "\(T.self)"
+            print("AntBusMultiContainer register: .module:\(module)  \t  key:\(key)  \t  .responsers:\(responsers)")
         }
     }
 
     @discardableResult
     public func responsers(_ key:String) -> [T]? {
-        let module:String = "\(T.self)"
-        
+        var results:[T]? = nil
         if let responsers = self.container.object(forKey: key as NSString) {
-            if AntBusContainer.showLog {
-                print("AntBusMultiContainer responsers: .module:\(module)  \t  key:\(key)  \t  .responsers:\(responsers.allObjects)")
-            }
-            return responsers.allObjects
+            results = responsers.allObjects
         }
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer responsers: .module:\(module)  \t  key:\(key)")
+            let module:String = "\(T.self)"
+            print("AntBusMultiContainer responsers: .module:\(module)  \t  key:\(key)  \t  .responsers:\(String(describing: results))")
         }
-        return nil
+        return results
     }
 
     @discardableResult
     public func responsers() -> [T]? {
-        let module:String = "\(T.self)"
-        
+        var results:[T]? = nil
         if let responsers:[AnyObject] = self.container.objectEnumerator()?.allObjects.flatMap({ ($0 as! NSHashTable<AnyObject>).objectEnumerator().map{ $0 }}) as [AnyObject]? {
-            let results = NSHashTable<T>.init()
+            let resultSet = NSHashTable<T>.init()
             for resp in responsers {
-                results.add(resp as? T)
+                resultSet.add(resp as? T)
             }
-            if AntBusContainer.showLog {
-                print("AntBusMultiContainer responsers: .module:\(module)  \t  .responsers:\(results.allObjects)")
-            }
-            return results.allObjects
+            results = resultSet.allObjects
         }
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer responsers: .module:\(module)")
+            let module:String = "\(T.self)"
+            print("AntBusMultiContainer responsers: .module:\(module)  \t  .responsers:\(String(describing: results))")
         }
-        return nil
+        return results
     }
-
+    
+    public func remove(_ keys:[String],_ responser:T) -> Void {
+        for key in keys {
+            if let responsers = self.container.object(forKey: key as NSString) {
+                responsers.remove(responser)
+            }
+        }
+        
+        let module:String = "\(T.self)"
+        if AntBusContainer.showLog {
+            print("AntBusMultiContainer remove: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
+        }
+    }
+    
+    public func remove(_ keys:[String]) -> Void {
+        for key in keys {
+            self.container.removeObject(forKey: key as NSString)
+        }
+        
+        if AntBusContainer.showLog {
+            let module:String = "\(T.self)"
+            print("AntBusMultiContainer remove: .module:\(module)  \t  keys:\(keys)")
+        }
+    }
+    
     public func remove(_ key:String,_ responser:T) -> Void{
+        if let responsers = self.container.object(forKey: key as NSString) {
+            responsers.remove(responser)
+        }
+        
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
             print("AntBusMultiContainer remove: .module:\(module)  \t  key:\(key)  \t  .responser:\(responser)")
         }
-        if let responsers = self.container.object(forKey: key as NSString) {
-            responsers.remove(responser)
-        }
     }
     
     public func remove(_ key:String) -> Void{
+        self.container.removeObject(forKey: key as NSString)
+        
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
             print("AntBusMultiContainer remove: .module:\(module)  \t  key:\(key)")
         }
-        if let responsers = self.container.object(forKey: key as NSString) {
-            responsers.removeAllObjects()
-        }
     }
-    public func remove() -> Void {
-        if AntBusContainer.showLog {
-            print("AntBusMultiContainer remove: all responsers")
-        }
+    
+    public func removeAll() -> Void {
         self.container.removeAllObjects()
+        
+        if AntBusContainer.showLog {
+            print("AntBusMultiContainer removeAll: all responsers")
+        }
     }
 }
 
