@@ -42,7 +42,7 @@ class ThirdPageViewController_C: UIViewController, ThirdPageProtocol {
         let responserC = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageC")
         print("ThirdPageProtocol.responserC:\(responserC)")
         
-        let responsers = AntBusContainer<ThirdPageProtocol>.multi.responsers()
+        let responsers = AntBusContainer<ThirdPageProtocol>.multi.allResponsers()
         print("ThirdPageProtocol:  .count:\(responsers?.count)   .responsers:\(responsers)")
         
         

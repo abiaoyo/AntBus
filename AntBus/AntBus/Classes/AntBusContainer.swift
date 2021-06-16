@@ -100,8 +100,9 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
     }
 
     @discardableResult
-    public func responsers() -> [T]? {
+    public func allResponsers() -> [T]? {
         var results:[T]? = nil
+        
         if let responsers:[AnyObject] = self.container.objectEnumerator()?.allObjects.flatMap({ ($0 as! NSHashTable<AnyObject>).objectEnumerator().map{ $0 }}) as [AnyObject]? {
             let resultSet = NSHashTable<T>.init()
             for resp in responsers {
