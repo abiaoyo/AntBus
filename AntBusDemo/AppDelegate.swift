@@ -19,8 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 if let name:String = moduleName as? String {
                     let vcClass: AnyClass? = NSClassFromString(name)
                     guard let moduleType = vcClass as? NSObject.Type else {
-                        print("\(name)不能当做AntBusBaseModule")
-                        break
+                        print("error: \(name)")
+                        continue
                     }
                     let module = moduleType.init()
                     self.modules.append(module as! UIApplicationDelegate)
@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
-        AntBusContainer.showLog = false
+//        AntBusContainer.showLog = false
         self.registerModules()
         return true
     }

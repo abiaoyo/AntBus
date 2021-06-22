@@ -1,8 +1,7 @@
 //
 //  AntBusContainer.swift
 //  AntBus
-//
-//  Created by liyebiao on 2021/6/11.
+//  Created by abiaoyo
 //
 
 import Foundation
@@ -15,7 +14,7 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
     public func register(_ responser:T) -> Void{
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusSingleContainer register: .module:\(module)  \t  .responser:\(responser)")
+            print("🍄AntBusContainer single register: .module:\(module)  \t  .responser:\(responser)")
         }
         self.container.setObject(responser, forKey: module as NSString)
     }
@@ -23,7 +22,7 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
     public func responser() -> T? {
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusSingleContainer responser: .module:\(module)")
+            print("🍄AntBusContainer single responser: .module:\(module)")
         }
         return self.container.object(forKey: module as NSString) as? T
     }
@@ -31,7 +30,7 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
     public func remove() -> Void{
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusSingleContainer remove: .module:\(module)")
+            print("🍄AntBusContainer single remove: .module:\(module)")
         }
         self.container.removeObject(forKey: module as NSString)
         
@@ -42,7 +41,7 @@ public class AntBusSingleContainer<T:NSObjectProtocol> {
         
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusSingleContainer removeAll: .module:\(module)")
+            print("🍄AntBusContainer single removeAll: .module:\(module)")
         }
     }
     
@@ -71,7 +70,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         }
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
-            print("AntBusMultiContainer register: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
+            print("🍄AntBusContainer multi register: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
         }
     }
     
@@ -82,7 +81,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         }
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
-            print("AntBusMultiContainer register: .module:\(module)  \t  key:\(key)  \t  .responsers:\(responsers)")
+            print("🍄AntBusContainer multi register: .module:\(module)  \t  key:\(key)  \t  .responsers:\(responsers)")
         }
     }
 
@@ -94,7 +93,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         }
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
-            print("AntBusMultiContainer responsers: .module:\(module)  \t  key:\(key)  \t  .responsers:\(String(describing: results))")
+            print("🍄AntBusContainer multi responsers: .module:\(module)  \t  key:\(key)  \t  .responsers:\(String(describing: results))")
         }
         return results
     }
@@ -112,7 +111,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         }
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
-            print("AntBusMultiContainer responsers: .module:\(module)  \t  .responsers:\(String(describing: results))")
+            print("🍄AntBusContainer multi allResponsers: .module:\(module)  \t  .responsers:\(String(describing: results))")
         }
         return results
     }
@@ -126,7 +125,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer remove: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
+            print("🍄AntBusContainer multi remove: .module:\(module)  \t  keys:\(keys)  \t  .responser:\(responser)")
         }
     }
     
@@ -137,7 +136,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         
         if AntBusContainer.showLog {
             let module:String = "\(T.self)"
-            print("AntBusMultiContainer remove: .module:\(module)  \t  keys:\(keys)")
+            print("🍄AntBusContainer multi remove: .module:\(module)  \t  keys:\(keys)")
         }
     }
     
@@ -148,7 +147,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer remove: .module:\(module)  \t  key:\(key)  \t  .responser:\(responser)")
+            print("🍄AntBusContainer multi remove: .module:\(module)  \t  key:\(key)  \t  .responser:\(responser)")
         }
     }
     
@@ -157,7 +156,7 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         
         let module:String = "\(T.self)"
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer remove: .module:\(module)  \t  key:\(key)")
+            print("🍄AntBusContainer multi remove: .module:\(module)  \t  key:\(key)")
         }
     }
     
@@ -165,13 +164,13 @@ public class AntBusMultiContainer<T:NSObjectProtocol> {
         self.container.removeAllObjects()
         
         if AntBusContainer.showLog {
-            print("AntBusMultiContainer removeAll: all responsers")
+            print("🍄AntBusContainer multi removeAll: all responsers")
         }
     }
 }
 
-//MARK:AntBusContainerHelper
-class AntBusContainerHelper{
+//MARK:AntBusContainerStore
+class AntBusContainerStore{
     static var multiContainer = Dictionary<String,AnyObject>.init()
     static var singleContainer = Dictionary<String,AnyObject>.init()
 }
@@ -189,24 +188,24 @@ extension AntBusContainer where T == Any {
 extension AntBusContainer where T:NSObjectProtocol {
     public static var multi:AntBusMultiContainer<T> {
         get {
-            let key = "multi_"+"\(T.self)"
-            var moduleMulti = AntBusContainerHelper.multiContainer[key]
+            let module:String = "\(T.self)"
+            var moduleMulti = AntBusContainerStore.multiContainer[module]
             
             if moduleMulti == nil {
                 moduleMulti = AntBusMultiContainer<T>.init()
-                AntBusContainerHelper.multiContainer[key] = moduleMulti
+                AntBusContainerStore.multiContainer[module] = moduleMulti
             }
             return moduleMulti as! AntBusMultiContainer<T>
         }
     }
     public static var single:AntBusSingleContainer<T> {
         get {
-            let key = "single_"+"\(T.self)"
-            var moduleSingle = AntBusContainerHelper.singleContainer[key]
+            let module:String = "\(T.self)"
+            var moduleSingle = AntBusContainerStore.singleContainer[module]
             
             if moduleSingle == nil {
                 moduleSingle = AntBusSingleContainer<T>.init()
-                AntBusContainerHelper.singleContainer[key] = moduleSingle
+                AntBusContainerStore.singleContainer[module] = moduleSingle
             }
             return moduleSingle as! AntBusSingleContainer<T>
         }

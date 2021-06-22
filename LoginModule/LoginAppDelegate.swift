@@ -8,7 +8,7 @@
 import UIKit
 import AntBus
 
-class LoginAppDelegate: AntBusBaseModule,LoginModule{
+class LoginAppDelegate: NSObject, UIApplicationDelegate,LoginModule{
     
     func logout() {
         

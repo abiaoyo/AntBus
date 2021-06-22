@@ -1,16 +1,22 @@
 PODS:
   - AntBus (0.1.0)
+  - LoginModule (0.1.0):
+    - AntBus
 
 DEPENDENCIES:
   - AntBus (from `AntBus`)
+  - LoginModule (from `SubPro/LoginModule`)
 
 EXTERNAL SOURCES:
   AntBus:
     :path: AntBus
+  LoginModule:
+    :path: SubPro/LoginModule
 
 SPEC CHECKSUMS:
   AntBus: 497a4aa1e98dd9145b96d25a0b6d0cf637474f00
+  LoginModule: 8f87289fc63e17d2e43678aa388c9a702a0376f6
 
-PODFILE CHECKSUM: 9fa5c5fafdaed3f5770a27d6a2bca755f760c7dc
+PODFILE CHECKSUM: 34c1e2d8237550dc22de55334ba01bcbdd7c4305
 
 COCOAPODS: 1.10.1

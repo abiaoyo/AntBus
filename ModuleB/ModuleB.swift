@@ -12,7 +12,7 @@ import AntBus
     func testModuleB()
 }
 
-class ModuleB: AntBusBaseModule ,ModuleBProtocol{
+class ModuleB: NSObject, UIApplicationDelegate ,ModuleBProtocol{
     
     func testModuleB() {
         
@@ -20,8 +20,7 @@ class ModuleB: AntBusBaseModule ,ModuleBProtocol{
 
     @discardableResult
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        
-        AntBusContainer<ModuleBProtocol>.multi.register(["B"], self)
+        AntBusContainer<ModuleBProtocol>.single.register(self)
         
         return true
     }

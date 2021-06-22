@@ -7,6 +7,7 @@
 
 import UIKit
 import AntBus
+import LoginModule
 
 class FirstPageViewController: UIViewController {
 
@@ -31,6 +32,6 @@ class FirstPageViewController: UIViewController {
 
     @IBAction func clickLogout(_ sender: Any) {
 //        AntBus.router.call("LoginModule", key: "logout", params: nil, taskBlock: nil)
-        AntBus.service.call(LoginModule.self, method: #selector(LoginModule.logout), params: nil, taskBlock: nil)
+        AntBus.service.call(ModuleLoginProtocol.self, method: #selector(ModuleLoginProtocol.logout), params: nil, taskBlock: nil)
     }
 }

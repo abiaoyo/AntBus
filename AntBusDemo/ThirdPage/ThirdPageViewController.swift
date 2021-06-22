@@ -7,6 +7,7 @@
 
 import UIKit
 import AntBus
+import LoginModule
 
 
 @objc protocol ThirdPageProtocol : NSObjectProtocol {
@@ -28,6 +29,6 @@ class ThirdPageViewController: UIViewController {
         self.navigationController?.pushViewController(viewCtl, animated: true)
     }
     @IBAction func clickLogin(_ sender: Any) {
-        AntBusContainer<LoginModule>.single.responser()?.showLoginPage(viewController: self)
+        AntBusContainer<ModuleLoginProtocol>.single.responser()?.showLoginPage(viewController: self)
     }
 }

@@ -8,10 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		1823187126737AEE006E4800 /* antbus_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_modules.plist */; };
-		1829E5772678571C001A21CF /* LoginAppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5732678571C001A21CF /* LoginAppDelegate.swift */; };
-		1829E5782678571C001A21CF /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5742678571C001A21CF /* LoginModule.swift */; };
-		1829E5792678571C001A21CF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1829E5752678571C001A21CF /* LoginViewController.xib */; };
-		1829E57A2678571C001A21CF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1829E5762678571C001A21CF /* LoginViewController.swift */; };
 		182B44B026739DDB001312A3 /* FourthPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44AE26739DDB001312A3 /* FourthPageViewController.swift */; };
 		182B44B52673D1F9001312A3 /* ModuleA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44B42673D1F9001312A3 /* ModuleA.swift */; };
 		182B44B72673E865001312A3 /* ModuleB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44B62673E865001312A3 /* ModuleB.swift */; };
@@ -38,10 +34,6 @@
 
 /* Begin PBXFileReference section */
 		1823187026737AEE006E4800 /* antbus_modules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = antbus_modules.plist; sourceTree = "<group>"; };
-		1829E5732678571C001A21CF /* LoginAppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginAppDelegate.swift; sourceTree = "<group>"; };
-		1829E5742678571C001A21CF /* LoginModule.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginModule.swift; sourceTree = "<group>"; };
-		1829E5752678571C001A21CF /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		1829E5762678571C001A21CF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		182B44AE26739DDB001312A3 /* FourthPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPageViewController.swift; sourceTree = "<group>"; };
 		182B44B42673D1F9001312A3 /* ModuleA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleA.swift; sourceTree = "<group>"; };
 		182B44B62673E865001312A3 /* ModuleB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleB.swift; sourceTree = "<group>"; };
@@ -90,17 +82,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		1829E5722678571C001A21CF /* LoginModule */ = {
-			isa = PBXGroup;
-			children = (
-				1829E5732678571C001A21CF /* LoginAppDelegate.swift */,
-				1829E5742678571C001A21CF /* LoginModule.swift */,
-				1829E5752678571C001A21CF /* LoginViewController.xib */,
-				1829E5762678571C001A21CF /* LoginViewController.swift */,
-			);
-			path = LoginModule;
-			sourceTree = "<group>";
-		};
 		182B44AD26739DBC001312A3 /* FourthPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,7 +125,6 @@
 		633D4A6D25FA657A002967DB = {
 			isa = PBXGroup;
 			children = (
-				1829E5722678571C001A21CF /* LoginModule */,
 				182B44B32673D1EB001312A3 /* ModuleB */,
 				182B44B22673D1E2001312A3 /* ModuleA */,
 				633D4A7825FA657A002967DB /* AntBusDemo */,
@@ -282,7 +262,6 @@
 				184A31C426709736008A0A21 /* ThirdPageViewController_A.xib in Resources */,
 				633D4A8125FA657A002967DB /* Main.storyboard in Resources */,
 				182B44C726767D35001312A3 /* ThirdPageViewController_C.xib in Resources */,
-				1829E5792678571C001A21CF /* LoginViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -343,12 +322,9 @@
 				633D4A7E25FA657A002967DB /* ViewController.swift in Sources */,
 				633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */,
 				182B44B72673E865001312A3 /* ModuleB.swift in Sources */,
-				1829E5772678571C001A21CF /* LoginAppDelegate.swift in Sources */,
 				633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */,
 				182B44C626767D35001312A3 /* ThirdPageViewController_C.swift in Sources */,
-				1829E5782678571C001A21CF /* LoginModule.swift in Sources */,
 				633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */,
-				1829E57A2678571C001A21CF /* LoginViewController.swift in Sources */,
 				633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */,
 				182B44B026739DDB001312A3 /* FourthPageViewController.swift in Sources */,
 				184A31BC26709580008A0A21 /* ThirdPageViewController.swift in Sources */,
@@ -507,7 +483,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.Demo.AntBusDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.Demo.AntBusDemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -528,7 +504,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.Demo.AntBusDemo;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.Demo.AntBusDemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
