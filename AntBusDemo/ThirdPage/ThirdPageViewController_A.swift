@@ -32,8 +32,8 @@ class ThirdPageViewController_A: UIViewController, ThirdPageProtocol, ThirdPageP
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "ThirdPageA"
-        AntBusContainer<ThirdPageProtocol>.multi.register(["ThirdPageA","PageA"], self)
-        AntBusContainer<ThirdPageProtocolA>.multi.register(["PageA"], self)
+        AntBus<ThirdPageProtocol>.multi.register(["ThirdPageA","PageA"], self)
+        AntBus<ThirdPageProtocolA>.multi.register(["PageA"], self)
     }
 
     @IBAction func clickButton(_ sender: Any) {

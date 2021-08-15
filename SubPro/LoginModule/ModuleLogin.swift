@@ -33,36 +33,36 @@ class ModuleLogin: NSObject,UIApplicationDelegate,ModuleLoginProtocol {
     @discardableResult
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        AntBusContainer<ModuleLoginProtocol>.single.register(self)
+        AntBus<ModuleLoginProtocol>.single.register(self)
         
-        AntBus.shared.register("login.hasLogin", owner: self) { () -> Any? in
+        AntBus.channel.data.register("login.hasLogin", owner: self) { () -> Any? in
             if let account:String = UserDefaults.standard.value(forKey: "login.user.account") as? String {
                 return !account.isEmpty
             }
             return false
         }
         
-        AntBus.shared.register("login.user.account", owner: self) { () -> Any? in
+        AntBus.channel.data.register("login.user.account", owner: self) { () -> Any? in
             return UserDefaults.standard.value(forKey: "login.user.account")
         }
         
-        AntBus.router.register("LoginModule", key: "goLogin") { (params, resultBlock, taskBlock) in
-            if let viewCtl:UIViewController = AntBus.shared.call("app.current.controller").data as? UIViewController {
+        AntBus.channel.router.register("LoginModule", key: "goLogin") { (params, resultBlock, taskBlock) in
+            if let viewCtl:UIViewController = AntBus.channel.data.call("app.current.controller").data as? UIViewController {
                 let loginCtl = LoginViewController.init(nibName: "LoginViewController", bundle: Bundle.init(for: ModuleLogin.self))
                 viewCtl.present(loginCtl, animated: true, completion: nil)
             }
         }
         
-        AntBus.router.register("LoginModule", key: "logout") { (params, resultBlock, taskBlock) in
+        AntBus.channel.router.register("LoginModule", key: "logout") { (params, resultBlock, taskBlock) in
             UserDefaults.standard.setValue(nil, forKey: "login.user.account")
             UserDefaults.standard.synchronize()
-            AntBus.notification.post("logout.success")
+            AntBus.channel.notification.post("logout.success")
         }
         
-        AntBus.service.register(ModuleLoginProtocol.self, method: #selector(ModuleLoginProtocol.logout)) { (params, resultBlock, taskBlock) in
+        AntBus.channel.service.register(ModuleLoginProtocol.self, method: #selector(ModuleLoginProtocol.logout)) { (params, resultBlock, taskBlock) in
             UserDefaults.standard.setValue(nil, forKey: "login.user.account")
             UserDefaults.standard.synchronize()
-            AntBus.notification.post("logout.success")
+            AntBus.channel.notification.post("logout.success")
         }
         
         return true

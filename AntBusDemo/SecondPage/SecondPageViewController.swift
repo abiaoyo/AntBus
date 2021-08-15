@@ -13,21 +13,21 @@ class SecondPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.notification.register("login.success", owner: self) { [weak self] (_) in
+        AntBus.channel.notification.register("login.success", owner: self) { [weak self] (_) in
             self?.refreshView()
         }
-        AntBus.notification.register("logout.success", owner: self) { [weak self] (_) in
+        AntBus.channel.notification.register("logout.success", owner: self) { [weak self] (_) in
             self?.refreshView()
         }
         self.refreshView()
     }
     func refreshView(){
-        self.label.text = AntBus.shared.call("login.user.account").data as? String
+        self.label.text = AntBus.channel.data.call("login.user.account").data as? String
     }
     
     @IBOutlet weak var label: UILabel!
     @IBAction func clickButton(_ sender: Any) {
-        AntBus.router.call("LoginModule", key: "goLogin", params: nil, taskBlock: nil)
+        AntBus.channel.router.call("LoginModule", key: "goLogin", params: nil, taskBlock: nil)
         
     }
 }

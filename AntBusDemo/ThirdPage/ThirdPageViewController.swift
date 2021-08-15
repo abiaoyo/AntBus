@@ -29,6 +29,6 @@ class ThirdPageViewController: UIViewController {
         self.navigationController?.pushViewController(viewCtl, animated: true)
     }
     @IBAction func clickLogin(_ sender: Any) {
-        AntBusContainer<ModuleLoginProtocol>.single.responser()?.showLoginPage(viewController: self)
+        AntBus<ModuleLoginProtocol>.single.responder()?.showLoginPage(viewController: self)
     }
 }

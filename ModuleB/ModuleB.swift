@@ -20,7 +20,7 @@ class ModuleB: NSObject, UIApplicationDelegate ,ModuleBProtocol{
 
     @discardableResult
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        AntBusContainer<ModuleBProtocol>.single.register(self)
+        AntBus<ModuleBProtocol>.single.register(self)
         
         return true
     }

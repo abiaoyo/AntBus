@@ -35,6 +35,14 @@
                         <action selector="removePageB:" destination="-1" eventType="touchUpInside" id="c22-09-Re4"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fXh-t4-7sY">
+                    <rect key="frame" x="20" y="268" width="186" height="39"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <state key="normal" title="Remove ThirdPageProtocol"/>
+                    <connections>
+                        <action selector="removeThirdPageProtocol:" destination="-1" eventType="touchUpInside" id="x3E-9c-hOj"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" systemColor="systemBackgroundColor"/>

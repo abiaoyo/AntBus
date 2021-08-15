@@ -22,7 +22,7 @@ class FourthPageViewController: UIViewController, FourthPageProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBusContainer<FourthPageProtocol>.single.register(self)
+        AntBus<FourthPageProtocol>.single.register(self)
     }
 
     @IBAction func goFourthPageA(_ sender: Any) {

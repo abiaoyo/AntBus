@@ -17,36 +17,38 @@ class ThirdPageViewController_C: UIViewController, ThirdPageProtocol {
     func third_page() -> String?{
         return "Third_Page_C"
     }
-    
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.title = "ThirdPageC"
-        AntBusContainer<ThirdPageProtocol>.multi.register(["ThirdPageC"], self)
+        AntBus<ThirdPageProtocol>.multi.register(["ThirdPageC"], self)
     }
 
     @IBAction func removePageB(_ sender: Any) {
-        AntBusContainer<ThirdPageProtocol>.multi.remove("ThirdPageB")
+        AntBus<ThirdPageProtocol>.multi.remove("ThirdPageB")
+    }
+    
+    @IBAction func removeThirdPageProtocol(_ sender: Any) {
+        AntBus<ThirdPageProtocol>.multi.removeAll()
     }
     
     @IBAction func callResponsers(_ sender: Any) {
-        let responserA = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageA")
-        print("ThirdPageProtocol.responserA:\(responserA)")
+        let responderA = AntBus<ThirdPageProtocol>.multi.responders("ThirdPageA")
+        print("ThirdPageProtocol.responderA:\(responderA)")
         
-        let responserA2 = AntBusContainer<ThirdPageProtocol>.multi.responsers("PageA")
-        print("ThirdPageProtocol.responserA2:\(responserA2)")
+        let responderA2 = AntBus<ThirdPageProtocol>.multi.responders("PageA")
+        print("ThirdPageProtocol.responderA2:\(responderA2)")
         
-        let responserB = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageB")
-        print("ThirdPageProtocol.responserB:\(responserB)")
+        let responderB = AntBus<ThirdPageProtocol>.multi.responders("ThirdPageB")
+        print("ThirdPageProtocol.responderB:\(responderB)")
         
-        let responserC = AntBusContainer<ThirdPageProtocol>.multi.responsers("ThirdPageC")
-        print("ThirdPageProtocol.responserC:\(responserC)")
+        let responderC = AntBus<ThirdPageProtocol>.multi.responders("ThirdPageC")
+        print("ThirdPageProtocol.responderC:\(responderC)")
         
-        let responsers = AntBusContainer<ThirdPageProtocol>.multi.allResponsers()
-        print("ThirdPageProtocol:  .count:\(responsers?.count)   .responsers:\(responsers)")
+        let responders = AntBus<ThirdPageProtocol>.multi.responders()
+        print("ThirdPageProtocol:  .count:\(responders?.count)   .responders:\(responders)")
         
-        
-        let PageA = AntBusContainer<ThirdPageProtocolA>.multi.responsers("PageA")
+        let PageA = AntBus<ThirdPageProtocolA>.multi.responders("PageA")
         print("ThirdPageProtocolA.PageA:\(PageA)")
     }
     

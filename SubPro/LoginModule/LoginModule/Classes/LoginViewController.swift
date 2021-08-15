@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
             if(!account.isEmpty){
                 UserDefaults.standard.setValue(account, forKey: "login.user.account")
                 UserDefaults.standard.synchronize()
-                AntBus.notification.post("login.success", data: nil)
+                AntBus.channel.notification.post("login.success", data: nil)
                 self.dismiss(animated: true, completion: nil)
             }
         }

@@ -20,15 +20,16 @@ class FourthPageViewController_A: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        self.textLabel.text = AntBusContainer<FourthPageProtocol>.single.responser()?.pageTitle()
+        self.textLabel.text = AntBus<FourthPageProtocol>.single.responder()?.pageTitle()
+        
     }
 
     @IBAction func clickButton(_ sender: Any) {
-        let moduleA = AntBusContainer<ModuleAProtocol>.single.responser()
+        let moduleA = AntBus<ModuleAProtocol>.single.responder()
         print("moduleA:\(moduleA)")
-        let moduleB = AntBusContainer<ModuleBProtocol>.single.responser()
+        let moduleB = AntBus<ModuleBProtocol>.single.responder()
         print("moduleB:\(moduleB)")
-        let moduleLogin = AntBusContainer<ModuleLoginProtocol>.single.responser()
+        let moduleLogin = AntBus<ModuleLoginProtocol>.single.responder()
         print("moduleLogin:\(moduleLogin)")
     }
     
