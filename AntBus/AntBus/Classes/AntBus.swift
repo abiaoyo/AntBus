@@ -7,26 +7,22 @@
 import Foundation
 
 //MARK: AntBusSingle
-public class AntBusSingle<T:NSObjectProtocol> {
-    //<Key,AnyObject>
-    var container = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
+public class AntBusSingle<T:AnyObject> {
+    private weak var _responder:T?
     
     public func register(_ responder:T) -> Void{
-        let key:String = "\(T.self)"
-        self.container.setObject(responder, forKey: key as NSString)
+        _responder = responder
     }
     public func responder() -> T?{
-        let key:String = "\(T.self)"
-        return self.container.object(forKey: key as NSString) as? T
+        return _responder
     }
     public func remove() -> Void{
-        let key:String = "\(T.self)"
-        self.container.removeObject(forKey: key as NSString)
+        _responder = nil
     }
 }
 
 //MARK: AntBusMulti
-public class AntBusMulti<T:NSObjectProtocol> {
+public class AntBusMulti<T:AnyObject> {
     //<Key,[AnyObject]>
     var container = NSMapTable<NSString,NSHashTable<T>>.strongToStrongObjects()
     
@@ -111,7 +107,7 @@ public class AntBus<T>{
 }
 
 //MARK: AntBus extension
-extension AntBus where T:NSObjectProtocol{
+extension AntBus where T:AnyObject{
     public static var single:AntBusSingle<T> {
         get {
             let key:String = "\(T.self)"

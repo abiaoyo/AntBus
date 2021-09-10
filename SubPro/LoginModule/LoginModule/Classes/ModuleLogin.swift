@@ -7,7 +7,7 @@
 
 import UIKit
 import AntBus
-@objc public protocol ModuleLoginProtocol: NSObjectProtocol{
+@objc public protocol ModuleLoginProtocol{
     @objc optional func login(account:String,password:String) -> String
     func logout()
     func showLoginPage(viewController:UIViewController!)

@@ -10,7 +10,7 @@ import AntBus
 import LoginModule
 
 
-@objc protocol ThirdPageProtocol : NSObjectProtocol {
+@objc protocol ThirdPageProtocol {
     
     func third_page() -> String?
     

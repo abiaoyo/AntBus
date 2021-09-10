@@ -9,7 +9,7 @@ import UIKit
 import AntBus
 
 
-@objc protocol FourthPageProtocol: NSObjectProtocol{
+@objc protocol FourthPageProtocol{
     func pageTitle() -> String
 }
 

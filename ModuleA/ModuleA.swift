@@ -8,7 +8,7 @@
 import UIKit
 import AntBus
 
-@objc protocol ModuleAProtocol: NSObjectProtocol {
+@objc protocol ModuleAProtocol {
     func testModuleA()
 }
 

@@ -8,7 +8,7 @@
 import UIKit
 import AntBus
 
-@objc protocol ThirdPageProtocolA : NSObjectProtocol {
+@objc protocol ThirdPageProtocolA {
     
     func test() -> String?
     
