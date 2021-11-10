@@ -15,6 +15,17 @@ class ViewController: UIViewController {
         
         /*
          
+         AntBusChannel.groupNotification.register("", group: "", owner: self) { group, groupIndex, data in
+             //...
+         }
+         
+         AntBusChannel.groupNotification.post("", group: "B", data: nil)
+         AntBusChannel.groupNotification.post("", data: nil)
+         AntBusChannel.groupNotification.remove("", group: "", owner: self)
+         AntBusChannel.groupNotification.remove("", group: "")
+         AntBusChannel.groupNotification.remove("")
+         AntBusChannel.groupNotification.removeAll()
+         
          
          AntBus<TestLogin>.single.register(self);
          AntBus<TestLogin>.single.responder()?.login()
@@ -32,30 +43,30 @@ class ViewController: UIViewController {
          AntBus<TestLogin>.multi.removeAll()
          
          
-         AntBus.channel.notification.register("", owner: self) { _ in
+         AntBusChannel.notification.register("", owner: self) { _ in
              
          }
-         AntBus.channel.notification.post("", data: nil)
+         AntBusChannel.notification.post("", data: nil)
          
          
-         AntBus.channel.data.register("", owner: self) {
+         AntBusChannel.data.register("", owner: self) {
              
          }
-         AntBus.channel.data.call("")
+         AntBusChannel.data.call("")
          
          
          
-         AntBus.channel.router.register("", key: "") { params, resultBlock, _ in
+         AntBusChannel.router.register("", key: "") { params, resultBlock, _ in
              resultBlock("")
          }
-         AntBus.channel.router.call("", key: "", params: nil, taskBlock: nil)
+         AntBusChannel.router.call("", key: "", params: nil, taskBlock: nil)
          
          
          
-         AntBus.channel.service.register(TestLogin.self, method: #selector(login)) { _, _, _ in
+         AntBusChannel.service.register(TestLogin.self, method: #selector(login)) { _, _, _ in
              
          }
-         AntBus.channel.service.call(TestLogin.self, method: #selector(login), params: nil, taskBlock: nil)
+         AntBusChannel.service.call(TestLogin.self, method: #selector(login), params: nil, taskBlock: nil)
          
          
          */

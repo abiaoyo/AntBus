@@ -3,4 +3,75 @@
    uuid = "9683E5A3-BA6F-47D1-9A67-3020E7C0923C"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.ExceptionBreakpoint">
+         <BreakpointContent
+            uuid = "B6D51C6D-8D58-42AD-A30B-33638EAAB51C"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            breakpointStackSelectionBehavior = "1"
+            scope = "1"
+            stopOnStyle = "0">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.SwiftErrorBreakpoint">
+         <BreakpointContent
+            uuid = "6B1F3F2A-9D28-4DAF-844D-7FCF7B9CBE46"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A5149236-90DA-4691-AE7C-33734D7FDD9B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBusDemo/FirstPage/FirstPageViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "A5149236-90DA-4691-AE7C-33734D7FDD9B - 770875f09c258a57"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBusDemo.FirstPageViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "AntBusDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liyebiao/Desktop/NewDemo/AntBus/AntBusDemo/FirstPage/FirstPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "128">
+               </Location>
+               <Location
+                  uuid = "A5149236-90DA-4691-AE7C-33734D7FDD9B - d77ef492de1eef10"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Optional&lt;Any&gt;) -&gt; () in AntBusDemo.FirstPageViewController.viewDidLoad() -&gt; ()"
+                  moduleName = "AntBusDemo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liyebiao/Desktop/NewDemo/AntBus/AntBusDemo/FirstPage/FirstPageViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "18"
+                  endingLineNumber = "18"
+                  offsetFromSymbolStart = "47">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

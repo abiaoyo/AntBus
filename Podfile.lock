@@ -1,22 +1,34 @@
 PODS:
   - AntBus (0.1.0)
+  - BaseModule (0.1.0)
+  - CommonModule (0.1.0)
   - LoginModule (0.1.0):
     - AntBus
+    - BaseModule
+    - CommonModule
 
 DEPENDENCIES:
   - AntBus (from `AntBus`)
-  - LoginModule (from `SubPro/LoginModule`)
+  - BaseModule (from `Common/BaseModule`)
+  - CommonModule (from `Common/CommonModule`)
+  - LoginModule (from `Others/LoginModule`)
 
 EXTERNAL SOURCES:
   AntBus:
     :path: AntBus
+  BaseModule:
+    :path: Common/BaseModule
+  CommonModule:
+    :path: Common/CommonModule
   LoginModule:
-    :path: SubPro/LoginModule
+    :path: Others/LoginModule
 
 SPEC CHECKSUMS:
   AntBus: 497a4aa1e98dd9145b96d25a0b6d0cf637474f00
-  LoginModule: 8f87289fc63e17d2e43678aa388c9a702a0376f6
+  BaseModule: 3812e1188b9a34dfbb8a0da13ef7bf5ad9b19158
+  CommonModule: 27198e7a7ef539b239c8de3961147051bc341553
+  LoginModule: 72129319d4ed640d03c6c19c6d04282982efbacc
 
-PODFILE CHECKSUM: 34c1e2d8237550dc22de55334ba01bcbdd7c4305
+PODFILE CHECKSUM: e49c0102b1515df46b9d3d7b86b361ba09a22ef1
 
 COCOAPODS: 1.10.1

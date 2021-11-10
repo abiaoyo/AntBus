@@ -176,10 +176,14 @@ code_sign_if_enabled() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AntBus/AntBus.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseModule/BaseModule.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CommonModule/CommonModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LoginModule/LoginModule.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "${BUILT_PRODUCTS_DIR}/AntBus/AntBus.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/BaseModule/BaseModule.framework"
+  install_framework "${BUILT_PRODUCTS_DIR}/CommonModule/CommonModule.framework"
   install_framework "${BUILT_PRODUCTS_DIR}/LoginModule/LoginModule.framework"
 fi
 if [ "${COCOAPODS_PARALLEL_CODE_SIGN}" == "true" ]; then

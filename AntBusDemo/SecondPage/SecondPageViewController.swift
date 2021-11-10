@@ -7,27 +7,39 @@
 
 import UIKit
 import AntBus
+import BaseModule
 
 class SecondPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.channel.notification.register("login.success", owner: self) { [weak self] (_) in
-            self?.refreshView()
+        AntBusChannel.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
+            print("SecondPage group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
         }
-        AntBus.channel.notification.register("logout.success", owner: self) { [weak self] (_) in
-            self?.refreshView()
-        }
-        self.refreshView()
-    }
-    func refreshView(){
-        self.label.text = AntBus.channel.data.call("login.user.account").data as? String
     }
     
-    @IBOutlet weak var label: UILabel!
-    @IBAction func clickButton(_ sender: Any) {
-        AntBus.channel.router.call("LoginModule", key: "goLogin", params: nil, taskBlock: nil)
+    @IBAction func clickPage3V1(_ sender: Any) {
+        AntService<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
+            if(page3Module.version() == 1){
+                return true
+            }
+            return false
+        })?.pushPage(navCtl: self.navigationController!)
         
     }
+    
+    @IBAction func clickPage3V2(_ sender: Any) {
+        AntService<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
+            if(page3Module.version() == 2){
+                return true
+            }
+            return false
+        })?.pushPage(navCtl: self.navigationController!)
+    }
+    
+    @IBAction func clickPage4(_ sender: Any) {
+        AntService<IPage4Module>.single.responder()?.pushPage(navCtl: self.navigationController!)
+    }
+    
 }

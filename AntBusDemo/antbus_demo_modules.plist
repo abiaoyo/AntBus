@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>name</key>
+		<string>Login</string>
+		<key>class</key>
+		<string>LoginModule.LoginModule</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Page3V1</string>
+		<key>class</key>
+		<string>AntBusDemo.Page3_V1_Module</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Page3V2</string>
+		<key>class</key>
+		<string>AntBusDemo.Page3_V2_Module</string>
+	</dict>
+	<dict>
+		<key>name</key>
+		<string>Page4</string>
+		<key>class</key>
+		<string>AntBusDemo.Page4Module</string>
+	</dict>
+</array>
+</plist>

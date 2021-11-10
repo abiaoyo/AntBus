@@ -1,0 +1,22 @@
+{
+  "name": "ModuleManager",
+  "version": "0.1.0",
+  "summary": "A short description of ModuleManager.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/abiaoyo/ModuleManager",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "abiaoyo": "347991555@qq.com"
+  },
+  "source": {
+    "git": "https://github.com/abiaoyo/ModuleManager.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "9.0"
+  },
+  "source_files": "ModuleManager/Classes/**/*"
+}

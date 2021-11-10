@@ -7,22 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1823187126737AEE006E4800 /* antbus_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_modules.plist */; };
-		182B44B026739DDB001312A3 /* FourthPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44AE26739DDB001312A3 /* FourthPageViewController.swift */; };
-		182B44B52673D1F9001312A3 /* ModuleA.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44B42673D1F9001312A3 /* ModuleA.swift */; };
-		182B44B72673E865001312A3 /* ModuleB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44B62673E865001312A3 /* ModuleB.swift */; };
-		182B44BE26767B13001312A3 /* FourthPageViewController_A.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44BC26767B13001312A3 /* FourthPageViewController_A.swift */; };
-		182B44BF26767B13001312A3 /* FourthPageViewController_A.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182B44BD26767B13001312A3 /* FourthPageViewController_A.xib */; };
-		182B44C226767C43001312A3 /* ThirdPageViewController_B.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44C026767C43001312A3 /* ThirdPageViewController_B.swift */; };
-		182B44C326767C43001312A3 /* ThirdPageViewController_B.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182B44C126767C43001312A3 /* ThirdPageViewController_B.xib */; };
-		182B44C626767D35001312A3 /* ThirdPageViewController_C.swift in Sources */ = {isa = PBXBuildFile; fileRef = 182B44C426767D35001312A3 /* ThirdPageViewController_C.swift */; };
-		182B44C726767D35001312A3 /* ThirdPageViewController_C.xib in Resources */ = {isa = PBXBuildFile; fileRef = 182B44C526767D35001312A3 /* ThirdPageViewController_C.xib */; };
-		184A31BC26709580008A0A21 /* ThirdPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A31BB26709580008A0A21 /* ThirdPageViewController.swift */; };
-		184A31C326709736008A0A21 /* ThirdPageViewController_A.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184A31C126709736008A0A21 /* ThirdPageViewController_A.swift */; };
-		184A31C426709736008A0A21 /* ThirdPageViewController_A.xib in Resources */ = {isa = PBXBuildFile; fileRef = 184A31C226709736008A0A21 /* ThirdPageViewController_A.xib */; };
+		1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_demo_modules.plist */; };
+		1852C87D271BFB070041DC68 /* Page3_V1_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */; };
+		1852C87F271BFB490041DC68 /* Page3_V2_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */; };
+		1852C882271BFC220041DC68 /* IPage3Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C881271BFC220041DC68 /* IPage3Module.swift */; };
+		1852C885271BFE890041DC68 /* Page4Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C884271BFE890041DC68 /* Page4Module.swift */; };
+		1852C888271BFEF40041DC68 /* Page4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C886271BFEF40041DC68 /* Page4ViewController.swift */; };
+		1852C889271BFEF40041DC68 /* Page4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C887271BFEF40041DC68 /* Page4ViewController.xib */; };
+		1852C88C271C007B0041DC68 /* Page3V2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */; };
+		1852C88D271C007B0041DC68 /* Page3V2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */; };
+		1852C892271C009C0041DC68 /* Page3V1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C890271C009C0041DC68 /* Page3V1ViewController.swift */; };
+		1852C893271C009C0041DC68 /* Page3V1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C891271C009C0041DC68 /* Page3V1ViewController.xib */; };
 		1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */; };
 		633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7925FA657A002967DB /* AppDelegate.swift */; };
-		633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7B25FA657A002967DB /* SceneDelegate.swift */; };
 		633D4A7E25FA657A002967DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7D25FA657A002967DB /* ViewController.swift */; };
 		633D4A8125FA657A002967DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633D4A7F25FA657A002967DB /* Main.storyboard */; };
 		633D4A8325FA657D002967DB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 633D4A8225FA657D002967DB /* Assets.xcassets */; };
@@ -33,23 +30,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1823187026737AEE006E4800 /* antbus_modules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = antbus_modules.plist; sourceTree = "<group>"; };
-		182B44AE26739DDB001312A3 /* FourthPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPageViewController.swift; sourceTree = "<group>"; };
-		182B44B42673D1F9001312A3 /* ModuleA.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleA.swift; sourceTree = "<group>"; };
-		182B44B62673E865001312A3 /* ModuleB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModuleB.swift; sourceTree = "<group>"; };
-		182B44BC26767B13001312A3 /* FourthPageViewController_A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FourthPageViewController_A.swift; sourceTree = "<group>"; };
-		182B44BD26767B13001312A3 /* FourthPageViewController_A.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FourthPageViewController_A.xib; sourceTree = "<group>"; };
-		182B44C026767C43001312A3 /* ThirdPageViewController_B.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController_B.swift; sourceTree = "<group>"; };
-		182B44C126767C43001312A3 /* ThirdPageViewController_B.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdPageViewController_B.xib; sourceTree = "<group>"; };
-		182B44C426767D35001312A3 /* ThirdPageViewController_C.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController_C.swift; sourceTree = "<group>"; };
-		182B44C526767D35001312A3 /* ThirdPageViewController_C.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdPageViewController_C.xib; sourceTree = "<group>"; };
-		184A31BB26709580008A0A21 /* ThirdPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController.swift; sourceTree = "<group>"; };
-		184A31C126709736008A0A21 /* ThirdPageViewController_A.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThirdPageViewController_A.swift; sourceTree = "<group>"; };
-		184A31C226709736008A0A21 /* ThirdPageViewController_A.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThirdPageViewController_A.xib; sourceTree = "<group>"; };
+		1823187026737AEE006E4800 /* antbus_demo_modules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = antbus_demo_modules.plist; sourceTree = "<group>"; };
+		1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V1_Module.swift; sourceTree = "<group>"; };
+		1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V2_Module.swift; sourceTree = "<group>"; };
+		1852C881271BFC220041DC68 /* IPage3Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPage3Module.swift; sourceTree = "<group>"; };
+		1852C884271BFE890041DC68 /* Page4Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page4Module.swift; sourceTree = "<group>"; };
+		1852C886271BFEF40041DC68 /* Page4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page4ViewController.swift; sourceTree = "<group>"; };
+		1852C887271BFEF40041DC68 /* Page4ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page4ViewController.xib; sourceTree = "<group>"; };
+		1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3V2ViewController.swift; sourceTree = "<group>"; };
+		1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page3V2ViewController.xib; sourceTree = "<group>"; };
+		1852C890271C009C0041DC68 /* Page3V1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3V1ViewController.swift; sourceTree = "<group>"; };
+		1852C891271C009C0041DC68 /* Page3V1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page3V1ViewController.xib; sourceTree = "<group>"; };
 		53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		633D4A7625FA657A002967DB /* AntBusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntBusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D4A7925FA657A002967DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		633D4A7B25FA657A002967DB /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		633D4A7D25FA657A002967DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		633D4A8025FA657A002967DB /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		633D4A8225FA657D002967DB /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -82,51 +76,49 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		182B44AD26739DBC001312A3 /* FourthPage */ = {
+		1852C87A271BFAB90041DC68 /* Page3_V1 */ = {
 			isa = PBXGroup;
 			children = (
-				182B44AE26739DDB001312A3 /* FourthPageViewController.swift */,
-				182B44BC26767B13001312A3 /* FourthPageViewController_A.swift */,
-				182B44BD26767B13001312A3 /* FourthPageViewController_A.xib */,
+				1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */,
+				1852C890271C009C0041DC68 /* Page3V1ViewController.swift */,
+				1852C891271C009C0041DC68 /* Page3V1ViewController.xib */,
 			);
-			path = FourthPage;
+			path = Page3_V1;
 			sourceTree = "<group>";
 		};
-		182B44B22673D1E2001312A3 /* ModuleA */ = {
+		1852C87B271BFACD0041DC68 /* Page3_V2 */ = {
 			isa = PBXGroup;
 			children = (
-				182B44B42673D1F9001312A3 /* ModuleA.swift */,
+				1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */,
+				1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */,
+				1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */,
 			);
-			path = ModuleA;
+			path = Page3_V2;
 			sourceTree = "<group>";
 		};
-		182B44B32673D1EB001312A3 /* ModuleB */ = {
+		1852C880271BFC0B0041DC68 /* Page3 */ = {
 			isa = PBXGroup;
 			children = (
-				182B44B62673E865001312A3 /* ModuleB.swift */,
+				1852C87B271BFACD0041DC68 /* Page3_V2 */,
+				1852C87A271BFAB90041DC68 /* Page3_V1 */,
+				1852C881271BFC220041DC68 /* IPage3Module.swift */,
 			);
-			path = ModuleB;
+			path = Page3;
 			sourceTree = "<group>";
 		};
-		184A31BA26709566008A0A21 /* ThirdPage */ = {
+		1852C883271BFE780041DC68 /* Page4 */ = {
 			isa = PBXGroup;
 			children = (
-				184A31BB26709580008A0A21 /* ThirdPageViewController.swift */,
-				184A31C126709736008A0A21 /* ThirdPageViewController_A.swift */,
-				184A31C226709736008A0A21 /* ThirdPageViewController_A.xib */,
-				182B44C026767C43001312A3 /* ThirdPageViewController_B.swift */,
-				182B44C126767C43001312A3 /* ThirdPageViewController_B.xib */,
-				182B44C426767D35001312A3 /* ThirdPageViewController_C.swift */,
-				182B44C526767D35001312A3 /* ThirdPageViewController_C.xib */,
+				1852C884271BFE890041DC68 /* Page4Module.swift */,
+				1852C886271BFEF40041DC68 /* Page4ViewController.swift */,
+				1852C887271BFEF40041DC68 /* Page4ViewController.xib */,
 			);
-			path = ThirdPage;
+			path = Page4;
 			sourceTree = "<group>";
 		};
 		633D4A6D25FA657A002967DB = {
 			isa = PBXGroup;
 			children = (
-				182B44B32673D1EB001312A3 /* ModuleB */,
-				182B44B22673D1E2001312A3 /* ModuleA */,
 				633D4A7825FA657A002967DB /* AntBusDemo */,
 				633D4A7725FA657A002967DB /* Products */,
 				6DF18DCF75588A1519957D5C /* Pods */,
@@ -145,15 +137,14 @@
 		633D4A7825FA657A002967DB /* AntBusDemo */ = {
 			isa = PBXGroup;
 			children = (
-				182B44AD26739DBC001312A3 /* FourthPage */,
-				184A31BA26709566008A0A21 /* ThirdPage */,
+				1852C883271BFE780041DC68 /* Page4 */,
+				1852C880271BFC0B0041DC68 /* Page3 */,
 				633D4A9725FA659A002967DB /* FirstPage */,
 				633D4A9325FA659A002967DB /* SecondPage */,
 				633D4A9525FA659A002967DB /* TabBar */,
 				633D4A7925FA657A002967DB /* AppDelegate.swift */,
-				633D4A7B25FA657A002967DB /* SceneDelegate.swift */,
 				633D4A7D25FA657A002967DB /* ViewController.swift */,
-				1823187026737AEE006E4800 /* antbus_modules.plist */,
+				1823187026737AEE006E4800 /* antbus_demo_modules.plist */,
 				633D4A7F25FA657A002967DB /* Main.storyboard */,
 				633D4A8225FA657D002967DB /* Assets.xcassets */,
 				633D4A8425FA657D002967DB /* LaunchScreen.storyboard */,
@@ -254,14 +245,13 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1823187126737AEE006E4800 /* antbus_modules.plist in Resources */,
-				182B44C326767C43001312A3 /* ThirdPageViewController_B.xib in Resources */,
-				182B44BF26767B13001312A3 /* FourthPageViewController_A.xib in Resources */,
+				1852C893271C009C0041DC68 /* Page3V1ViewController.xib in Resources */,
+				1852C889271BFEF40041DC68 /* Page4ViewController.xib in Resources */,
+				1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */,
 				633D4A8625FA657D002967DB /* LaunchScreen.storyboard in Resources */,
+				1852C88D271C007B0041DC68 /* Page3V2ViewController.xib in Resources */,
 				633D4A8325FA657D002967DB /* Assets.xcassets in Resources */,
-				184A31C426709736008A0A21 /* ThirdPageViewController_A.xib in Resources */,
 				633D4A8125FA657A002967DB /* Main.storyboard in Resources */,
-				182B44C726767D35001312A3 /* ThirdPageViewController_C.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -314,20 +304,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				184A31C326709736008A0A21 /* ThirdPageViewController_A.swift in Sources */,
-				182B44C226767C43001312A3 /* ThirdPageViewController_B.swift in Sources */,
-				182B44B52673D1F9001312A3 /* ModuleA.swift in Sources */,
-				182B44BE26767B13001312A3 /* FourthPageViewController_A.swift in Sources */,
+				1852C892271C009C0041DC68 /* Page3V1ViewController.swift in Sources */,
 				633D4A9E25FA659A002967DB /* TabBarViewController.swift in Sources */,
+				1852C885271BFE890041DC68 /* Page4Module.swift in Sources */,
+				1852C888271BFEF40041DC68 /* Page4ViewController.swift in Sources */,
 				633D4A7E25FA657A002967DB /* ViewController.swift in Sources */,
+				1852C882271BFC220041DC68 /* IPage3Module.swift in Sources */,
+				1852C88C271C007B0041DC68 /* Page3V2ViewController.swift in Sources */,
+				1852C87F271BFB490041DC68 /* Page3_V2_Module.swift in Sources */,
 				633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */,
-				182B44B72673E865001312A3 /* ModuleB.swift in Sources */,
-				633D4A7C25FA657A002967DB /* SceneDelegate.swift in Sources */,
-				182B44C626767D35001312A3 /* ThirdPageViewController_C.swift in Sources */,
+				1852C87D271BFB070041DC68 /* Page3_V1_Module.swift in Sources */,
 				633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */,
 				633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */,
-				182B44B026739DDB001312A3 /* FourthPageViewController.swift in Sources */,
-				184A31BC26709580008A0A21 /* ThirdPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -483,6 +471,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.Demo.AntBusDemo2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;

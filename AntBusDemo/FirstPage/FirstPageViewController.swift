@@ -7,7 +7,7 @@
 
 import UIKit
 import AntBus
-import LoginModule
+import CommonModule
 
 class FirstPageViewController: UIViewController {
 
@@ -15,22 +15,34 @@ class FirstPageViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        AntBus.channel.notification.register("login.success", owner: self) { [weak self] (_) in
+        AntBusChannel.notification.register("login.success", owner: self) { [weak self] (_) in
             self?.refreshView()
         }
-        AntBus.channel.notification.register("logout.success", owner: self) { [weak self] (_) in
+        AntBusChannel.notification.register("logout.success", owner: self) { [weak self] (_) in
             self?.refreshView()
         }
         self.refreshView()
+        
+        AntBusChannel.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
+            print("FistPage group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
+        }
     }
     func refreshView(){
-        let result:AntBusResult = AntBus.channel.data.call("login.user.account")
+        let result:AntBusResult = AntBusChannel.data.call("login.user.account")
         self.label.text = result.data as? String
     }
     @IBOutlet weak var label: UILabel!
     
 
-    @IBAction func clickLogout(_ sender: Any) {
-        AntBus.channel.service.call(ModuleLoginProtocol.self, method: #selector(ModuleLoginProtocol.logout), params: nil, taskBlock: nil)
+    @IBAction func clickLogin(_ sender: Any) {
+//        AntBus<ILoginModule>.single.responder()?.showLoginPage()
+        AntService<ILoginModule>.single.responder()?.showLoginPage()
     }
+    
+    @IBAction func clickLogout(_ sender: Any) {
+//        AntBus<ILoginModule>.single.responder()?.logout()
+        AntService<ILoginModule>.single.responder()?.logout()
+    }
+    
+    
 }
