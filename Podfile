@@ -9,7 +9,7 @@ target 'AntBusDemo' do
 
   pod 'AntBus', :path => 'AntBus'
   pod 'LoginModule', :path => 'Others/LoginModule'
-  pod 'BaseModule', :path => 'Common/BaseModule'
+#  pod 'BaseModule', :path => 'Common/BaseModule'
   pod 'CommonModule', :path => 'Common/CommonModule'
   
 end

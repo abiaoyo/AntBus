@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import BaseModule
+import CommonModule
 import AntBus
 
 class Page3_V1_Module: NSObject,IBaseModule,IPage3Module {

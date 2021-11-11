@@ -7,7 +7,7 @@
 
 import UIKit
 import AntBus
-import BaseModule
+import CommonModule
 
 class SecondPageViewController: UIViewController {
     

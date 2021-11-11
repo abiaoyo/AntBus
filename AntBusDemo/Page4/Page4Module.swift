@@ -2,11 +2,11 @@
 //  Page4Module.swift
 //  AntBusDemo
 //
-//  Created by 李叶彪 on 2021/10/17.
+//  Created by 李叶彪
 //
 
 import UIKit
-import BaseModule
+import CommonModule
 import AntBus
 
 protocol IPage4Module{

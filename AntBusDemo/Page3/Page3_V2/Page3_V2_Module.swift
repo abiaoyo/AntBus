@@ -2,11 +2,11 @@
 //  Page3_V2_Module.swift
 //  AntBusDemo
 //
-//  Created by 李叶彪 on 2021/10/17.
+//  Created by 李叶彪
 //
 
 import UIKit
-import BaseModule
+import CommonModule
 import AntBus
 
 class Page3_V2_Module: NSObject,IBaseModule,IPage3Module {
