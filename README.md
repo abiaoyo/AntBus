@@ -10,6 +10,7 @@ pod 'AntBus', '~> 0.5.0'
 ```swift
 
 ===== AntService >>>>> 强引用 =====
+-------- AntService.multiple 一对多的情况 -----------
 AntService<ModuleInterface>.multiple.register("A", moduleA_V1)
 AntService<ModuleInterface>.multiple.register("A", moduleA_V2)
 AntService<ModuleInterface>.multiple.register("B", moduleB)
@@ -23,6 +24,11 @@ AntService<ModuleInterface>.multiple.responders("A")
 AntService<ModuleInterface>.multiple.responders("B")
 //moduleB
 
+-------- AntService.single 一对一的情况 -----------
+AntService<ModuleInterface>.multiple.register(moduleA)
+
+AntService<ModuleInterface>.multiple.responder()
+//moduleA
 
 
 ==== AntBus >>>>> 弱引用 =====
