@@ -11,3 +11,5 @@ public protocol ILoginModule{
     func logout()
     func showLoginPage()
 }
+
+typealias ILogin = ILoginModule

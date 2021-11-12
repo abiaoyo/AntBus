@@ -7,14 +7,15 @@
 
 import Foundation
 
-public class AntSingleService<T:Any>{
-    private var _responder:T?
+/// 单个响应
+public class AntSingleContainer<R:Any>{
+    private var _responder:R?
     
-    public func register(_ response:T){
+    public func register(_ response:R){
         _responder = response
     }
     
-    public func responder() -> T?{
+    public func responder() -> R?{
         return _responder;
     }
     
@@ -23,18 +24,22 @@ public class AntSingleService<T:Any>{
     }
 }
 
-public class AntMultiService<T:Any> {
-    private var keyContainer = Dictionary<String,Dictionary<String,T>>.init()
+/// 多个响应
+public class AntMultiContainer<R:Any> {
     
-    private func getTypContainer(key:String, create:Bool) -> Dictionary<String,T>? {
+    private var keyContainer = Dictionary<String,Dictionary<String,R>>.init()
+    
+    private func getTypContainer(key:String, create:Bool) -> Dictionary<String,R>? {
         var typeContainer = self.keyContainer[key]
         if create && typeContainer == nil {
-            typeContainer = Dictionary<String,T>.init()
+            typeContainer = Dictionary<String,R>.init()
         }
         return typeContainer
     }
     
-    public func register(_ keys:[String], _ responder:T){
+    /// 注册 keys 到响应
+    /// 注意：key下R.Type同类型的会覆盖上一个
+    public func register(_ keys:[String], _ responder:R){
         let type = "\(responder.self)"
         for key in keys {
             var typeContainer = self.getTypContainer(key: key, create: true)!
@@ -43,7 +48,9 @@ public class AntMultiService<T:Any> {
         }
     }
     
-    public func register(_ key:String, _ responders:[T]){
+    /// 注册key相关的响应组
+    /// 注意：key下R.Type同类型的会覆盖上一个
+    public func register(_ key:String, _ responders:[R]){
         var typeContainer = self.getTypContainer(key: key, create: true)!
         for responder in responders {
             let type = "\(responder.self)"
@@ -52,16 +59,18 @@ public class AntMultiService<T:Any> {
         self.keyContainer.updateValue(typeContainer, forKey: key)
     }
 
-    public func responders(_ key:String) -> [T]? {
+    /// 获取key相关的响应
+    public func responders(_ key:String) -> [R]? {
         if let typeContainer = self.getTypContainer(key: key, create: false) {
             return typeContainer.compactMap({ $0.value })
         }
         return nil
     }
     
-    public func responders() -> [T]? {
+    /// 获取所有响应
+    public func responders() -> [R]? {
         let typeContainers = self.keyContainer.map({$0.value})
-        var results = Dictionary<String,T>.init()
+        var results = Dictionary<String,R>.init()
         for typeContainer in typeContainers {
             for key in typeContainer.keys {
                 if let value = typeContainer[key] {
@@ -75,7 +84,8 @@ public class AntMultiService<T:Any> {
         return results.compactMap({$0.value})
     }
     
-    public func remove(_ key:String, responder:T){
+    /// 移除key相关的R.Type的响应
+    public func remove(_ key:String, responder:R){
         var typeContainer = self.getTypContainer(key: key, create: false)
         if typeContainer != nil{
             let type = "\(responder.self)"
@@ -83,52 +93,62 @@ public class AntMultiService<T:Any> {
             self.keyContainer.updateValue(typeContainer!, forKey: key)
         }
     }
-
+    
+    /// 移除keys相关的响应
     public func remove(_ keys:[String]) {
         for key in keys {
             self.keyContainer.removeValue(forKey: key)
         }
     }
 
+    /// 移除key相关的所有响应
     public func remove(_ key:String){
         self.keyContainer.removeValue(forKey: key)
     }
 
+    /// 移除所有响应
     public func removeAll() {
         self.keyContainer.removeAll()
     }
 }
 
-
-
+/// 缓存
+/// 仅管删除了key或响应，缓存将会残留Interface相关的容器，不过这不是问题; 因为Service 本来就是要一直存在的，所以正常情况不会去调用移除
 fileprivate struct AntServiceCache{
     static var singleC = Dictionary<String,AnyObject>.init()
     static var multiC = Dictionary<String,AnyObject>.init()
 }
 
-public struct AntService<T:Any>{
+/// 服务类中间件
+/// 通过协议绑定实例达到不同模块的访问
+/// 存储结构：<Interface,<Key,<R.Type,Responder>>>
+/// Interface：协议 / 接口，用来对功能分组，用Interface生成的字符cKey来存储同一个功能容器
+/// Key：关键值，用来对功能下的响应进行分组
+/// R.Type：用来作为响应Responder的关键值     +++++++  注意：R.Type相同时会覆盖上一次响应，所以项目中不要有相同的R.Type  +++++++
+/// Responder：响应，实现Interface的地方
+public struct AntService<Interface:Any>{
     
-    public static var single:AntSingleService<T> {
+    public static var single:AntSingleContainer<Interface> {
         get {
-            let key = "\(T.self)"
-            var container = AntServiceCache.singleC[key]
+            let cKey = "\(Interface.self)"
+            var container = AntServiceCache.singleC[cKey]
             if container == nil {
-                container = AntSingleService<T>.init()
-                AntServiceCache.singleC[key] = container
+                container = AntSingleContainer<Interface>.init()
+                AntServiceCache.singleC[cKey] = container
             }
-            return container as! AntSingleService<T>
+            return container as! AntSingleContainer<Interface>
         }
     }
     
-    public static var multiple:AntMultiService<T> {
+    public static var multiple:AntMultiContainer<Interface> {
         get {
-            let key = "\(T.self)"
-            var container = AntServiceCache.multiC[key]
+            let cKey = "\(Interface.self)"
+            var container = AntServiceCache.multiC[cKey]
             if container == nil {
-                container = AntMultiService<T>.init()
-                AntServiceCache.multiC[key] = container
+                container = AntMultiContainer<Interface>.init()
+                AntServiceCache.multiC[cKey] = container
             }
-            return container as! AntMultiService<T>
+            return container as! AntMultiContainer<Interface>
         }
     }
 }
