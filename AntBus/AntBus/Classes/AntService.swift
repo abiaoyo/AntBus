@@ -117,38 +117,62 @@ public class AntMultiContainer<R:Any> {
 fileprivate struct AntServiceCache{
     static var singleC = Dictionary<String,AnyObject>.init()
     static var multiC = Dictionary<String,AnyObject>.init()
-}
-
-/// 服务类中间件
-/// 通过协议绑定实例达到不同模块的访问
-/// 存储结构：<Interface,<Key,<R.Type,Responder>>>
-/// Interface：协议 / 接口，用来对功能分组，用Interface生成的字符cKey来存储同一个功能容器
-/// Key：关键值，用来对功能下的响应进行分组
-/// R.Type：用来作为响应Responder的关键值     +++++++  注意：R.Type相同时会覆盖上一次响应，所以项目中不要有相同的R.Type  +++++++
-/// Responder：响应，实现Interface的地方
-public struct AntService<Interface:Any>{
     
-    public static var single:AntSingleContainer<Interface> {
-        get {
-            let cKey = "\(Interface.self)"
-            var container = AntServiceCache.singleC[cKey]
-            if container == nil {
-                container = AntSingleContainer<Interface>.init()
-                AntServiceCache.singleC[cKey] = container
-            }
-            return container as! AntSingleContainer<Interface>
+    static func createSingleContainer<Interface:Any>(key:String) -> AntSingleContainer<Interface>{
+        var container = AntServiceCache.singleC[key]
+        if container == nil {
+            container = AntSingleContainer<Interface>.init()
+            AntServiceCache.singleC[key] = container
         }
+        return container as! AntSingleContainer<Interface>
     }
     
+    static func createMultipleContainer<Interface:Any>(key:String) -> AntMultiContainer<Interface>{
+        var container = AntServiceCache.multiC[key]
+        if container == nil {
+            container = AntMultiContainer<Interface>.init()
+            AntServiceCache.multiC[key] = container
+        }
+        return container as! AntMultiContainer<Interface>
+    }
+}
+
+/// AntService - 服务
+/// AntService是强引用，AntService用于长驻内存的服务;
+/// AntChannel是弱引用，⚠️⚠️⚠️ 因为是弱引用 ，所以Interface注册用@objc的Protocol
+/// AntService用于不同模块的调用，AntChannel是临时内存的访问且用于模块内的调用
+/// 通过协议绑定实例达到不同模块的访问（强引用）
+/// 存储结构：single <Interface,<Key,Responder>>        multiple <Interface,<Key,<R.Type,Responder>>>
+/// Interface：协议 / 接口，用来对功能分组，用Interface生成的字符key来存储同一个功能容器
+/// Key：关键值，用来对功能下的响应进行分组
+/// R.Type：用来作为响应Responder的关键值     ⚠️⚠️  注意：R.Type相同时会覆盖上一次响应，所以项目中不要有相同的R.Type  ⚠️⚠️
+/// Responder：响应，实现Interface的地方
+/// 示例：⚠️⚠️⚠️⚠️⚠️⚠️
+/// AntServiceInterface.single.register(xxx)  ❌
+/// AntServiceInterface<Interface>.single.register(xxx)  ✅     OR    AntService.singleInterface(Interface.Type).register(xxx)  ✅
+public struct AntServiceInterface<Interface:Any>{
+    public static var single:AntSingleContainer<Interface> {
+        get {
+            let key = "\(Interface.self)"
+            return AntServiceCache.createSingleContainer(key: key)
+        }
+    }
+
     public static var multiple:AntMultiContainer<Interface> {
         get {
-            let cKey = "\(Interface.self)"
-            var container = AntServiceCache.multiC[cKey]
-            if container == nil {
-                container = AntMultiContainer<Interface>.init()
-                AntServiceCache.multiC[cKey] = container
-            }
-            return container as! AntMultiContainer<Interface>
+            let key = "\(Interface.self)"
+            return AntServiceCache.createMultipleContainer(key: key)
         }
+    }
+}
+
+public struct AntService{
+    public static func singleInterface<I:Any>(_ interface:I.Type) -> AntSingleContainer<I> {
+        let key:String = "\(interface)"
+        return AntServiceCache.createSingleContainer(key: key)
+    }
+    public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntMultiContainer<I> {
+        let key:String = "\(interface)"
+        return AntServiceCache.createMultipleContainer(key: key)
     }
 }

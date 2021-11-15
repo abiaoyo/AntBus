@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import AntBus
 
 class Page3V1ViewController: UIViewController {
 
@@ -13,17 +14,12 @@ class Page3V1ViewController: UIViewController {
         super.viewDidLoad()
 
         self.title = "page3_v1"
+        
+        let result = AntBus.method.call("FirstPage", method: "hello", data: nil) { data in
+            print("taskBlock:\(data)")
+        }
+        print("success:\(result.success) dataBlock:\(result.data)")
+        
     }
-
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }

@@ -44,7 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
         print("willFinishLaunchingWithOptions:  \(String(describing: launchOptions))")
         self.registerModules()
-        AntBusChannel.groupNotification.register("TestGroupKey", group: "AppDelegate", owner: self) { group, groupIndex, data in
+        AntBus.groupNotification.register("TestGroupKey", group: "AppDelegate", owner: self) { group, groupIndex, data in
             print("AppDelegate group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
         }
         return true

@@ -22,7 +22,7 @@ class Page3_V2_Module: NSObject,IBaseModule,IPage3Module {
     
     //IBaseModule
     func moduleInit() {
-        AntService<IPage3Module>.multiple.register(["page3"], self)
+        AntServiceInterface<IPage3Module>.multiple.register(["page3"], self)
     }
     
     func moduleApplication(_ application: UIApplication, willFinishLaunching launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {

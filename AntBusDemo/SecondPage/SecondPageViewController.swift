@@ -14,13 +14,13 @@ class SecondPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBusChannel.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
+        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
             print("SecondPage group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
         }
     }
     
     @IBAction func clickPage3V1(_ sender: Any) {
-        AntService<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
+        AntServiceInterface<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
             if(page3Module.version() == 1){
                 return true
             }
@@ -30,7 +30,7 @@ class SecondPageViewController: UIViewController {
     }
     
     @IBAction func clickPage3V2(_ sender: Any) {
-        AntService<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
+        AntServiceInterface<IPage3Module>.multiple.responders("page3")?.first(where: { page3Module in
             if(page3Module.version() == 2){
                 return true
             }
@@ -39,17 +39,17 @@ class SecondPageViewController: UIViewController {
     }
     
     @IBAction func clickPage4(_ sender: Any) {
-        AntService<IPage4Module>.single.responder()?.pushPage(navCtl: self.navigationController!)
+        AntServiceInterface<IPage4Module>.single.responder()?.pushPage(navCtl: self.navigationController!)
     }
     
     @IBAction func clickAntService(_ sender: Any) {
         let ptha = PTHA.init()
-        AntService<DeviceModule>.multiple.register(ptha.keys, ptha)
+        AntServiceInterface<DeviceModule>.multiple.register(ptha.keys, ptha)
 
         let pthb = PTHB.init()
-        AntService<DeviceModule>.multiple.register(pthb.keys, pthb)
+        AntServiceInterface<DeviceModule>.multiple.register(pthb.keys, pthb)
 
-        let support_H6117s = AntService<DeviceModule>.multiple.responders("H6117")
+        let support_H6117s = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         let H6117s = support_H6117s?.first(where: { module in
             let deviceInfo = DeviceInfo.init()
             deviceInfo.sku = "H6117"
@@ -60,42 +60,42 @@ class SecondPageViewController: UIViewController {
         
         
         
-        let H6143 = AntService<DeviceModule>.multiple.responders("H6143")
+        let H6143 = AntServiceInterface<DeviceModule>.multiple.responders("H6143")
         print("H6143:\(H6143)")
         
-        let H6127 = AntService<DeviceModule>.multiple.responders("H6127")
+        let H6127 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
         print("H6127:\(H6127)")
         
-        let H6117 = AntService<DeviceModule>.multiple.responders("H6117")
+        let H6117 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         print("H6117:\(H6117)")
         
-        let H6163 = AntService<DeviceModule>.multiple.responders("H6163")
+        let H6163 = AntServiceInterface<DeviceModule>.multiple.responders("H6163")
         print("H6163:\(H6163)")
         
-        let H611A = AntService<DeviceModule>.multiple.responders("H611A")
+        let H611A = AntServiceInterface<DeviceModule>.multiple.responders("H611A")
         print("H611A:\(H611A)")
 
         
-        AntService<DeviceModule>.multiple.remove("H6127", responder: pthb)
-        let H6127_2 = AntService<DeviceModule>.multiple.responders("H6127")
+        AntServiceInterface<DeviceModule>.multiple.remove("H6127", responder: pthb)
+        let H6127_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
         print("H6127_2:\(H6127_2)")
         
-        AntService<DeviceModule>.multiple.remove("H6117")
-        let H6117_2 = AntService<DeviceModule>.multiple.responders("H6117")
+        AntServiceInterface<DeviceModule>.multiple.remove("H6117")
+        let H6117_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         print("H6117_2:\(H6117_2)")
         
         
-        let allresponders = AntService<DeviceModule>.multiple.responders()
+        let allresponders = AntServiceInterface<DeviceModule>.multiple.responders()
         print("allresponders:\(allresponders)")
         
-        AntService<DeviceModule>.multiple.remove(["H6163","H6117","H611A"])
+        AntServiceInterface<DeviceModule>.multiple.remove(["H6163","H6117","H611A"])
         
-        let allresponders2 = AntService<DeviceModule>.multiple.responders()
+        let allresponders2 = AntServiceInterface<DeviceModule>.multiple.responders()
         print("allresponders2:\(allresponders2)")
         
         
-        AntService<DeviceModule>.multiple.removeAll()
-        let allresponders3 = AntService<DeviceModule>.multiple.responders()
+        AntServiceInterface<DeviceModule>.multiple.removeAll()
+        let allresponders3 = AntServiceInterface<DeviceModule>.multiple.responders()
         print("allresponders3:\(allresponders3)")
     }
 }

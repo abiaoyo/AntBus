@@ -14,59 +14,112 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         
         /*
+         ------------------------------------------------------
+         AntBus.data
+         AntBus.method
+         AntBus.notification
+         AntBus.groupNotification
          
-         AntBusChannel.groupNotification.register("", group: "", owner: self) { group, groupIndex, data in
+         AntChannel.singleInterface
+         AntChannel.multipleInterface
+         AntChannelInterface
+         
+         AntService.singleInterface
+         AntService.multipleInterface
+         AntServiceInterface
+         ------------------------------------------------------
+         
+         eg: AntChannel.singleInterface(LoginInterface.self).register(self)
+             AntChannel.singleInterface(LoginInterface.self).responder()
+             
+             AntChannel.multipleInterface(LoginInterface.self).register(["TA","TB"],self)
+             AntChannel.multipleInterface(LoginInterface.self).responders("TA")
+         
+             ❌: AntChannelInterface.single.register(self)
+             ✅: AntChannelInterface<LoginInterface>.single.register(self)
+             ✅: AntChannelInterface<LoginInterface>.single.responder()
+             
+             ❌: AntChannelInterface.multiple.register(["TA","TB"],self)
+             ✅: AntChannelInterface<LoginInterface>.multiple.register(["TA","TB"],self)
+             ✅: AntChannelInterface<LoginInterface>.multiple.responders("TA")
+         
+             
+         eg: AntService.singleInterface(LoginInterface.self).register()
+             AntService.singleInterface(LoginInterface.self).responder()
+         
+             AntService.multipleInterface(LoginInterface.self).register(["A","B"],self)
+             AntService.multipleInterface(LoginInterface.self).responders("A")
+             
+             ❌: AntServiceInterface.single.register(self)
+             ✅: AntServiceInterface<LoginInterface>.single.register()
+             ✅: AntServiceInterface<LoginInterface>.single.responder()
+         
+             ❌: AntServiceInterface.multiple.register(["A","B"],self)
+             ✅: AntServiceInterface<LoginInterface>.multiple.register(["A","B"],self)
+             ✅: AntServiceInterface<LoginInterface>.multiple.responders("A")
+         
+         ------------------------------------------------------
+         ------------------------------------------------------
+         ------------------------------------------------------
+         
+         AntBus.groupNotification.register("", group: "", owner: self) { group, groupIndex, data in
              //...
          }
          
-         AntBusChannel.groupNotification.post("", group: "B", data: nil)
-         AntBusChannel.groupNotification.post("", data: nil)
-         AntBusChannel.groupNotification.remove("", group: "", owner: self)
-         AntBusChannel.groupNotification.remove("", group: "")
-         AntBusChannel.groupNotification.remove("")
-         AntBusChannel.groupNotification.removeAll()
+         AntBus.groupNotification.post("", group: "B", data: nil)
+         AntBus.groupNotification.post("", data: nil)
+         AntBus.groupNotification.remove("", group: "", owner: self)
+         AntBus.groupNotification.remove("", group: "")
+         AntBus.groupNotification.remove("")
+         AntBus.groupNotification.removeAll()
          
          
-         AntBus<TestLogin>.single.register(self);
-         AntBus<TestLogin>.single.responder()?.login()
-         AntBus<TestLogin>.single.remove()
+         AntChannelInterface<TestLogin>.single.register(self);
+         AntChannelInterface<TestLogin>.single.responder()?.login()
+         AntChannelInterface<TestLogin>.single.remove()
+         
+         AntChannelInterface<TestLogin>.multi.register(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multi.register("viewCtl", [self])
+         AntChannelInterface<TestLogin>.multi.responders("viewCtl")
+         AntChannelInterface<TestLogin>.multi.responders()
+         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"])
+         AntChannelInterface<TestLogin>.multi.remove("viewCtl")
+         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multi.remove("viewCtl", self)
+         AntChannelInterface<TestLogin>.multi.removeAll()
          
          
-         AntBus<TestLogin>.multi.register(["viewCtl"], self)
-         AntBus<TestLogin>.multi.register("viewCtl", [self])
-         AntBus<TestLogin>.multi.responders("viewCtl")
-         AntBus<TestLogin>.multi.responders()
-         AntBus<TestLogin>.multi.remove(["viewCtl"])
-         AntBus<TestLogin>.multi.remove("viewCtl")
-         AntBus<TestLogin>.multi.remove(["viewCtl"], self)
-         AntBus<TestLogin>.multi.remove("viewCtl", self)
-         AntBus<TestLogin>.multi.removeAll()
          
          
-         AntBusChannel.notification.register("", owner: self) { _ in
-             
+         AntBus.notification.register("login.success", owner: self) { _ in
+             //login.success
          }
-         AntBusChannel.notification.post("", data: nil)
+         AntBus.notification.post("login.success", data: nil)
          
          
-         AntBusChannel.data.register("", owner: self) {
-             
+         
+         
+         AntBus.data.register("hasLogin", owner: self) {
+             return true
          }
-         AntBusChannel.data.call("")
+         let hasLogin = AntBus.data.call("hasLogin").data
+         >>>> print
+         true
          
-         
-         
-         AntBusChannel.router.register("", key: "") { params, resultBlock, _ in
-             resultBlock("")
+         AntBus.method.register("FirstPage", key: "hello") { data, resultBlock, taskBlock in
+            resultBlock("Hi")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                taskBlock?("task Hi")
+            }
          }
-         AntBusChannel.router.call("", key: "", params: nil, taskBlock: nil)
-         
-         
-         
-         AntBusChannel.service.register(TestLogin.self, method: #selector(login)) { _, _, _ in
-             
+         let result = AntBus.method.call("FirstPage", method: "hello", data: nil) { data in
+             print("taskBlock:\(data)")
          }
-         AntBusChannel.service.call(TestLogin.self, method: #selector(login), params: nil, taskBlock: nil)
+         print("success:\(result.success) dataBlock:\(result.data)")
+         >>>> print
+         success:true dataBlock:Optional("Hi")
+         taskBlock:Optional("task Hi")
+         
          
          
          */
@@ -80,7 +133,7 @@ class ViewController: UIViewController {
             中间件方案：
                1.MGJRouter   URL/字符串做为Key，字典传参数，需要存储空间
                2.CTMediator  通过Category扩展方法，动态调用，不需要多余存储空间
-               3.AntBus      运用数据共享的方式通过协议关联调用，需要存储空间
+               3.AntBus -    AntService/AntChannel 通过数据共享的方式通过协议关联调用，需要存储空间
          A到B的最短距离：
             1.A直接引用B
             2.A通过中间件X间接引用B

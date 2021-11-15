@@ -23,7 +23,7 @@ class Page4Module: NSObject,IBaseModule, IPage4Module{
     
 //    MARK:IBaseModule
     func moduleInit() {
-        AntService<IPage4Module>.single.register(self)
+        AntServiceInterface<IPage4Module>.single.register(self)
     }
     
     func moduleApplication(_ application: UIApplication, willFinishLaunching launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {
