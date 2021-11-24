@@ -35,16 +35,19 @@ public class AntChannelMultiple<R:AnyObject> {
         return responders!
     }
     
+    public func register(_ key:String, _ responder:R) -> Void{
+        self.getResponderSet(key: key).add(responder)
+    }
+    
     public func register(_ keys:[String], _ responder:R) -> Void{
         for key in keys {
-            self.getResponderSet(key: key).add(responder)
+            self.register(key, responder)
         }
     }
     
     public func register(_ key:String, _ responders:[R]) -> Void{
-        let responderSet = self.getResponderSet(key: key)
         for responder in responders {
-            responderSet.add(responder)
+            self.register(key, responder)
         }
     }
 

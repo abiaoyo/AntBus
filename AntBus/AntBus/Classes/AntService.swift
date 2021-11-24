@@ -39,24 +39,23 @@ public class AntMultiContainer<R:Any> {
     
     /// 注册 keys 到响应
     /// 注意：key下R.Type同类型的会覆盖上一个
-    public func register(_ keys:[String], _ responder:R){
+    public func register(_ key:String, _ responder:R){
         let type = "\(responder.self)"
+        var typeContainer = self.getTypContainer(key: key, create: true)!
+        typeContainer.updateValue(responder, forKey: type)
+        self.keyContainer.updateValue(typeContainer, forKey: key)
+    }
+    
+    public func register(_ keys:[String], _ responder:R){
         for key in keys {
-            var typeContainer = self.getTypContainer(key: key, create: true)!
-            typeContainer.updateValue(responder, forKey: type)
-            self.keyContainer.updateValue(typeContainer, forKey: key)
+            self.register(key, responder)
         }
     }
     
-    /// 注册key相关的响应组
-    /// 注意：key下R.Type同类型的会覆盖上一个
     public func register(_ key:String, _ responders:[R]){
-        var typeContainer = self.getTypContainer(key: key, create: true)!
         for responder in responders {
-            let type = "\(responder.self)"
-            typeContainer.updateValue(responder, forKey: type)
+            self.register(key, responder)
         }
-        self.keyContainer.updateValue(typeContainer, forKey: key)
     }
 
     /// 获取key相关的响应

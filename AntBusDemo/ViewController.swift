@@ -33,6 +33,9 @@ class ViewController: UIViewController {
              AntChannel.singleInterface(LoginInterface.self).responder()
              
              AntChannel.multipleInterface(LoginInterface.self).register(["TA","TB"],self)
+             ==> AntChannel.multipleInterface(LoginInterface.self).register("TA",self)
+                 AntChannel.multipleInterface(LoginInterface.self).register("TB",self)
+         
              AntChannel.multipleInterface(LoginInterface.self).responders("TA")
          
              ❌: AntChannelInterface.single.register(self)
@@ -48,6 +51,9 @@ class ViewController: UIViewController {
              AntService.singleInterface(LoginInterface.self).responder()
          
              AntService.multipleInterface(LoginInterface.self).register(["A","B"],self)
+             ==> AntService.multipleInterface(LoginInterface.self).register("A",self)
+                 AntService.multipleInterface(LoginInterface.self).register("B",self)
+         
              AntService.multipleInterface(LoginInterface.self).responders("A")
              
              ❌: AntServiceInterface.single.register(self)
