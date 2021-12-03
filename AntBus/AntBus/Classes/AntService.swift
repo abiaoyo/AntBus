@@ -28,22 +28,18 @@ public class AntSingleContainer<R:Any>{
 public class AntMultiContainer<R:Any> {
     
     private var keyContainer = Dictionary<String,Dictionary<String,R>>.init()
-    
-    private func getTypContainer(key:String, create:Bool) -> Dictionary<String,R>? {
-        var typeContainer = self.keyContainer[key]
-        if create && typeContainer == nil {
-            typeContainer = Dictionary<String,R>.init()
-        }
-        return typeContainer
-    }
-    
+        
     /// 注册 keys 到响应
     /// 注意：key下R.Type同类型的会覆盖上一个
     public func register(_ key:String, _ responder:R){
-        let type = "\(responder.self)"
-        var typeContainer = self.getTypContainer(key: key, create: true)!
-        typeContainer.updateValue(responder, forKey: type)
-        self.keyContainer.updateValue(typeContainer, forKey: key)
+        if let _ = self.keyContainer[key] {
+            let type = "\(responder.self)"
+            self.keyContainer[key]?.updateValue(responder, forKey: type)
+        }else{
+            var typeContainer = Dictionary<String,R>.init()
+            typeContainer.updateValue(responder, forKey: key)
+            self.keyContainer[key] = typeContainer
+        }
     }
     
     public func register(_ keys:[String], _ responder:R){
@@ -60,7 +56,7 @@ public class AntMultiContainer<R:Any> {
 
     /// 获取key相关的响应
     public func responders(_ key:String) -> [R]? {
-        if let typeContainer = self.getTypContainer(key: key, create: false) {
+        if let typeContainer = self.keyContainer[key] {
             return typeContainer.compactMap({ $0.value })
         }
         return nil
@@ -85,11 +81,9 @@ public class AntMultiContainer<R:Any> {
     
     /// 移除key相关的R.Type的响应
     public func remove(_ key:String, responder:R){
-        var typeContainer = self.getTypContainer(key: key, create: false)
-        if typeContainer != nil{
+        if let _ = self.keyContainer[key] {
             let type = "\(responder.self)"
-            typeContainer!.removeValue(forKey: type)
-            self.keyContainer.updateValue(typeContainer!, forKey: key)
+            self.keyContainer[key]?.removeValue(forKey: type)
         }
     }
     
