@@ -9,41 +9,6 @@ pod 'AntBus', '~> 0.6.3'
 ##AntBusContainer
 ```swift
 
-===== AntService >>>>> 强引用 =====
--------- AntService.multiple 一对多的情况 -----------
-AntService<ModuleInterface>.multiple.register("A", moduleA_V1)
-AntService<ModuleInterface>.multiple.register("A", moduleA_V2)
-AntService<ModuleInterface>.multiple.register("B", moduleB)
-
-AntService<ModuleInterface>.multiple.responders()
-//moduleA_V1,moduleA_V2,moduleB
-
-AntService<ModuleInterface>.multiple.responders("A")
-//moduleA_V1,moduleA_V2
-
-AntService<ModuleInterface>.multiple.responders("B")
-//moduleB
-
--------- AntService.single 一对一的情况 -----------
-AntService<ModuleInterface>.multiple.register(moduleA)
-
-AntService<ModuleInterface>.multiple.responder()
-//moduleA
-
-
-==== AntBus >>>>> 弱引用 =====
-AntBus<TestLogin>.single.register(self);
-AntBus<TestLogin>.single.responder()?.login()
-AntBus<TestLogin>.single.remove()
-         
-         
-AntBus<TestLogin>.multi.register(["viewCtl"], self)
-AntBus<TestLogin>.multi.register("viewCtl", [self])
-AntBus<TestLogin>.multi.responders("viewCtl")
-AntBus<TestLogin>.multi.responders()
-AntBus<TestLogin>.multi.remove(["viewCtl"])
-AntBus<TestLogin>.multi.remove("viewCtl")
-/*
          ------------------------------------------------------
          AntBus.data
          AntBus.method
@@ -109,24 +74,6 @@ AntBus<TestLogin>.multi.remove("viewCtl")
          AntBus.groupNotification.remove("")
          AntBus.groupNotification.removeAll()
          
-         
-         AntChannelInterface<TestLogin>.single.register(self);
-         AntChannelInterface<TestLogin>.single.responder()?.login()
-         AntChannelInterface<TestLogin>.single.remove()
-         
-         AntChannelInterface<TestLogin>.multi.register(["viewCtl"], self)
-         AntChannelInterface<TestLogin>.multi.register("viewCtl", [self])
-         AntChannelInterface<TestLogin>.multi.responders("viewCtl")
-         AntChannelInterface<TestLogin>.multi.responders()
-         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"])
-         AntChannelInterface<TestLogin>.multi.remove("viewCtl")
-         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"], self)
-         AntChannelInterface<TestLogin>.multi.remove("viewCtl", self)
-         AntChannelInterface<TestLogin>.multi.removeAll()
-         
-         
-         
-         
          AntBus.notification.register("login.success", owner: self) { _ in
              //login.success
          }
@@ -155,5 +102,8 @@ AntBus<TestLogin>.multi.remove("viewCtl")
          >>>> print
          success:true dataBlock:Optional("Hi")
          taskBlock:Optional("task Hi")
-
+         
+         
+         
+         
 ```
