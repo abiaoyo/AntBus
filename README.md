@@ -2,7 +2,7 @@
 
 
 ```bash
-pod 'AntBus', '~> 0.5.0'
+pod 'AntBus', '~> 0.6.3'
 ```
 
 
@@ -43,48 +43,117 @@ AntBus<TestLogin>.multi.responders("viewCtl")
 AntBus<TestLogin>.multi.responders()
 AntBus<TestLogin>.multi.remove(["viewCtl"])
 AntBus<TestLogin>.multi.remove("viewCtl")
-AntBus<TestLogin>.multi.remove(["viewCtl"], self)
-AntBus<TestLogin>.multi.remove("viewCtl", self)
-AntBus<TestLogin>.multi.removeAll()
+/*
+         ------------------------------------------------------
+         AntBus.data
+         AntBus.method
+         AntBus.notification
+         AntBus.groupNotification
          
-//======== Notification 通知 =========
-AntBus.channel.notification.register("login.success", owner: self) { _ in
-              
-}
-AntBus.channel.notification.post("login.success", data: nil)
-
-//======== Notification Group  通知组，可让通知部分响应 =========
-AntBusChannel.groupNotification.register("login.success", group: "A", owner: AAA) { group, groupIndex, data in
-     print(" group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
-}
-AntBusChannel.groupNotification.register("login.success", group: "A", owner: BBB) { group, groupIndex, data in
-     print(" group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
-}
-AntBusChannel.groupNotification.register("login.success", group: "B", owner: CCC) { group, groupIndex, data in
-     print(" group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
-}
-AntBusChannel.groupNotification.post("login.success", data: nil)
-//AAA,BBB,CCC
-AntBusChannel.groupNotification.post("login.success", group: "A", data: nil)
-//AAA,BBB
+         AntChannel.singleInterface
+         AntChannel.multipleInterface
+         AntChannelInterface
          
-//============== data 数据共享 ===============
-AntBus.channel.data.register("user.name", owner: self) {
-    return "user_001"             
-}
-AntBus.channel.data.call("user.name")
-//user_001
+         AntService.singleInterface
+         AntService.multipleInterface
+         AntServiceInterface
+         ------------------------------------------------------
          
-//============ router （放弃了） ==============
-AntBus.channel.router.register("login", key: "page") { params, resultBlock, _ in
-     resultBlock("")
-}
-AntBus.channel.router.call("login", key: "page", params: nil, taskBlock: nil)
+         eg: AntChannel.singleInterface(LoginInterface.self).register(self)
+             AntChannel.singleInterface(LoginInterface.self).responder()
+             
+             AntChannel.multipleInterface(LoginInterface.self).register(["TA","TB"],self)
+             ==> AntChannel.multipleInterface(LoginInterface.self).register("TA",self)
+                 AntChannel.multipleInterface(LoginInterface.self).register("TB",self)
          
-//============ service == router （放弃了）  =============
-AntBus.channel.service.register(TestLogin.self, method: #selector(login)) { _, _, _ in
-     
-}
-AntBus.channel.service.call(TestLogin.self, method: #selector(login), params: nil, taskBlock: nil)
+             AntChannel.multipleInterface(LoginInterface.self).responders("TA")
+         
+             ❌: AntChannelInterface.single.register(self)
+             ✅: AntChannelInterface<LoginInterface>.single.register(self)
+             ✅: AntChannelInterface<LoginInterface>.single.responder()
+             
+             ❌: AntChannelInterface.multiple.register(["TA","TB"],self)
+             ✅: AntChannelInterface<LoginInterface>.multiple.register(["TA","TB"],self)
+             ✅: AntChannelInterface<LoginInterface>.multiple.responders("TA")
+         
+             
+         eg: AntService.singleInterface(LoginInterface.self).register()
+             AntService.singleInterface(LoginInterface.self).responder()
+         
+             AntService.multipleInterface(LoginInterface.self).register(["A","B"],self)
+             ==> AntService.multipleInterface(LoginInterface.self).register("A",self)
+                 AntService.multipleInterface(LoginInterface.self).register("B",self)
+         
+             AntService.multipleInterface(LoginInterface.self).responders("A")
+             
+             ❌: AntServiceInterface.single.register(self)
+             ✅: AntServiceInterface<LoginInterface>.single.register()
+             ✅: AntServiceInterface<LoginInterface>.single.responder()
+         
+             ❌: AntServiceInterface.multiple.register(["A","B"],self)
+             ✅: AntServiceInterface<LoginInterface>.multiple.register(["A","B"],self)
+             ✅: AntServiceInterface<LoginInterface>.multiple.responders("A")
+         
+         ------------------------------------------------------
+         ------------------------------------------------------
+         ------------------------------------------------------
+         
+         AntBus.groupNotification.register("", group: "", owner: self) { group, groupIndex, data in
+             //...
+         }
+         
+         AntBus.groupNotification.post("", group: "B", data: nil)
+         AntBus.groupNotification.post("", data: nil)
+         AntBus.groupNotification.remove("", group: "", owner: self)
+         AntBus.groupNotification.remove("", group: "")
+         AntBus.groupNotification.remove("")
+         AntBus.groupNotification.removeAll()
+         
+         
+         AntChannelInterface<TestLogin>.single.register(self);
+         AntChannelInterface<TestLogin>.single.responder()?.login()
+         AntChannelInterface<TestLogin>.single.remove()
+         
+         AntChannelInterface<TestLogin>.multi.register(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multi.register("viewCtl", [self])
+         AntChannelInterface<TestLogin>.multi.responders("viewCtl")
+         AntChannelInterface<TestLogin>.multi.responders()
+         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"])
+         AntChannelInterface<TestLogin>.multi.remove("viewCtl")
+         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multi.remove("viewCtl", self)
+         AntChannelInterface<TestLogin>.multi.removeAll()
+         
+         
+         
+         
+         AntBus.notification.register("login.success", owner: self) { _ in
+             //login.success
+         }
+         AntBus.notification.post("login.success", data: nil)
+         
+         
+         
+         
+         AntBus.data.register("hasLogin", owner: self) {
+             return true
+         }
+         let hasLogin = AntBus.data.call("hasLogin").data
+         >>>> print
+         true
+         
+         AntBus.method.register("FirstPage", key: "hello") { data, resultBlock, taskBlock in
+            resultBlock("Hi")
+            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
+                taskBlock?("task Hi")
+            }
+         }
+         let result = AntBus.method.call("FirstPage", method: "hello", data: nil) { data in
+             print("taskBlock:\(data)")
+         }
+         print("success:\(result.success) dataBlock:\(result.data)")
+         >>>> print
+         success:true dataBlock:Optional("Hi")
+         taskBlock:Optional("task Hi")
 
 ```
