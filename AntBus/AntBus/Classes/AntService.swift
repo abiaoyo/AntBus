@@ -28,16 +28,16 @@ public class AntSingleContainer<R:Any>{
 public class AntMultiContainer<R:Any> {
     
     private var keyContainer = Dictionary<String,Dictionary<String,R>>.init()
-        
+    
     /// 注册 keys 到响应
     /// 注意：key下R.Type同类型的会覆盖上一个
     public func register(_ key:String, _ responder:R){
+        let type = AntServiceUtil.getType(responder)
         if let _ = self.keyContainer[key] {
-            let type = "\(responder.self)"
             self.keyContainer[key]?.updateValue(responder, forKey: type)
         }else{
             var typeContainer = Dictionary<String,R>.init()
-            typeContainer.updateValue(responder, forKey: key)
+            typeContainer.updateValue(responder, forKey: type)
             self.keyContainer[key] = typeContainer
         }
     }
@@ -82,7 +82,7 @@ public class AntMultiContainer<R:Any> {
     /// 移除key相关的R.Type的响应
     public func remove(_ key:String, responder:R){
         if let _ = self.keyContainer[key] {
-            let type = "\(responder.self)"
+            let type = AntServiceUtil.getType(responder)
             self.keyContainer[key]?.removeValue(forKey: type)
         }
     }
@@ -107,26 +107,32 @@ public class AntMultiContainer<R:Any> {
 
 /// 缓存
 /// 仅管删除了key或响应，缓存将会残留Interface相关的容器，不过这不是问题; 因为Service 本来就是要一直存在的，所以正常情况不会去调用移除
-fileprivate struct AntServiceCache{
+fileprivate struct AntServiceUtil{
     static var singleC = Dictionary<String,AnyObject>.init()
     static var multiC = Dictionary<String,AnyObject>.init()
     
     static func createSingleContainer<Interface:Any>(key:String) -> AntSingleContainer<Interface>{
-        var container = AntServiceCache.singleC[key]
+        var container = AntServiceUtil.singleC[key]
         if container == nil {
             container = AntSingleContainer<Interface>.init()
-            AntServiceCache.singleC[key] = container
+            AntServiceUtil.singleC[key] = container
         }
         return container as! AntSingleContainer<Interface>
     }
     
     static func createMultipleContainer<Interface:Any>(key:String) -> AntMultiContainer<Interface>{
-        var container = AntServiceCache.multiC[key]
+        var container = AntServiceUtil.multiC[key]
         if container == nil {
             container = AntMultiContainer<Interface>.init()
-            AntServiceCache.multiC[key] = container
+            AntServiceUtil.multiC[key] = container
         }
         return container as! AntMultiContainer<Interface>
+    }
+    static func getType(_ responder:Any) -> String {
+        if let type = "\(responder.self)".replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "").split(separator: ":").first {
+            return String(type)
+        }
+        return ""
     }
 }
 
@@ -147,25 +153,26 @@ public struct AntServiceInterface<Interface:Any>{
     public static var single:AntSingleContainer<Interface> {
         get {
             let key = "\(Interface.self)"
-            return AntServiceCache.createSingleContainer(key: key)
+            return AntServiceUtil.createSingleContainer(key: key)
         }
     }
 
     public static var multiple:AntMultiContainer<Interface> {
         get {
             let key = "\(Interface.self)"
-            return AntServiceCache.createMultipleContainer(key: key)
+            return AntServiceUtil.createMultipleContainer(key: key)
         }
     }
 }
 
 public struct AntService{
+    
     public static func singleInterface<I:Any>(_ interface:I.Type) -> AntSingleContainer<I> {
         let key:String = "\(interface)"
-        return AntServiceCache.createSingleContainer(key: key)
+        return AntServiceUtil.createSingleContainer(key: key)
     }
     public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntMultiContainer<I> {
         let key:String = "\(interface)"
-        return AntServiceCache.createMultipleContainer(key: key)
+        return AntServiceUtil.createMultipleContainer(key: key)
     }
 }

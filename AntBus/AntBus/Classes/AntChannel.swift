@@ -99,24 +99,24 @@ public class AntChannelMultiple<R:AnyObject> {
 
 /// 缓存
 /// 仅管删除了key或响应，缓存将会残留Interface相关的容器
-fileprivate struct AntChannelCache{
+fileprivate struct AntServiceUtil{
     static var multiContainer = Dictionary<String,AnyObject>.init()
     static var singleContainer = Dictionary<String,AnyObject>.init()
     
     static func createSingleContainer<Interface:Any>(key:String) -> AntChannelSingle<Interface>{
-        var container = AntChannelCache.singleContainer[key]
+        var container = AntServiceUtil.singleContainer[key]
         if container == nil {
             container = AntChannelSingle<Interface>.init()
-            AntChannelCache.singleContainer[key] = container
+            AntServiceUtil.singleContainer[key] = container
         }
         return container as! AntChannelSingle<Interface>
     }
     
     static func createMultipleContainer<Interface:Any>(key:String) -> AntChannelMultiple<Interface>{
-        var container = AntChannelCache.multiContainer[key]
+        var container = AntServiceUtil.multiContainer[key]
         if container == nil {
             container = AntChannelMultiple<Interface>.init()
-            AntChannelCache.multiContainer[key] = container
+            AntServiceUtil.multiContainer[key] = container
         }
         return container as! AntChannelMultiple<Interface>
     }
@@ -137,11 +137,11 @@ fileprivate struct AntChannelCache{
 public struct AntChannel{
     public static func singleInterface<I:AnyObject>(_ interface:I.Type) -> AntChannelSingle<I> {
         let key:String = "\(interface)"
-        return AntChannelCache.createSingleContainer(key: key)
+        return AntServiceUtil.createSingleContainer(key: key)
     }
     public static func multipleInterface<I:AnyObject>(_ interface:I.Type) -> AntChannelMultiple<I> {
         let key:String = "\(interface)"
-        return AntChannelCache.createMultipleContainer(key: key)
+        return AntServiceUtil.createMultipleContainer(key: key)
     }
 }
 
@@ -149,13 +149,13 @@ public struct AntChannelInterface<Interface:AnyObject>{
     public static var single:AntChannelSingle<Interface> {
         get {
             let key:String = "\(Interface.self)"
-            return AntChannelCache.createSingleContainer(key: key)
+            return AntServiceUtil.createSingleContainer(key: key)
         }
     }
     public static var multiple:AntChannelMultiple<Interface> {
         get {
             let key:String = "\(Interface.self)"
-            return AntChannelCache.createMultipleContainer(key: key)
+            return AntServiceUtil.createMultipleContainer(key: key)
         }
     }
 }

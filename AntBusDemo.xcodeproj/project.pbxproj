@@ -120,7 +120,6 @@
 			isa = PBXGroup;
 			children = (
 				633D4A7825FA657A002967DB /* AntBusDemo */,
-				633D4A7725FA657A002967DB /* Products */,
 				6DF18DCF75588A1519957D5C /* Pods */,
 				0ECC620F20DB2A2A52608E39 /* Frameworks */,
 			);
@@ -132,11 +131,13 @@
 				633D4A7625FA657A002967DB /* AntBusDemo.app */,
 			);
 			name = Products;
+			path = ..;
 			sourceTree = "<group>";
 		};
 		633D4A7825FA657A002967DB /* AntBusDemo */ = {
 			isa = PBXGroup;
 			children = (
+				633D4A7725FA657A002967DB /* Products */,
 				1852C883271BFE780041DC68 /* Page4 */,
 				1852C880271BFC0B0041DC68 /* Page3 */,
 				633D4A9725FA659A002967DB /* FirstPage */,
