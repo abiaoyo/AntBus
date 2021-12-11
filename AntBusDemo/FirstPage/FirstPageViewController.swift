@@ -9,8 +9,17 @@ import UIKit
 import AntBus
 import CommonModule
 
-class FirstPageViewController: UIViewController {
+@objc protocol IFirstPageController {
+    
+}
 
+class FirstPageViewController: UIViewController,IFirstPageController {
+
+    required init?(coder: NSCoder) {
+        super.init(coder: coder)
+        AntChannel.singleInterface(IFirstPageController.self).register(self)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

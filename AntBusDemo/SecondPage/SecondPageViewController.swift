@@ -42,13 +42,31 @@ class SecondPageViewController: UIViewController {
         AntServiceInterface<IPage4Module>.single.responder()?.pushPage(navCtl: self.navigationController!)
     }
     
+    
+    @IBAction func clickAntChannel(_ sender: Any) {
+        
+        let firstPageCtl = AntChannelInterface<IFirstPageController>.single.responder()
+        print("firstPageCtl:\(firstPageCtl)")
+        
+        let page3_v1 = AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+        print("page_v1:\(page3_v1)")
+    }
+    
+    
+    
     @IBAction func clickAntService(_ sender: Any) {
         let ptha = PTHA.init()
         AntServiceInterface<DeviceModule>.multiple.register(ptha.keys, ptha)
-
+        
         let pthb = PTHB.init()
         AntServiceInterface<DeviceModule>.multiple.register(pthb.keys, pthb)
+        
+        let pthc = PTHC.init()
+        AntServiceInterface<DeviceModule>.multiple.register(pthc.keys, pthc)
 
+        let allresponders0 = AntServiceInterface<DeviceModule>.multiple.responders()
+        print("allresponders0:\(allresponders0)")
+        
         let support_H6117s = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         let H6117s = support_H6117s?.first(where: { module in
             let deviceInfo = DeviceInfo.init()
@@ -66,6 +84,10 @@ class SecondPageViewController: UIViewController {
         let H6127 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
         print("H6127:\(H6127)")
         
+        let H61170 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        print("H61170:\(H61170)")
+        
+        AntServiceInterface<DeviceModule>.multiple.remove("H6117", responder: ptha)
         let H6117 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         print("H6117:\(H6117)")
         
@@ -100,13 +122,13 @@ class SecondPageViewController: UIViewController {
     }
 }
 
-class DeviceInfo{
+class DeviceInfo:NSObject{
     var sku:String = ""
     var bleVersion:String = ""
     var pactCode = 0
 }
 
-protocol DeviceModule{
+@objc protocol DeviceModule{
     var keys: [String] {get}
     func isSupport(device:DeviceInfo) -> Bool
 }
@@ -140,5 +162,21 @@ class PTHB: DeviceModule{
     }
     deinit {
         print("deinit PTHB")
+    }
+}
+
+
+class PTHC: DeviceModule{
+    var keys: [String] = ["H6117"]
+    func isSupport(device: DeviceInfo) -> Bool {
+        if keys.contains(where: {$0 == device.sku}) {
+            if device.sku == "H6117" {
+                return device.pactCode > 4
+            }
+        }
+        return false
+    }
+    deinit {
+        print("deinit PTHC")
     }
 }

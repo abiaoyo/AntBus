@@ -7,8 +7,8 @@
 
 import Foundation
 
-/// 单个响应
-public class AntSingleContainer<R:Any>{
+//MARK: - AntSingleC
+public class AntSingleC<R:AnyObject>{
     private var _responder:R?
     
     public func register(_ response:R){
@@ -24,21 +24,18 @@ public class AntSingleContainer<R:Any>{
     }
 }
 
-/// 多个响应
-public class AntMultiContainer<R:Any> {
+//MARK: - AntMultiC
+public class AntMultiC<R:AnyObject> {
     
-    private var keyContainer = Dictionary<String,Dictionary<String,R>>.init()
+    private var keyResponderContainer = Dictionary<String,NSHashTable<R>>.init()
     
-    /// 注册 keys 到响应
-    /// 注意：key下R.Type同类型的会覆盖上一个
     public func register(_ key:String, _ responder:R){
-        let type = AntServiceUtil.getType(responder)
-        if let _ = self.keyContainer[key] {
-            self.keyContainer[key]?.updateValue(responder, forKey: type)
+        if let responders = self.keyResponderContainer[key] {
+            responders.add(responder)
         }else{
-            var typeContainer = Dictionary<String,R>.init()
-            typeContainer.updateValue(responder, forKey: type)
-            self.keyContainer[key] = typeContainer
+            let responders = NSHashTable<R>.init(options: .strongMemory)
+            responders.add(responder)
+            self.keyResponderContainer[key] = responders
         }
     }
     
@@ -54,125 +51,127 @@ public class AntMultiContainer<R:Any> {
         }
     }
 
-    /// 获取key相关的响应
     public func responders(_ key:String) -> [R]? {
-        if let typeContainer = self.keyContainer[key] {
-            return typeContainer.compactMap({ $0.value })
+        if let responders = self.keyResponderContainer[key] {
+            return responders.allObjects
         }
         return nil
     }
     
-    /// 获取所有响应
     public func responders() -> [R]? {
-        let typeContainers = self.keyContainer.map({$0.value})
-        var results = Dictionary<String,R>.init()
-        for typeContainer in typeContainers {
-            for key in typeContainer.keys {
-                if let value = typeContainer[key] {
-                    results.updateValue(value, forKey: key)
-                }
+        let krContainers = self.keyResponderContainer.map({$0.value})
+        let results = NSMutableSet.init()
+        for krContainer in krContainers {
+            for responder in krContainer.allObjects {
+                results.add(responder)
             }
         }
-        if results.count == 0{
-            return nil
-        }
-        return results.compactMap({$0.value})
+        return results.allObjects as? [R]
     }
     
-    /// 移除key相关的R.Type的响应
     public func remove(_ key:String, responder:R){
-        if let _ = self.keyContainer[key] {
-            let type = AntServiceUtil.getType(responder)
-            self.keyContainer[key]?.removeValue(forKey: type)
-        }
+        self.keyResponderContainer[key]?.remove(responder)
     }
     
-    /// 移除keys相关的响应
     public func remove(_ keys:[String]) {
         for key in keys {
-            self.keyContainer.removeValue(forKey: key)
+            self.keyResponderContainer.removeValue(forKey: key)
         }
     }
 
-    /// 移除key相关的所有响应
     public func remove(_ key:String){
-        self.keyContainer.removeValue(forKey: key)
+        self.keyResponderContainer.removeValue(forKey: key)
     }
 
-    /// 移除所有响应
     public func removeAll() {
-        self.keyContainer.removeAll()
+        self.keyResponderContainer.removeAll()
     }
 }
 
-/// 缓存
-/// 仅管删除了key或响应，缓存将会残留Interface相关的容器，不过这不是问题; 因为Service 本来就是要一直存在的，所以正常情况不会去调用移除
+//MARK: - AntServiceUtil
 fileprivate struct AntServiceUtil{
-    static var singleC = Dictionary<String,AnyObject>.init()
-    static var multiC = Dictionary<String,AnyObject>.init()
+    static var singleCC = Dictionary<String,AnyObject>.init()
+    static var multiCC = Dictionary<String,AnyObject>.init()
     
-    static func createSingleContainer<Interface:Any>(key:String) -> AntSingleContainer<Interface>{
-        var container = AntServiceUtil.singleC[key]
+    static func createSingleC<Interface:Any>(key:String) -> AntSingleC<Interface>{
+        var container = AntServiceUtil.singleCC[key]
         if container == nil {
-            container = AntSingleContainer<Interface>.init()
-            AntServiceUtil.singleC[key] = container
+            container = AntSingleC<Interface>.init()
+            AntServiceUtil.singleCC[key] = container
         }
-        return container as! AntSingleContainer<Interface>
+        return container as! AntSingleC<Interface>
     }
     
-    static func createMultipleContainer<Interface:Any>(key:String) -> AntMultiContainer<Interface>{
-        var container = AntServiceUtil.multiC[key]
+    static func createMultiC<Interface:Any>(key:String) -> AntMultiC<Interface>{
+        var container = AntServiceUtil.multiCC[key]
         if container == nil {
-            container = AntMultiContainer<Interface>.init()
-            AntServiceUtil.multiC[key] = container
+            container = AntMultiC<Interface>.init()
+            AntServiceUtil.multiCC[key] = container
         }
-        return container as! AntMultiContainer<Interface>
+        return container as! AntMultiC<Interface>
     }
-    static func getType(_ responder:Any) -> String {
-        if let type = "\(responder.self)".replacingOccurrences(of: "<", with: "").replacingOccurrences(of: ">", with: "").split(separator: ":").first {
-            return String(type)
+
+    //ik
+    static var ikGroupContainer = Dictionary<String,Array<iKey>>.init()
+    static func getIKey<I:Any>(_ interface:I.Type) -> String{
+        let iGroupKey = "\(interface)"
+        if let array = ikGroupContainer[iGroupKey] {
+            for ik in array {
+                if interface == ik.interface as? Any.Type{
+                    return ik.key
+                }
+            }
+            let ik = iKey.createIKey(iGroupKey, interface: interface)
+            ikGroupContainer[iGroupKey]?.append(ik)
+            return ik.key
+        }else{
+            let ik = iKey.createIKey(iGroupKey, interface: interface)
+            ikGroupContainer[iGroupKey] = [ik]
+            return ik.key
         }
-        return ""
+    }
+    
+    struct iKey {
+        var key:String!
+        var interface:Any!
+
+        static func createIKey(_ groupKey:String,interface:Any) -> iKey{
+            let key = "\(groupKey)_\(arc4random()%1000)_\(arc4random()%1000)"
+            return iKey.init(key: key, interface: interface)
+        }
     }
 }
 
-/// AntService - 服务
-/// AntService是强引用，AntService用于长驻内存的服务;
-/// AntChannel是弱引用，⚠️⚠️⚠️ 因为是弱引用 ，所以Interface注册用@objc的Protocol
-/// AntService用于不同模块的调用，AntChannel是临时内存的访问且用于模块内的调用
-/// 通过协议绑定实例达到不同模块的访问（强引用）
-/// 存储结构：single <Interface,<Key,Responder>>        multiple <Interface,<Key,<R.Type,Responder>>>
-/// Interface：协议 / 接口，用来对功能分组，用Interface生成的字符key来存储同一个功能容器
-/// Key：关键值，用来对功能下的响应进行分组
-/// R.Type：用来作为响应Responder的关键值     ⚠️⚠️  注意：R.Type相同时会覆盖上一次响应，所以项目中不要有相同的R.Type  ⚠️⚠️
-/// Responder：响应，实现Interface的地方
+//MARK: - AntServiceInterface
+public struct AntServiceInterface<Interface:AnyObject>{
+    public static var single:AntSingleC<Interface> {
+        get {
+            let interface = Interface.self
+            return AntService.singleInterface(interface)
+        }
+    }
+
+    public static var multiple:AntMultiC<Interface> {
+        get {
+            let interface = Interface.self
+            return AntService.multipleInterface(interface)
+        }
+    }
+}
+
+//MARK: - AntService
+public struct AntService{
+    public static func singleInterface<I:AnyObject>(_ interface:I.Type) -> AntSingleC<I> {
+        let key = AntServiceUtil.getIKey(interface)
+        return AntServiceUtil.createSingleC(key: key)
+    }
+    
+    public static func multipleInterface<I:AnyObject>(_ interface:I.Type) -> AntMultiC<I> {
+        let key = AntServiceUtil.getIKey(interface)
+        return AntServiceUtil.createMultiC(key: key)
+    }
+}
+
 /// 示例：⚠️⚠️⚠️⚠️⚠️⚠️
 /// AntServiceInterface.single.register(xxx)  ❌
-/// AntServiceInterface<Interface>.single.register(xxx)  ✅     OR    AntService.singleInterface(Interface.Type).register(xxx)  ✅
-public struct AntServiceInterface<Interface:Any>{
-    public static var single:AntSingleContainer<Interface> {
-        get {
-            let key = "\(Interface.self)"
-            return AntServiceUtil.createSingleContainer(key: key)
-        }
-    }
-
-    public static var multiple:AntMultiContainer<Interface> {
-        get {
-            let key = "\(Interface.self)"
-            return AntServiceUtil.createMultipleContainer(key: key)
-        }
-    }
-}
-
-public struct AntService{
-    
-    public static func singleInterface<I:Any>(_ interface:I.Type) -> AntSingleContainer<I> {
-        let key:String = "\(interface)"
-        return AntServiceUtil.createSingleContainer(key: key)
-    }
-    public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntMultiContainer<I> {
-        let key:String = "\(interface)"
-        return AntServiceUtil.createMultipleContainer(key: key)
-    }
-}
+/// AntServiceInterface<Interface>.single.register(xxx)  ✅     OR    AntService.singleInterface(Interface.self).register(xxx)  ✅

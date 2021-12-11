@@ -9,7 +9,7 @@ import UIKit
 import CommonModule
 import AntBus
 
-protocol IPage4Module{
+@objc protocol IPage4Module{
     func pushPage(navCtl:UINavigationController)
 }
 
