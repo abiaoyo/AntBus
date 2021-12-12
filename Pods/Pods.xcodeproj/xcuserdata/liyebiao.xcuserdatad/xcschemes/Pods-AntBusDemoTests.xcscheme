@@ -14,9 +14,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7A98CB5C66E52A62EFFE3B57AFF54621"
-               BuildableName = "BaseModule.framework"
-               BlueprintName = "BaseModule"
+               BlueprintIdentifier = "5283FB5B652C219ADD865EF968A7E3E2"
+               BuildableName = "Pods_AntBusDemoTests.framework"
+               BlueprintName = "Pods-AntBusDemoTests"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>

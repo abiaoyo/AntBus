@@ -7,8 +7,8 @@
 
 import Foundation
 
-//MARK: - AntSingleC
-public class AntSingleC<R:AnyObject>{
+//MARK: - AntServiceSingleC
+public class AntServiceSingleC<R:Any>{
     private var _responder:R?
     
     public func register(_ response:R){
@@ -24,17 +24,17 @@ public class AntSingleC<R:AnyObject>{
     }
 }
 
-//MARK: - AntMultiC
-public class AntMultiC<R:AnyObject> {
+//MARK: - AntServiceMultiC
+public class AntServiceMultiC<R:Any> {
     
-    private var keyResponderContainer = Dictionary<String,NSHashTable<R>>.init()
+    private var keyResponderContainer = Dictionary<String,Array<R>>.init()
     
     public func register(_ key:String, _ responder:R){
-        if let responders = self.keyResponderContainer[key] {
-            responders.add(responder)
+        if let _ = self.keyResponderContainer[key] {
+            self.keyResponderContainer[key]?.append(responder)
         }else{
-            let responders = NSHashTable<R>.init(options: .strongMemory)
-            responders.add(responder)
+            var responders = Array<R>.init()
+            responders.append(responder)
             self.keyResponderContainer[key] = responders
         }
     }
@@ -52,25 +52,24 @@ public class AntMultiC<R:AnyObject> {
     }
 
     public func responders(_ key:String) -> [R]? {
-        if let responders = self.keyResponderContainer[key] {
-            return responders.allObjects
-        }
-        return nil
+        return self.keyResponderContainer[key]
     }
     
     public func responders() -> [R]? {
-        let krContainers = self.keyResponderContainer.map({$0.value})
+        let krContainers = self.keyResponderContainer.values
         let results = NSMutableSet.init()
         for krContainer in krContainers {
-            for responder in krContainer.allObjects {
+            for responder in krContainer {
                 results.add(responder)
             }
         }
         return results.allObjects as? [R]
     }
     
-    public func remove(_ key:String, responder:R){
-        self.keyResponderContainer[key]?.remove(responder)
+    public func remove(_ key:String, where shouldBeRemoved: (R) -> Bool) {
+        self.keyResponderContainer[key]?.removeAll(where: { r in
+            return shouldBeRemoved(r)
+        })
     }
     
     public func remove(_ keys:[String]) {
@@ -93,22 +92,22 @@ fileprivate struct AntServiceUtil{
     static var singleCC = Dictionary<String,AnyObject>.init()
     static var multiCC = Dictionary<String,AnyObject>.init()
     
-    static func createSingleC<Interface:Any>(key:String) -> AntSingleC<Interface>{
+    static func createSingleC<Interface:Any>(key:String) -> AntServiceSingleC<Interface>{
         var container = AntServiceUtil.singleCC[key]
         if container == nil {
-            container = AntSingleC<Interface>.init()
+            container = AntServiceSingleC<Interface>.init()
             AntServiceUtil.singleCC[key] = container
         }
-        return container as! AntSingleC<Interface>
+        return container as! AntServiceSingleC<Interface>
     }
     
-    static func createMultiC<Interface:Any>(key:String) -> AntMultiC<Interface>{
+    static func createMultiC<Interface:Any>(key:String) -> AntServiceMultiC<Interface>{
         var container = AntServiceUtil.multiCC[key]
         if container == nil {
-            container = AntMultiC<Interface>.init()
+            container = AntServiceMultiC<Interface>.init()
             AntServiceUtil.multiCC[key] = container
         }
-        return container as! AntMultiC<Interface>
+        return container as! AntServiceMultiC<Interface>
     }
 
     //ik
@@ -143,35 +142,33 @@ fileprivate struct AntServiceUtil{
 }
 
 //MARK: - AntServiceInterface
-public struct AntServiceInterface<Interface:AnyObject>{
-    public static var single:AntSingleC<Interface> {
+public struct AntServiceInterface<I:Any>{
+    
+    public static var single:AntServiceSingleC<I> {
         get {
-            let interface = Interface.self
-            return AntService.singleInterface(interface)
+            return AntService.singleInterface(I.self)
         }
     }
-
-    public static var multiple:AntMultiC<Interface> {
+    public static var multiple:AntServiceMultiC<I> {
         get {
-            let interface = Interface.self
-            return AntService.multipleInterface(interface)
+            return AntService.multipleInterface(I.self)
         }
     }
 }
 
 //MARK: - AntService
 public struct AntService{
-    public static func singleInterface<I:AnyObject>(_ interface:I.Type) -> AntSingleC<I> {
+    public static func singleInterface<I:Any>(_ interface:I.Type) -> AntServiceSingleC<I> {
         let key = AntServiceUtil.getIKey(interface)
         return AntServiceUtil.createSingleC(key: key)
     }
     
-    public static func multipleInterface<I:AnyObject>(_ interface:I.Type) -> AntMultiC<I> {
+    public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntServiceMultiC<I> {
         let key = AntServiceUtil.getIKey(interface)
         return AntServiceUtil.createMultiC(key: key)
     }
 }
 
-/// 示例：⚠️⚠️⚠️⚠️⚠️⚠️
-/// AntServiceInterface.single.register(xxx)  ❌
+/// 示例:
+/// AntServiceInterface.single.register(xxx)  ⚠️⚠️⚠️
 /// AntServiceInterface<Interface>.single.register(xxx)  ✅     OR    AntService.singleInterface(Interface.self).register(xxx)  ✅

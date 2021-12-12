@@ -9,7 +9,7 @@ import UIKit
 import AntBus
 import CommonModule
 
-class SecondPageViewController: UIViewController {
+class SecondPageViewController: UIViewController{
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -87,9 +87,6 @@ class SecondPageViewController: UIViewController {
         let H61170 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         print("H61170:\(H61170)")
         
-        AntServiceInterface<DeviceModule>.multiple.remove("H6117", responder: ptha)
-        let H6117 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
-        print("H6117:\(H6117)")
         
         let H6163 = AntServiceInterface<DeviceModule>.multiple.responders("H6163")
         print("H6163:\(H6163)")
@@ -97,10 +94,14 @@ class SecondPageViewController: UIViewController {
         let H611A = AntServiceInterface<DeviceModule>.multiple.responders("H611A")
         print("H611A:\(H611A)")
 
-        
-        AntServiceInterface<DeviceModule>.multiple.remove("H6127", responder: pthb)
+/*
+        // remove where
+        AntServiceInterface<DeviceModule>.multiple.remove("H6127") { m in
+            
+        }
         let H6127_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
         print("H6127_2:\(H6127_2)")
+ */
         
         AntServiceInterface<DeviceModule>.multiple.remove("H6117")
         let H6117_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")

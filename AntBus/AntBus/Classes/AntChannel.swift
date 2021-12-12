@@ -172,8 +172,6 @@ public struct AntChannel{
     }
 }
 
-
-
-/// 示例：⚠️⚠️⚠️⚠️⚠️⚠️
-/// AntChannelInterface.single.register(xxx)  ❌
+/// 示例：
+/// AntChannelInterface.single.register(xxx)  ⚠️⚠️⚠️
 /// AntChannelInterface<Interface>.single.register(xxx)  ✅     OR    AntChannel.singleInterface(Interface.self).register(xxx)  ✅

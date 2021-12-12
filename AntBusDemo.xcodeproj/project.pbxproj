@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_demo_modules.plist */; };
+		184C8FF227652D9E00EF906A /* AntBusDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */; };
+		184C903C276530D500EF906A /* AntBusDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C903B276530D500EF906A /* AntBusDemoTests.swift */; };
 		1852C87D271BFB070041DC68 /* Page3_V1_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */; };
 		1852C87F271BFB490041DC68 /* Page3_V2_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */; };
 		1852C882271BFC220041DC68 /* IPage3Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C881271BFC220041DC68 /* IPage3Module.swift */; };
@@ -19,6 +21,8 @@
 		1852C892271C009C0041DC68 /* Page3V1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C890271C009C0041DC68 /* Page3V1ViewController.swift */; };
 		1852C893271C009C0041DC68 /* Page3V1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C891271C009C0041DC68 /* Page3V1ViewController.xib */; };
 		1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */; };
+		324C1DCAEBF9E63A58BFB5A9 /* Pods_AntBusDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0AF9D87B6E679051D1F104 /* Pods_AntBusDemoTests.framework */; };
+		411D6FB8415D2459FA1D3E47 /* Pods_AntBusDemo_AntBusDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B499F7EE3E6416344559CD79 /* Pods_AntBusDemo_AntBusDemoUITests.framework */; };
 		633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7925FA657A002967DB /* AppDelegate.swift */; };
 		633D4A7E25FA657A002967DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7D25FA657A002967DB /* ViewController.swift */; };
 		633D4A8125FA657A002967DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633D4A7F25FA657A002967DB /* Main.storyboard */; };
@@ -29,8 +33,31 @@
 		633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A9825FA659A002967DB /* FirstPageViewController.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		184C8FF427652D9E00EF906A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 633D4A6E25FA657A002967DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 633D4A7525FA657A002967DB;
+			remoteInfo = AntBusDemo;
+		};
+		184C903E276530D500EF906A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 633D4A6E25FA657A002967DB /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 633D4A7525FA657A002967DB;
+			remoteInfo = AntBusDemo;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		1823187026737AEE006E4800 /* antbus_demo_modules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = antbus_demo_modules.plist; sourceTree = "<group>"; };
+		184C8FEF27652D9D00EF906A /* AntBusDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AntBusDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBusDemoUITests.swift; sourceTree = "<group>"; };
+		184C8FF327652D9E00EF906A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		184C9039276530D500EF906A /* AntBusDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AntBusDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		184C903B276530D500EF906A /* AntBusDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBusDemoTests.swift; sourceTree = "<group>"; };
+		184C903D276530D500EF906A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V1_Module.swift; sourceTree = "<group>"; };
 		1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V2_Module.swift; sourceTree = "<group>"; };
 		1852C881271BFC220041DC68 /* IPage3Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPage3Module.swift; sourceTree = "<group>"; };
@@ -52,11 +79,33 @@
 		633D4A9425FA659A002967DB /* SecondPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SecondPageViewController.swift; sourceTree = "<group>"; };
 		633D4A9625FA659A002967DB /* TabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarViewController.swift; sourceTree = "<group>"; };
 		633D4A9825FA659A002967DB /* FirstPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FirstPageViewController.swift; sourceTree = "<group>"; };
+		680AA6989FA887E169D0315F /* Pods-AntBusDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemoTests.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemoTests/Pods-AntBusDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
+		B499F7EE3E6416344559CD79 /* Pods_AntBusDemo_AntBusDemoUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AntBusDemo_AntBusDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		BB0AF9D87B6E679051D1F104 /* Pods_AntBusDemoTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AntBusDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C94371B8D866A487EA7A1F08 /* Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig"; path = "Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		CC8DC6849A78503D36F38B70 /* Pods-AntBusDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.release.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.release.xcconfig"; sourceTree = "<group>"; };
+		DFF52F49FB3C3B17F0A71423 /* Pods-AntBusDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemoTests.release.xcconfig"; path = "Target Support Files/Pods-AntBusDemoTests/Pods-AntBusDemoTests.release.xcconfig"; sourceTree = "<group>"; };
+		E45912BABEA2743921F8DF3D /* Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AntBusDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		184C8FEC27652D9D00EF906A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				411D6FB8415D2459FA1D3E47 /* Pods_AntBusDemo_AntBusDemoUITests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184C9036276530D500EF906A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				324C1DCAEBF9E63A58BFB5A9 /* Pods_AntBusDemoTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		633D4A7325FA657A002967DB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -72,8 +121,28 @@
 			isa = PBXGroup;
 			children = (
 				EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */,
+				B499F7EE3E6416344559CD79 /* Pods_AntBusDemo_AntBusDemoUITests.framework */,
+				BB0AF9D87B6E679051D1F104 /* Pods_AntBusDemoTests.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		184C8FF027652D9E00EF906A /* AntBusDemoUITests */ = {
+			isa = PBXGroup;
+			children = (
+				184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */,
+				184C8FF327652D9E00EF906A /* Info.plist */,
+			);
+			path = AntBusDemoUITests;
+			sourceTree = "<group>";
+		};
+		184C903A276530D500EF906A /* AntBusDemoTests */ = {
+			isa = PBXGroup;
+			children = (
+				184C903B276530D500EF906A /* AntBusDemoTests.swift */,
+				184C903D276530D500EF906A /* Info.plist */,
+			);
+			path = AntBusDemoTests;
 			sourceTree = "<group>";
 		};
 		1852C87A271BFAB90041DC68 /* Page3_V1 */ = {
@@ -121,6 +190,8 @@
 			children = (
 				633D4A7825FA657A002967DB /* AntBusDemo */,
 				6DF18DCF75588A1519957D5C /* Pods */,
+				184C8FF027652D9E00EF906A /* AntBusDemoUITests */,
+				184C903A276530D500EF906A /* AntBusDemoTests */,
 				0ECC620F20DB2A2A52608E39 /* Frameworks */,
 			);
 			sourceTree = "<group>";
@@ -129,6 +200,8 @@
 			isa = PBXGroup;
 			children = (
 				633D4A7625FA657A002967DB /* AntBusDemo.app */,
+				184C8FEF27652D9D00EF906A /* AntBusDemoUITests.xctest */,
+				184C9039276530D500EF906A /* AntBusDemoTests.xctest */,
 			);
 			name = Products;
 			path = ..;
@@ -183,6 +256,10 @@
 			children = (
 				53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */,
 				CC8DC6849A78503D36F38B70 /* Pods-AntBusDemo.release.xcconfig */,
+				E45912BABEA2743921F8DF3D /* Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig */,
+				C94371B8D866A487EA7A1F08 /* Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig */,
+				680AA6989FA887E169D0315F /* Pods-AntBusDemoTests.debug.xcconfig */,
+				DFF52F49FB3C3B17F0A71423 /* Pods-AntBusDemoTests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -190,6 +267,46 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		184C8FEE27652D9D00EF906A /* AntBusDemoUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 184C8FF827652D9E00EF906A /* Build configuration list for PBXNativeTarget "AntBusDemoUITests" */;
+			buildPhases = (
+				5D0A0855B1FAFD1E84E3D3C4 /* [CP] Check Pods Manifest.lock */,
+				184C8FEB27652D9D00EF906A /* Sources */,
+				184C8FEC27652D9D00EF906A /* Frameworks */,
+				184C8FED27652D9D00EF906A /* Resources */,
+				DDA85F753963E63176B87F71 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				184C8FF527652D9E00EF906A /* PBXTargetDependency */,
+			);
+			name = AntBusDemoUITests;
+			productName = AntBusDemoUITests;
+			productReference = 184C8FEF27652D9D00EF906A /* AntBusDemoUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		184C9038276530D500EF906A /* AntBusDemoTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 184C9040276530D500EF906A /* Build configuration list for PBXNativeTarget "AntBusDemoTests" */;
+			buildPhases = (
+				FD334BA0E81563B85E830133 /* [CP] Check Pods Manifest.lock */,
+				184C9035276530D500EF906A /* Sources */,
+				184C9036276530D500EF906A /* Frameworks */,
+				184C9037276530D500EF906A /* Resources */,
+				613878636C48DF2BF91B046E /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				184C903F276530D500EF906A /* PBXTargetDependency */,
+			);
+			name = AntBusDemoTests;
+			productName = AntBusDemoTests;
+			productReference = 184C9039276530D500EF906A /* AntBusDemoTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		633D4A7525FA657A002967DB /* AntBusDemo */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 633D4A8A25FA657D002967DB /* Build configuration list for PBXNativeTarget "AntBusDemo" */;
@@ -215,9 +332,17 @@
 		633D4A6E25FA657A002967DB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1240;
+				LastSwiftUpdateCheck = 1250;
 				LastUpgradeCheck = 1240;
 				TargetAttributes = {
+					184C8FEE27652D9D00EF906A = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 633D4A7525FA657A002967DB;
+					};
+					184C9038276530D500EF906A = {
+						CreatedOnToolsVersion = 12.5;
+						TestTargetID = 633D4A7525FA657A002967DB;
+					};
 					633D4A7525FA657A002967DB = {
 						CreatedOnToolsVersion = 12.4;
 					};
@@ -237,11 +362,27 @@
 			projectRoot = "";
 			targets = (
 				633D4A7525FA657A002967DB /* AntBusDemo */,
+				184C8FEE27652D9D00EF906A /* AntBusDemoUITests */,
+				184C9038276530D500EF906A /* AntBusDemoTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		184C8FED27652D9D00EF906A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184C9037276530D500EF906A /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		633D4A7425FA657A002967DB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -259,6 +400,45 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		5D0A0855B1FAFD1E84E3D3C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AntBusDemo-AntBusDemoUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		613878636C48DF2BF91B046E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemoTests/Pods-AntBusDemoTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemoTests/Pods-AntBusDemoTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AntBusDemoTests/Pods-AntBusDemoTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		8A002AC6BB27A0E06BCB686D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -298,9 +478,64 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
+		DDA85F753963E63176B87F71 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FD334BA0E81563B85E830133 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-AntBusDemoTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		184C8FEB27652D9D00EF906A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184C8FF227652D9E00EF906A /* AntBusDemoUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		184C9035276530D500EF906A /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				184C903C276530D500EF906A /* AntBusDemoTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		633D4A7225FA657A002967DB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -322,6 +557,19 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		184C8FF527652D9E00EF906A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 633D4A7525FA657A002967DB /* AntBusDemo */;
+			targetProxy = 184C8FF427652D9E00EF906A /* PBXContainerItemProxy */;
+		};
+		184C903F276530D500EF906A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 633D4A7525FA657A002967DB /* AntBusDemo */;
+			targetProxy = 184C903E276530D500EF906A /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		633D4A7F25FA657A002967DB /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
@@ -342,6 +590,92 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		184C8FF627652D9E00EF906A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E45912BABEA2743921F8DF3D /* Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X77K95YFU8;
+				INFOPLIST_FILE = AntBusDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.AntBusDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AntBusDemo;
+			};
+			name = Debug;
+		};
+		184C8FF727652D9E00EF906A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = C94371B8D866A487EA7A1F08 /* Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig */;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X77K95YFU8;
+				INFOPLIST_FILE = AntBusDemoUITests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.AntBusDemoUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = AntBusDemo;
+			};
+			name = Release;
+		};
+		184C9041276530D500EF906A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 680AA6989FA887E169D0315F /* Pods-AntBusDemoTests.debug.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X77K95YFU8;
+				INFOPLIST_FILE = AntBusDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.AntBusDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AntBusDemo.app/AntBusDemo";
+			};
+			name = Debug;
+		};
+		184C9042276530D500EF906A /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DFF52F49FB3C3B17F0A71423 /* Pods-AntBusDemoTests.release.xcconfig */;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = X77K95YFU8;
+				INFOPLIST_FILE = AntBusDemoTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.AntBusDemoTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/AntBusDemo.app/AntBusDemo";
+			};
+			name = Release;
+		};
 		633D4A8825FA657D002967DB /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -504,6 +838,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		184C8FF827652D9E00EF906A /* Build configuration list for PBXNativeTarget "AntBusDemoUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184C8FF627652D9E00EF906A /* Debug */,
+				184C8FF727652D9E00EF906A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		184C9040276530D500EF906A /* Build configuration list for PBXNativeTarget "AntBusDemoTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				184C9041276530D500EF906A /* Debug */,
+				184C9042276530D500EF906A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		633D4A7125FA657A002967DB /* Build configuration list for PBXProject "AntBusDemo" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

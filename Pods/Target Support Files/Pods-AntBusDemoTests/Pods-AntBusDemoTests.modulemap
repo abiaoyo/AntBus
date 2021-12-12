@@ -1,0 +1,6 @@
+framework module Pods_AntBusDemoTests {
+  umbrella header "Pods-AntBusDemoTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

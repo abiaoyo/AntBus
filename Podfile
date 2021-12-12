@@ -12,4 +12,20 @@ target 'AntBusDemo' do
 #  pod 'BaseModule', :path => 'Common/BaseModule'
   pod 'CommonModule', :path => 'Common/CommonModule'
   
+#  target 'HAHATests' do
+#    inherit! :search_paths
+#    # Pods for testing
+#  end
+
+  target 'AntBusDemoTests' do
+    # Pods for testing
+    inherit! :search_paths
+    pod 'AntBus', :path => 'AntBus'
+  end
+  
+  target 'AntBusDemoUITests' do
+    # Pods for testing
+    pod 'AntBus', :path => 'AntBus'
+  end
+  
 end
