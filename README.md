@@ -2,7 +2,7 @@
 
 
 ```bash
-pod 'AntBus', '~> 0.6.3'
+pod 'AntBus', '~> 0.8.0'
 ```
 
 
