@@ -115,19 +115,14 @@ public class AntServiceMultiC<R:Any> {
     }
     
     public func responders() -> [R]? {
-        let krContainers = keyResponderContainer.values
-        let results = NSMutableSet.init()
-        for krContainer in krContainers {
-            for responder in krContainer {
-                results.add(responder)
-            }
-        }
+        let results = keyResponderContainer.flatMap({ $0.value })
+        let uniqueResults = NSMutableSet.init(array: results)
         
         if AntServiceLog.shared.enabled {
-            let log = "multiC - \(#function)  = \(String(describing: results.allObjects))"
+            let log = "multiC - \(#function)  = \(String(describing: uniqueResults.allObjects))"
             AntServiceLog.handlerLog(.responder, log)
         }
-        return results.allObjects as? [R]
+        return uniqueResults.allObjects as? [R]
     }
     
     public func remove(_ key:String, where shouldBeRemoved: (R) -> Bool) {
