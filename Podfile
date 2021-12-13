@@ -21,6 +21,7 @@ target 'AntBusDemo' do
     # Pods for testing
     inherit! :search_paths
     pod 'AntBus', :path => 'AntBus'
+    pod 'CommonModule', :path => 'Common/CommonModule'
   end
   
   target 'AntBusDemoUITests' do

@@ -7,6 +7,7 @@
 
 import XCTest
 import AntBus
+import CommonModule
 
 public protocol IEFG{
     var name:String {get}
@@ -50,6 +51,18 @@ class LoginModule:ILoginModule{
     var isLogin: Bool = false
 }
 
+class LoginModuleB:CommonModule.ILoginModule{
+    func logout() {
+        
+    }
+    
+    func showLoginPage() {
+        
+    }
+    
+    
+}
+
 class AntBusDemoTests: XCTestCase {
 
     override func setUpWithError() throws {
@@ -70,6 +83,30 @@ class AntBusDemoTests: XCTestCase {
         measure {
             // Put the code you want to measure the time of here.
         }
+    }
+    
+    func testSameProtocolName(){
+        let loginA1 = LoginModule.init()
+        let loginA2 = LoginModule.init()
+        
+        let loginB1 = LoginModuleB.init()
+        let loginB2 = LoginModuleB.init()
+        
+        AntServiceInterface<ILoginModule>.multiple.register("loginA1", loginA1)
+        AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2)
+//        AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2)  ⚠️⚠️⚠️
+        AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2) { lg in
+            if let lg2:LoginModule = lg as? LoginModule {
+                return lg2 === loginA2
+            }
+            return false
+        }
+        AntServiceInterface<ILoginModule>.multiple.responders()
+        
+        AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB1", loginB1)
+        AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB2", loginB2)
+        AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB2", loginB2)
+        AntServiceInterface<CommonModule.ILoginModule>.multiple.responders()
     }
     
     func testMultiStruct() throws {

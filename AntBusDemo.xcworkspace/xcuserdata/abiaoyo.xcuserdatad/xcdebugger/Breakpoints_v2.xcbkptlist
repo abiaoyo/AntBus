@@ -24,7 +24,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "ED3BF136-858E-4D13-9A62-265019C37B11"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AntBus/AntBus/Classes/AntChannel.swift"
@@ -34,6 +34,38 @@
             endingLineNumber = "151"
             landmarkName = "singleInterface(_:)"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "ED3BF136-858E-4D13-9A62-265019C37B11 - 66fb9e639ef75dcb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (AntBus.AntBusLogOptions, Swift.String) -&gt; () in static AntBus.AntChannel.singleInterface&lt;&#x3c4;_0_0 where &#x3c4;_0_0: AnyObject&gt;(&#x3c4;_0_0.Type) -&gt; AntBus.AntChannelSingleC&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntChannel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "144"
+                  endingLineNumber = "144"
+                  offsetFromSymbolStart = "56">
+               </Location>
+               <Location
+                  uuid = "ED3BF136-858E-4D13-9A62-265019C37B11 - 66fb9e639ef75ef2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (AntBus.AntBusLogOptions, Swift.String) -&gt; () in static AntBus.AntChannel.singleInterface&lt;&#x3c4;_0_0 where &#x3c4;_0_0: AnyObject&gt;(&#x3c4;_0_0.Type) -&gt; AntBus.AntChannelSingleC&lt;&#x3c4;_0_0&gt;"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntChannel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "151"
+                  endingLineNumber = "151"
+                  offsetFromSymbolStart = "56">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -56,7 +88,7 @@
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
             uuid = "A3884D47-8AA2-4CEC-AEC3-9269A6A5B6E3"
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "AntBus/AntBus/Classes/AntBus+.swift"
@@ -66,6 +98,166 @@
             endingLineNumber = "181"
             landmarkName = "handlerLog(_:_:)"
             landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A47AC49E-5606-493B-A6C9-EA7BDAA1E080"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "76"
+            endingLineNumber = "76"
+            landmarkName = "register(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6F0CE2B-6557-4A35-89F4-609299F63A53"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBusDemoTests/AntBusDemoTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "95"
+            endingLineNumber = "95"
+            landmarkName = "testSameProtocolName()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B12D148B-8C15-42D1-95ED-BFA946B0D624"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "_register(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5F2D26D3-5AF3-4A74-9250-7859483F1DA2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "_register(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "699B53E2-37FA-4B5E-BB06-CF33F5852ED8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "register(_:_:where:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "699B53E2-37FA-4B5E-BB06-CF33F5852ED8 - 754b1a2ff685baf8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBus.AntServiceMultiC.register(_: Swift.String, _: &#x3c4;_0_0, where: (&#x3c4;_0_0) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "208">
+               </Location>
+               <Location
+                  uuid = "699B53E2-37FA-4B5E-BB06-CF33F5852ED8 - 754b1a2ff685baf8"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBus.AntServiceMultiC.register(_: Swift.String, _: &#x3c4;_0_0, where: (&#x3c4;_0_0) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "42"
+                  endingLineNumber = "42"
+                  offsetFromSymbolStart = "244">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D683369-8DA0-44AB-9C2C-339269FF8855"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "register(_:_:where:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D683369-8DA0-44AB-9C2C-339269FF8855 - 754b1a2ff685c582"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBus.AntServiceMultiC.register(_: Swift.String, _: &#x3c4;_0_0, where: (&#x3c4;_0_0) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "1020">
+               </Location>
+               <Location
+                  uuid = "3D683369-8DA0-44AB-9C2C-339269FF8855 - 754b1a2ff685c582"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBus.AntServiceMultiC.register(_: Swift.String, _: &#x3c4;_0_0, where: (&#x3c4;_0_0) -&gt; Swift.Bool) -&gt; ()"
+                  moduleName = "AntBus"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntService.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "48"
+                  endingLineNumber = "48"
+                  offsetFromSymbolStart = "800">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

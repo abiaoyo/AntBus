@@ -7,7 +7,7 @@
 
 import Foundation
 
-@objc public protocol ILoginModule{
+public protocol ILoginModule{
     func logout()
     func showLoginPage()
 }

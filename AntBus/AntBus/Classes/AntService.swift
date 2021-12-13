@@ -40,11 +40,14 @@ public class AntServiceMultiC<R:Any> {
     
     public func register(_ key:String, _ responder:R, where contains: (R) -> Bool){
         if let _ = keyResponderContainer[key] {
-            if keyResponderContainer[key]?.contains(where: { r in
+            if keyResponderContainer[key]!.contains(where: { r in
                 return contains(r)
-            }) == false {
-                keyResponderContainer[key]?.append(responder)
+            }) {
+                let log = "AntServiceMultiC(\(#line)) - \(#function):  ⚠️ contains(key:\(key)  responder:\(responder))"
+                AntServiceLog.handlerLog(.Responder, log)
+                return
             }
+            keyResponderContainer[key]?.append(responder)
         }else{
             keyResponderContainer[key] = [responder]
         }
