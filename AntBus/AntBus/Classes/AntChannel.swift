@@ -12,20 +12,27 @@ public class AntChannelSingleC<R:AnyObject> {
     
     public func register(_ responder:R) -> Void{
         _responder = responder
-        let log = "AntChannelSingleC(\(#line)) - \(#function):  responder:\(responder)"
-        AntChannelLog.handlerLog(.Responder, log)
+        
+        if AntChannelLog.shared.enabled {
+            let log = "singleC - \(#function):  responder:\(responder)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
     }
     public func responder() -> R?{
-        let log = "AntChannelSingleC(\(#line)) - \(#function)  =\(String(describing: _responder))"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "singleC - \(#function)  = \(String(describing: _responder))"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         return _responder
     }
     public func remove() -> Void{
         _responder = nil
         
-        let log = "AntChannelSingleC(\(#line)) - \(#function)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "singleC - \(#function)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
     }
 }
 
@@ -34,8 +41,10 @@ public class AntChannelMultiC<R:AnyObject> {
     private var keyResponderContainer = NSMapTable<NSString,NSHashTable<R>>.strongToStrongObjects()
         
     public func register(_ key:String, _ responder:R) -> Void{
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  key:\(key) responder:\(responder)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  key:\(key) responder:\(responder)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         if let responders = keyResponderContainer.object(forKey: key as NSString) {
             responders.add(responder)
@@ -47,8 +56,10 @@ public class AntChannelMultiC<R:AnyObject> {
     }
     
     public func register(_ keys:[String], _ responder:R) -> Void{
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  keys:\(keys) responder:\(responder)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  keys:\(keys) responder:\(responder)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         for key in keys {
             register(key, responder)
@@ -56,8 +67,10 @@ public class AntChannelMultiC<R:AnyObject> {
     }
     
     public func register(_ key:String, _ responders:[R]) -> Void{
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  key:\(key) responders:\(String(describing: responders))"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  key:\(key) responders:\(String(describing: responders))"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         for responder in responders {
             register(key, responder)
@@ -67,8 +80,10 @@ public class AntChannelMultiC<R:AnyObject> {
     public func responders(_ key:String) -> [R]? {
         let responders = keyResponderContainer.object(forKey: key as NSString)?.allObjects
         
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  .key:\(key) \t  =\(String(describing: responders))"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  .key:\(key) \t  =\(String(describing: responders))"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         return responders
     }
@@ -82,15 +97,20 @@ public class AntChannelMultiC<R:AnyObject> {
             }
             responders = resultSet.allObjects
         }
-        let log = "AntChannelMultiC(\(#line)) - \(#function)  =\(String(describing: responders)))"
-        AntChannelLog.handlerLog(.Responder, log)
+        
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function)  = \(String(describing: responders)))"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         return responders
     }
     
     public func remove(_ keys:[String],_ responder:R) -> Void {
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  keys:\(keys)  responder:\(responder)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  keys:\(keys)  responder:\(responder)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         for key in keys {
             if let objects = keyResponderContainer.object(forKey: key as NSString) {
@@ -100,8 +120,10 @@ public class AntChannelMultiC<R:AnyObject> {
     }
     
     public func remove(_ keys:[String]) -> Void {
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  keys:\(keys)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  keys:\(keys)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
         
         for key in keys {
             keyResponderContainer.removeObject(forKey: key as NSString)
@@ -113,20 +135,28 @@ public class AntChannelMultiC<R:AnyObject> {
             responders.remove(responder)
         }
         
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  key:\(key)  responder:\(responder)"
-        AntChannelLog.handlerLog(.Responder, log)
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  key:\(key)  responder:\(responder)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
     }
     
     public func remove(_ key:String) -> Void{
         keyResponderContainer.removeObject(forKey: key as NSString)
-        let log = "AntChannelMultiC(\(#line)) - \(#function):  key:\(key)"
-        AntChannelLog.handlerLog(.Responder, log)
+        
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function):  key:\(key)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
     }
     
     public func removeAll() -> Void {
         keyResponderContainer.removeAllObjects()
-        let log = "AntChannelMultiC(\(#line)) - \(#function)"
-        AntChannelLog.handlerLog(.Responder, log)
+        
+        if AntChannelLog.shared.enabled {
+            let log = "multiC - \(#function)"
+            AntChannelLog.handlerLog(.responder, log)
+        }
     }
 }
 
@@ -147,16 +177,16 @@ public struct AntChannelInterface<Interface:AnyObject>{
 //MARK: - AntChannel
 public struct AntChannel{
     public static func singleInterface<I:AnyObject>(_ interface:I.Type) -> AntChannelSingleC<I> {
-        let key = AnChannelUtil.getIKey(interface) { logOptions, log in
+        let aliasName = AntChannelCacheUtil.getAliasName(interface) { logOptions, log in
             AntChannelLog.handlerLog(logOptions, log)
         }
-        return AnChannelUtil.createSingleC(key: key)
+        return AntChannelCacheUtil.createSingleC(aliasName)
     }
     public static func multipleInterface<I:AnyObject>(_ interface:I.Type) -> AntChannelMultiC<I> {
-        let key = AnChannelUtil.getIKey(interface) { logOptions, log in
+        let aliasName = AntChannelCacheUtil.getAliasName(interface) { logOptions, log in
             AntChannelLog.handlerLog(logOptions, log)
         }
-        return AnChannelUtil.createMultipleC(key: key)
+        return AntChannelCacheUtil.createMultipleC(aliasName)
     }
 }
 

@@ -15,8 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     override init() {
-        AntServiceLog.logOptions = [.Responder, .iKey, .Container]
-        AntChannelLog.logOptions = [.Responder, .iKey, .Container]
+        AntServiceLog.shared.enabled = true
+        AntChannelLog.shared.enabled = true
+        
+        AntServiceLog.logOptions = [.responder, .alias, .container]
+        AntChannelLog.logOptions = [.responder, .alias, .container]
     }
     
     func registerModules(){

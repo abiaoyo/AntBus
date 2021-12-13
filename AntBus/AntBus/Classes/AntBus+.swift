@@ -7,84 +7,107 @@
 
 import Foundation
 
-struct iKey {
-    var key:String!
+struct DynamicAlias {
+    var name:String!
     var interface:Any!
-
-    static func createIKey(_ groupKey:String,interface:Any) -> iKey{
-        let key = "\(groupKey)_\(arc4random()%1000)_\(arc4random()%1000)"
-        return iKey.init(key: key, interface: interface)
+    static func createDynamicAlias(_ group:String,interface:Any) -> DynamicAlias{
+        let name = "\(group)_\(arc4random()%1000)_\(arc4random()%1000)"
+        return DynamicAlias.init(name: name, interface: interface)
     }
 }
 
 typealias AntBusLogHandler = (_ logOptions:AntBusLogOptions, _ log:String) -> Void
 
 protocol IAntBusCacheUtil{
-    static var ikGroupContainer:Dictionary<String,Array<iKey>>{get set}
+    //<group,[alias]>
+    //group:LoginModule  [{name:LoginModule_123_981,interface:LoginModule}]
+    static var aliasGroups:Dictionary<String,Array<DynamicAlias>>{get set}
+    static func logEnabled() -> Bool
 }
 
 extension IAntBusCacheUtil{
     static func getIKey<I:Any>(_ interface:I.Type, logHandler:AntBusLogHandler) -> String {
-        let iGroupKey = "\(interface)"
-        if let array = ikGroupContainer[iGroupKey] {
-            for ik in array {
-                if interface == ik.interface as? Any.Type{
-                    let log = "==> IKey_cache: iGroup=\(iGroupKey) \t iKey:\(ik.key!) \t I:\(interface)"
-                    logHandler(.iKey,log)
-                    return ik.key
+        return self.getAliasName(interface, logHandler: logHandler)
+    }
+    static func getAliasName<I:Any>(_ interface:I.Type, logHandler:AntBusLogHandler) -> String {
+        let group = "\(interface)"
+        
+        if let aliasArray = aliasGroups[group] {
+            for alias in aliasArray {
+                if interface == alias.interface as? Any.Type{
+                    if self.logEnabled() {
+                        let log = "==> Alias cache: aliasGroup=\(group) \t aliasName:\(alias.name!) \t I:\(interface)"
+                        logHandler(.alias,log)
+                    }
+                    return alias.name
                 }
             }
-            let ik = iKey.createIKey(iGroupKey, interface: interface)
-            ikGroupContainer[iGroupKey]?.append(ik)
+            let alias = DynamicAlias.createDynamicAlias(group, interface: interface)
+            aliasGroups[group]?.append(alias)
             
-            let log = "==> IKey_create1: iGroup=\(iGroupKey) \t iKey:\(ik.key!) \t I:\(interface)"
-            logHandler(.iKey,log)
-            return ik.key
+            if self.logEnabled() {
+                let log = "==> Alias create: aliasGroup=\(group) \t aliasName:\(alias.name!) \t I:\(interface)"
+                logHandler(.alias,log)
+            }
+            
+            return alias.name
         }else{
-            let ik = iKey.createIKey(iGroupKey, interface: interface)
-            ikGroupContainer[iGroupKey] = [ik]
+            let alias = DynamicAlias.createDynamicAlias(group, interface: interface)
+            aliasGroups[group] = [alias]
             
-            let log = "==> IKey_create2: iGroup=\(iGroupKey) \t iKey:\(ik.key!) \t I:\(interface)"
-            logHandler(.iKey,log)
-            return ik.key
+            if self.logEnabled() {
+                let log = "==> Alias create: aliasGroup=\(group) \t aliasName:\(alias.name!) \t I:\(interface)"
+                logHandler(.alias,log)
+            }
+            return alias.name
         }
     }
 }
 
 //MARK: - AntServiceUtil
-struct AntServiceUtil:IAntBusCacheUtil{
-    static var ikGroupContainer = Dictionary<String,Array<iKey>>.init()
-    
+struct AntServiceCacheUtil:IAntBusCacheUtil{
+
+    static var aliasGroups = Dictionary<String, Array<DynamicAlias>>.init()
     static var singleCs = Dictionary<String,AnyObject>.init()
     static var multiCs = Dictionary<String,AnyObject>.init()
-    
-    static func createSingleC<Interface:Any>(key:String) -> AntServiceSingleC<Interface>{
-        var container = AntServiceUtil.singleCs[key]
+    static func logEnabled() -> Bool {
+        return AntServiceLog.shared.enabled
+    }
+    static func createSingleC<Interface:Any>(_ aliasName:String) -> AntServiceSingleC<Interface>{
+        var container = AntServiceCacheUtil.singleCs[aliasName]
         if container == nil {
             container = AntServiceSingleC<Interface>.init()
-            AntServiceUtil.singleCs[key] = container
-            
-            let log = "==> createSingleC: iKey=\(key) \t I:\(Interface.self)"
-            AntServiceLog.handlerLog(.Container, log)
+            AntServiceCacheUtil.singleCs[aliasName] = container
+    
+            if AntServiceLog.shared.enabled {
+                let log = "==> SingleUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
         }else{
-            let log = "==> cacheSingleC: iKey=\(key) \t I:\(Interface.self)"
-            AntServiceLog.handlerLog(.Container, log)
+            if AntServiceLog.shared.enabled {
+                let log = "==> SingleUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
         }
         
         return container as! AntServiceSingleC<Interface>
     }
     
-    static func createMultiC<Interface:Any>(key:String) -> AntServiceMultiC<Interface>{
-        var container = AntServiceUtil.multiCs[key]
+    static func createMultiC<Interface:Any>(_ aliasName:String) -> AntServiceMultiC<Interface>{
+        var container = AntServiceCacheUtil.multiCs[aliasName]
         if container == nil {
             container = AntServiceMultiC<Interface>.init()
-            AntServiceUtil.multiCs[key] = container
-            
-            let log = "==> createMultiC: iKey=\(key) \t I:\(Interface.self)"
-            AntServiceLog.handlerLog(.Container, log)
+            AntServiceCacheUtil.multiCs[aliasName] = container
+    
+            if AntServiceLog.shared.enabled {
+                let log = "==> MultiUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
         }else{
-            let log = "==> cacheMultiC: iKey=\(key) \t I:\(Interface.self)"
-            AntServiceLog.handlerLog(.Container, log)
+            if AntServiceLog.shared.enabled {
+                let log = "==> MultiUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
         }
         
         return container as! AntServiceMultiC<Interface>
@@ -92,40 +115,49 @@ struct AntServiceUtil:IAntBusCacheUtil{
 
 }
 
-//MARK: - AnChannelUtil
-struct AnChannelUtil:IAntBusCacheUtil{
-    static var ikGroupContainer = Dictionary<String,Array<iKey>>.init()
-    
-    static var singleContainer = Dictionary<String,AnyObject>.init()
-    static var multiContainer = Dictionary<String,AnyObject>.init()
-    
-    static func createSingleC<Interface:Any>(key:String) -> AntChannelSingleC<Interface>{
-        var container = AnChannelUtil.singleContainer[key]
+//MARK: - AntChannelUtil
+struct AntChannelCacheUtil:IAntBusCacheUtil{
+    static var aliasGroups = Dictionary<String, Array<DynamicAlias>>.init()
+    static var singleCs = Dictionary<String,AnyObject>.init()
+    static var multiCs = Dictionary<String,AnyObject>.init()
+    static func logEnabled() -> Bool {
+        return AntChannelLog.shared.enabled
+    }
+    static func createSingleC<Interface:Any>(_ aliasName:String) -> AntChannelSingleC<Interface>{
+        var container = AntChannelCacheUtil.singleCs[aliasName]
         if container == nil {
             container = AntChannelSingleC<Interface>.init()
-            AnChannelUtil.singleContainer[key] = container
+            AntChannelCacheUtil.singleCs[aliasName] = container
             
-            let log = "==> createSingleC: iKey=\(key) \t I:\(Interface.self)"
-            AntChannelLog.handlerLog(.Container, log)
+            if AntChannelLog.shared.enabled {
+                let log = "==> SingleUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntChannelLog.handlerLog(.container, log)
+            }
         }else{
-            let log = "==> cacheSingleC: iKey=\(key) \t I:\(Interface.self)"
-            AntChannelLog.handlerLog(.Container, log)
+            if AntChannelLog.shared.enabled {
+                let log = "==> SingleUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntChannelLog.handlerLog(.container, log)
+            }
         }
         
         return container as! AntChannelSingleC<Interface>
     }
     
-    static func createMultipleC<Interface:Any>(key:String) -> AntChannelMultiC<Interface>{
-        var container = AnChannelUtil.multiContainer[key]
+    static func createMultipleC<Interface:Any>(_ aliasName:String) -> AntChannelMultiC<Interface>{
+        var container = AntChannelCacheUtil.multiCs[aliasName]
         if container == nil {
             container = AntChannelMultiC<Interface>.init()
-            AnChannelUtil.multiContainer[key] = container
+            AntChannelCacheUtil.multiCs[aliasName] = container
             
-            let log = "==> createMultiC: iKey=\(key) \t I:\(Interface.self)"
-            AntChannelLog.handlerLog(.Container, log)
+            if AntChannelLog.shared.enabled {
+                let log = "==> MultiUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntChannelLog.handlerLog(.container, log)
+            }
         }else{
-            let log = "==> cacheMultiC: iKey=\(key) \t I:\(Interface.self)"
-            AntChannelLog.handlerLog(.Container, log)
+            if AntChannelLog.shared.enabled {
+                let log = "==> MultiUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntChannelLog.handlerLog(.container, log)
+            }
         }
         
         return container as! AntChannelMultiC<Interface>
@@ -137,25 +169,26 @@ public struct AntBusLogOptions: OptionSet{
     public init(rawValue: Int) {
         self.rawValue = rawValue
     }
-    public static let None = AntBusLogOptions(rawValue: 1 << 0)
-    public static let iKey = AntBusLogOptions(rawValue: 1 << 1)
-    public static let Container = AntBusLogOptions(rawValue: 1 << 2)
-    public static let Responder = AntBusLogOptions(rawValue: 1 << 3)
+    public static let none = AntBusLogOptions(rawValue: 1 << 0)
+    public static let alias = AntBusLogOptions(rawValue: 1 << 1)
+    public static let container = AntBusLogOptions(rawValue: 1 << 2)
+    public static let responder = AntBusLogOptions(rawValue: 1 << 3)
 }
 
 public class AntChannelLog {
-    public static var logOptions:AntBusLogOptions = .None
+    public static var logOptions:AntBusLogOptions = .none
     public static let shared = AntChannelLog.init()
+    public var enabled:Bool = false
     public var logHandler:((_ logOptions:AntBusLogOptions, _ log:String) -> Void)?
     
     private init() {}
     
     static func handlerLog(_ logOptions:AntBusLogOptions, _ log:String){
-        if AntChannelLog.logOptions.contains(logOptions) {
+        if AntChannelLog.shared.enabled && AntChannelLog.logOptions.contains(logOptions) {
             if let handler = AntChannelLog.shared.logHandler {
                 handler(logOptions,log)
             }else{
-                if logOptions == .iKey {
+                if logOptions == .alias {
                     print("\nAntChannel log: \(log)")
                 }else{
                     print("AntChannel log: \(log)")
@@ -166,23 +199,23 @@ public class AntChannelLog {
 }
 
 public class AntServiceLog {
-    public static var logOptions:AntBusLogOptions = .None
+    public static var logOptions:AntBusLogOptions = .none
     public static let shared = AntServiceLog.init()
+    public var enabled:Bool = false
     public var logHandler:((_ logOptions:AntBusLogOptions, _ log:String) -> Void)?
     
     private init() {}
     
     static func handlerLog(_ logOptions:AntBusLogOptions, _ log:String){
-        if AntServiceLog.logOptions.contains(logOptions) {
+        if AntServiceLog.shared.enabled && AntServiceLog.logOptions.contains(logOptions) {
             if let handler = AntServiceLog.shared.logHandler {
                 handler(logOptions,log)
             }else{
-                if logOptions == .iKey {
+                if logOptions == .alias {
                     print("\nAntService log: \(log)")
                 }else{
                     print("AntService log: \(log)")
                 }
-                
             }
         }
     }
