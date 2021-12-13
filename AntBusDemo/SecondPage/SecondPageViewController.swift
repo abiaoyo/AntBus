@@ -45,11 +45,11 @@ class SecondPageViewController: UIViewController{
     
     @IBAction func clickAntChannel(_ sender: Any) {
         
-        let firstPageCtl = AntChannelInterface<IFirstPageController>.single.responder()
-        print("firstPageCtl:\(firstPageCtl)")
+        AntChannelInterface<IFirstPageController>.single.responder()
         
-        let page3_v1 = AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
-        print("page_v1:\(page3_v1)")
+        
+        AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+        
     }
     
     
@@ -64,8 +64,7 @@ class SecondPageViewController: UIViewController{
         let pthc = PTHC.init()
         AntServiceInterface<DeviceModule>.multiple.register(pthc.keys, pthc)
 
-        let allresponders0 = AntServiceInterface<DeviceModule>.multiple.responders()
-        print("allresponders0:\(allresponders0)")
+        AntServiceInterface<DeviceModule>.multiple.responders()
         
         let support_H6117s = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         let H6117s = support_H6117s?.first(where: { module in
@@ -78,48 +77,39 @@ class SecondPageViewController: UIViewController{
         
         
         
-        let H6143 = AntServiceInterface<DeviceModule>.multiple.responders("H6143")
-        print("H6143:\(H6143)")
-        
-        let H6127 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
-        print("H6127:\(H6127)")
-        
-        let H61170 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
-        print("H61170:\(H61170)")
+        AntServiceInterface<DeviceModule>.multiple.responders("H6143")
         
         
-        let H6163 = AntServiceInterface<DeviceModule>.multiple.responders("H6163")
-        print("H6163:\(H6163)")
+        AntServiceInterface<DeviceModule>.multiple.responders("H6127")
         
-        let H611A = AntServiceInterface<DeviceModule>.multiple.responders("H611A")
-        print("H611A:\(H611A)")
+        AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        
+        
+        AntServiceInterface<DeviceModule>.multiple.responders("H6163")
+
+        AntServiceInterface<DeviceModule>.multiple.responders("H611A")
 
 /*
         // remove where
         AntServiceInterface<DeviceModule>.multiple.remove("H6127") { m in
             
         }
-        let H6127_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6127")
-        print("H6127_2:\(H6127_2)")
+        AntServiceInterface<DeviceModule>.multiple.responders("H6127")
  */
         
         AntServiceInterface<DeviceModule>.multiple.remove("H6117")
-        let H6117_2 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
-        print("H6117_2:\(H6117_2)")
+        AntServiceInterface<DeviceModule>.multiple.responders("H6117")
         
         
-        let allresponders = AntServiceInterface<DeviceModule>.multiple.responders()
-        print("allresponders:\(allresponders)")
+        AntServiceInterface<DeviceModule>.multiple.responders()
+        
         
         AntServiceInterface<DeviceModule>.multiple.remove(["H6163","H6117","H611A"])
         
-        let allresponders2 = AntServiceInterface<DeviceModule>.multiple.responders()
-        print("allresponders2:\(allresponders2)")
-        
+        AntServiceInterface<DeviceModule>.multiple.responders()
         
         AntServiceInterface<DeviceModule>.multiple.removeAll()
-        let allresponders3 = AntServiceInterface<DeviceModule>.multiple.responders()
-        print("allresponders3:\(allresponders3)")
+        AntServiceInterface<DeviceModule>.multiple.responders()
     }
 }
 

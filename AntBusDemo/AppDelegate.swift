@@ -14,6 +14,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    override init() {
+        AntServiceLog.logOptions = [.Responder, .iKey, .Container]
+        AntChannelLog.logOptions = [.Responder, .iKey, .Container]
+    }
+    
     func registerModules(){
         if let modules:NSArray = NSArray.init(contentsOfFile: Bundle.main.path(forResource: "antbus_demo_modules", ofType: "plist")!) {
             for module in modules {
@@ -38,11 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             }
         }
-        
     }
     
     func application(_ application: UIApplication, willFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool{
-//        print("willFinishLaunchingWithOptions:  \(String(describing: launchOptions))")
         self.registerModules()
         AntBus.groupNotification.register("TestGroupKey", group: "AppDelegate", owner: self) { group, groupIndex, data in
             print("AppDelegate group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")

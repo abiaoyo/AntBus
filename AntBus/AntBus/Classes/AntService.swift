@@ -11,16 +11,25 @@ import Foundation
 public class AntServiceSingleC<R:Any>{
     private var _responder:R?
     
-    public func register(_ response:R){
-        _responder = response
+    public func register(_ responder:R){
+        _responder = responder
+        
+        let log = "AntServiceSingleC(\(#line)) - \(#function):  responder:\(responder)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
     
     public func responder() -> R?{
+        let log = "AntServiceSingleC(\(#line)) - \(#function)  =\(String(describing: _responder))"
+        AntServiceLog.handlerLog(.Responder, log)
+
         return _responder;
     }
     
     public func remove(){
         _responder = nil
+        
+        let log = "AntServiceSingleC(\(#line)) - \(#function)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
 }
 
@@ -29,115 +38,107 @@ public class AntServiceMultiC<R:Any> {
     
     private var keyResponderContainer = Dictionary<String,Array<R>>.init()
     
-    public func register(_ key:String, _ responder:R){
-        if let _ = self.keyResponderContainer[key] {
-            self.keyResponderContainer[key]?.append(responder)
+    public func register(_ key:String, _ responder:R, where contains: (R) -> Bool){
+        if let _ = keyResponderContainer[key] {
+            if keyResponderContainer[key]?.contains(where: { r in
+                return contains(r)
+            }) == false {
+                keyResponderContainer[key]?.append(responder)
+            }
         }else{
-            var responders = Array<R>.init()
-            responders.append(responder)
-            self.keyResponderContainer[key] = responders
+            keyResponderContainer[key] = [responder]
+        }
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  key:\(key)  responder:\(responder)"
+        AntServiceLog.handlerLog(.Responder, log)
+    }
+    
+    private func _register(_ key:String, _ responder:R){
+        if let _ = keyResponderContainer[key] {
+            keyResponderContainer[key]?.append(responder)
+        }else{
+            keyResponderContainer[key] = [responder]
         }
     }
     
+    public func register(_ key:String, _ responder:R){
+        _register(key, responder)
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  key:\(key)  responder:\(responder)"
+        AntServiceLog.handlerLog(.Responder, log)
+    }
+    
     public func register(_ keys:[String], _ responder:R){
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  keys:\(keys)  responder:\(responder)"
+        AntServiceLog.handlerLog(.Responder, log)
+        
         for key in keys {
-            self.register(key, responder)
+            _register(key, responder)
         }
     }
     
     public func register(_ key:String, _ responders:[R]){
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  key:\(key) responders:\(String(describing: responders))"
+        AntServiceLog.handlerLog(.Responder, log)
+        
         for responder in responders {
-            self.register(key, responder)
+            _register(key, responder)
         }
     }
 
     public func responders(_ key:String) -> [R]? {
-        return self.keyResponderContainer[key]
+        let responders = keyResponderContainer[key]
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  key:\(key) =:\(String(describing: responders))"
+        AntServiceLog.handlerLog(.Responder, log)
+        return responders
     }
     
     public func responders() -> [R]? {
-        let krContainers = self.keyResponderContainer.values
+        let krContainers = keyResponderContainer.values
         let results = NSMutableSet.init()
         for krContainer in krContainers {
             for responder in krContainer {
                 results.add(responder)
             }
         }
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function) =\(String(describing: results.allObjects))"
+        AntServiceLog.handlerLog(.Responder, log)
         return results.allObjects as? [R]
     }
     
     public func remove(_ key:String, where shouldBeRemoved: (R) -> Bool) {
-        self.keyResponderContainer[key]?.removeAll(where: { r in
+        keyResponderContainer[key]?.removeAll(where: { r in
             return shouldBeRemoved(r)
         })
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function): key:\(key)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
     
     public func remove(_ keys:[String]) {
         for key in keys {
-            self.keyResponderContainer.removeValue(forKey: key)
+            keyResponderContainer.removeValue(forKey: key)
         }
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function): keys:\(keys)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
 
     public func remove(_ key:String){
-        self.keyResponderContainer.removeValue(forKey: key)
+        keyResponderContainer.removeValue(forKey: key)
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function):  key:\(key)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
 
     public func removeAll() {
-        self.keyResponderContainer.removeAll()
-    }
-}
-
-//MARK: - AntServiceUtil
-fileprivate struct AntServiceUtil{
-    static var singleCC = Dictionary<String,AnyObject>.init()
-    static var multiCC = Dictionary<String,AnyObject>.init()
-    
-    static func createSingleC<Interface:Any>(key:String) -> AntServiceSingleC<Interface>{
-        var container = AntServiceUtil.singleCC[key]
-        if container == nil {
-            container = AntServiceSingleC<Interface>.init()
-            AntServiceUtil.singleCC[key] = container
-        }
-        return container as! AntServiceSingleC<Interface>
-    }
-    
-    static func createMultiC<Interface:Any>(key:String) -> AntServiceMultiC<Interface>{
-        var container = AntServiceUtil.multiCC[key]
-        if container == nil {
-            container = AntServiceMultiC<Interface>.init()
-            AntServiceUtil.multiCC[key] = container
-        }
-        return container as! AntServiceMultiC<Interface>
-    }
-
-    //ik
-    static var ikGroupContainer = Dictionary<String,Array<iKey>>.init()
-    static func getIKey<I:Any>(_ interface:I.Type) -> String{
-        let iGroupKey = "\(interface)"
-        if let array = ikGroupContainer[iGroupKey] {
-            for ik in array {
-                if interface == ik.interface as? Any.Type{
-                    return ik.key
-                }
-            }
-            let ik = iKey.createIKey(iGroupKey, interface: interface)
-            ikGroupContainer[iGroupKey]?.append(ik)
-            return ik.key
-        }else{
-            let ik = iKey.createIKey(iGroupKey, interface: interface)
-            ikGroupContainer[iGroupKey] = [ik]
-            return ik.key
-        }
-    }
-    
-    struct iKey {
-        var key:String!
-        var interface:Any!
-
-        static func createIKey(_ groupKey:String,interface:Any) -> iKey{
-            let key = "\(groupKey)_\(arc4random()%1000)_\(arc4random()%1000)"
-            return iKey.init(key: key, interface: interface)
-        }
+        keyResponderContainer.removeAll()
+        
+        let log = "AntServiceMultiC(\(#line)) - \(#function)"
+        AntServiceLog.handlerLog(.Responder, log)
     }
 }
 
@@ -159,12 +160,16 @@ public struct AntServiceInterface<I:Any>{
 //MARK: - AntService
 public struct AntService{
     public static func singleInterface<I:Any>(_ interface:I.Type) -> AntServiceSingleC<I> {
-        let key = AntServiceUtil.getIKey(interface)
+        let key = AntServiceUtil.getIKey(interface) { logOptions, log in
+            AntServiceLog.handlerLog(logOptions, log)
+        }
         return AntServiceUtil.createSingleC(key: key)
     }
     
     public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntServiceMultiC<I> {
-        let key = AntServiceUtil.getIKey(interface)
+        let key = AntServiceUtil.getIKey(interface) { logOptions, log in
+            AntServiceLog.handlerLog(logOptions, log)
+        }
         return AntServiceUtil.createMultiC(key: key)
     }
 }

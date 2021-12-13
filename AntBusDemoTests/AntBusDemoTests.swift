@@ -72,17 +72,63 @@ class AntBusDemoTests: XCTestCase {
         }
     }
     
+    func testMultiStruct() throws {
+        let pageA = PageA.init()
+        AntServiceInterface<IEFG>.multiple.register("page_a", pageA)
+        
+        let pageB = PageB.init()
+        AntServiceInterface<IEFG>.multiple.register("page_b", pageB)
+        
+        print("\n")
+        let allresponders0 = AntServiceInterface<IEFG>.multiple.responders()
+        print("allresponders0:\(allresponders0)")
+        
+        //判断struct重复
+        AntServiceInterface<IEFG>.multiple.register("page_b", pageB) { page in
+            return page.name == pageB.name
+        }
+        
+        let allresponders1 = AntServiceInterface<IEFG>.multiple.responders()
+        print("allresponders1:\(allresponders1)")
+        
+        
+        print("\n")
+    }
+    
+    func testMultiClass() throws {
+        let p1 = Person.init()
+        AntServiceInterface<Animal>.multiple.register("p1", p1)
+        
+        let p2 = Person.init()
+        AntServiceInterface<Animal>.multiple.register("p2", p2)
+        
+        print("\n")
+        let allresponders0 = AntServiceInterface<Animal>.multiple.responders()
+        print("allresponders0:\(allresponders0)")
+        
+        AntServiceInterface<Animal>.multiple.register("p2", p2)
+        
+        let allresponders1 = AntServiceInterface<Animal>.multiple.responders()
+        print("allresponders1:\(allresponders1)")
+        
+        
+        print("\n")
+    }
+    
     func testStruct() throws {
         let pageA = PageA.init()
         AntServiceInterface<IEFG>.multiple.register("page_a", pageA)
 
         let pageB = PageB.init()
         AntServiceInterface<IEFG>.multiple.register("page_b", pageB)
+        AntServiceInterface<IEFG>.multiple.register("page_b", pageB) { page in
+            return page.name == pageB.name
+        }
 
         let pageC1 = PageC.init(name: "1")
         let pageC2 = PageC.init(name: "2")
         AntServiceInterface<IEFG>.multiple.register("page_c1", [pageC1,pageC2])
-
+        
         let allresponders0 = AntServiceInterface<IEFG>.multiple.responders()
         print("allresponders0:\(allresponders0)")
         
