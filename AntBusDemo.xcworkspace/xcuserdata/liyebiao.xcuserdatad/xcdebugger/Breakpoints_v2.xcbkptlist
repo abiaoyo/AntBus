@@ -20,5 +20,85 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6BA0AB31-4EE2-4528-80DA-F71FC5DF3900"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBus/AntBus/Classes/AntService.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
+            landmarkName = "responders()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "055A91FF-558D-47C4-8FBB-07F53DDE98F2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBusDemoTests/AntBusDemoTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "testStruct()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "055A91FF-558D-47C4-8FBB-07F53DDE98F2 - a7f5564954a15acb"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "AntBusDemoTests.AntBusDemoTests.testStruct() throws -&gt; ()"
+                  moduleName = "AntBusDemoTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liyebiao/AntBus/AntBusDemoTests/AntBusDemoTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "175"
+                  endingLineNumber = "175"
+                  offsetFromSymbolStart = "2886">
+               </Location>
+               <Location
+                  uuid = "055A91FF-558D-47C4-8FBB-07F53DDE98F2 - d11e3f356796b942"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #2 (AntBusDemoTests.IEFG) -&gt; Swift.Bool in AntBusDemoTests.AntBusDemoTests.testStruct() throws -&gt; ()"
+                  moduleName = "AntBusDemoTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/liyebiao/AntBus/AntBusDemoTests/AntBusDemoTests.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "176"
+                  endingLineNumber = "176"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "AB71BC63-9D0A-4AD7-96BA-0B13568C5785"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "AntBusDemoTests/AntBusDemoTests.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
+            landmarkName = "testStruct1()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
