@@ -7,7 +7,7 @@
 
 import UIKit
 
-@objc protocol IPage3Module {
+protocol IPage3Module {
     
     func version() -> Int
     

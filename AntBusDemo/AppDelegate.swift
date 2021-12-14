@@ -18,7 +18,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AntServiceLog.shared.enabled = true
         AntChannelLog.shared.enabled = true
         
-        AntServiceLog.logOptions = [.responder]//[.responder, .alias, .container]
+        AntServiceLog.logOptions = [.responder, .alias, .container]
         AntChannelLog.logOptions = [.responder, .alias, .container]
     }
     

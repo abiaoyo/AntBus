@@ -59,5 +59,9 @@ class FirstPageViewController: UIViewController,IFirstPageController {
         AntServiceInterface<ILoginModule>.single.responder()?.logout()
     }
     
+    @IBAction func clickChangeTabBar(_ sender: Any) {
+        let index = AntChannelInterface<TabBarProtocol>.single.responder()!.currentIndex()
+        AntChannelInterface<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
+    }
     
 }

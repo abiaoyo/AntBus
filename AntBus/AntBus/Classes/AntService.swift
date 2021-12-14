@@ -39,35 +39,19 @@ public class AntServiceSingleC<R:Any>{
     }
 }
 
+public class AntServiceResponder<R:Any>{
+    public var responder:R!
+    public init(_ responder:R) {
+        self.responder = responder
+    }
+}
+
 //MARK: - AntServiceMultiC
 public class AntServiceMultiC<R:Any> {
     
-    private var keyResponderContainer = Dictionary<String,Array<R>>.init()
+    private var keyResponderContainer = Dictionary<String,Array<AntServiceResponder<R>>>.init()
     
-    public func register(_ key:String, _ responder:R, where contains: (R) -> Bool){
-        if let _ = keyResponderContainer[key] {
-            if keyResponderContainer[key]!.contains(where: { r in
-                return contains(r)
-            }) {
-                
-                if AntServiceLog.shared.enabled {
-                    let log = "multiC - \(#function):  ⚠️ contains(key:\(key)  responder:\(responder))"
-                    AntServiceLog.handlerLog(.responder, log)
-                }
-                return
-            }
-            keyResponderContainer[key]?.append(responder)
-        }else{
-            keyResponderContainer[key] = [responder]
-        }
-        
-        if AntServiceLog.shared.enabled {
-            let log = "multiC - \(#function):  key:\(key)  responder:\(responder)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
-    }
-    
-    private func _register(_ key:String, _ responder:R){
+    private func _register(_ key:String, _ responder:AntServiceResponder<R>){
         if let _ = keyResponderContainer[key] {
             keyResponderContainer[key]?.append(responder)
         }else{
@@ -75,38 +59,49 @@ public class AntServiceMultiC<R:Any> {
         }
     }
     
-    public func register(_ key:String, _ responder:R){
-        _register(key, responder)
+    @discardableResult
+    public func register(_ key:String, _ responder:R) -> AntServiceResponder<R>{
+        let resp = AntServiceResponder<R>.init(responder)
+        _register(key, resp)
         
         if AntServiceLog.shared.enabled {
             let log = "multiC - \(#function):  key:\(key)  responder:\(responder)"
             AntServiceLog.handlerLog(.responder, log)
         }
+        return resp
     }
     
-    public func register(_ keys:[String], _ responder:R){
+    @discardableResult
+    public func register(_ keys:[String], _ responder:R) -> AntServiceResponder<R>{
+        let resp = AntServiceResponder<R>.init(responder)
+        for key in keys {
+            _register(key, resp)
+        }
+        
         if AntServiceLog.shared.enabled {
             let log = "multiC - \(#function):  keys:\(keys)  responder:\(responder)"
             AntServiceLog.handlerLog(.responder, log)
         }
-        for key in keys {
-            _register(key, responder)
-        }
+        return resp
     }
     
-    public func register(_ key:String, _ responders:[R]){
+    @discardableResult
+    public func register(_ key:String, _ responders:[R]) -> [AntServiceResponder<R>]{
         if AntServiceLog.shared.enabled {
             let log = "multiC - \(#function):  key:\(key) responders:\(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
         }
+        var resps:[AntServiceResponder<R>] = []
         for responder in responders {
-            _register(key, responder)
+            let resp = AntServiceResponder<R>.init(responder)
+            _register(key, resp)
+            resps.append(resp)
         }
+        return resps
     }
 
     public func responders(_ key:String) -> [R]? {
-        let responders = keyResponderContainer[key]
-        
+        let responders = keyResponderContainer[key]?.compactMap({ $0.responder })
         if AntServiceLog.shared.enabled {
             let log = "multiC - \(#function):  key:\(key)  = \(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
@@ -117,15 +112,16 @@ public class AntServiceMultiC<R:Any> {
     public func responders() -> [R]? {
         let results = keyResponderContainer.flatMap({ $0.value })
         let uniqueResults = NSMutableSet.init(array: results)
+        let responders = uniqueResults.allObjects.compactMap({ ($0 as! AntServiceResponder<R>).responder })
         
         if AntServiceLog.shared.enabled {
-            let log = "multiC - \(#function)  = \(String(describing: uniqueResults.allObjects))"
+            let log = "multiC - \(#function)  = \(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
         }
-        return uniqueResults.allObjects as? [R]
+        return responders.count > 0 ? responders : nil
     }
     
-    public func remove(_ key:String, where shouldBeRemoved: (R) -> Bool) {
+    public func remove(_ key:String, where shouldBeRemoved: (AntServiceResponder<R>) -> Bool) {
         keyResponderContainer[key]?.removeAll(where: { r in
             return shouldBeRemoved(r)
         })
@@ -197,7 +193,3 @@ public struct AntService{
         return AntServiceCacheUtil.createMultiC(aliasName)
     }
 }
-
-/// 示例:
-/// AntServiceInterface.single.register(xxx)  ⚠️⚠️⚠️
-/// AntServiceInterface<Interface>.single.register(xxx)  ✅     OR    AntService.singleInterface(Interface.self).register(xxx)  ✅

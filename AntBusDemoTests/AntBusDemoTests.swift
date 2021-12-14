@@ -85,7 +85,31 @@ class AntBusDemoTests: XCTestCase {
         }
     }
     
-    func testSameProtocolName(){
+    func testMulti_keys_responder_1() throws {
+        print("\n")
+        let pageA = PageA.init()
+        AntServiceInterface<IEFG>.multiple.register(["page_a","page"], pageA)
+        AntServiceInterface<IEFG>.multiple.responders("page_a")
+        AntServiceInterface<IEFG>.multiple.responders("page")
+        AntServiceInterface<IEFG>.multiple.responders()
+        print("\n")
+    }
+    
+    func testMulti_keys_responder_2() throws {
+        print("\n")
+        let pageA = PageA.init()
+        let pageB = PageB.init()
+        AntServiceInterface<IEFG>.multiple.register(["page_a","page"], pageA)
+        AntServiceInterface<IEFG>.multiple.register(["page_b","page"], pageB)
+        AntServiceInterface<IEFG>.multiple.responders("page_a")
+        AntServiceInterface<IEFG>.multiple.responders("page_b")
+        AntServiceInterface<IEFG>.multiple.responders("page")
+        AntServiceInterface<IEFG>.multiple.responders()
+        print("\n")
+    }
+    
+    func testMulti_SameProtocolName(){
+        print("\n")
         let loginA1 = LoginModule.init()
         let loginA2 = LoginModule.init()
         
@@ -94,121 +118,56 @@ class AntBusDemoTests: XCTestCase {
         
         AntServiceInterface<ILoginModule>.multiple.register("loginA1", loginA1)
         AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2)
-//        AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2)  ⚠️⚠️⚠️
-        AntServiceInterface<ILoginModule>.multiple.register("loginA2", loginA2) { lg in
-            if let lg2:LoginModule = lg as? LoginModule {
-                return lg2 === loginA2
-            }
-            return false
-        }
         AntServiceInterface<ILoginModule>.multiple.responders()
         
         AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB1", loginB1)
         AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB2", loginB2)
-        AntServiceInterface<CommonModule.ILoginModule>.multiple.register("loginB2", loginB2)
         AntServiceInterface<CommonModule.ILoginModule>.multiple.responders()
+        
+        print("\n")
     }
     
-    func testMultiStruct() throws {
+    
+    
+    func testMulti_Delete() throws {
+        print("\n")
+        
         let pageA = PageA.init()
-        AntServiceInterface<IEFG>.multiple.register("page_a", pageA)
+        let respA = AntServiceInterface<IEFG>.multiple.register("page_a", pageA)
         
         let pageB = PageB.init()
         AntServiceInterface<IEFG>.multiple.register("page_b", pageB)
         
-        print("\n")
-        let allresponders0 = AntServiceInterface<IEFG>.multiple.responders()
-        print("allresponders0:\(allresponders0)")
+        AntServiceInterface<IEFG>.multiple.responders()
         
-        //判断struct重复
-        AntServiceInterface<IEFG>.multiple.register("page_b", pageB) { page in
-            return page.name == pageB.name
+        AntServiceInterface<IEFG>.multiple.remove("page_a") { resp in
+            return respA === resp
         }
         
-        let allresponders1 = AntServiceInterface<IEFG>.multiple.responders()
-        print("allresponders1:\(allresponders1)")
-        
+        AntServiceInterface<IEFG>.multiple.responders()
         
         print("\n")
     }
     
-    func testMultiClass() throws {
+    func testMulti_Class() throws {
+        print("\n")
+        
         let p1 = Person.init()
         AntServiceInterface<Animal>.multiple.register("p1", p1)
         
         let p2 = Person.init()
         AntServiceInterface<Animal>.multiple.register("p2", p2)
         
-        print("\n")
-        let allresponders0 = AntServiceInterface<Animal>.multiple.responders()
-        print("allresponders0:\(allresponders0)")
+        AntServiceInterface<Animal>.multiple.responders()
         
+        //这里重复注册了一次p2，响应也会多一个
         AntServiceInterface<Animal>.multiple.register("p2", p2)
         
-        let allresponders1 = AntServiceInterface<Animal>.multiple.responders()
-        print("allresponders1:\(allresponders1)")
+        AntServiceInterface<Animal>.multiple.responders()
         
         
         print("\n")
     }
-    
-    func testStruct() throws {
-        let pageA = PageA.init()
-        AntServiceInterface<IEFG>.multiple.register("page_a", pageA)
-
-        let pageB = PageB.init()
-        AntServiceInterface<IEFG>.multiple.register("page_b", pageB)
-        AntServiceInterface<IEFG>.multiple.register("page_b", pageB) { page in
-            return page.name == pageB.name
-        }
-
-        let pageC1 = PageC.init(name: "1")
-        let pageC2 = PageC.init(name: "2")
-        AntServiceInterface<IEFG>.multiple.register("page_c1", [pageC1,pageC2])
-        
-        let allresponders0 = AntServiceInterface<IEFG>.multiple.responders()
-        print("allresponders0:\(allresponders0)")
-        
-        let allpage_c1 = AntServiceInterface<IEFG>.multiple.responders("page_c1")
-        print("allpage_c1:\(allpage_c1)")
-
-        AntServiceInterface<IEFG>.multiple.remove("page_c1") { page in
-            return page.name == pageC1.name
-        }
-        
-        let allpage_c1_2 = AntServiceInterface<IEFG>.multiple.responders("page_c1")
-        print("allpage_c1_2:\(allpage_c1_2)")
-        
-        AntServiceInterface<IEFG>.multiple.remove("page_c1")
-        
-        let allpage_c1_3 = AntServiceInterface<IEFG>.multiple.responders("page_c1")
-        print("allpage_c1_3:\(allpage_c1_3)")
-        
-        let allresponders1 = AntServiceInterface<IEFG>.multiple.responders()
-        print("allresponders1:\(allresponders1)")
-        
-        AntServiceInterface<IEFG>.multiple.removeAll()
-        
-        let allresponders2 = AntServiceInterface<IEFG>.multiple.responders()
-        print("allresponders2:\(allresponders2)")
-    }
-    
-    func testClass() throws {
-
-        let person = Person.init()
-        AntServiceInterface<Animal>.multiple.register("P", person)
-        let allresponders001 = AntServiceInterface<Animal>.multiple.responders()
-        print("allresponders001:\(allresponders001)")
-
-        let paName = AntServiceInterface<Animal>.multiple.responders()?.first?.name
-        print("paName:\(paName)")
-
-        person.name = "PA"
-        let paName2 = AntServiceInterface<Animal>.multiple.responders()?.first?.name
-        print("paName2:\(paName2)")
-
-    }
-
     
     func testSysContainer() throws {
         let testArr = [1,2,3]
@@ -224,9 +183,12 @@ class AntBusDemoTests: XCTestCase {
         
         let allDict = AntServiceInterface<Dictionary<String,String>>.multiple.responders()
         print("allDict:\(allDict)")
+        
+        print("\n")
     }
     
     func testSingle() throws {
+        //.. class
         let lm = LoginModule.init()
         
         AntServiceInterface<ILoginModule>.single.register(lm)
@@ -237,6 +199,8 @@ class AntBusDemoTests: XCTestCase {
         
         isLogin = AntServiceInterface<ILoginModule>.single.responder()?.isLogin
         print("isLogin:\(isLogin)")
+        
+        print("\n")
     }
 
 }

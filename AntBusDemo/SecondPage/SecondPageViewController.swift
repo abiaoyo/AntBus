@@ -42,6 +42,10 @@ class SecondPageViewController: UIViewController{
         AntServiceInterface<IPage4Module>.single.responder()?.pushPage(navCtl: self.navigationController!)
     }
     
+    @IBAction func clickChanngeTabBar(_ sender: Any) {
+        let index = AntChannelInterface<TabBarProtocol>.single.responder()!.currentIndex()
+        AntChannelInterface<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
+    }
     
     @IBAction func clickAntChannel(_ sender: Any) {
         

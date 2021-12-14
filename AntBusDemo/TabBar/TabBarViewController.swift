@@ -8,9 +8,27 @@
 import UIKit
 import AntBus
 
-class TabBarViewController: UITabBarController {
+@objc protocol TabBarProtocol {
+    func changeTabIndex(_ index:Int)
+    func currentIndex() -> Int
+}
+
+class TabBarViewController: UITabBarController, TabBarProtocol{
+    
+    func changeTabIndex(_ index: Int) {
+        if index < self.viewControllers!.count {
+            self.selectedIndex = index
+        }
+    }
+    
+    func currentIndex() -> Int {
+        return self.selectedIndex
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        AntChannelInterface<TabBarProtocol>.single.register(self)
         
         AntBus.data.register("app.current.controller", owner: self) { () -> Any? in
             if let navCtl:UINavigationController = self.selectedViewController as? UINavigationController {

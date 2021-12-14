@@ -33,11 +33,19 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WGG-O8-cZE">
-                                <rect key="frame" x="45" y="304" width="297" height="30"/>
+                                <rect key="frame" x="172" y="304" width="44" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="logout"/>
                                 <connections>
                                     <action selector="clickLogout:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5fk-CA-Afe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2RO-Af-g2M">
+                                <rect key="frame" x="144" y="370" width="100" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ChnageTabBar"/>
+                                <connections>
+                                    <action selector="clickChangeTabBar:" destination="BYZ-38-t0r" eventType="touchUpInside" id="4XX-5T-sa7"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -118,6 +126,14 @@
                                 <state key="normal" title="AntChannel"/>
                                 <connections>
                                     <action selector="clickAntChannel:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="mml-Kv-jgw"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trm-T6-1Uf">
+                                <rect key="frame" x="83" y="570" width="201" height="50"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="ChangeTabBar"/>
+                                <connections>
+                                    <action selector="clickChanngeTabBar:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="kTL-EB-dBh"/>
                                 </connections>
                             </button>
                         </subviews>
