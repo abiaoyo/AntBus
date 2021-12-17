@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol IBaseModule{
-    func moduleInit()
+    static func moduleInit()
 }

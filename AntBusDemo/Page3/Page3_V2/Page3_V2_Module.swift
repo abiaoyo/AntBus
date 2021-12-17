@@ -21,8 +21,9 @@ class Page3_V2_Module: NSObject,IBaseModule,IPage3Module {
     }
     
     //IBaseModule
-    func moduleInit() {
-        AntServiceInterface<IPage3Module>.multiple.register("page3", self)
+    static func moduleInit() {
+        let m = Page3_V2_Module.init()
+        AntServiceInterface<IPage3Module>.multiple.register("page3", m)
         //或者 AntServiceInterface<IPage3Module>.multiple.register(["page3"], self)
     }
     

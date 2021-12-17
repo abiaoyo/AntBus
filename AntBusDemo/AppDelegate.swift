@@ -15,11 +15,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     override init() {
-        AntServiceLog.shared.enabled = true
-        AntChannelLog.shared.enabled = true
+        AntServiceLog.enabled = true
+        AntChannelLog.enabled = true
         
-        AntServiceLog.logOptions = [.responder, .alias, .container]
-        AntChannelLog.logOptions = [.responder, .alias, .container]
+        AntServiceLog.logOptions = [.responder, .container]
+        AntChannelLog.logOptions = [.responder, .container]
     }
     
     func registerModules(){
@@ -39,8 +39,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("error: \(name)")
                             continue
                         }
-                        if let moduleObj:IBaseModule = moduleType.init() as? IBaseModule {
-                            moduleObj.moduleInit()
+                        if let ibm:IBaseModule.Type = moduleType as? IBaseModule.Type {
+                            ibm.moduleInit()
                         }
                     }
                 }

@@ -22,8 +22,9 @@ class Page3_V1_Module: NSObject,IBaseModule,IPage3Module {
     }
     
     //IBaseModule
-    func moduleInit() {
-        AntServiceInterface<IPage3Module>.multiple.register("page3", self)
+    static func moduleInit() {
+        let m = Page3_V1_Module.init()
+        AntServiceInterface<IPage3Module>.multiple.register("page3", m)
     }
     
     func moduleApplication(_ application: UIApplication, willFinishLaunching launchOptions: [UIApplication.LaunchOptionsKey : Any]?) {

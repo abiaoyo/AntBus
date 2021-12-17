@@ -26,8 +26,13 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
     }
     
     //IBaseModule
-    func moduleInit() {
-        AntServiceInterface<ILoginModule>.single.register(self)
+    static func moduleInit() {
+        let m = LoginModule.init()
+        AntServiceInterface<ILoginModule>.single.register(m)
+    }
+    
+    override init() {
+        super.init()
         
         AntBus.data.register("login.user.account", owner: self) {
             let account = UserDefaults.standard.string(forKey: "user.account")

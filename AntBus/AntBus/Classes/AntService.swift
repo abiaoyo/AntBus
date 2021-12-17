@@ -14,7 +14,7 @@ public class AntServiceSingleC<R:Any>{
     public func register(_ responder:R){
         _responder = responder
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "singleC - \(#function):  responder:\(responder)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -22,7 +22,7 @@ public class AntServiceSingleC<R:Any>{
     
     public func responder() -> R?{
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "singleC - \(#function)  = \(String(describing: _responder))"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -32,7 +32,7 @@ public class AntServiceSingleC<R:Any>{
     public func remove(){
         _responder = nil
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "singleC - \(#function)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -64,7 +64,7 @@ public class AntServiceMultiC<R:Any> {
         let resp = AntServiceResponder<R>.init(responder)
         _register(key, resp)
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function):  key:\(key)  responder:\(responder)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -78,7 +78,7 @@ public class AntServiceMultiC<R:Any> {
             _register(key, resp)
         }
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function):  keys:\(keys)  responder:\(responder)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -87,7 +87,7 @@ public class AntServiceMultiC<R:Any> {
     
     @discardableResult
     public func register(_ key:String, _ responders:[R]) -> [AntServiceResponder<R>]{
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function):  key:\(key) responders:\(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -102,7 +102,7 @@ public class AntServiceMultiC<R:Any> {
 
     public func responders(_ key:String) -> [R]? {
         let responders = keyResponderContainer[key]?.compactMap({ $0.responder })
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function):  key:\(key)  = \(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -114,7 +114,7 @@ public class AntServiceMultiC<R:Any> {
         let uniqueResults = NSMutableSet.init(array: results)
         let responders = uniqueResults.allObjects.compactMap({ ($0 as! AntServiceResponder<R>).responder })
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function)  = \(String(describing: responders))"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -126,7 +126,7 @@ public class AntServiceMultiC<R:Any> {
             return shouldBeRemoved(r)
         })
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function): key:\(key)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -137,7 +137,7 @@ public class AntServiceMultiC<R:Any> {
             keyResponderContainer.removeValue(forKey: key)
         }
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function): keys:\(keys)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -146,7 +146,7 @@ public class AntServiceMultiC<R:Any> {
     public func remove(_ key:String){
         keyResponderContainer.removeValue(forKey: key)
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function):  key:\(key)"
             AntServiceLog.handlerLog(.responder, log)
         }
@@ -155,11 +155,59 @@ public class AntServiceMultiC<R:Any> {
     public func removeAll() {
         keyResponderContainer.removeAll()
         
-        if AntServiceLog.shared.enabled {
+        if AntServiceLog.enabled {
             let log = "multiC - \(#function)"
             AntServiceLog.handlerLog(.responder, log)
         }
     }
+}
+
+//MARK: - AntServiceUtil
+struct AntServiceCacheUtil{
+
+    static var singleCs = Dictionary<String,AnyObject>.init()
+    static var multiCs = Dictionary<String,AnyObject>.init()
+    
+    static func createSingleC<Interface:Any>(_ aliasName:String) -> AntServiceSingleC<Interface>{
+        var container = AntServiceCacheUtil.singleCs[aliasName]
+        if container == nil {
+            container = AntServiceSingleC<Interface>.init()
+            AntServiceCacheUtil.singleCs[aliasName] = container
+    
+            if AntServiceLog.enabled {
+                let log = "==> SingleUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
+        }else{
+            if AntServiceLog.enabled {
+                let log = "==> SingleUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
+        }
+        
+        return container as! AntServiceSingleC<Interface>
+    }
+    
+    static func createMultiC<Interface:Any>(_ aliasName:String) -> AntServiceMultiC<Interface>{
+        var container = AntServiceCacheUtil.multiCs[aliasName]
+        if container == nil {
+            container = AntServiceMultiC<Interface>.init()
+            AntServiceCacheUtil.multiCs[aliasName] = container
+    
+            if AntServiceLog.enabled {
+                let log = "==> MultiUtil create: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
+        }else{
+            if AntServiceLog.enabled {
+                let log = "==> MultiUtil cache: aliasName=\(aliasName) \t I:\(Interface.self)"
+                AntServiceLog.handlerLog(.container, log)
+            }
+        }
+        
+        return container as! AntServiceMultiC<Interface>
+    }
+
 }
 
 //MARK: - AntServiceInterface
@@ -180,16 +228,12 @@ public struct AntServiceInterface<I:Any>{
 //MARK: - AntService
 public struct AntService{
     public static func singleInterface<I:Any>(_ interface:I.Type) -> AntServiceSingleC<I> {
-        let aliasName = AntServiceCacheUtil.getAliasName(interface) { logOptions, log in
-            AntServiceLog.handlerLog(logOptions, log)
-        }
+        let aliasName = DynamicAliasUtil.getAliasName(interface)
         return AntServiceCacheUtil.createSingleC(aliasName)
     }
     
     public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntServiceMultiC<I> {
-        let aliasName = AntServiceCacheUtil.getAliasName(interface) { logOptions, log in
-            AntServiceLog.handlerLog(logOptions, log)
-        }
+        let aliasName = DynamicAliasUtil.getAliasName(interface)
         return AntServiceCacheUtil.createMultiC(aliasName)
     }
 }
