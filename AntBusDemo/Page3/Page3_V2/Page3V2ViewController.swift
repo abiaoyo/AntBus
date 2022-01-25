@@ -9,6 +9,10 @@ import UIKit
 
 class Page3V2ViewController: UIViewController {
 
+    deinit {
+        print("deinit \(type(of: self))")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

@@ -50,8 +50,8 @@ class SecondPageViewController: UIViewController{
     @IBAction func clickAntChannel(_ sender: Any) {
         
         AntChannelInterface<IFirstPageController>.single.responder()
-        
-        
+
+
         AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
         
     }

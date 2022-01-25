@@ -84,15 +84,15 @@ class ViewController: UIViewController {
          AntChannelInterface<TestLogin>.single.responder()?.login()
          AntChannelInterface<TestLogin>.single.remove()
          
-         AntChannelInterface<TestLogin>.multi.register(["viewCtl"], self)
-         AntChannelInterface<TestLogin>.multi.register("viewCtl", [self])
-         AntChannelInterface<TestLogin>.multi.responders("viewCtl")
-         AntChannelInterface<TestLogin>.multi.responders()
-         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"])
-         AntChannelInterface<TestLogin>.multi.remove("viewCtl")
-         AntChannelInterface<TestLogin>.multi.remove(["viewCtl"], self)
-         AntChannelInterface<TestLogin>.multi.remove("viewCtl", self)
-         AntChannelInterface<TestLogin>.multi.removeAll()
+         AntChannelInterface<TestLogin>.multiple.register(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multiple.register("viewCtl", [self])
+         AntChannelInterface<TestLogin>.multiple.responders("viewCtl")
+         AntChannelInterface<TestLogin>.multiple.responders()
+         AntChannelInterface<TestLogin>.multiple.remove(["viewCtl"])
+         AntChannelInterface<TestLogin>.multiple.remove("viewCtl")
+         AntChannelInterface<TestLogin>.multiple.remove(["viewCtl"], self)
+         AntChannelInterface<TestLogin>.multiple.remove("viewCtl", self)
+         AntChannelInterface<TestLogin>.multiple.removeAll()
          
          
          
