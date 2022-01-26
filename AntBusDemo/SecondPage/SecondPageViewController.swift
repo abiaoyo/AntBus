@@ -54,6 +54,12 @@ class SecondPageViewController: UIViewController{
 
         AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
         
+        let singleContainer = AntServiceInterface<Any>.singleContainer()
+        let multiContainer = AntServiceInterface<Any>.multiContainer()
+        
+        print("singleContainer:\(singleContainer)")
+        print("multiContainer:\(multiContainer)")
+        
     }
     
     
@@ -63,35 +69,53 @@ class SecondPageViewController: UIViewController{
         AntServiceInterface<DeviceModule>.multiple.register(ptha.keys, ptha)
         
         let pthb = PTHB.init()
-        AntServiceInterface<DeviceModule>.multiple.register(pthb.keys, pthb)
+        let resp_b = AntServiceInterface<DeviceModule>.multiple.register(pthb.keys, pthb)
         
         let pthc = PTHC.init()
         AntServiceInterface<DeviceModule>.multiple.register(pthc.keys, pthc)
 
-        AntServiceInterface<DeviceModule>.multiple.responders()
+        // ************************************************
+        let multiContainer = AntServiceInterface<Any>.multiContainer()
+        print("\nmultiContainer:\(multiContainer) \n")
+        // ************************************************
         
-        let support_H6117s = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
-        let H6117s = support_H6117s?.first(where: { module in
+        
+        let resp1 = AntServiceInterface<DeviceModule>.multiple.responders()
+        print("resp1:\(resp1)")
+        
+        
+        let support_H6117s = AntServiceInterface<DeviceModule>.multiple.responders("H6117")?.first(where: { module in
             let deviceInfo = DeviceInfo.init()
             deviceInfo.sku = "H6117"
             deviceInfo.pactCode = 4
             return module.isSupport(device: deviceInfo)
         })
-        print("H6117s:\(H6117s)")
+        print("H6117s:\(support_H6117s)")
         
         
         
-        AntServiceInterface<DeviceModule>.multiple.responders("H6143")
+        let resp2 = AntServiceInterface<DeviceModule>.multiple.responders("H6143")
+        print("resp2:\(resp2)")
         
+        let resp3 =  AntServiceInterface<DeviceModule>.multiple.responders("H6127")
+        print("resp3:\(resp3)")
         
-        AntServiceInterface<DeviceModule>.multiple.responders("H6127")
+        let resp4 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        print("resp4:\(resp4)")
         
-        AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        AntServiceInterface<DeviceModule>.multiple.remove("H6117") { resp in
+            print("remove where resp:\(resp.responder)")
+            let b = resp_b === resp
+            return b
+        }
+        let resp4_1 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        print("resp4_1:\(resp4_1)")
         
+        let resp5 = AntServiceInterface<DeviceModule>.multiple.responders("H6163")
+        print("resp5:\(resp5)")
         
-        AntServiceInterface<DeviceModule>.multiple.responders("H6163")
-
-        AntServiceInterface<DeviceModule>.multiple.responders("H611A")
+        let resp6 = AntServiceInterface<DeviceModule>.multiple.responders("H611A")
+        print("resp6:\(resp6)")
 
 /*
         // remove where
@@ -102,18 +126,22 @@ class SecondPageViewController: UIViewController{
  */
         
         AntServiceInterface<DeviceModule>.multiple.remove("H6117")
-        AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        let resp7 = AntServiceInterface<DeviceModule>.multiple.responders("H6117")
+        print("resp7:\(resp7)")
         
         
-        AntServiceInterface<DeviceModule>.multiple.responders()
-        
+        let resp8 = AntServiceInterface<DeviceModule>.multiple.responders()
+        print("resp8:\(resp8)")
         
         AntServiceInterface<DeviceModule>.multiple.remove(["H6163","H6117","H611A"])
         
-        AntServiceInterface<DeviceModule>.multiple.responders()
+        let resp9 = AntServiceInterface<DeviceModule>.multiple.responders()
+        print("resp9:\(resp9)")
         
         AntServiceInterface<DeviceModule>.multiple.removeAll()
-        AntServiceInterface<DeviceModule>.multiple.responders()
+        
+        let resp10 = AntServiceInterface<DeviceModule>.multiple.responders()
+        print("resp10:\(resp10)")
     }
 }
 

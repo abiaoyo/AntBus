@@ -89,9 +89,14 @@ class AntBusDemoTests: XCTestCase {
         print("\n")
         let pageA = PageA.init()
         AntServiceInterface<IEFG>.multiple.register(["page_a","page"], pageA)
-        AntServiceInterface<IEFG>.multiple.responders("page_a")
-        AntServiceInterface<IEFG>.multiple.responders("page")
-        AntServiceInterface<IEFG>.multiple.responders()
+        let resp1 = AntServiceInterface<IEFG>.multiple.responders("page_a")
+        let resp2 = AntServiceInterface<IEFG>.multiple.responders("page")
+        let respAll = AntServiceInterface<IEFG>.multiple.responders()
+        
+        print("resp1:\(resp1)")
+        print("resp2:\(resp2)")
+        print("respAll:\(respAll)")
+        
         print("\n")
     }
     

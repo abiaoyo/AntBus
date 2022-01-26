@@ -21,38 +21,29 @@ fileprivate class AntServiceSingleCache{
     }
 }
 
+extension AntServiceSingleCache{
+    public static func containerContent() -> Dictionary<String,Any> {
+        return AntServiceSingleCache.container;
+    }
+}
+
 /// MARK: AntServiceSingleC
 public class AntServiceSingleC<I:Any> {
     public func register(_ responder:I){
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceSingleCache.register(aliasName, responder)
-        
-        if AntServiceLog.enabled {
-            let log = "singleC - \(aliasName) \(#function):  responder:\(responder)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
     public func responder() -> I?{
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
-        let responder = AntServiceSingleCache.responder(aliasName) as? I
-        
-        if AntServiceLog.enabled {
-            let log = "singleC - \(aliasName) \(#function):  responder:\(responder)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
-        return responder
+        return AntServiceSingleCache.responder(aliasName) as? I
     }
     public func remove(){
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceSingleCache.remove(aliasName)
-        
-        if AntServiceLog.enabled {
-            let log = "singleC - \(aliasName) \(#function):  "
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
 }
 
+/// MARK: AntServiceResponder
 public class AntServiceResponder{
     public var responder:Any!
     public init(_ responder:Any) {
@@ -63,7 +54,7 @@ public class AntServiceResponder{
 /// MARK: AntServiceMultiCache
 fileprivate class AntServiceMultiCache{
     /// <aliasName,<key,[responder]>>
-    private static var container = Dictionary<String,Dictionary<String,Array<AntServiceResponder>>>.init()
+    static var container = Dictionary<String,Dictionary<String,Array<AntServiceResponder>>>.init()
     
     static func register(_ aliasName:String, _ key:String, _ responder:AntServiceResponder){
         if let _ = container[aliasName] {
@@ -87,8 +78,7 @@ fileprivate class AntServiceMultiCache{
         let keyContainers = container[aliasName]
         let results = keyContainers?.flatMap({ $0.value })
         let uniqueResults = NSMutableSet.init(array: results ?? [])
-        let responders = uniqueResults.allObjects.compactMap({ $0 as? AntServiceResponder})
-        return responders
+        return uniqueResults.allObjects.compactMap({ $0 as? AntServiceResponder})
     }
     
     static func remove(_ aliasName:String, _ key:String, where shouldBeRemoved: (AntServiceResponder) -> Bool) {
@@ -107,6 +97,25 @@ fileprivate class AntServiceMultiCache{
     
 }
 
+extension AntServiceMultiCache {
+    public static func containerContent() -> Dictionary<String,Dictionary<String,Array<Any>>> {
+        var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
+        for key1 in AntServiceMultiCache.container.keys {
+            var keyContainer = Dictionary<String,Array<Any>>.init()
+            
+            if let keyC = AntServiceMultiCache.container[key1] {
+                for key2 in keyC.keys {
+                    if let resps = keyC[key2]?.compactMap({ $0.responder }) {
+                        keyContainer.updateValue(resps, forKey: key2)
+                    }
+                }
+            }
+            container.updateValue(keyContainer, forKey: key1)
+        }
+        return container
+    }
+}
+
 
 /// MARK: AntServiceMultiC
 public class AntServiceMultiC<I:Any> {
@@ -115,12 +124,6 @@ public class AntServiceMultiC<I:Any> {
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         let resp = AntServiceResponder.init(responder)
         AntServiceMultiCache.register(aliasName, key, resp)
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function):  key:\(key)  responder:\(responder)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
-        
         return resp
     }
     
@@ -130,10 +133,6 @@ public class AntServiceMultiC<I:Any> {
         let resp = AntServiceResponder.init(responder)
         for key in keys {
             AntServiceMultiCache.register(aliasName, key, resp)
-        }
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function):  keys:\(keys)  responder:\(responder)"
-            AntServiceLog.handlerLog(.responder, log)
         }
         return resp
     }
@@ -147,10 +146,6 @@ public class AntServiceMultiC<I:Any> {
             AntServiceMultiCache.register(aliasName, key, resp)
             resps.append(resp)
         }
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function):  key:\(key) responders:\(String(describing: responders))"
-            AntServiceLog.handlerLog(.responder, log)
-        }
         return resps
     }
     
@@ -161,26 +156,15 @@ public class AntServiceMultiC<I:Any> {
         if let _ = responders {
             responders = responders!.count > 0 ? responders : nil
         }
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function):  key:\(key)  = \(String(describing: responders))"
-            AntServiceLog.handlerLog(.responder, log)
-        }
-        
         return responders
     }
     
     public func responders() -> [I]? {
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
-        let uniqueResults = AntServiceMultiCache.responders(aliasName)
-        var responders = uniqueResults?.compactMap({ $0.responder as? I})
+        let results = AntServiceMultiCache.responders(aliasName)
+        var responders = results?.compactMap({ $0.responder as? I})
         if let _ = responders {
             responders = responders!.count > 0 ? responders : nil
-        }
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function)  = \(String(describing: responders))"
-            AntServiceLog.handlerLog(.responder, log)
         }
         return responders
     }
@@ -188,11 +172,6 @@ public class AntServiceMultiC<I:Any> {
     public func remove(_ key:String, where shouldBeRemoved: (AntServiceResponder) -> Bool) {
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceMultiCache.remove(aliasName, key, where: shouldBeRemoved)
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function): key:\(key)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
     
     public func remove(_ keys:[String]) {
@@ -200,30 +179,16 @@ public class AntServiceMultiC<I:Any> {
         for key in keys {
             AntServiceMultiCache.remove(aliasName, key)
         }
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function): keys:\(keys)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
     
     public func remove(_ key:String){
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceMultiCache.remove(aliasName, key)
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function):  key:\(key)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
     
     public func removeAll() {
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceMultiCache.removeAll(aliasName)
-        
-        if AntServiceLog.enabled {
-            let log = "multiC - \(aliasName) \(#function)"
-            AntServiceLog.handlerLog(.responder, log)
-        }
     }
 }
 
@@ -238,13 +203,32 @@ public class AntServiceInterface<I:Any> {
     }
 }
 
+extension AntServiceInterface{
+    public static func singleContainer() -> Dictionary<String,Any> {
+        return AntServiceSingleCache.containerContent();
+    }
+    
+    public static func multiContainer() -> Dictionary<String,Dictionary<String,Array<Any>>> {
+        return AntServiceMultiCache.containerContent()
+    }
+}
+
 //MARK: - AntService
 public struct AntService{
     public static func singleInterface<I:Any>(_ interface:I.Type) -> AntServiceSingleC<I> {
         return AntServiceSingleC<I>.init()
     }
-    
     public static func multipleInterface<I:Any>(_ interface:I.Type) -> AntServiceMultiC<I> {
         return AntServiceMultiC<I>.init()
+    }
+}
+
+extension AntService{
+    public static func singleContainer() -> Dictionary<String,Any> {
+        return AntServiceSingleCache.containerContent();
+    }
+    
+    public static func multiContainer() -> Dictionary<String,Dictionary<String,Array<Any>>> {
+        return AntServiceMultiCache.containerContent()
     }
 }
