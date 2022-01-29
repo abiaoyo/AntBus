@@ -14,14 +14,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
-    override init() {
-        AntServiceLog.enabled = true
-        AntChannelLog.enabled = true
-        
-        AntServiceLog.logOptions = [.responder, .container]
-        AntChannelLog.logOptions = [.responder, .container]
-    }
-    
     func registerModules(){
         if let modules:NSArray = NSArray.init(contentsOfFile: Bundle.main.path(forResource: "antbus_demo_modules", ofType: "plist")!) {
             for module in modules {

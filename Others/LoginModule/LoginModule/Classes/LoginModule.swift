@@ -34,10 +34,12 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
     override init() {
         super.init()
         
-        AntBus.data.register("login.user.account", owner: self) {
-            let account = UserDefaults.standard.string(forKey: "user.account")
-            return account
-        }
+//        AntBus.data.register("login.user.account", owner: self) {
+//            let account = UserDefaults.standard.string(forKey: "user.account")
+//            return account
+//        }
+        
+        AntBusObject<LoginUser>.shared.register(LoginUser.init(), owner: self)
     }
     
     

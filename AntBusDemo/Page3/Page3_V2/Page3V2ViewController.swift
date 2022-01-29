@@ -6,6 +6,14 @@
 //
 
 import UIKit
+import AntBus
+
+class Page3V2Container{
+    deinit {
+        print("deinit Page3V2Container")
+    }
+    var title:String?
+}
 
 class Page3V2ViewController: UIViewController {
 
@@ -15,11 +23,21 @@ class Page3V2ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         self.title = "page3_v2"
+        let container = Page3V2Container.init()
+        container.title = "Page3V2Container"
+        AntBusObject<Page3V2Container>.shared.register(container, owner: self)
     }
 
-
+    @IBAction func clickTestObject(_ sender: Any) {
+        let title = AntBusObject<Page3V2Container>.shared.object()?.title
+        print("title:\(title)")
+    }
+    
+    @IBAction func clickRemoveObject(_ sender: Any) {
+        AntBusObject<Page3V2Container>.shared.remove()
+    }
     /*
     // MARK: - Navigation
 

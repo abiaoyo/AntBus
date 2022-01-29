@@ -45,8 +45,9 @@ class FirstPageViewController: UIViewController,IFirstPageController {
     }
     
     func refreshView(){
-        let result:AntBusResult = AntBus.data.call("login.user.account")
-        self.label.text = result.data as? String
+//        let result:AntBusResult = AntBus.data.call("login.user.account")
+//        self.label.text = result.data as? String
+        self.label.text = AntBusObject<LoginUser>.shared.object()?.account
     }
     @IBOutlet weak var label: UILabel!
     
