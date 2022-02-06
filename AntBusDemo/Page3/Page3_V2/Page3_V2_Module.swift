@@ -17,6 +17,8 @@ class Page3_V2_Module: NSObject,IBaseModule,IPage3Module {
     
     func pushPage(navCtl: UINavigationController) {
         let viewCtl = Page3V2ViewController.init()
+        AntBusObject<Page3V2Container>.shared.register(Page3V2Container.init(), viewCtl)
+        AntBusObject<Page3V2Container2>.shared.register(Page3V2Container2.init(), viewCtl)
         navCtl.pushViewController(viewCtl, animated: true)
     }
     

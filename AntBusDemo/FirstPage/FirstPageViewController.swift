@@ -32,15 +32,8 @@ class FirstPageViewController: UIViewController,IFirstPageController {
         }
         self.refreshView()
         
-        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
-            print("FistPage group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
-        }
-        
-        AntBus.method.register("FirstPage", method: "hello") { data, resultBlock, taskBlock in
-            resultBlock("Hi")
-            DispatchQueue.main.asyncAfter(deadline: .now() + .seconds(2)) {
-                taskBlock?("task Hi")
-            }
+        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { index, count, data in
+            print("FistPage  TestGroupKey TestGroup index:\(index) count:\(count) data:\(data ?? "nil")")
         }
     }
     

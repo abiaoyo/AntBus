@@ -13,8 +13,9 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
     
     //ILoginModule
     func logout() {
-        UserDefaults.standard.setValue("", forKey: "user.account")
-        UserDefaults.standard.synchronize()
+//        UserDefaults.standard.setValue("", forKey: "user.account")
+//        UserDefaults.standard.synchronize()
+        AntBusObject<LoginUser>.shared.object()?.account = ""
         AntBus.notification.post("logout.success")
     }
     
@@ -39,7 +40,7 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
 //            return account
 //        }
         
-        AntBusObject<LoginUser>.shared.register(LoginUser.init(), owner: self)
+        AntBusObject<LoginUser>.shared.register(LoginUser.init(),self)
     }
     
     

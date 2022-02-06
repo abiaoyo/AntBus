@@ -14,8 +14,8 @@ class SecondPageViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { group, groupIndex, data in
-            print("SecondPage group:\(group)  groupIndex:\(groupIndex)  data:\(data ?? "nil")")
+        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { index, count, data in
+            print("SecondPage  TestGroupKey TestGroup index:\(index) count:\(count) data:\(data ?? "nil")")
         }
     }
     

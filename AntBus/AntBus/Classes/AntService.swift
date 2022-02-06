@@ -22,13 +22,13 @@ fileprivate class AntServiceSingleCache{
 }
 
 extension AntServiceSingleCache{
-    public static func containerContent() -> Dictionary<String,Any> {
+    static func containerContent() -> Dictionary<String,Any> {
         return AntServiceSingleCache.container;
     }
 }
 
 /// MARK: AntServiceSingleC
-public class AntServiceSingleC<I:Any> {
+final public class AntServiceSingleC<I:Any> {
     public func register(_ responder:I){
         let aliasName = DynamicAliasUtil.getAliasName(I.self)
         AntServiceSingleCache.register(aliasName, responder)
@@ -44,7 +44,7 @@ public class AntServiceSingleC<I:Any> {
 }
 
 /// MARK: AntServiceResponder
-public class AntServiceResponder{
+final public class AntServiceResponder{
     public var responder:Any!
     public init(_ responder:Any) {
         self.responder = responder
@@ -194,7 +194,7 @@ public class AntServiceMultiC<I:Any> {
 
 
 /// AntService
-public class AntServiceInterface<I:Any> {
+final public class AntServiceInterface<I:Any> {
     public static var single:AntServiceSingleC<I>{
         return AntServiceSingleC<I>.init()
     }

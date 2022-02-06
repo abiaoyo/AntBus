@@ -10,13 +10,20 @@ import AntBus
 
 class Page3V2Container{
     deinit {
-        print("deinit Page3V2Container")
+        print("deinit Page3V2===========Container")
+    }
+    var title:String?
+}
+
+class Page3V2Container2{
+    deinit {
+        print("deinit Page3V2_2===========Container")
     }
     var title:String?
 }
 
 class Page3V2ViewController: UIViewController {
-
+    
     deinit {
         print("deinit \(type(of: self))")
     }
@@ -25,14 +32,15 @@ class Page3V2ViewController: UIViewController {
         super.viewDidLoad()
         
         self.title = "page3_v2"
-        let container = Page3V2Container.init()
-        container.title = "Page3V2Container"
-        AntBusObject<Page3V2Container>.shared.register(container, owner: self)
+//        AntBusObject<Page3V2Container>.shared.register(Page3V2Container.init(), self)
     }
-
+    
     @IBAction func clickTestObject(_ sender: Any) {
-        let title = AntBusObject<Page3V2Container>.shared.object()?.title
-        print("title:\(title)")
+        let page3V2 = AntBusObject<Page3V2Container>.shared.object()
+        print("page3V2:\(page3V2)")
+        
+        let page3V2_2 = AntBusObject<Page3V2Container2>.shared.object()
+        print("page3V2_2:\(page3V2_2)")
     }
     
     @IBAction func clickRemoveObject(_ sender: Any) {

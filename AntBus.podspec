@@ -1,8 +1,8 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AntBus'
-  s.version          = '1.0.1'
-  s.summary          = 'AntBus 是一个解决代码耦合问题的中间库，用于处理跨层(跨界面/跨模块)访问'
+  s.version          = '1.0.2'
+  s.summary          = 'AntBus'
 
 
   s.description      = <<-DESC

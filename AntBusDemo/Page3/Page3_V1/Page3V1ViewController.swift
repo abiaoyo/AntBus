@@ -13,14 +13,15 @@ import AntBus
 }
 
 class Page3V1ViewController: UIViewController,Page3_V1_Controller {
-
+    
     deinit {
         print("deinit \(type(of: self))")
     }
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        AntChannel.multipleInterface(Page3_V1_Controller.self).register("page3_v1_controller", self)
+//        AntChannel.multipleInterface(Page3_V1_Controller.self).register("page3_v1_controller", self)
+        AntChannelInterface<Page3_V1_Controller>.multiple.register("page3_v1_controller", self)
     }
     
     required init?(coder: NSCoder) {
@@ -35,11 +36,5 @@ class Page3V1ViewController: UIViewController,Page3_V1_Controller {
         let page3_v1 = AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
         print("page_v1:\(page3_v1)")
         
-        let result = AntBus.method.call("FirstPage", method: "hello", data: nil) { data in
-            print("taskBlock:\(data)")
-        }
-        print("success:\(result.success) dataBlock:\(result.data)")
-        
     }
-
 }

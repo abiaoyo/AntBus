@@ -7,6 +7,7 @@
 
 import UIKit
 import AntBus
+import CommonModule
 
 class LoginPageViewController: UIViewController {
 
