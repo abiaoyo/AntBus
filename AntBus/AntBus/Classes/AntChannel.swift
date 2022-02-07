@@ -40,50 +40,61 @@ final public class AntChannelSingleC<R:AnyObject> {
     }
 }
 
+
+// ==================================================================================
+//MARK: - AntChannelMultiCache
 private class AntChannelMultiCache{
-    static var keyRespondersContainer = NSMapTable<NSString,NSHashTable<AnyObject>>.weakToStrongObjects()
     
-    static func register(_ key:String, _ responder:AnyObject) -> Void{
-        if let responders = keyRespondersContainer.object(forKey: key as NSString) {
-            responders.add(responder)
-        }else{
-            let responders = NSHashTable<AnyObject>.weakObjects()
-            responders.add(responder)
-            keyRespondersContainer.setObject(responders, forKey: key as NSString)
-        }
-    }
+    // <AliasName,<Key,[Response]>>
+    static var container = Dictionary<String,NSMapTable<NSString,NSHashTable<AnyObject>>>.init()
     
-    static func responders(_ key:String) -> NSHashTable<AnyObject>? {
-        return keyRespondersContainer.object(forKey: key as NSString)
-    }
-    
-    static func remove(_ keys:[String],_ responder:AnyObject) -> Void {
+    static func register(_ aliasName:String, _ key:String, _ responder:AnyObject) -> Void{
         
+        var keyContainer = container[aliasName]
+        if keyContainer == nil {
+            keyContainer = NSMapTable<NSString,NSHashTable<AnyObject>>.init()
+            container[aliasName] = keyContainer
+        }
+        
+        var responders = keyContainer?.object(forKey: key as NSString)
+        if responders == nil {
+            responders = NSHashTable<AnyObject>.weakObjects()
+            keyContainer?.setObject(responders, forKey: key as NSString)
+        }
+        responders?.add(responder)
+    }
+    
+    static func responders(_ aliasName:String, _ key:String) -> [AnyObject]? {
+        let keyContainer = container[aliasName]
+        return keyContainer?.object(forKey: key as NSString)?.allObjects
+    }
+    
+    static func remove(_ aliasName:String, _ keys:[String],_ responder:AnyObject) -> Void {
+        let keyContainer = container[aliasName]
         for key in keys {
-            if let objects = AntChannelMultiCache.keyRespondersContainer.object(forKey: key as NSString) {
-                objects.remove(responder)
-            }
+            keyContainer?.object(forKey: key as NSString)?.remove(responder)
         }
     }
     
-    static func remove(_ keys:[String]) -> Void {
+    static func remove(_ aliasName:String, _ keys:[String]) -> Void {
+        let keyContainer = container[aliasName]
         for key in keys {
-            AntChannelMultiCache.keyRespondersContainer.removeObject(forKey: key as NSString)
+            keyContainer?.removeObject(forKey: key as NSString)
         }
     }
     
-    static func remove(_ key:String,_ responder:AnyObject) -> Void{
-        if let responders = AntChannelMultiCache.keyRespondersContainer.object(forKey: key as NSString) {
-            responders.remove(responder)
-        }
+    static func remove(_ aliasName:String, _ key:String,_ responder:AnyObject) -> Void{
+        let keyContainer = container[aliasName]
+        keyContainer?.object(forKey: key as NSString)?.remove(responder)
     }
     
-    static func remove(_ key:String) -> Void{
-        AntChannelMultiCache.keyRespondersContainer.removeObject(forKey: key as NSString)
+    static func remove(_ aliasName:String, _ key:String) -> Void{
+        let keyContainer = container[aliasName]
+        keyContainer?.removeObject(forKey: key as NSString)
     }
     
-    static func remove() -> Void {
-        AntChannelMultiCache.keyRespondersContainer.removeAllObjects()
+    static func remove(_ aliasName:String) -> Void {
+        container.removeValue(forKey: aliasName)
     }
 }
 
@@ -91,7 +102,8 @@ private class AntChannelMultiCache{
 final public class AntChannelMultiC<R:AnyObject> {
     
     public func register(_ key:String, _ responder:R) -> Void{
-        AntChannelMultiCache.register(key, responder)
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.register(aliasName, key, responder)
     }
     
     public func register(_ keys:[String], _ responder:R) -> Void{
@@ -107,13 +119,15 @@ final public class AntChannelMultiC<R:AnyObject> {
     }
 
     public func responders(_ key:String) -> [R]? {
-        return AntChannelMultiCache.responders(key)?.allObjects.compactMap({ $0 as? R})
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        return AntChannelMultiCache.responders(aliasName, key)?.compactMap({ $0 as? R})
     }
     
     public func responders() -> [R]? {
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        let keyContainer = AntChannelMultiCache.container[aliasName]
         var responders:[R]? = nil
-        
-        if let objects:[AnyObject] = AntChannelMultiCache.keyRespondersContainer.objectEnumerator()?.allObjects.flatMap({ ($0 as! NSHashTable<AnyObject>).objectEnumerator().map{ $0 }}) as [AnyObject]? {
+        if let objects:[AnyObject] = keyContainer?.objectEnumerator()?.allObjects.flatMap({ ($0 as! NSHashTable<AnyObject>).objectEnumerator().map{ $0 }}) as [AnyObject]? {
             let resultSet = NSHashTable<R>.init()
             for object in objects {
                 resultSet.add(object as? R)
@@ -124,23 +138,28 @@ final public class AntChannelMultiC<R:AnyObject> {
     }
     
     public func remove(_ keys:[String],_ responder:R) -> Void {
-        AntChannelMultiCache.remove(keys, responder)
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.remove(aliasName, keys, responder)
     }
-    
+
     public func remove(_ keys:[String]) -> Void {
-        AntChannelMultiCache.remove(keys)
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.remove(aliasName, keys)
     }
-    
+
     public func remove(_ key:String,_ responder:R) -> Void{
-        AntChannelMultiCache.remove(key, responder)
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.remove(aliasName, key, responder)
     }
-    
+
     public func remove(_ key:String) -> Void{
-        AntChannelMultiCache.remove(key)
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.remove(aliasName, key)
     }
-    
+
     public func remove() -> Void {
-        AntChannelMultiCache.remove()
+        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+        AntChannelMultiCache.remove(aliasName)
     }
 }
 
