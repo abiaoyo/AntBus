@@ -14,6 +14,7 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
     private var dictionary: [Weak<Key>: Value] = [:]
     private let lock = NSRecursiveLock()
     
+    public typealias KeyDeallocHandler = () -> Void
     
     // MARK: Initializing
     
@@ -75,6 +76,25 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
         }
     }
     
+    public func setValue(_ value: Value?, forKey key: Key, forKeyDealloc handler:KeyDeallocHandler?) {
+        let weakKey = Weak(key)
+        
+        self.lock.lock()
+        defer {
+            self.lock.unlock()
+            if value != nil {
+                self.installDeallocHook(to: key)
+            }
+            self.installDeallocHook2(to: key,forKeyDealloc: handler)
+        }
+        
+        if let value = value {
+            self.dictionary[weakKey] = value
+        } else {
+            self.dictionary.removeValue(forKey: weakKey)
+        }
+    }
+    
     public func remove(forKey key: Key){
         self.setValue(nil, forKey: key)
     }
@@ -118,6 +138,18 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
             self?.lock.unlock()
         })
         objc_setAssociatedObject(key, &deallocHookKey, hook, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+    
+    private var deallocHookKey2: Void?
+    
+    private func installDeallocHook2(to key: Key, forKeyDealloc handler:KeyDeallocHandler?) {
+        let isInstalled = (objc_getAssociatedObject(key, &deallocHookKey2) != nil)
+        guard !isInstalled else { return }
+        
+        let hook = DeallocHook(handler: {
+            handler?()
+        })
+        objc_setAssociatedObject(key, &deallocHookKey2, hook, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
 

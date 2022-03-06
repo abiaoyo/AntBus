@@ -16,7 +16,8 @@ class LoginPageViewController: UIViewController {
 //        let account:String? = AntBus.data.call("login.user.account").data as? String
 //        self.accountTF.text = account
         
-        self.accountTF.text = AntBusObject<LoginUser>.shared.object()?.account
+//        self.accountTF.text = AntBusObject<LoginUser>.shared.object()?.account
+        self.accountTF.text = AntBus.sharedObject.object(LoginUser.self)?.account
     }
     @IBOutlet weak var accountTF: UITextField!
     
@@ -24,7 +25,8 @@ class LoginPageViewController: UIViewController {
 //        UserDefaults.standard.setValue(self.accountTF.text, forKey: "user.account")
 //        UserDefaults.standard.synchronize()
         
-        AntBusObject<LoginUser>.shared.object()?.account = self.accountTF.text
+//        AntBusObject<LoginUser>.shared.object()?.account = self.accountTF.text
+        AntBus.sharedObject.object(LoginUser.self)?.account = self.accountTF.text
         
         AntBus.notification.post("login.success")
         

@@ -36,15 +36,18 @@ class Page3V2ViewController: UIViewController {
     }
     
     @IBAction func clickTestObject(_ sender: Any) {
-        let page3V2 = AntBusObject<Page3V2Container>.shared.object()
+//        let page3V2 = AntBusObject<Page3V2Container>.shared.object()
+        let page3V2 = AntBus.sharedObject.object(Page3V2Container.self)
         print("page3V2:\(page3V2)")
         
-        let page3V2_2 = AntBusObject<Page3V2Container2>.shared.object()
+//        let page3V2_2 = AntBusObject<Page3V2Container2>.shared.object()
+        let page3V2_2 = AntBus.sharedObject.object(Page3V2Container2.self)
         print("page3V2_2:\(page3V2_2)")
     }
     
     @IBAction func clickRemoveObject(_ sender: Any) {
-        AntBusObject<Page3V2Container>.shared.remove()
+//        AntBusObject<Page3V2Container>.shared.remove()
+        AntBus.sharedObject.remove(Page3V2Container.self)
     }
     /*
     // MARK: - Navigation

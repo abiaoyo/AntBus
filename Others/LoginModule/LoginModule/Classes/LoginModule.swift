@@ -15,15 +15,15 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
     func logout() {
 //        UserDefaults.standard.setValue("", forKey: "user.account")
 //        UserDefaults.standard.synchronize()
-        AntBusObject<LoginUser>.shared.object()?.account = ""
+//        AntBusObject<LoginUser>.shared.object()?.account = ""
+        AntBus.sharedObject.object(LoginUser.self)?.account = ""
         AntBus.notification.post("logout.success")
     }
     
     func showLoginPage() {
         let loginCtl = LoginPageViewController.init(nibName: "LoginPageViewController", bundle: Bundle.init(for: LoginModule.self))
         let curCtl:UIViewController = AntBus.data.call("app.current.controller").data as! UIViewController
-        curCtl.present(loginCtl, animated: true, completion: nil)
-        
+        curCtl.present(loginCtl, animated: true, completion: nil)   
     }
     
     //IBaseModule
@@ -39,8 +39,8 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
 //            let account = UserDefaults.standard.string(forKey: "user.account")
 //            return account
 //        }
-        
-        AntBusObject<LoginUser>.shared.register(LoginUser.init(), owner:self)
+        AntBus.sharedObject.register(LoginUser.init(), type: LoginUser.self, owner: self)
+//        AntBusObject<LoginUser>.shared.register(LoginUser.init(), owner:self)
     }
     
     
