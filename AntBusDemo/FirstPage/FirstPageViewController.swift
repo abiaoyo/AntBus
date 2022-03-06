@@ -32,9 +32,6 @@ class FirstPageViewController: UIViewController,IFirstPageController {
         }
         self.refreshView()
         
-        AntBus.groupNotification.register("TestGroupKey", group: "TestGroup", owner: self) { index, count, data in
-            print("FistPage  TestGroupKey TestGroup index:\(index) count:\(count) data:\(data ?? "nil")")
-        }
     }
     
     func refreshView(){

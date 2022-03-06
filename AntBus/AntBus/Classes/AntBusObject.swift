@@ -16,7 +16,7 @@ final public class AntBusObject<Object:AnyObject>{
     
     final public class Container<Object:AnyObject>{
         
-        public func register(_ object:Object,_ owner:AnyObject){
+        public func register(_ object:Object, owner:AnyObject){
             let key = DynamicAliasUtil.getAliasName(Object.self)
             AntBusObjectCache.toMap.setObject(owner, forKey: key as NSString)
             var objs = AntBusObjectCache.ooMap.value(forKey: owner)

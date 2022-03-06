@@ -40,7 +40,7 @@ class LoginModule:NSObject,IBaseModule, ILoginModule{
 //            return account
 //        }
         
-        AntBusObject<LoginUser>.shared.register(LoginUser.init(),self)
+        AntBusObject<LoginUser>.shared.register(LoginUser.init(), owner:self)
     }
     
     
