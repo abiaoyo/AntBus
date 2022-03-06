@@ -1,5 +1,5 @@
 //
-//  AntBus_WKMapTable.swift
+//  AntBusWKMapTable.swift
 //  AntBus
 //
 //  Created by abiaoyo
@@ -8,9 +8,9 @@
 
 import Foundation
 
-// MARK: - AntBus_WKMapTable
+// MARK: - AntBusWKMapTable
 
-final public class AntBus_WKMapTable<Key, Value> where Key: AnyObject {
+final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
     private var dictionary: [Weak<Key>: Value] = [:]
     private let lock = NSRecursiveLock()
     

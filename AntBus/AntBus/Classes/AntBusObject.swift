@@ -9,7 +9,7 @@ import Foundation
 
 fileprivate class AntBusObjectCache{
     static var toMap = NSMapTable<NSString,AnyObject>.weakToWeakObjects()
-    static var ooMap = AntBus_WKMapTable<AnyObject,NSMutableDictionary>()
+    static var ooMap = AntBusWKMapTable<AnyObject,NSMutableDictionary>()
 }
 
 final public class AntBusObject<Object:AnyObject>{
