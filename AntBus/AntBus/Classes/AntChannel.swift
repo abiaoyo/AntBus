@@ -8,7 +8,8 @@ import Foundation
 
 //MARK: - AntChannelSingleC
 public class AntChannelSingleCache{
-    static var keyRespondersContainer = NSMapTable<NSString,AnyObject>.weakToWeakObjects()
+    
+    static var keyRespondersContainer = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
     
     static func register(_ key:String, _ responder:AnyObject) -> Void{
         keyRespondersContainer.setObject(responder, forKey: key as NSString)

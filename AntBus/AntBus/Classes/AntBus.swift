@@ -42,7 +42,10 @@ public class AntBusData{
         if keyHandlerMap == nil {
             keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
             self.ownerHandlerMap.setValue(keyHandlerMap, forKey: owner) { [weak self] in
-                self?.keyOwnerMap.removeObject(forKey: key as NSString?)
+                guard let _ = self?.keyOwnerMap.object(forKey: key as NSString) else {
+                    self?.keyOwnerMap.removeObject(forKey: key as NSString)
+                    return
+                }
             }
         }
         keyHandlerMap?.setObject(handler as AnyObject, forKey: key as NSString?)
@@ -153,7 +156,10 @@ final public class AntBusObj{
         if objs == nil {
             objs = NSMutableDictionary.init()
             self.ooMap.setValue(objs, forKey: owner) { [weak self] in
-                self?.koMap.removeObject(forKey: key as NSString)
+                guard let _ = self?.koMap.object(forKey: key as NSString) else {
+                    self?.koMap.removeObject(forKey: key as NSString)
+                    return
+                }
             }
         }
         objs?.setValue(object, forKey: key)
@@ -193,7 +199,10 @@ final public class AntBusSharedObj{
         if objs == nil {
             objs = NSMutableDictionary.init()
             self.ooMap.setValue(objs, forKey: owner) { [weak self] in
-                self?.koMap.removeObject(forKey: key as NSString)
+                guard let _ = self?.koMap.object(forKey: key as NSString) else {
+                    self?.koMap.removeObject(forKey: key as NSString)
+                    return
+                }
             }
         }
         objs?.setValue(object, forKey: key)
