@@ -28,11 +28,13 @@ class Page3V2ViewController: UIViewController {
         print("deinit \(type(of: self))")
     }
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.title = "page3_v2"
 //        AntBusObject<Page3V2Container>.shared.register(Page3V2Container.init(), self)
+        AntBusChannel<Page3V2ViewController>.single.register(self)
     }
     
     @IBAction func clickTestObject(_ sender: Any) {
@@ -43,11 +45,15 @@ class Page3V2ViewController: UIViewController {
 //        let page3V2_2 = AntBusObject<Page3V2Container2>.shared.object()
         let page3V2_2 = AntBus.sharedObject.object(Page3V2Container2.self)
         print("page3V2_2:\(page3V2_2)")
+        
+        let page3V2_3 = AntBusChannel<Page3V2ViewController>.single.responder()
+        print("page3V2_3:\(page3V2_3)")
     }
     
     @IBAction func clickRemoveObject(_ sender: Any) {
 //        AntBusObject<Page3V2Container>.shared.remove()
         AntBus.sharedObject.remove(Page3V2Container.self)
+        AntBusChannel<Page3V2ViewController>.single.remove()
     }
     /*
     // MARK: - Navigation

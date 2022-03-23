@@ -46,16 +46,19 @@ class SecondPageViewController: UIViewController{
     
     @IBAction func clickAntChannel(_ sender: Any) {
         
-        AntChannelInterface<IFirstPageController>.single.responder()
-
-
-        AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+        let page3V2_3 = AntBusChannel<Page3V2ViewController>.single.responder()
+        print("page3V2_3:\(page3V2_3)")
         
-        let singleContainer = AntServiceInterface<Any>.singleContainer()
-        let multiContainer = AntServiceInterface<Any>.multiContainer()
-        
-        print("singleContainer:\(singleContainer)")
-        print("multiContainer:\(multiContainer)")
+//        AntChannelInterface<IFirstPageController>.single.responder()
+//
+//
+//        AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+//
+//        let singleContainer = AntServiceInterface<Any>.singleContainer()
+//        let multiContainer = AntServiceInterface<Any>.multiContainer()
+//
+//        print("singleContainer:\(singleContainer)")
+//        print("multiContainer:\(multiContainer)")
         
     }
     
