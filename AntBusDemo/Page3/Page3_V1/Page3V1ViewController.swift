@@ -21,7 +21,8 @@ class Page3V1ViewController: UIViewController,Page3_V1_Controller {
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 //        AntChannel.multipleInterface(Page3_V1_Controller.self).register("page3_v1_controller", self)
-        AntChannelInterface<Page3_V1_Controller>.multiple.register("page3_v1_controller", self)
+//        AntChannelInterface<Page3_V1_Controller>.multiple.register("page3_v1_controller", self)
+        AntBusChannelI<Page3_V1_Controller>.multiple.register("page3_v1_controller", self)
     }
     
     required init?(coder: NSCoder) {
@@ -33,7 +34,8 @@ class Page3V1ViewController: UIViewController,Page3_V1_Controller {
 
         self.title = "page3_v1"
         
-        let page3_v1 = AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+//        let page3_v1 = AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
+        let page3_v1 = AntBusChannel.multipleI(Page3_V1_Controller.self).responders()
         print("page_v1:\(page3_v1)")
         
     }

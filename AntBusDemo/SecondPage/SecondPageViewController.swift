@@ -40,25 +40,21 @@ class SecondPageViewController: UIViewController{
     }
     
     @IBAction func clickChanngeTabBar(_ sender: Any) {
-        let index = AntChannelInterface<TabBarProtocol>.single.responder()!.currentIndex()
-        AntChannelInterface<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
+        let index = AntBusChannelI<TabBarProtocol>.single.responder()!.currentIndex()
+        AntBusChannelI<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
     }
     
     @IBAction func clickAntChannel(_ sender: Any) {
         
-        let page3V2_3 = AntBusChannel<Page3V2ViewController>.single.responder()
-        print("page3V2_3:\(page3V2_3)")
-        
-//        AntChannelInterface<IFirstPageController>.single.responder()
-//
-//
-//        AntChannel.multipleInterface(Page3_V1_Controller.self).responders()
-//
-//        let singleContainer = AntServiceInterface<Any>.singleContainer()
-//        let multiContainer = AntServiceInterface<Any>.multiContainer()
-//
-//        print("singleContainer:\(singleContainer)")
-//        print("multiContainer:\(multiContainer)")
+        AntBusChannelI<IFirstPageController>.single.responder()
+
+        AntBusChannel.multipleI(Page3_V1_Controller.self).responders()
+
+        let singleContainer = AntServiceInterface<Any>.singleContainer()
+        let multiContainer = AntServiceInterface<Any>.multiContainer()
+
+        print("singleContainer:\(singleContainer)")
+        print("multiContainer:\(multiContainer)")
         
     }
     

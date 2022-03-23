@@ -3,23 +3,25 @@ import Foundation
 // single
 final private class AntBusChannelSC{
     // <Key,Value>
-//    static let krMap = AntBusWeakMap<NSString,AnyObject>.init()
     static let krMap = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
     
     static func register(_ key:String, _ responder:AnyObject){
-//        krMap.setValue(responder, forKey: key as NSString, kdKey: key, keyDeallocHandler: nil)
+        AntBusDealloc.installDeallocHookForSingleChannel(to: responder, hkey: key) { hkeys in
+            for hkey in hkeys {
+                if krMap.object(forKey: hkey as NSString) == nil {
+                    krMap.removeObject(forKey: hkey as NSString)
+                }
+            }
+        }
         krMap.setObject(responder, forKey: key as NSString)
     }
     static func responder(_ key:String) -> AnyObject?{
-//        return krMap.valueForKey(key as NSString)
         return krMap.object(forKey: key as NSString)
     }
     static func remove(_ key:String){
-//        krMap.removeValue(key as NSString)
         krMap.removeObject(forKey: key as NSString)
     }
     static func removeAll(){
-//        krMap.removeAll()
         krMap.removeAllObjects()
     }
 }
@@ -57,21 +59,21 @@ final private class AntBusChannelMC{
             arMapSet = AntBusWeakSet<AnyObject>.init()
             arMap![aliasName] = arMapSet
         }
-        arMapSet!.insert(responder, kdKey: key, keyDeallocHandler: { kdKeys in
-            for kdKey in kdKeys {
-                if let arMapSet = container[kdKey]?[aliasName] {
+        arMapSet!.insert(responder, hKey: key, deallocHandler: { hKeys in
+            for hKey in hKeys {
+                if let arMapSet = container[hKey]?[aliasName] {
                     if arMapSet.count() == 0 {
-                        container[kdKey]?.removeValue(forKey: aliasName)
+                        container[hKey]?.removeValue(forKey: aliasName)
                     }
                 }else{
-                    container[kdKey]?.removeValue(forKey: aliasName)
+                    container[hKey]?.removeValue(forKey: aliasName)
                 }
-                if let arMap = container[kdKey] {
+                if let arMap = container[hKey] {
                     if arMap.count == 0 {
-                        container.removeValue(forKey: kdKey)
+                        container.removeValue(forKey: hKey)
                     }
                 }else{
-                    container.removeValue(forKey: kdKey)
+                    container.removeValue(forKey: hKey)
                 }
             }
         })
@@ -173,7 +175,7 @@ final public class AntBusChannelMulti<R:AnyObject> {
     }
 }
 
-final public class AntBusChannel<T:AnyObject> {
+public struct AntBusChannelI<T:AnyObject> {
     public static var single:AntBusChannelSingle<T> {
         get {
             return AntBusChannelSingle<T>.init()
@@ -183,5 +185,14 @@ final public class AntBusChannel<T:AnyObject> {
         get {
             return AntBusChannelMulti<T>.init()
         }
+    }
+}
+
+public struct AntBusChannel{
+    public static func singleI<I:AnyObject>(_ iType:I.Type) -> AntBusChannelSingle<I> {
+        return AntBusChannelSingle<I>.init()
+    }
+    public static func multipleI<I:AnyObject>(_ iType:I.Type) -> AntBusChannelMulti<I> {
+        return AntBusChannelMulti<I>.init()
     }
 }

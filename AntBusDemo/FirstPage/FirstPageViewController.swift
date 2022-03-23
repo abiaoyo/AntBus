@@ -17,7 +17,7 @@ class FirstPageViewController: UIViewController,IFirstPageController {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        AntChannel.singleInterface(IFirstPageController.self).register(self)
+        AntBusChannel.singleI(IFirstPageController.self).register(self)
     }
     
     override func viewDidLoad() {
@@ -52,8 +52,8 @@ class FirstPageViewController: UIViewController,IFirstPageController {
     }
     
     @IBAction func clickChangeTabBar(_ sender: Any) {
-        let index = AntChannelInterface<TabBarProtocol>.single.responder()!.currentIndex()
-        AntChannelInterface<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
+        let index = AntBusChannelI<TabBarProtocol>.single.responder()!.currentIndex()
+        AntBusChannelI<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
     }
     
 }

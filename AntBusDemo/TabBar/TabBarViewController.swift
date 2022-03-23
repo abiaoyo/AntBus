@@ -28,7 +28,8 @@ class TabBarViewController: UITabBarController, TabBarProtocol{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntChannelInterface<TabBarProtocol>.single.register(self)
+//        AntChannelInterface<TabBarProtocol>.single.register(self)
+        AntBusChannelI<TabBarProtocol>.single.register(self)
         
         AntBus.data.register("app.current.controller", owner: self) { () -> Any? in
             if let navCtl:UINavigationController = self.selectedViewController as? UINavigationController {

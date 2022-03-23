@@ -8,7 +8,8 @@ public typealias AntBusDataHandler = () -> Any?
 public class AntBusData{
     
     private var keyOwnerMap = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
-    private var ownerHandlerMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
+//    private var ownerHandlerMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
+    private var ownerHandlerMap = AntBusWeakMap<AnyObject,NSMapTable<NSString,AnyObject>>.init()
     
     private func clearOldOwner(_ key:String){
         if let oldOwner = self.keyOwnerMap.object(forKey: key as NSString) {
@@ -35,10 +36,12 @@ public class AntBusData{
         var keyHandlerMap = self.ownerHandlerMap.value(forKey: owner)
         if keyHandlerMap == nil {
             keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-            self.ownerHandlerMap.setValue(keyHandlerMap, forKey: owner) { [weak self] in
-                guard let _ = self?.keyOwnerMap.object(forKey: key as NSString) else {
-                    self?.keyOwnerMap.removeObject(forKey: key as NSString)
-                    return
+            self.ownerHandlerMap.setValue(keyHandlerMap!, forKey: owner, hKey: key) { [weak self] hKeys in
+                for hKey in hKeys {
+                    guard let _ = self?.keyOwnerMap.object(forKey: hKey as NSString) else {
+                        self?.keyOwnerMap.removeObject(forKey: hKey as NSString)
+                        return
+                    }
                 }
             }
         }
@@ -74,7 +77,7 @@ public class AntBusData{
 public class AntBusNotification{
     
     private var keyOwnersMap = Dictionary<String,NSHashTable<AnyObject>>.init()
-    private var ownerKeyHandlerMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
+    private var ownerKeyHandlerMap = AntBusWeakMap<AnyObject,NSMapTable<NSString,AnyObject>>.init()
 
     public func register(_ key:String,owner:AnyObject,handler:AntBusResultBlock!){
         var ownersTable = self.keyOwnersMap[key]
@@ -86,8 +89,17 @@ public class AntBusNotification{
         var keyHandlerMap = self.ownerKeyHandlerMap.value(forKey:owner)
         if(keyHandlerMap == nil){
             keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-            self.ownerKeyHandlerMap.setValue(keyHandlerMap,forKey:owner) {
-                //...
+//            self.ownerKeyHandlerMap.setValue(keyHandlerMap,forKey:owner) {
+//                //...
+//            }
+        }
+        self.ownerKeyHandlerMap.setValue(keyHandlerMap!, forKey: owner, hKey: key) { [weak self] hKeys in
+            for hKey in hKeys {
+                
+                guard let _ = self?.keyOwnersMap.value(forKey: hKey as NSString) else {
+                    self?.keyOwnerMap.removeObject(forKey: hKey as NSString)
+                    return
+                }
             }
         }
         keyHandlerMap!.setObject(handler as AnyObject,forKey:key as NSString)
