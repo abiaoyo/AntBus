@@ -1,9 +1,3 @@
-//
-//  AntBus.swift
-//  AntBus
-//  Created by abiaoyo
-//
-
 import Foundation
 
 public typealias AntBusResult = (success:Bool,data:Any?)

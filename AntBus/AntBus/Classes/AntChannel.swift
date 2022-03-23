@@ -1,9 +1,3 @@
-//
-//  AntChannel.swift
-//  AntBus
-//  Created by abiaoyo
-//
-
 import Foundation
 
 //MARK: - AntChannelSingleC

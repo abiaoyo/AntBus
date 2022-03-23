@@ -1,11 +1,3 @@
-//
-//  AntBusWKMapTable.swift
-//  AntBus
-//
-//  Created by abiaoyo
-//  WeakMapTable from github: https://github.com/ReactorKit/WeakMapTable
-//
-
 import Foundation
 
 // MARK: - AntBusWKMapTable
