@@ -7,7 +7,6 @@
 
 import UIKit
 import AntBus
-import CommonModule
 
 @objc protocol IFirstPageController {
     
@@ -17,43 +16,38 @@ class FirstPageViewController: UIViewController,IFirstPageController {
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        AntBusChannel.singleI(IFirstPageController.self).register(self)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
-        AntBus.notification.register("login.success", owner: self) { [weak self] (_) in
+        AntBusChannelI<UIViewController>.multi.register("FirstPage", self)
+        
+        AntBus.notification.register("login.success", owner: self) { [weak self] _ in
             self?.refreshView()
         }
-        AntBus.notification.register("logout.success", owner: self) { [weak self] (_) in
+        AntBus.notification.register("logout.success", owner: self) { [weak self] _ in
             self?.refreshView()
         }
         self.refreshView()
-        
     }
     
     func refreshView(){
-//        let result:AntBusResult = AntBus.data.call("login.user.account")
-//        self.label.text = result.data as? String
-//        self.label.text = AntBusObject<LoginUser>.shared.object()?.account
-        self.label.text = AntBus.sharedObject.object(LoginUser.self)?.account
+        self.label.text = AntBusServiceI<LoginModule>.single.responder()?.loginInfo.account
     }
     @IBOutlet weak var label: UILabel!
-    
 
     @IBAction func clickLogin(_ sender: Any) {
-        AntServiceInterface<ILoginModule>.single.responder()?.showLoginPage()
+        AntBusServiceI<LoginModule>.single.responder()?.goLoginPage()
     }
     
     @IBAction func clickLogout(_ sender: Any) {
-        AntServiceInterface<ILoginModule>.single.responder()?.logout()
+        AntBusService.singleI(LoginModule.self).responder()?.logout()
     }
     
     @IBAction func clickChangeTabBar(_ sender: Any) {
-        let index = AntBusChannelI<TabBarProtocol>.single.responder()!.currentIndex()
-        AntBusChannelI<TabBarProtocol>.single.responder()?.changeTabIndex(abs(1-index))
+        let tabBar = AntBusChannelI<TabBarProtocol>.single.responder()
+        print("tabBar: \(tabBar)")
+        tabBar?.changeTabIndex(1)
     }
     
 }

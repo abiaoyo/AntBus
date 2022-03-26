@@ -8,8 +8,6 @@ target 'AntBusDemo' do
   # Pods for AntBusDemo
   
   pod 'AntBus', :path => 'AntBus'
-  pod 'LoginModule', :path => 'Others/LoginModule'
-  pod 'CommonModule', :path => 'Common/CommonModule'
   
 #  target 'HAHATests' do
 #    inherit! :search_paths
@@ -20,12 +18,10 @@ target 'AntBusDemo' do
     # Pods for testing
     inherit! :search_paths
     pod 'AntBus', :path => 'AntBus'
-    pod 'CommonModule', :path => 'Common/CommonModule'
   end
   
   target 'AntBusDemoUITests' do
     # Pods for testing
-    pod 'AntBus', :path => 'AntBus'
   end
   
 end

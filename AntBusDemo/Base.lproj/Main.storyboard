@@ -88,48 +88,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="n9h-xJ-qS5">
-                                <rect key="frame" x="36" y="253" width="297" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Page3 V1"/>
-                                <connections>
-                                    <action selector="clickPage3V1:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="ayR-IO-c1l"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1UM-ax-y8J">
-                                <rect key="frame" x="35" y="293" width="297" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Page3 V2"/>
-                                <connections>
-                                    <action selector="clickPage3V2:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="sEC-kB-n1l"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s9z-ai-Ey2">
-                                <rect key="frame" x="35" y="362" width="297" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Page4"/>
-                                <connections>
-                                    <action selector="clickPage4:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="Pdo-tc-boG"/>
-                                </connections>
-                            </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3rs-iN-Cnf">
-                                <rect key="frame" x="84" y="453" width="201" height="50"/>
+                                <rect key="frame" x="60" y="227" width="201" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="AntService"/>
+                                <state key="normal" title="AntBusService"/>
                                 <connections>
                                     <action selector="clickAntService:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="i8p-Rq-s38"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ves-G4-o3v">
-                                <rect key="frame" x="85" y="512" width="201" height="50"/>
+                                <rect key="frame" x="61" y="286" width="201" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="AntChannel"/>
+                                <state key="normal" title="AntBusChannel"/>
                                 <connections>
                                     <action selector="clickAntChannel:" destination="GqU-Xh-uNp" eventType="touchUpInside" id="mml-Kv-jgw"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="trm-T6-1Uf">
-                                <rect key="frame" x="83" y="570" width="201" height="50"/>
+                                <rect key="frame" x="59" y="344" width="201" height="50"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="ChangeTabBar"/>
                                 <connections>

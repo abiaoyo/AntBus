@@ -11,9 +11,13 @@ import AntBus
 @objc protocol TabBarProtocol {
     func changeTabIndex(_ index:Int)
     func currentIndex() -> Int
+    func currentNavController() -> UINavigationController
 }
 
 class TabBarViewController: UITabBarController, TabBarProtocol{
+    func currentNavController() -> UINavigationController {
+        return self.selectedViewController as! UINavigationController
+    }
     
     func changeTabIndex(_ index: Int) {
         if index < self.viewControllers!.count {
@@ -27,16 +31,7 @@ class TabBarViewController: UITabBarController, TabBarProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-//        AntChannelInterface<TabBarProtocol>.single.register(self)
         AntBusChannelI<TabBarProtocol>.single.register(self)
-        
-        AntBus.data.register("app.current.controller", owner: self) { () -> Any? in
-            if let navCtl:UINavigationController = self.selectedViewController as? UINavigationController {
-                return navCtl.visibleViewController
-            }
-            return self.selectedViewController
-        }
     }
 
 }

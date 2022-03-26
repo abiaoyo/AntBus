@@ -10,16 +10,14 @@
 		1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_demo_modules.plist */; };
 		184C8FF227652D9E00EF906A /* AntBusDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */; };
 		184C903C276530D500EF906A /* AntBusDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C903B276530D500EF906A /* AntBusDemoTests.swift */; };
-		1852C87D271BFB070041DC68 /* Page3_V1_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */; };
-		1852C87F271BFB490041DC68 /* Page3_V2_Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */; };
-		1852C882271BFC220041DC68 /* IPage3Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C881271BFC220041DC68 /* IPage3Module.swift */; };
-		1852C885271BFE890041DC68 /* Page4Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C884271BFE890041DC68 /* Page4Module.swift */; };
-		1852C888271BFEF40041DC68 /* Page4ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C886271BFEF40041DC68 /* Page4ViewController.swift */; };
-		1852C889271BFEF40041DC68 /* Page4ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C887271BFEF40041DC68 /* Page4ViewController.xib */; };
-		1852C88C271C007B0041DC68 /* Page3V2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */; };
-		1852C88D271C007B0041DC68 /* Page3V2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */; };
-		1852C892271C009C0041DC68 /* Page3V1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1852C890271C009C0041DC68 /* Page3V1ViewController.swift */; };
-		1852C893271C009C0041DC68 /* Page3V1ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1852C891271C009C0041DC68 /* Page3V1ViewController.xib */; };
+		18F80F8E27EEDF7D00A402C2 /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F8D27EEDF7D00A402C2 /* LoginModule.swift */; };
+		18F80F9127EEE10F00A402C2 /* H1001Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9027EEE10F00A402C2 /* H1001Module.swift */; };
+		18F80F9327EEE11900A402C2 /* H2001Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9227EEE11900A402C2 /* H2001Module.swift */; };
+		18F80F9527EEE12900A402C2 /* HCommonModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9427EEE12900A402C2 /* HCommonModule.swift */; };
+		18F80F9727EEE14000A402C2 /* DeviceProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9627EEE14000A402C2 /* DeviceProtocol.swift */; };
+		18F80F9A27EEF9D700A402C2 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9827EEF9D700A402C2 /* LoginViewController.swift */; };
+		18F80F9B27EEF9D700A402C2 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 18F80F9927EEF9D700A402C2 /* LoginViewController.xib */; };
+		18F80F9D27EEFA5600A402C2 /* LoginInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F9C27EEFA5600A402C2 /* LoginInfo.swift */; };
 		1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */; };
 		324C1DCAEBF9E63A58BFB5A9 /* Pods_AntBusDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0AF9D87B6E679051D1F104 /* Pods_AntBusDemoTests.framework */; };
 		411D6FB8415D2459FA1D3E47 /* Pods_AntBusDemo_AntBusDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B499F7EE3E6416344559CD79 /* Pods_AntBusDemo_AntBusDemoUITests.framework */; };
@@ -58,16 +56,14 @@
 		184C9039276530D500EF906A /* AntBusDemoTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AntBusDemoTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C903B276530D500EF906A /* AntBusDemoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBusDemoTests.swift; sourceTree = "<group>"; };
 		184C903D276530D500EF906A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V1_Module.swift; sourceTree = "<group>"; };
-		1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3_V2_Module.swift; sourceTree = "<group>"; };
-		1852C881271BFC220041DC68 /* IPage3Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPage3Module.swift; sourceTree = "<group>"; };
-		1852C884271BFE890041DC68 /* Page4Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page4Module.swift; sourceTree = "<group>"; };
-		1852C886271BFEF40041DC68 /* Page4ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page4ViewController.swift; sourceTree = "<group>"; };
-		1852C887271BFEF40041DC68 /* Page4ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page4ViewController.xib; sourceTree = "<group>"; };
-		1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3V2ViewController.swift; sourceTree = "<group>"; };
-		1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page3V2ViewController.xib; sourceTree = "<group>"; };
-		1852C890271C009C0041DC68 /* Page3V1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page3V1ViewController.swift; sourceTree = "<group>"; };
-		1852C891271C009C0041DC68 /* Page3V1ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page3V1ViewController.xib; sourceTree = "<group>"; };
+		18F80F8D27EEDF7D00A402C2 /* LoginModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginModule.swift; sourceTree = "<group>"; };
+		18F80F9027EEE10F00A402C2 /* H1001Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H1001Module.swift; sourceTree = "<group>"; };
+		18F80F9227EEE11900A402C2 /* H2001Module.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = H2001Module.swift; sourceTree = "<group>"; };
+		18F80F9427EEE12900A402C2 /* HCommonModule.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HCommonModule.swift; sourceTree = "<group>"; };
+		18F80F9627EEE14000A402C2 /* DeviceProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceProtocol.swift; sourceTree = "<group>"; };
+		18F80F9827EEF9D700A402C2 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		18F80F9927EEF9D700A402C2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		18F80F9C27EEFA5600A402C2 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
 		633D4A7625FA657A002967DB /* AntBusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntBusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D4A7925FA657A002967DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -145,44 +141,35 @@
 			path = AntBusDemoTests;
 			sourceTree = "<group>";
 		};
-		1852C87A271BFAB90041DC68 /* Page3_V1 */ = {
+		18F80F8827EEDF3C00A402C2 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
-				1852C87C271BFB070041DC68 /* Page3_V1_Module.swift */,
-				1852C890271C009C0041DC68 /* Page3V1ViewController.swift */,
-				1852C891271C009C0041DC68 /* Page3V1ViewController.xib */,
+				18F80F8F27EEE0FB00A402C2 /* Devices */,
+				18F80F8927EEDF4500A402C2 /* Login */,
 			);
-			path = Page3_V1;
+			path = Modules;
 			sourceTree = "<group>";
 		};
-		1852C87B271BFACD0041DC68 /* Page3_V2 */ = {
+		18F80F8927EEDF4500A402C2 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				1852C87E271BFB490041DC68 /* Page3_V2_Module.swift */,
-				1852C88A271C007B0041DC68 /* Page3V2ViewController.swift */,
-				1852C88B271C007B0041DC68 /* Page3V2ViewController.xib */,
+				18F80F9C27EEFA5600A402C2 /* LoginInfo.swift */,
+				18F80F8D27EEDF7D00A402C2 /* LoginModule.swift */,
+				18F80F9827EEF9D700A402C2 /* LoginViewController.swift */,
+				18F80F9927EEF9D700A402C2 /* LoginViewController.xib */,
 			);
-			path = Page3_V2;
+			path = Login;
 			sourceTree = "<group>";
 		};
-		1852C880271BFC0B0041DC68 /* Page3 */ = {
+		18F80F8F27EEE0FB00A402C2 /* Devices */ = {
 			isa = PBXGroup;
 			children = (
-				1852C87B271BFACD0041DC68 /* Page3_V2 */,
-				1852C87A271BFAB90041DC68 /* Page3_V1 */,
-				1852C881271BFC220041DC68 /* IPage3Module.swift */,
+				18F80F9027EEE10F00A402C2 /* H1001Module.swift */,
+				18F80F9227EEE11900A402C2 /* H2001Module.swift */,
+				18F80F9427EEE12900A402C2 /* HCommonModule.swift */,
+				18F80F9627EEE14000A402C2 /* DeviceProtocol.swift */,
 			);
-			path = Page3;
-			sourceTree = "<group>";
-		};
-		1852C883271BFE780041DC68 /* Page4 */ = {
-			isa = PBXGroup;
-			children = (
-				1852C884271BFE890041DC68 /* Page4Module.swift */,
-				1852C886271BFEF40041DC68 /* Page4ViewController.swift */,
-				1852C887271BFEF40041DC68 /* Page4ViewController.xib */,
-			);
-			path = Page4;
+			path = Devices;
 			sourceTree = "<group>";
 		};
 		633D4A6D25FA657A002967DB = {
@@ -211,12 +198,11 @@
 			isa = PBXGroup;
 			children = (
 				633D4A7725FA657A002967DB /* Products */,
-				1852C883271BFE780041DC68 /* Page4 */,
-				1852C880271BFC0B0041DC68 /* Page3 */,
 				633D4A9725FA659A002967DB /* FirstPage */,
 				633D4A9325FA659A002967DB /* SecondPage */,
 				633D4A9525FA659A002967DB /* TabBar */,
 				633D4A7925FA657A002967DB /* AppDelegate.swift */,
+				18F80F8827EEDF3C00A402C2 /* Modules */,
 				633D4A7D25FA657A002967DB /* ViewController.swift */,
 				1823187026737AEE006E4800 /* antbus_demo_modules.plist */,
 				633D4A7F25FA657A002967DB /* Main.storyboard */,
@@ -387,11 +373,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1852C893271C009C0041DC68 /* Page3V1ViewController.xib in Resources */,
-				1852C889271BFEF40041DC68 /* Page4ViewController.xib in Resources */,
+				18F80F9B27EEF9D700A402C2 /* LoginViewController.xib in Resources */,
 				1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */,
 				633D4A8625FA657D002967DB /* LaunchScreen.storyboard in Resources */,
-				1852C88D271C007B0041DC68 /* Page3V2ViewController.xib in Resources */,
 				633D4A8325FA657D002967DB /* Assets.xcassets in Resources */,
 				633D4A8125FA657A002967DB /* Main.storyboard in Resources */,
 			);
@@ -540,16 +524,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1852C892271C009C0041DC68 /* Page3V1ViewController.swift in Sources */,
+				18F80F9D27EEFA5600A402C2 /* LoginInfo.swift in Sources */,
+				18F80F9A27EEF9D700A402C2 /* LoginViewController.swift in Sources */,
+				18F80F9527EEE12900A402C2 /* HCommonModule.swift in Sources */,
 				633D4A9E25FA659A002967DB /* TabBarViewController.swift in Sources */,
-				1852C885271BFE890041DC68 /* Page4Module.swift in Sources */,
-				1852C888271BFEF40041DC68 /* Page4ViewController.swift in Sources */,
 				633D4A7E25FA657A002967DB /* ViewController.swift in Sources */,
-				1852C882271BFC220041DC68 /* IPage3Module.swift in Sources */,
-				1852C88C271C007B0041DC68 /* Page3V2ViewController.swift in Sources */,
-				1852C87F271BFB490041DC68 /* Page3_V2_Module.swift in Sources */,
+				18F80F8E27EEDF7D00A402C2 /* LoginModule.swift in Sources */,
+				18F80F9727EEE14000A402C2 /* DeviceProtocol.swift in Sources */,
+				18F80F9327EEE11900A402C2 /* H2001Module.swift in Sources */,
+				18F80F9127EEE10F00A402C2 /* H1001Module.swift in Sources */,
 				633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */,
-				1852C87D271BFB070041DC68 /* Page3_V1_Module.swift in Sources */,
 				633D4A9D25FA659A002967DB /* SecondPageViewController.swift in Sources */,
 				633D4A9F25FA659A002967DB /* FirstPageViewController.swift in Sources */,
 			);

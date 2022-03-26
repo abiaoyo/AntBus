@@ -1,4 +1,2 @@
 ${PODS_ROOT}/Target Support Files/Pods-AntBusDemo-AntBusDemoUITests/Pods-AntBusDemo-AntBusDemoUITests-frameworks.sh
 ${BUILT_PRODUCTS_DIR}/AntBus/AntBus.framework
-${BUILT_PRODUCTS_DIR}/CommonModule/CommonModule.framework
-${BUILT_PRODUCTS_DIR}/LoginModule/LoginModule.framework

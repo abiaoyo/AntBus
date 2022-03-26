@@ -1,6 +1,0 @@
-use_frameworks!
-target 'LoginModule_Tests' do
-  pod 'LoginModule', :path => '../'
-  
-  
-end

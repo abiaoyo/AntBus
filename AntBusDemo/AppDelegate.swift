@@ -6,7 +6,6 @@
 //
 
 import UIKit
-import CommonModule
 import AntBus
 
 @main
@@ -15,6 +14,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var window: UIWindow?
     
     func registerModules(){
+        
+        AntBusServiceI<LoginModule>.single.register(LoginModule.init())
+        
+        let h1001Module = H1001Module.init()
+        let h2001Module = H2001Module.init()
+        let hCommonModule = HCommonModule.init()
+        
+        AntBusServiceI<DeviceProtocol>.multi.register(h1001Module.supportSkus(), h1001Module)
+        AntBusServiceI<DeviceProtocol>.multi.register(h2001Module.supportSkus(), h2001Module)
+        AntBusServiceI<DeviceProtocol>.multi.register(hCommonModule.supportSkus(), hCommonModule)
+        
+        AntBusService.multi(DeviceProtocol.self).register(hCommonModule.supportSkus(), hCommonModule)
+        
         if let modules:NSArray = NSArray.init(contentsOfFile: Bundle.main.path(forResource: "antbus_demo_modules", ofType: "plist")!) {
             for module in modules {
                 if let moduleItem:Dictionary<String,String> = module as? Dictionary<String, String> {
@@ -31,9 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("error: \(name)")
                             continue
                         }
-                        if let ibm:IBaseModule.Type = moduleType as? IBaseModule.Type {
-                            ibm.moduleInit()
-                        }
+//                        if let ibm:IBaseModule.Type = moduleType as? IBaseModule.Type {
+//                            ibm.moduleInit()
+//                        }
                     }
                 }
             }

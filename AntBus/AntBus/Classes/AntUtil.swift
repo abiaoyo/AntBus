@@ -1,18 +1,11 @@
-//
-//  AntBus+.swift
-//  AntBus
-//
-//  Created by abiaoyo
-//
-
 import Foundation
 
 struct DynamicAlias {
     var name:String!
-    var interface:Any!
-    static func createDynamicAlias(_ group:String,interface:Any) -> DynamicAlias{
+    var type:Any!
+    static func createDynamicAlias(_ group:String,type:Any) -> DynamicAlias{
         let name = "\(group)_\(arc4random()%1000)_\(arc4random()%1000)"
-        return DynamicAlias.init(name: name, interface: interface)
+        return DynamicAlias.init(name: name, type: type)
     }
 }
 
@@ -20,20 +13,20 @@ struct DynamicAliasUtil {
     
     private static var aliasGroups = Dictionary<String,Array<DynamicAlias>>.init()
     
-    static func getAliasName<I:Any>(_ interface:I.Type) -> String {
-        let groupKey = "\(interface)"
+    static func getAliasName<T:Any>(_ type:T.Type) -> String {
+        let groupKey = "\(type)"
         
         if let aliasArray = aliasGroups[groupKey] {
             for alias in aliasArray {
-                if interface == alias.interface as? Any.Type{
+                if type == alias.type as? Any.Type{
                     return alias.name
                 }
             }
-            let alias = DynamicAlias.createDynamicAlias(groupKey, interface: interface)
+            let alias = DynamicAlias.createDynamicAlias(groupKey, type: type)
             aliasGroups[groupKey]?.append(alias)
             return alias.name
         }else{
-            let alias = DynamicAlias.createDynamicAlias(groupKey, interface: interface)
+            let alias = DynamicAlias.createDynamicAlias(groupKey, type: type)
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
