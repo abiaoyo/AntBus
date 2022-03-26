@@ -2,7 +2,6 @@
 //  AppDelegate.swift
 //  AntBusDemo
 //
-//  Created by abiaoyo on 2021/3/5.
 //
 
 import UIKit

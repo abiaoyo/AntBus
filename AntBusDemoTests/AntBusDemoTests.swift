@@ -2,7 +2,6 @@
 //  AntBusDemoTests.swift
 //  AntBusDemoTests
 //
-//  Created by abiaoyo on 2021/12/12.
 //
 
 import XCTest
