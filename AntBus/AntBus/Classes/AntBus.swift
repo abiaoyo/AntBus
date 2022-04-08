@@ -1,7 +1,74 @@
 import Foundation
 
-public typealias AntBusResult = (success:Bool,data:Any?)
+public typealias AntBusResult = (success:Bool,value:Any?)
 public typealias AntBusResultBlock = (_ data:Any?) -> Void
+public typealias AntBusDataHandler = () -> Any?
+
+//MARK: - AntBusData 共享 - 用于数据共享 - 临时存储
+final public class AntBusData{
+    
+    static private var keyOwnerMap = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
+    static private var ownerHandlersMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
+    
+    private func clearOldOwner(_ key:String){
+        if let oldOwner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
+            if let keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: oldOwner) {
+                keyHandlerMap.removeObject(forKey: key as NSString?)
+            }
+        }
+    }
+    
+    private func getHandler(_ key: String) -> AntBusDataHandler?{
+        if let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
+            if let keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner) {
+                if let handler:AntBusDataHandler = keyHandlerMap.object(forKey: key as NSString) as? AntBusDataHandler {
+                    return handler
+                }
+            }
+        }
+        return nil
+    }
+    
+    // **** handler:AntBusDataHandler! ****
+    public func register(_ key:String,owner:AnyObject,handler:AntBusDataHandler!){
+        self.clearOldOwner(key)
+        AntBusData.keyOwnerMap.setObject(owner, forKey: key as NSString)
+        var keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner)
+        if keyHandlerMap == nil {
+            keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
+        }
+        keyHandlerMap?.setObject(handler as AnyObject, forKey: key as NSString)
+        
+        AntBusData.ownerHandlersMap.setValue(keyHandlerMap,forKey:owner)
+        AntBusDealloc.installDeallocHook(to: owner, proKey: "AntBusData", hkey: key) { hkeys in
+            AntBusData.keyOwnerMap.removeObject(forKey: key as NSString)
+        }
+    }
+
+    public func canCall(_ key:String) -> Bool {
+        if let _:AntBusDataHandler = self.getHandler(key) {
+            return true
+        }
+        return false
+    }
+    
+    public func call(_ key:String) -> AntBusResult{
+        if let handler:AntBusDataHandler = self.getHandler(key) {
+            let data:Any? = handler()
+            return (success:true, value:data)
+        }
+        return (success:false, value:nil)
+    }
+    
+    public func remove(_ key:String){
+        self.clearOldOwner(key)
+    }
+    
+    public func removeAll(){
+        AntBusData.keyOwnerMap.removeAllObjects()
+        AntBusData.ownerHandlersMap.removeAll()
+    }
+}
 
 //MARK: - AntBusNotification 通知 - 自定义的一个通知功能
 final public class AntBusNotification{
@@ -80,5 +147,6 @@ final public class AntBusNotification{
 }
 
 final public class AntBus {
+    public static var data = AntBusData()
     public static var notification = AntBusNotification()
 }
