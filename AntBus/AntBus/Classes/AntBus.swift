@@ -29,8 +29,7 @@ final public class AntBusData{
         return nil
     }
     
-    // **** handler:AntBusDataHandler! ****
-    public func register(_ key:String,owner:AnyObject,handler:AntBusDataHandler!){
+    public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusDataHandler){
         self.clearOldOwner(key)
         AntBusData.keyOwnerMap.setObject(owner, forKey: key as NSString)
         var keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner)
@@ -76,7 +75,7 @@ final public class AntBusNotification{
     private static var ownerContainer = Dictionary<String,NSHashTable<AnyObject>>.init()
     private static var handlerContainer = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
 
-    public func register(_ key:String,owner:AnyObject,handler:AntBusResultBlock!){
+    public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusResultBlock){
         var ownersTable = AntBusNotification.ownerContainer[key]
         if(ownersTable == nil){
             ownersTable = NSHashTable<AnyObject>.weakObjects();
