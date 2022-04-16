@@ -12,25 +12,19 @@ final public class AntBusData{
     
     private func clearOldOwner(_ key:String){
         if let oldOwner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
-            if let keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: oldOwner) {
-                keyHandlerMap.removeObject(forKey: key as NSString?)
-            }
+            AntBusData.ownerHandlersMap.value(forKey: oldOwner)?.removeObject(forKey: key as NSString?)
         }
     }
     
     private func getHandler(_ key: String) -> AntBusDataHandler?{
         if let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
-            if let keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner) {
-                if let handler:AntBusDataHandler = keyHandlerMap.object(forKey: key as NSString) as? AntBusDataHandler {
-                    return handler
-                }
-            }
+            return AntBusData.ownerHandlersMap.value(forKey: owner)?.object(forKey: key as NSString) as? AntBusDataHandler
         }
         return nil
     }
     
     public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusDataHandler){
-        self.clearOldOwner(key)
+        clearOldOwner(key)
         AntBusData.keyOwnerMap.setObject(owner, forKey: key as NSString)
         var keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner)
         if keyHandlerMap == nil {
@@ -45,22 +39,18 @@ final public class AntBusData{
     }
 
     public func canCall(_ key:String) -> Bool {
-        if let _:AntBusDataHandler = self.getHandler(key) {
-            return true
-        }
-        return false
+        return getHandler(key) != nil
     }
     
     public func call(_ key:String) -> AntBusResult{
-        if let handler:AntBusDataHandler = self.getHandler(key) {
-            let data:Any? = handler()
-            return (success:true, value:data)
+        if let handler = getHandler(key) {
+            return (success:true, value:handler())
         }
         return (success:false, value:nil)
     }
     
     public func remove(_ key:String){
-        self.clearOldOwner(key)
+        clearOldOwner(key)
     }
     
     public func removeAll(){
@@ -102,34 +92,24 @@ final public class AntBusNotification{
     public func post(_ key:String,data:Any?){
         if let ownersTable = AntBusNotification.ownerContainer[key] {
             for owner in ownersTable.allObjects {
-                if let keyHandlerMap:NSMapTable<NSString,AnyObject> = AntBusNotification.handlerContainer.value(forKey:owner) {
-                    if let handler:AntBusResultBlock = keyHandlerMap.object(forKey:key as NSString) as? AntBusResultBlock {
-                        handler(data)
-                    }
-                }
+                (AntBusNotification.handlerContainer.value(forKey:owner)?.object(forKey:key as NSString) as? AntBusResultBlock)?(data)
             }
         }
     }
     
     public func post(_ key:String){
-        self.post(key, data: nil)
+        post(key, data: nil)
     }
 
     public func remove(_ key:String,owner:AnyObject){
-        if let ownersTable = AntBusNotification.ownerContainer[key] {
-            ownersTable.remove(owner)
-        }
-        if let keyHandlerMap = AntBusNotification.handlerContainer.value(forKey:owner) {
-            keyHandlerMap.removeObject(forKey:key as NSString?)
-        }
+        AntBusNotification.ownerContainer[key]?.remove(owner)
+        AntBusNotification.handlerContainer.value(forKey:owner)?.removeObject(forKey: key as NSString?)
     }
     
     public func remove(_ key:String){
         if let ownersTable = AntBusNotification.ownerContainer[key] {
-            for owner in ownersTable.allObjects {
-                if let keyHandlerMap = AntBusNotification.handlerContainer.value(forKey:owner) {
-                    keyHandlerMap.removeObject(forKey:key as NSString?)
-                }
+            ownersTable.allObjects.forEach { owner in
+                AntBusNotification.handlerContainer.value(forKey:owner)?.removeObject(forKey: key as NSString?)
             }
             ownersTable.removeAllObjects()
         }

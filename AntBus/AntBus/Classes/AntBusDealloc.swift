@@ -8,16 +8,16 @@ private final class _AntBusDeallocHook {
     var type:String?
     
     func add(_ hkey:String) {
-        self.hkeys.insert(hkey)
+        hkeys.insert(hkey)
     }
     
     func remove(_ hkey:String) {
-        self.hkeys.remove(hkey)
+        hkeys.remove(hkey)
     }
     
     deinit {
         print("\n--- deinit _AntBusDeallocHook: \n.type:\(type ?? "") \t \n.hkeys:\(hkeys) \n")
-        self.deallocHandler?(self.hkeys)
+        deallocHandler?(hkeys)
     }
 }
 

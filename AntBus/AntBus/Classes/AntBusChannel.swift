@@ -50,12 +50,12 @@ private class _AntBusCMC {
     static var container = NSMutableDictionary.init()
     
     static func register(_ type:String, _ key:String, _ responder:AnyObject) {
-        var typeContainer:NSMutableDictionary? = container[type] as? NSMutableDictionary
+        var typeContainer = container[type] as? NSMutableDictionary
         if typeContainer == nil {
             typeContainer = NSMutableDictionary.init()
             container[type] = typeContainer
         }
-        var keyContainer:NSHashTable<AnyObject>? = typeContainer![key] as? NSHashTable<AnyObject>
+        var keyContainer = typeContainer![key] as? NSHashTable<AnyObject>
         if keyContainer == nil {
             keyContainer = NSHashTable<AnyObject>.weakObjects()
             typeContainer![key] = keyContainer
@@ -63,9 +63,9 @@ private class _AntBusCMC {
         keyContainer!.add(responder)
         
         AntBusDealloc.installDeallocHook(to: responder, proKey: "_AntBusCMC", hkey: key) { hkeys in
-            if let typeContainer:NSMutableDictionary = container[type] as? NSMutableDictionary {
+            if let typeContainer = container[type] as? NSMutableDictionary {
                 for hkey in hkeys {
-                    if let keyContainer:NSHashTable<AnyObject> = typeContainer[hkey] as? NSHashTable<AnyObject> {
+                    if let keyContainer = typeContainer[hkey] as? NSHashTable<AnyObject> {
                         if keyContainer.count == 0 {
                             typeContainer.removeObject(forKey: hkey)
                         }
@@ -74,39 +74,31 @@ private class _AntBusCMC {
                     }
                 }
                 if typeContainer.allValues.count == 0 {
-                    typeContainer.removeObject(forKey: type)
-                }else{
-                    typeContainer.removeObject(forKey: type)
+                    container.removeObject(forKey: type)
                 }
             }
         }
     }
     static func register(_ type:String, _ key:String, _ responders:[AnyObject]) {
-        for responder in responders {
-            self.register(type, key, responder)
+        responders.forEach { resp in
+            register(type, key, resp)
         }
     }
     static func register(_ type:String, _ keys:[String], _ responder:AnyObject) {
-        for key in keys {
-            self.register(type, key, responder)
+        keys.forEach { key in
+            register(type, key, responder)
         }
     }
     
-    
     static func responders(_ type:String, _ key:String) -> [AnyObject]? {
-        if let typeContainer:NSMutableDictionary = container[type] as? NSMutableDictionary {
-            if let keyContainer:NSHashTable<AnyObject> = typeContainer[key] as? NSHashTable<AnyObject> {
-                return keyContainer.allObjects
-            }
-        }
-        return nil
+        return ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
     }
     
     static func responders(_ type:String) -> [AnyObject]? {
-        if let typeContainer:NSMutableDictionary = container[type] as? NSMutableDictionary {
+        if let typeContainer = container[type] as? NSMutableDictionary {
             let rs = NSMutableSet.init()
-            for key in typeContainer.allKeys {
-                if let keyContainer:NSHashTable<AnyObject> = typeContainer[key] as? NSHashTable<AnyObject> {
+            typeContainer.allKeys.forEach { key in
+                if let keyContainer = typeContainer[key] as? NSHashTable<AnyObject> {
                     rs.addObjects(from: keyContainer.allObjects)
                 }
             }
@@ -116,34 +108,28 @@ private class _AntBusCMC {
     }
     
     static func remove(_ type:String, _ key:String,_ responder:AnyObject) {
-        if let typeContainer:NSMutableDictionary = container[type] as? NSMutableDictionary {
-            if let keyContainer:NSHashTable<AnyObject> = typeContainer[key] as? NSHashTable<AnyObject> {
-                keyContainer.remove(responder)
-            }
-        }
+        ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.remove(responder)
     }
     
     static func remove(_ type:String, _ keys:[String],_ responder:AnyObject) {
-        for key in keys {
-            self.remove(type, key, responder)
+        keys.forEach { key in
+            remove(type, key, responder)
         }
     }
     
     static func remove(_ type:String, _ key:String,_ responders:[AnyObject]) {
-        for responder in responders {
-            self.remove(type, key, responder)
+        responders.forEach { resp in
+            remove(type, key, resp)
         }
     }
     
     static func remove(_ type:String, _ key:String) {
-        if let typeContainer:NSMutableDictionary = container[type] as? NSMutableDictionary {
-            typeContainer.removeObject(forKey: key)
-        }
+        (container[type] as? NSMutableDictionary)?.removeObject(forKey: key)
     }
     
     static func remove(_ type:String, _ keys:[String]) {
-        for key in keys {
-            self.remove(type, key)
+        keys.forEach { key in
+            remove(type, key)
         }
     }
     

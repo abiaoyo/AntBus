@@ -66,13 +66,13 @@ private class _AntBusSMC{
     
     static func register(_ type:String, _ keys:[String], _ responder:AntBusSMResp){
         for key in keys {
-            self.register(type, key, responder)
+            register(type, key, responder)
         }
     }
     
     static func register(_ type:String, _ key:String, _ responders:[AntBusSMResp]){
         for responder in responders {
-            self.register(type, key, responder)
+            register(type, key, responder)
         }
     }
     

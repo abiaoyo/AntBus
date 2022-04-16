@@ -22,6 +22,7 @@ struct DynamicAliasUtil {
                     return alias.name
                 }
             }
+            
             let alias = DynamicAlias.createDynamicAlias(groupKey, type: type)
             aliasGroups[groupKey]?.append(alias)
             return alias.name
