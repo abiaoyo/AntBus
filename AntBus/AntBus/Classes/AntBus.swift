@@ -33,7 +33,7 @@ final public class AntBusData{
         keyHandlerMap?.setObject(handler as AnyObject, forKey: key as NSString)
         
         AntBusData.ownerHandlersMap.setValue(keyHandlerMap,forKey:owner)
-        AntBusDealloc.installDeallocHook(to: owner, proKey: "AntBusData", hkey: key) { hkeys in
+        AntBusDeallocHook.shared.installDeallocHook(for: owner, propertyKey: "AntBusData", handlerKey: key) { hkeys in
             AntBusData.keyOwnerMap.removeObject(forKey: key as NSString)
         }
     }
@@ -80,7 +80,7 @@ final public class AntBusNotification{
         }
         keyHandlerMap!.setObject(handler as AnyObject,forKey:key as NSString)
         
-        AntBusDealloc.installDeallocHook(to: owner, proKey: "AntBusNotification", hkey: key) { hkeys in
+        AntBusDeallocHook.shared.installDeallocHook(for: owner, propertyKey: "AntBusNotification", handlerKey: key) { hkeys in
             for hkey in hkeys {
                 if AntBusNotification.ownerContainer[hkey]?.allObjects.count == 0 {
                     AntBusNotification.ownerContainer.removeValue(forKey: hkey)
@@ -126,6 +126,8 @@ final public class AntBusNotification{
 }
 
 final public class AntBus {
-    public static var data = AntBusData()
-    public static var notification = AntBusNotification()
+    public static let data = AntBusData()
+    public static let notification = AntBusNotification()
+    public static let deallocHook = AntBusDeallocHook.shared
+    public static let listener = AntBusListener.init()
 }

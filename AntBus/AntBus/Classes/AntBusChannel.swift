@@ -2,10 +2,11 @@ import Foundation
 
 //Single
 private class _AntBusCSC {
-    static var container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
+    static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
+    
     static func register(_ key:String, _ responder:AnyObject) {
         container.setObject(responder, forKey: key as NSString)
-        AntBusDealloc.installDeallocHook(to: responder, proKey: "_AntBusCSC", hkey: key) { hkeys in
+        AntBusDeallocHook.shared.installDeallocHook(for: responder, propertyKey: "_AntBusCSC", handlerKey: key) { hkeys in
             for hkey in hkeys {
                 guard let _ = container.object(forKey: hkey as NSString) else {
                     container.removeObject(forKey: hkey as NSString)
@@ -47,7 +48,7 @@ final public class _AntBusCS<R: AnyObject> {
 
 // Multi
 private class _AntBusCMC {
-    static var container = NSMutableDictionary.init()
+    static let container = NSMutableDictionary.init()
     
     static func register(_ type:String, _ key:String, _ responder:AnyObject) {
         var typeContainer = container[type] as? NSMutableDictionary
@@ -62,7 +63,7 @@ private class _AntBusCMC {
         }
         keyContainer!.add(responder)
         
-        AntBusDealloc.installDeallocHook(to: responder, proKey: "_AntBusCMC", hkey: key) { hkeys in
+        AntBusDeallocHook.shared.installDeallocHook(for: responder, propertyKey: "_AntBusCMC", handlerKey: key) { hkeys in
             if let typeContainer = container[type] as? NSMutableDictionary {
                 for hkey in hkeys {
                     if let keyContainer = typeContainer[hkey] as? NSHashTable<AnyObject> {
