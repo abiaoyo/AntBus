@@ -24,7 +24,6 @@ public class OCAntBusData:NSObject{
     }
 }
 
-//MARK: - AntBusNotification 通知 - 自定义的一个通知功能
 @objcMembers
 public class OCAntBusNoti: NSObject{
     
