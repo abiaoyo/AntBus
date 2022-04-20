@@ -4,6 +4,8 @@ public typealias AntBusListenerHandler = (_ oldVal:Any?, _ newVal:Any?) -> Void
 
 final public class AntBusListener {
     
+    public static let shared = AntBusListener.init()
+    
     private var AntBusListener_container_key: Void?
     
     public func listening(keyPath:String, for object:AnyObject, handler:AntBusListenerHandler!) {

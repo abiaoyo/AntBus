@@ -13,9 +13,8 @@ struct DynamicAliasUtil {
     
     private static var aliasGroups = Dictionary<String,Array<DynamicAlias>>.init()
     
-    static func getAliasName<T:Any>(_ type:T.Type) -> String {
+    private static func _getAliasNameWithType(type:Any.Type) -> String {
         let groupKey = "\(type)"
-        
         if let aliasArray = aliasGroups[groupKey] {
             for alias in aliasArray {
                 if type == alias.type as? Any.Type{
@@ -31,5 +30,17 @@ struct DynamicAliasUtil {
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
+    }
+    
+    static func getAliasNameWithObject(obj:AnyObject) -> String {
+        return _getAliasNameWithType(type: type(of: obj))
+    }
+    
+    static func getAliasNameWithType(type:AnyObject.Type) -> String {
+        return _getAliasNameWithType(type: type)
+    }
+    
+    static func getAliasName<T:Any>(_ type:T.Type) -> String {
+        return _getAliasNameWithType(type: type)
     }
 }

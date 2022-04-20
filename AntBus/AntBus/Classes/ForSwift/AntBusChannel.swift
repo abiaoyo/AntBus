@@ -1,7 +1,7 @@
 import Foundation
 
 //Single
-private class _AntBusCSC {
+class _AntBusCSC {
     static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
     
     static func register(_ key:String, _ responder:AnyObject) {
@@ -47,7 +47,7 @@ final public class _AntBusCS<R: AnyObject> {
 }
 
 // Multi
-private class _AntBusCMC {
+class _AntBusCMC {
     static let container = NSMutableDictionary.init()
     
     static func register(_ type:String, _ key:String, _ responder:AnyObject) {

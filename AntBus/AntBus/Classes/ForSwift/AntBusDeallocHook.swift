@@ -1,6 +1,6 @@
 import Foundation
 
-public typealias AntBusDeallocHandler = (Set<String>) -> Void
+public typealias AntBusDeallocHandler = (_ handleKeys:Set<String>) -> Void
 
 private final class _AntBusDeallocHook {
     private var handlerKeys = Set<String>.init()
@@ -27,7 +27,7 @@ final public class AntBusDeallocHook {
     
     public static let shared = AntBusDeallocHook.init()
     
-    private init() {}
+    private init(){}
     
     private var AntBusDeallocHookKey: Void?
     

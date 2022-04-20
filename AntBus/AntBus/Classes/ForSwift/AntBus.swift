@@ -1,6 +1,6 @@
 import Foundation
 
-public typealias AntBusResult = (success:Bool,value:Any?)
+public typealias AntBusResult = (success:Bool, value:Any?)
 public typealias AntBusResultBlock = (_ data:Any?) -> Void
 public typealias AntBusDataHandler = () -> Any?
 
@@ -129,5 +129,5 @@ final public class AntBus {
     public static let data = AntBusData()
     public static let notification = AntBusNotification()
     public static let deallocHook = AntBusDeallocHook.shared
-    public static let listener = AntBusListener.init()
+    public static let listener = AntBusListener.shared
 }

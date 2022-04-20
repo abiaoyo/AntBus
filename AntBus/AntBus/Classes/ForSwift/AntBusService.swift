@@ -1,7 +1,7 @@
 import Foundation
 
 // Single
-private class _AntBusSSC {
+class _AntBusSSC {
     static var container = Dictionary<String,Any>.init()
     static func register(_ key:String, _ responder:Any) {
         container[key] = responder
@@ -46,7 +46,7 @@ final public class AntBusSMResp{
 }
 
 
-private class _AntBusSMC{
+class _AntBusSMC{
     /// <aliasName,<key,[responder]>>
     static var container = Dictionary<String,Dictionary<String,Array<AntBusSMResp>>>.init()
     
