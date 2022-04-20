@@ -4,7 +4,7 @@ struct DynamicAlias {
     var name:String!
     var type:Any!
     static func createDynamicAlias(_ group:String,type:Any) -> DynamicAlias{
-        let name = "\(group)_\(arc4random()%1000)_\(arc4random()%1000)"
+        let name = "\(group)_\(Int(Date().timeIntervalSince1970)%10000)_\(arc4random()%1000)"
         return DynamicAlias.init(name: name, type: type)
     }
 }
