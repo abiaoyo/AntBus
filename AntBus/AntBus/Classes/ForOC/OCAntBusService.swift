@@ -46,25 +46,25 @@ public class _OCAntBusServiceSM: NSObject {
     public func register(interface:Protocol, key:String, responder:AnyObject) {
         if conformsInterface(interface: interface, responder: responder) {
             let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
-            _AntBusSMC.register(aliasName, key, AntBusSMResp.init(responder))
+            _AntBusSMC.register(aliasName, key, responder)
         }
     }
     public func register(clazz:AnyObject.Type, key:String, responder:AnyObject) {
         if isKindOfClazz(clazz: clazz, responder: responder) {
             let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
-            _AntBusSMC.register(aliasName, key, AntBusSMResp.init(responder))
+            _AntBusSMC.register(aliasName, key, responder)
         }
     }
     public func register(interface:Protocol, keys:[String], responder:AnyObject) {
         if conformsInterface(interface: interface, responder: responder) {
             let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
-            _AntBusSMC.register(aliasName, keys, AntBusSMResp.init(responder))
+            _AntBusSMC.register(aliasName, keys, responder)
         }
     }
     public func register(clazz:AnyObject.Type, keys:[String], responder:AnyObject) {
         if isKindOfClazz(clazz: clazz, responder: responder) {
             let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
-            _AntBusSMC.register(aliasName, keys, AntBusSMResp.init(responder))
+            _AntBusSMC.register(aliasName, keys, responder)
         }
     }
     public func register(interface:Protocol, key:String, responders:NSArray) {
@@ -72,7 +72,7 @@ public class _OCAntBusServiceSM: NSObject {
             let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
             for resp in _resps {
                 if conformsInterface(interface: interface, responder: resp) {
-                    _AntBusSMC.register(aliasName, key, AntBusSMResp.init(resp))
+                    _AntBusSMC.register(aliasName, key, resp)
                 }
             }
         }
@@ -82,7 +82,7 @@ public class _OCAntBusServiceSM: NSObject {
             let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
             for resp in _resps {
                 if isKindOfClazz(clazz: clazz, responder: resp) {
-                    _AntBusSMC.register(aliasName, key, AntBusSMResp.init(resp))
+                    _AntBusSMC.register(aliasName, key, resp)
                 }
             }
         }
@@ -108,7 +108,7 @@ public class _OCAntBusServiceSM: NSObject {
     public func remove(interface:Protocol, key:String, responder:AnyObject){
         let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
         _AntBusSMC.remove(aliasName, key) { smResp in
-            if let resp:AnyObject = smResp.responder as AnyObject? {
+            if let resp:AnyObject = smResp as AnyObject? {
                 return resp === responder
             }
             return false
@@ -117,7 +117,7 @@ public class _OCAntBusServiceSM: NSObject {
     public func remove(clazz:AnyObject.Type, key:String, responder:AnyObject){
         let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
         _AntBusSMC.remove(aliasName, key) { smResp in
-            if let resp:AnyObject = smResp.responder as AnyObject? {
+            if let resp:AnyObject = smResp as AnyObject? {
                 return resp === responder
             }
             return false
@@ -127,7 +127,7 @@ public class _OCAntBusServiceSM: NSObject {
         let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
         for key in keys {
             _AntBusSMC.remove(aliasName, key) { smResp in
-                if let resp:AnyObject = smResp.responder as AnyObject? {
+                if let resp:AnyObject = smResp as AnyObject? {
                     return resp === responder
                 }
                 return false
@@ -139,7 +139,7 @@ public class _OCAntBusServiceSM: NSObject {
             let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
             for responder in _responders {
                 _AntBusSMC.remove(aliasName, key) { smResp in
-                    if let resp:AnyObject = smResp.responder as AnyObject? {
+                    if let resp:AnyObject = smResp as AnyObject? {
                         return resp === responder
                     }
                     return false

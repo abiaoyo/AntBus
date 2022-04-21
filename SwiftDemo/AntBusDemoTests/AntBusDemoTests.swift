@@ -46,7 +46,7 @@ protocol TService {
     func sName() -> String
 }
 
-struct TestServiceA: TService{
+struct TestServiceA: TService, Equatable, Hashable{
     var id: Int = 0
     func sName() -> String {
         return "TestServiceA"
@@ -68,8 +68,18 @@ class TestServiceLogin: TSLogin{
     func login() {
         print("TestServiceLogin.login()")
     }
-    
-    
+}
+
+protocol SkuModule {
+    var skus:[String] {get}
+}
+
+class PLC12Module: SkuModule {
+    var skus:[String] = ["H6143","H6144"]
+}
+
+class H6143Module: SkuModule {
+    var skus:[String] = ["H6143"]
 }
 
 
@@ -81,6 +91,58 @@ class AntBusDemoTests: XCTestCase {
 
     override func tearDownWithError() throws {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+    }
+    
+    func testInt() {
+        AntBusServiceI<Int>.single.register(10)
+        let n = AntBusServiceI<Int>.single.responder()
+        print("n=\(n)")
+    }
+    
+    func testModify() {
+        let plc12 = PLC12Module.init()
+        let h6143 = H6143Module.init()
+        
+        AntBusServiceI<SkuModule>.multi.register(plc12.skus, plc12)
+        AntBusServiceI<SkuModule>.multi.register(h6143.skus, h6143)
+        
+        let resp0 = AntBusServiceI<SkuModule>.multi.responders("H611A")
+        print("")
+        print("resp0: \(resp0)")
+        print("")
+        
+        let resp1 = AntBusServiceI<SkuModule>.multi.responders()
+        print("")
+        print("resp1: \(resp1)")
+        print("")
+        
+        let oldSkus = Set<String>.init(plc12.skus)
+        plc12.skus.append("H611A")
+        let newSkus = Set<String>.init(plc12.skus)
+        
+        let pj:Set<String> = newSkus.subtracting(oldSkus)
+        let pSkus:[String] = pj.compactMap({ $0 })
+        AntBusServiceI<SkuModule>.multi.register(pSkus, plc12)
+        
+        let resp2 = AntBusServiceI<SkuModule>.multi.responders("H6143")
+        print("")
+        print("resp2: \(resp2)")
+        print("")
+        
+        let resp3 = AntBusServiceI<SkuModule>.multi.responders("H6144")
+        print("")
+        print("resp3: \(resp3)")
+        print("")
+        
+        let resp4 = AntBusServiceI<SkuModule>.multi.responders("H611A")
+        print("")
+        print("resp4: \(resp4)")
+        print("")
+        
+        let resp5 = AntBusServiceI<SkuModule>.multi.responders()
+        print("")
+        print("resp5: \(resp5)")
+        print("")
     }
     
     func registerA() {
@@ -157,7 +219,7 @@ class AntBusDemoTests: XCTestCase {
         print("respA: \(respA)")
         print("respB: \(respB)")
         AntBusServiceI<TService>.multi.remove("TSA") { resp in
-            return (resp.responder as? TestServiceA)?.id == 200
+            return (resp as? TestServiceA)?.id == 200
         }
         let respAA = AntBusServiceI<TService>.multi.responders("TSA")
         let respBB = AntBusServiceI<TService>.multi.responders("TSB")

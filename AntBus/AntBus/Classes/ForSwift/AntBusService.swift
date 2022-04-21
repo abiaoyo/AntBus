@@ -38,19 +38,11 @@ final public class _AntBusSS<R: Any> {
 }
 
 // Multi
-final public class AntBusSMResp{
-    public private(set) var responder:Any!
-    public init(_ responder:Any) {
-        self.responder = responder
-    }
-}
-
-
 class _AntBusSMC{
     /// <aliasName,<key,[responder]>>
-    static var container = Dictionary<String,Dictionary<String,Array<AntBusSMResp>>>.init()
+    static var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
     
-    static func register(_ type:String, _ key:String, _ responder:AntBusSMResp){
+    static func register(_ type:String, _ key:String, _ responder:Any){
         if let _ = container[type] {
             if let _ = container[type]![key] {
                 container[type]![key]?.append(responder)
@@ -64,30 +56,30 @@ class _AntBusSMC{
         }
     }
     
-    static func register(_ type:String, _ keys:[String], _ responder:AntBusSMResp){
+    static func register(_ type:String, _ keys:[String], _ responder:Any){
         for key in keys {
             register(type, key, responder)
         }
     }
     
-    static func register(_ type:String, _ key:String, _ responders:[AntBusSMResp]){
+    static func register(_ type:String, _ key:String, _ responders:[Any]){
         for responder in responders {
             register(type, key, responder)
         }
     }
     
-    static func responders(_ type:String, _ key:String) -> [AntBusSMResp]? {
+    static func responders(_ type:String, _ key:String) -> [Any]? {
         return container[type]?[key]
     }
     
-    static func responders(_ type:String)  -> [AntBusSMResp]? {
+    static func responders(_ type:String)  -> [Any]? {
         let typeContainer = container[type]
         let results = typeContainer?.flatMap({ $0.value })
         let uniqueResults = NSMutableSet.init(array: results ?? [])
-        return uniqueResults.allObjects.compactMap({ $0 as? AntBusSMResp})
+        return uniqueResults.allObjects
     }
     
-    static func remove(_ type:String, _ key:String, where shouldBeRemoved: (AntBusSMResp) -> Bool) {
+    static func remove(_ type:String, _ key:String, where shouldBeRemoved: (Any) -> Bool) {
         container[type]?[key]?.removeAll(where: { r in
             return shouldBeRemoved(r)
         })
@@ -108,30 +100,30 @@ final public class _AntBusSM<R:Any> {
 
     public func register(_ key:String, _ responder:R){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, key, AntBusSMResp.init(responder))
+        _AntBusSMC.register(aliasName, key, responder)
     }
     
     public func register(_ keys:[String], _ responder:R){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, keys, AntBusSMResp.init(responder))
+        _AntBusSMC.register(aliasName, keys, responder)
     }
     
     public func register(_ key:String, _ responders:[R]){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, key, responders.compactMap({ AntBusSMResp.init($0) }))
+        _AntBusSMC.register(aliasName, key, responders)
     }
     
     public func responders(_ key:String) -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return _AntBusSMC.responders(aliasName, key)?.compactMap({ $0.responder as? R })
+        return _AntBusSMC.responders(aliasName, key)?.compactMap({ $0 as? R })
     }
     
     public func responders()  -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return _AntBusSMC.responders(aliasName)?.compactMap({ $0.responder as? R })
+        return _AntBusSMC.responders(aliasName)?.compactMap({ $0 as? R })
     }
     
-    public func remove(_ key:String, where shouldBeRemoved: (AntBusSMResp) -> Bool) {
+    public func remove(_ key:String, where shouldBeRemoved: (Any) -> Bool) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         _AntBusSMC.remove(aliasName, key, where: shouldBeRemoved)
     }

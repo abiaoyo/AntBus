@@ -5,6 +5,8 @@
 
 import UIKit
 import AntBus
+typealias ABS = AntBusService
+typealias ABSI = AntBusServiceI
 
 @objc protocol IFirstPageController {
     

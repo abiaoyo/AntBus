@@ -24,7 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AntBusServiceI<DeviceProtocol>.multi.register(h2001Module.supportSkus(), h2001Module)
         AntBusServiceI<DeviceProtocol>.multi.register(hCommonModule.supportSkus(), hCommonModule)
         
-        AntBusService.multi(DeviceProtocol.self).register(hCommonModule.supportSkus(), hCommonModule)
+//        AntBusService.multi(DeviceProtocol.self).register(hCommonModule.supportSkus(), hCommonModule)
         
 //        if let modules:NSArray = NSArray.init(contentsOfFile: Bundle.main.path(forResource: "antbus_demo_modules", ofType: "plist")!) {
 //            for module in modules {
