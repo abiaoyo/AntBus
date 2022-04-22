@@ -72,4 +72,12 @@ public class OCAntBus: NSObject {
             AntBus.printAliasName = newValue
         }
     }
+    public static var printDealloc:Bool {
+        get {
+            return AntBus.printDealloc
+        }
+        set {
+            AntBus.printDealloc = newValue
+        }
+    }
 }

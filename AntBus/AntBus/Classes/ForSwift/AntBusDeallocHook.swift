@@ -17,7 +17,9 @@ private final class _AntBusDeallocHook {
     }
     
     deinit {
-        print("\n--- deinit _AntBusDeallocHook --- \n.type:\(type ?? "") \t \n.propertyKey:\(propertyKey) \t \n.handlerKeys:\(handlerKeys) \n")
+        if AntBus.printDealloc {
+            print("\n--- deinit _AntBusDeallocHook --- \n.type:\(type ?? "") \t \n.propertyKey:\(propertyKey) \t \n.handlerKeys:\(handlerKeys) \n")
+        }
         handler?(handlerKeys)
     }
 }

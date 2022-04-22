@@ -131,4 +131,5 @@ final public class AntBus {
     public static let deallocHook = AntBusDeallocHook.shared
     public static let listener = AntBusListener.shared
     public static var printAliasName = false
+    public static var printDealloc = false
 }
