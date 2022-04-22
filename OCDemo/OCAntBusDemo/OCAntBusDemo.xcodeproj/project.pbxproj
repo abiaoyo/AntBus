@@ -19,6 +19,9 @@
 		532F374F280FCAB00043E6DF /* LoginService.m in Sources */ = {isa = PBXBuildFile; fileRef = 532F374E280FCAB00043E6DF /* LoginService.m */; };
 		532F3753280FCABC0043E6DF /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 532F3751280FCABC0043E6DF /* LoginViewController.m */; };
 		532F3754280FCABC0043E6DF /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 532F3752280FCABC0043E6DF /* LoginViewController.xib */; };
+		53AA053A281264CB00D8A988 /* Page2ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AA0538281264CB00D8A988 /* Page2ViewController.swift */; };
+		53AA053B281264CB00D8A988 /* Page2ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 53AA0539281264CB00D8A988 /* Page2ViewController.xib */; };
+		53AA05402812882100D8A988 /* ViewController2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53AA053F2812882100D8A988 /* ViewController2.swift */; };
 		760E13A63609B9FD9A60B93D /* Pods_OCAntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 14C20E0EFE09945CB8B5F6A3 /* Pods_OCAntBusDemo.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +50,9 @@
 		532F3751280FCABC0043E6DF /* LoginViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
 		532F3752280FCABC0043E6DF /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		532F3755280FCC660043E6DF /* ILogin.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ILogin.h; sourceTree = "<group>"; };
+		53AA0538281264CB00D8A988 /* Page2ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Page2ViewController.swift; sourceTree = "<group>"; };
+		53AA0539281264CB00D8A988 /* Page2ViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Page2ViewController.xib; sourceTree = "<group>"; };
+		53AA053F2812882100D8A988 /* ViewController2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController2.swift; sourceTree = "<group>"; };
 		D3F7187393281A9D5FE3D900 /* Pods-OCAntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-OCAntBusDemo.debug.xcconfig"; path = "Target Support Files/Pods-OCAntBusDemo/Pods-OCAntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -84,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				532F3727280FA20A0043E6DF /* AppDelegate.h */,
+				53AA0536281264B500D8A988 /* Page2 */,
 				532F374C280FCA9C0043E6DF /* Login */,
 				532F3744280FC18B0043E6DF /* Page1 */,
 				532F3728280FA20A0043E6DF /* AppDelegate.m */,
@@ -91,6 +98,7 @@
 				532F372B280FA20A0043E6DF /* SceneDelegate.m */,
 				532F372D280FA20A0043E6DF /* ViewController.h */,
 				532F372E280FA20A0043E6DF /* ViewController.m */,
+				53AA053F2812882100D8A988 /* ViewController2.swift */,
 				532F3743280FA4AD0043E6DF /* OCAntBusDemo-Bridging-Header.h */,
 				532F3730280FA20A0043E6DF /* Main.storyboard */,
 				532F3733280FA20A0043E6DF /* Assets.xcassets */,
@@ -122,6 +130,15 @@
 				532F3752280FCABC0043E6DF /* LoginViewController.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		53AA0536281264B500D8A988 /* Page2 */ = {
+			isa = PBXGroup;
+			children = (
+				53AA0538281264CB00D8A988 /* Page2ViewController.swift */,
+				53AA0539281264CB00D8A988 /* Page2ViewController.xib */,
+			);
+			path = Page2;
 			sourceTree = "<group>";
 		};
 		DF50BC0209FDCB1D5F15AE8F /* Frameworks */ = {
@@ -201,6 +218,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				53AA053B281264CB00D8A988 /* Page2ViewController.xib in Resources */,
 				532F3754280FCABC0043E6DF /* LoginViewController.xib in Resources */,
 				532F3737280FA20A0043E6DF /* LaunchScreen.storyboard in Resources */,
 				532F3749280FC1A40043E6DF /* Page1ViewController.xib in Resources */,
@@ -260,8 +278,10 @@
 			files = (
 				532F372F280FA20A0043E6DF /* ViewController.m in Sources */,
 				532F3748280FC1A40043E6DF /* Page1ViewController.m in Sources */,
+				53AA053A281264CB00D8A988 /* Page2ViewController.swift in Sources */,
 				532F3729280FA20A0043E6DF /* AppDelegate.m in Sources */,
 				532F374F280FCAB00043E6DF /* LoginService.m in Sources */,
+				53AA05402812882100D8A988 /* ViewController2.swift in Sources */,
 				532F3753280FCABC0043E6DF /* LoginViewController.m in Sources */,
 				532F373A280FA20A0043E6DF /* main.m in Sources */,
 				532F372C280FA20A0043E6DF /* SceneDelegate.m in Sources */,
@@ -426,6 +446,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.OCAntBusDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OCAntBusDemo/OCAntBusDemo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -458,6 +479,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.brownlee.OCAntBusDemo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "OCAntBusDemo/OCAntBusDemo-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

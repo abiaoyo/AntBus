@@ -3,27 +3,27 @@ import Foundation
 @objcMembers
 public class _OCAntBusChannelCS: NSObject {
     public func register(interface:Protocol, responder:AnyObject) {
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCSC.register(aliasName, responder)
     }
     public func register(clazz:AnyObject.Type, responder:AnyObject){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCSC.register(aliasName, responder)
     }
     public func responder(interface:Protocol) -> AnyObject?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         return _AntBusCSC.responder(aliasName)
     }
     public func responder(clazz:AnyObject.Type) -> AnyObject?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         return _AntBusCSC.responder(aliasName)
     }
     public func remove(interface:Protocol) {
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCSC.remove(aliasName)
     }
     public func remove(clazz:AnyObject.Type) {
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCSC.remove(aliasName)
     }
     public func removeAll() {
@@ -44,31 +44,31 @@ public class _OCAntBusChannelCM: NSObject {
     //-------
     public func register(interface:Protocol, key:String, responder:AnyObject) {
         if conformsInterface(interface: interface, responder: responder) {
-            let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+            let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
             _AntBusCMC.register(aliasName, key, responder)
         }
     }
     public func register(clazz:AnyObject.Type, key:String, responder:AnyObject) {
         if isKindOfClazz(clazz: clazz, responder: responder) {
-            let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+            let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
             _AntBusCMC.register(aliasName, key, responder)
         }
     }
     public func register(interface:Protocol, keys:[String], responder:AnyObject) {
         if conformsInterface(interface: interface, responder: responder) {
-            let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+            let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
             _AntBusCMC.register(aliasName, keys, responder)
         }
     }
     public func register(clazz:AnyObject.Type, keys:[String], responder:AnyObject) {
         if isKindOfClazz(clazz: clazz, responder: responder) {
-            let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+            let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
             _AntBusCMC.register(aliasName, keys, responder)
         }
     }
     public func register(interface:Protocol, key:String, responders:NSArray) {
         if let _resps = responders as Array<AnyObject>? {
-            let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+            let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
             for resp in _resps {
                 if conformsInterface(interface: interface, responder: resp) {
                     _AntBusCMC.register(aliasName, key, resp)
@@ -78,7 +78,7 @@ public class _OCAntBusChannelCM: NSObject {
     }
     public func register(clazz:AnyObject.Type, key:String, responders:NSArray) {
         if let _resps = responders as Array<AnyObject>? {
-            let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+            let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
             for resp in _resps {
                 if isKindOfClazz(clazz: clazz, responder: resp) {
                     _AntBusCMC.register(aliasName, key, resp)
@@ -88,60 +88,60 @@ public class _OCAntBusChannelCM: NSObject {
     }
     //-------
     public func responder(interface:Protocol, key:String) -> NSArray?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         return _AntBusCMC.responders(aliasName, key) as NSArray?
     }
     public func responder(clazz:AnyObject.Type, key:String) -> NSArray?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         return _AntBusCMC.responders(aliasName, key) as NSArray?
     }
     public func responder(interface:Protocol) -> NSArray?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         return _AntBusCMC.responders(aliasName) as NSArray?
     }
     public func responder(clazz:AnyObject.Type) -> NSArray?{
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         return _AntBusCMC.responders(aliasName) as NSArray?
     }
     //-------
     public func remove(interface:Protocol, key:String, responder:AnyObject){
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCMC.remove(aliasName, key, responder)
     }
     public func remove(clazz:AnyObject.Type, key:String, responder:AnyObject){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCMC.remove(aliasName, key, responder)
     }
     public func remove(interface:Protocol, keys:[String], responder:AnyObject){
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCMC.remove(aliasName, keys, responder)
     }
     public func remove(clazz:AnyObject.Type, key:String, responders:NSArray){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCMC.remove(aliasName, key, responders)
     }
     public func remove(interface:Protocol, keys:[String]){
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCMC.remove(aliasName, keys)
     }
     public func remove(clazz:AnyObject.Type, keys:[String]){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCMC.remove(aliasName, keys)
     }
     public func remove(interface:Protocol, key:String){
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCMC.remove(aliasName, key)
     }
     public func remove(clazz:AnyObject.Type, key:String){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCMC.remove(aliasName, key)
     }
     public func remove(interface:Protocol){
-        let aliasName = DynamicAliasUtil.getAliasNameWithObject(obj: interface)
+        let aliasName = DynamicAliasUtil.getAliasNameWithInterface(interface)
         _AntBusCMC.remove(aliasName)
     }
     public func remove(clazz:AnyObject.Type){
-        let aliasName = DynamicAliasUtil.getAliasNameWithType(type: clazz)
+        let aliasName = DynamicAliasUtil.getAliasNameWithType(clazz)
         _AntBusCMC.remove(aliasName)
     }
 }

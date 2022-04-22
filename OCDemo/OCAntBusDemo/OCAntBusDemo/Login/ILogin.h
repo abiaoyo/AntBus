@@ -7,6 +7,8 @@
 
 #ifndef ILogin_h
 #define ILogin_h
+#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @protocol ILogin <NSObject>
 @property (nonatomic,copy,readonly) NSString * account;
