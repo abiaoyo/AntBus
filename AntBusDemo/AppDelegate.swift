@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerModules(){
         
+        AntBus.printAliasName = true
         AntBusServiceI<LoginModule>.single.register(LoginModule.init())
         
         let h1001Module = H1001Module.init()

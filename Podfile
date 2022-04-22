@@ -9,7 +9,7 @@ target 'AntBusDemo' do
   
   # Pods for AntBusDemo
   
-  pod 'AntBus', :path => '../AntBus'
+  pod 'AntBus', :path => 'AntBus'
   
 #  target 'HAHATests' do
 #    inherit! :search_paths
@@ -19,7 +19,7 @@ target 'AntBusDemo' do
   target 'AntBusDemoTests' do
     # Pods for testing
     inherit! :search_paths
-    pod 'AntBus', :path => '../AntBus'
+    pod 'AntBus', :path => 'AntBus'
   end
   
   target 'AntBusDemoUITests' do
