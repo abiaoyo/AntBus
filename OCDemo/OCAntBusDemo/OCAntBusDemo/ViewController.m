@@ -41,11 +41,19 @@
     [OCAntBusChannel.single registerWithClazz:UIViewController.class responder:self];
     [OCAntBusChannel.single registerWithInterface:@protocol(UIPage) responder:self];
     [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    
+    
     
     
     [OCAntBusService.single registerWithClazz:NSNumber.class responder:@(100)];
     id n = [OCAntBusService.single responderWithClazz:NSNumber.class];
     NSLog(@"n: %@",n);
+    
+    
+    
+    [OCAntBusService.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBusService.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
 }
 
 - (IBAction)clickButton1:(id)sender {

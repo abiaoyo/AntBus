@@ -6,7 +6,7 @@ public class OCAntBusData:NSObject{
     public func register(key:String,owner:AnyObject,handler:@escaping AntBusDataHandler){
         AntBus.data.register(key, owner: owner, handler: handler)
     }
-
+    
     public func canCall(key:String) -> Bool {
         return AntBus.data.canCall(key)
     }
@@ -30,7 +30,7 @@ public class OCAntBusNoti: NSObject{
     public func register(key:String,owner:AnyObject,handler:@escaping AntBusResultBlock){
         AntBus.notification.register(key, owner: owner, handler: handler)
     }
-
+    
     public func post(key:String,data:Any?){
         AntBus.notification.post(key, data: data)
     }
@@ -38,7 +38,7 @@ public class OCAntBusNoti: NSObject{
     public func post(key:String){
         AntBus.notification.post(key)
     }
-
+    
     public func remove(key:String,owner:AnyObject){
         AntBus.notification.remove(key, owner: owner)
     }
@@ -46,11 +46,11 @@ public class OCAntBusNoti: NSObject{
     public func remove(key:String){
         AntBus.notification.remove(key)
     }
-
+    
     public func remove(owner:AnyObject){
         AntBus.notification.remove(owner: owner)
     }
-
+    
     public func removeAll(){
         AntBus.notification.removeAll()
     }
@@ -64,5 +64,12 @@ public class OCAntBus: NSObject {
     public static let notification = OCAntBusNoti.init()
     public static let deallocHook = OCAntBusDeallocHook.shared
     public static let listener = OCAntBusListener.init()
-    
+    public static var printAliasName:Bool {
+        get {
+            return AntBus.printAliasName
+        }
+        set {
+            AntBus.printAliasName = newValue
+        }
+    }
 }

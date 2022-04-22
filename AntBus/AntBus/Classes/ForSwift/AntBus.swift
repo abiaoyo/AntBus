@@ -37,7 +37,7 @@ final public class AntBusData{
             AntBusData.keyOwnerMap.removeObject(forKey: key as NSString)
         }
     }
-
+    
     public func canCall(_ key:String) -> Bool {
         return getHandler(key) != nil
     }
@@ -64,7 +64,7 @@ final public class AntBusNotification{
     
     private static var ownerContainer = Dictionary<String,NSHashTable<AnyObject>>.init()
     private static var handlerContainer = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
-
+    
     public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusResultBlock){
         var ownersTable = AntBusNotification.ownerContainer[key]
         if(ownersTable == nil){
@@ -88,7 +88,7 @@ final public class AntBusNotification{
             }
         }
     }
-
+    
     public func post(_ key:String,data:Any?){
         if let ownersTable = AntBusNotification.ownerContainer[key] {
             for owner in ownersTable.allObjects {
@@ -100,7 +100,7 @@ final public class AntBusNotification{
     public func post(_ key:String){
         post(key, data: nil)
     }
-
+    
     public func remove(_ key:String,owner:AnyObject){
         AntBusNotification.ownerContainer[key]?.remove(owner)
         AntBusNotification.handlerContainer.value(forKey:owner)?.removeObject(forKey: key as NSString?)
@@ -114,11 +114,11 @@ final public class AntBusNotification{
             ownersTable.removeAllObjects()
         }
     }
-
+    
     public func remove(owner:AnyObject){
         AntBusNotification.handlerContainer.remove(forKey: owner)
     }
-
+    
     public func removeAll(){
         AntBusNotification.ownerContainer.removeAll()
         AntBusNotification.handlerContainer.removeAll()
@@ -130,4 +130,5 @@ final public class AntBus {
     public static let notification = AntBusNotification()
     public static let deallocHook = AntBusDeallocHook.shared
     public static let listener = AntBusListener.shared
+    public static var printAliasName = false
 }

@@ -59,6 +59,10 @@
     
     NSLog(@"resp3: %@",resps3);
     NSLog(@"resp4: %@",resps4);
+    
+    
+    NSArray * resps5 = [OCAntBusService.multi responderWithClazz:UIViewController.class];
+    NSLog(@"resps5: %@",resps5);
 }
 
 /*
