@@ -34,7 +34,6 @@
     
     [OCAntBusService.single registerWithInterface:@protocol(ILogin) responder:loginService];
     [OCAntBusService.single registerWithInterface:@protocol(ILogin) responder:loginService];
-    [OCAntBusService.single responderWithInterface:@protocol(ILogin)];
     
     [OCAntBusService.single registerWithClazz:LoginService.class responder:loginService];
     
@@ -71,8 +70,7 @@
     ViewController2 * vctl = [OCAntBusService.single responderWithClazz:ViewController2.class];
     NSLog(@"vctl=%@",vctl);
     
-    
-    
+    [[OCAntBusService.single responderWithInterface:@protocol(ILogin)] pushToLoginPageWithNavCtl:self.navigationController];
 }
 
 @end

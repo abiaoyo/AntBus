@@ -7,78 +7,87 @@ public typealias AntBusDataHandler = () -> Any?
 //MARK: - AntBusData 共享 - 用于数据共享 - 临时存储
 final public class AntBusData{
     
+    //<key,owner>
     static private var keyOwnerMap = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
+    //<owner,[<key,handler>]>
     static private var ownerHandlersMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
     
-    private func clearOldOwner(_ key:String){
-        if let oldOwner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
-            AntBusData.ownerHandlersMap.value(forKey: oldOwner)?.removeObject(forKey: key as NSString?)
+    private var keyOwnerMap:NSMapTable<NSString,AnyObject> { get { return AntBusData.keyOwnerMap }}
+    private var ownerHandlersMap:AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>> { get { AntBusData.ownerHandlersMap }}
+    
+    private func clearOwner(_ key:String){
+        if let owner = keyOwnerMap.object(forKey: key as NSString) {
+            ownerHandlersMap.value(forKey: owner)?.removeObject(forKey: key as NSString?)
         }
     }
     
-    private func getHandler(_ key: String) -> AntBusDataHandler?{
+    private func handler(forKey key: String) -> AntBusDataHandler?{
         if let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
             return AntBusData.ownerHandlersMap.value(forKey: owner)?.object(forKey: key as NSString) as? AntBusDataHandler
         }
         return nil
     }
     
-    public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusDataHandler){
-        clearOldOwner(key)
-        AntBusData.keyOwnerMap.setObject(owner, forKey: key as NSString)
-        var keyHandlerMap = AntBusData.ownerHandlersMap.value(forKey: owner)
-        if keyHandlerMap == nil {
-            keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-        }
-        keyHandlerMap?.setObject(handler as AnyObject, forKey: key as NSString)
+    // ==================================================================
+    public func register(_ key:String, owner:AnyObject, handler:@escaping AntBusDataHandler){
+        clearOwner(key)
+        keyOwnerMap.setObject(owner, forKey: key as NSString)
         
-        AntBusData.ownerHandlersMap.setValue(keyHandlerMap,forKey:owner)
+        var khMap = ownerHandlersMap.value(forKey: owner)
+        if khMap == nil {
+            khMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
+        }
+        khMap?.setObject(handler as AnyObject, forKey: key as NSString)
+        
+        ownerHandlersMap.setValue(khMap,forKey:owner)
         AntBusDeallocHook.shared.installDeallocHook(for: owner, propertyKey: "AntBusData", handlerKey: key) { hkeys in
             AntBusData.keyOwnerMap.removeObject(forKey: key as NSString)
         }
     }
     
     public func canCall(_ key:String) -> Bool {
-        return getHandler(key) != nil
+        return handler(forKey: key) != nil
     }
     
     public func call(_ key:String) -> AntBusResult{
-        if let handler = getHandler(key) {
+        if let handler = handler(forKey: key) {
             return (success:true, value:handler())
         }
         return (success:false, value:nil)
     }
     
     public func remove(_ key:String){
-        clearOldOwner(key)
+        clearOwner(key)
     }
     
     public func removeAll(){
-        AntBusData.keyOwnerMap.removeAllObjects()
-        AntBusData.ownerHandlersMap.removeAll()
+        keyOwnerMap.removeAllObjects()
+        ownerHandlersMap.removeAll()
     }
 }
 
 //MARK: - AntBusNotification 通知 - 自定义的一个通知功能
 final public class AntBusNotification{
-    
+    //<key,owners>
     private static var ownerContainer = Dictionary<String,NSHashTable<AnyObject>>.init()
+    //<owner,[<key,handler>]>
     private static var handlerContainer = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
     
+    // ==================================================================
     public func register(_ key:String,owner:AnyObject,handler:@escaping AntBusResultBlock){
-        var ownersTable = AntBusNotification.ownerContainer[key]
-        if(ownersTable == nil){
-            ownersTable = NSHashTable<AnyObject>.weakObjects();
-            AntBusNotification.ownerContainer[key] = ownersTable
+        var oTable = AntBusNotification.ownerContainer[key]
+        if(oTable == nil){
+            oTable = NSHashTable<AnyObject>.weakObjects();
+            AntBusNotification.ownerContainer[key] = oTable
         }
-        ownersTable!.add(owner)
+        oTable!.add(owner)
         
-        var keyHandlerMap = AntBusNotification.handlerContainer.value(forKey:owner)
-        if(keyHandlerMap == nil){
-            keyHandlerMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-            AntBusNotification.handlerContainer.setValue(keyHandlerMap,forKey:owner)
+        var khMap = AntBusNotification.handlerContainer.value(forKey:owner)
+        if(khMap == nil){
+            khMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
+            AntBusNotification.handlerContainer.setValue(khMap,forKey:owner)
         }
-        keyHandlerMap!.setObject(handler as AnyObject,forKey:key as NSString)
+        khMap!.setObject(handler as AnyObject,forKey:key as NSString)
         
         AntBusDeallocHook.shared.installDeallocHook(for: owner, propertyKey: "AntBusNotification", handlerKey: key) { hkeys in
             for hkey in hkeys {
@@ -90,8 +99,8 @@ final public class AntBusNotification{
     }
     
     public func post(_ key:String,data:Any?){
-        if let ownersTable = AntBusNotification.ownerContainer[key] {
-            for owner in ownersTable.allObjects {
+        if let oTable = AntBusNotification.ownerContainer[key] {
+            for owner in oTable.allObjects {
                 (AntBusNotification.handlerContainer.value(forKey:owner)?.object(forKey:key as NSString) as? AntBusResultBlock)?(data)
             }
         }
@@ -107,11 +116,11 @@ final public class AntBusNotification{
     }
     
     public func remove(_ key:String){
-        if let ownersTable = AntBusNotification.ownerContainer[key] {
-            ownersTable.allObjects.forEach { owner in
+        if let oTable = AntBusNotification.ownerContainer[key] {
+            oTable.allObjects.forEach { owner in
                 AntBusNotification.handlerContainer.value(forKey:owner)?.removeObject(forKey: key as NSString?)
             }
-            ownersTable.removeAllObjects()
+            oTable.removeAllObjects()
         }
     }
     

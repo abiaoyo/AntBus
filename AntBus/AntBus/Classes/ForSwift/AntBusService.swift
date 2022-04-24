@@ -1,7 +1,7 @@
 import Foundation
 
 // Single
-class _AntBusSSC {
+class AntBusSSC {
     static var container = Dictionary<String,Any>.init()
     static func register(_ key:String, _ responder:Any) {
         container[key] = responder
@@ -21,24 +21,24 @@ class _AntBusSSC {
 }
 
 
-final public class _AntBusSS<R: Any> {
+final public class AntBusSS<R: Any> {
     init() {}
     public func register(_ responder:R){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSSC.register(aliasName, responder)
+        AntBusSSC.register(aliasName, responder)
     }
     public func responder() -> R?{
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return _AntBusSSC.responder(aliasName) as? R
+        return AntBusSSC.responder(aliasName) as? R
     }
     public func remove() {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSSC.remove(aliasName)
+        AntBusSSC.remove(aliasName)
     }
 }
 
 // Multi
-class _AntBusSMC{
+class AntBusSMC{
     /// <aliasName,<key,[responder]>>
     static var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
     
@@ -96,65 +96,65 @@ class _AntBusSMC{
 }
 
 
-final public class _AntBusSM<R:Any> {
+final public class AntBusSM<R:Any> {
 
     public func register(_ key:String, _ responder:R){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, key, responder)
+        AntBusSMC.register(aliasName, key, responder)
     }
     
     public func register(_ keys:[String], _ responder:R){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, keys, responder)
+        AntBusSMC.register(aliasName, keys, responder)
     }
     
     public func register(_ key:String, _ responders:[R]){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.register(aliasName, key, responders)
+        AntBusSMC.register(aliasName, key, responders)
     }
     
     public func responders(_ key:String) -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return _AntBusSMC.responders(aliasName, key)?.compactMap({ $0 as? R })
+        return AntBusSMC.responders(aliasName, key)?.compactMap({ $0 as? R })
     }
     
     public func responders()  -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return _AntBusSMC.responders(aliasName)?.compactMap({ $0 as? R })
+        return AntBusSMC.responders(aliasName)?.compactMap({ $0 as? R })
     }
     
     public func remove(_ key:String, where shouldBeRemoved: (Any) -> Bool) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.remove(aliasName, key, where: shouldBeRemoved)
+        AntBusSMC.remove(aliasName, key, where: shouldBeRemoved)
     }
     
     public func remove(_ key:String){
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.remove(aliasName, key)
+        AntBusSMC.remove(aliasName, key)
     }
     
     public func remove() {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        _AntBusSMC.remove(aliasName)
+        AntBusSMC.remove(aliasName)
     }
     
 }
 
 //MARK: - AntBusService
 public struct AntBusServiceI<T:Any> {
-    public static var single:_AntBusSS<T>{
-        return _AntBusSS<T>.init()
+    public static var single:AntBusSS<T>{
+        return AntBusSS<T>.init()
     }
-    public static var multi:_AntBusSM<T>{
-        return _AntBusSM<T>.init()
+    public static var multi:AntBusSM<T>{
+        return AntBusSM<T>.init()
     }
 }
 
 public struct AntBusService{
-    public static func singleI<T:Any>(_ type:T.Type) -> _AntBusSS<T> {
-        return _AntBusSS<T>.init()
+    public static func singleI<T:Any>(_ type:T.Type) -> AntBusSS<T> {
+        return AntBusSS<T>.init()
     }
-    public static func multi<T:Any>(_ type:T.Type) -> _AntBusSM<T> {
-        return _AntBusSM<T>.init()
+    public static func multi<T:Any>(_ type:T.Type) -> AntBusSM<T> {
+        return AntBusSM<T>.init()
     }
 }

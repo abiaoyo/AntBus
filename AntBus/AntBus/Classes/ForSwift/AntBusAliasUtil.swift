@@ -3,7 +3,8 @@ import Foundation
 private struct DynamicAlias {
     var name:String!
     var type:Any!
-    static func createDynamicAlias(_ group:String,type:Any) -> DynamicAlias{
+    
+    static func create(_ group:String, type:Any) -> DynamicAlias {
         let name = "\(group)_\(Int(Date().timeIntervalSince1970)%10000)_\(arc4random()%1000)"
         return DynamicAlias.init(name: name, type: type)
     }
@@ -48,11 +49,11 @@ struct DynamicAliasUtil {
             if let name = _getAliasName(aliasArray: aliasArray, interface: interface) {
                 return name
             }
-            let alias = DynamicAlias.createDynamicAlias(groupKey, type: interface)
+            let alias = DynamicAlias.create(groupKey, type: interface)
             aliasGroups[groupKey]?.append(alias)
             return alias.name
         }else{
-            let alias = DynamicAlias.createDynamicAlias(groupKey, type: interface)
+            let alias = DynamicAlias.create(groupKey, type: interface)
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
@@ -63,17 +64,17 @@ struct DynamicAliasUtil {
             if let name = _getAliasName(aliasArray: aliasArray, itype: itype){
                 return name
             }
-            let alias = DynamicAlias.createDynamicAlias(groupKey, type: itype)
+            let alias = DynamicAlias.create(groupKey, type: itype)
             aliasGroups[groupKey]?.append(alias)
             return alias.name
         }else{
-            let alias = DynamicAlias.createDynamicAlias(groupKey, type: itype)
+            let alias = DynamicAlias.create(groupKey, type: itype)
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
     }
     
-    static func getAliasNameWithInterface(_ interface:Protocol) -> String {
+    static func getAliasNameForInterface(_ interface:Protocol) -> String {
         let typeName = NSStringFromProtocol(interface)
         let groupKey = typeName.components(separatedBy: ".").last!
         let aliasName = _getAliasName(groupKey: groupKey, interface: interface)
@@ -83,7 +84,7 @@ struct DynamicAliasUtil {
         return aliasName
     }
     
-    static func getAliasNameWithType(_ type:AnyObject.Type) -> String {
+    static func getAliasNameForType(_ type:AnyObject.Type) -> String {
         let groupKey = "\(type)"
         let aliasName = _getAliasName(groupKey: groupKey, itype: type)
         if AntBus.printAliasName {
