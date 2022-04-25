@@ -18,5 +18,14 @@
   "platforms": {
     "ios": "9.0"
   },
-  "source_files": "AntBus/Classes/**/*"
+  "subspecs": [
+    {
+      "name": "ForSwift",
+      "source_files": "AntBus/Classes/ForSwift/*"
+    },
+    {
+      "name": "ForOC",
+      "source_files": "AntBus/Classes/ForOC/*"
+    }
+  ]
 }
