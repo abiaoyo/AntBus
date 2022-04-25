@@ -42,7 +42,7 @@
     [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
     [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
     
-    
+    [OCAntBus.channel.single registerWithClazz:UIViewController.class responder:self];
     
     
     [OCAntBusService.single registerWithClazz:NSNumber.class responder:@(100)];

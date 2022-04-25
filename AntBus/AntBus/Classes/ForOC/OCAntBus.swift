@@ -56,6 +56,18 @@ public class OCAntBusNoti: NSObject{
     }
 }
 
+@objcMembers
+public class _OCAntBusChannel: NSObject{
+    public let single = OCAntBusChannel.single
+    public let multi:OCAntBusChannelCM = OCAntBusChannel.multi
+}
+
+@objcMembers
+public class _OCAntBusService: NSObject{
+    public let single = OCAntBusService.single
+    public let multi = OCAntBusService.multi
+}
+
 
 @objcMembers
 public class OCAntBus: NSObject {
@@ -64,6 +76,9 @@ public class OCAntBus: NSObject {
     public static let notification = OCAntBusNoti.init()
     public static let deallocHook = OCAntBusDeallocHook.shared
     public static let listener = OCAntBusListener.init()
+    public static let channel = _OCAntBusChannel.init()
+    public static let service = _OCAntBusService.init()
+    
     public static var printDealloc:Bool {
         get {
             return AntBus.printDealloc
