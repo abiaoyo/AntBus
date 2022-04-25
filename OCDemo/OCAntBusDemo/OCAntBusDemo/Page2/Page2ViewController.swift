@@ -18,10 +18,10 @@ class Page2ViewController: UIViewController ,UIViewPage{
         super.viewDidLoad()
         
         let resps = AntBusChannelI<UIViewController>.multi.responders()
-        print("resps: \(resps)")
+//        print("resps: \(resps)")
         
         let loginService = AntBusServiceI<ILogin>.single.responder()
-        print("loginService: \(loginService)")
+//        print("loginService: \(loginService)")
         loginService?.login(withAccount: "lily")
     }
 

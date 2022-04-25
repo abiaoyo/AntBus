@@ -64,20 +64,28 @@ public class OCAntBus: NSObject {
     public static let notification = OCAntBusNoti.init()
     public static let deallocHook = OCAntBusDeallocHook.shared
     public static let listener = OCAntBusListener.init()
-    public static var printAliasName:Bool {
-        get {
-            return AntBus.printAliasName
-        }
-        set {
-            AntBus.printAliasName = newValue
-        }
-    }
     public static var printDealloc:Bool {
         get {
             return AntBus.printDealloc
         }
         set {
             AntBus.printDealloc = newValue
+        }
+    }
+    public static var printService:Bool {
+        get {
+            return AntBus.printService
+        }
+        set {
+            AntBus.printService = newValue
+        }
+    }
+    public static var printChannel:Bool {
+        get {
+            return AntBus.printChannel
+        }
+        set {
+            AntBus.printChannel = newValue
         }
     }
 }

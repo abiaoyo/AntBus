@@ -77,28 +77,16 @@ struct DynamicAliasUtil {
     static func getAliasNameForInterface(_ interface:Protocol) -> String {
         let typeName = NSStringFromProtocol(interface)
         let groupKey = typeName.components(separatedBy: ".").last!
-        let aliasName = _getAliasName(groupKey: groupKey, interface: interface)
-        if AntBus.printAliasName {
-            print("aliasName: \(aliasName)")
-        }
-        return aliasName
+        return _getAliasName(groupKey: groupKey, interface: interface)
     }
     
     static func getAliasNameForType(_ type:AnyObject.Type) -> String {
         let groupKey = "\(type)"
-        let aliasName = _getAliasName(groupKey: groupKey, itype: type)
-        if AntBus.printAliasName {
-            print("aliasName: \(aliasName)")
-        }
-        return aliasName
+        return _getAliasName(groupKey: groupKey, itype: type)
     }
     
     static func getAliasName<T:Any>(_ type:T.Type) -> String {
         let groupKey = "\(type)"
-        let aliasName = _getAliasName(groupKey: groupKey, itype: type)
-        if AntBus.printAliasName {
-            print("aliasName: \(aliasName)")
-        }
-        return aliasName
+        return _getAliasName(groupKey: groupKey, itype: type)
     }
 }

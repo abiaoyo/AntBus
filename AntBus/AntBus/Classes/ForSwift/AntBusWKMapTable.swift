@@ -1,5 +1,5 @@
 import Foundation
-
+// from: https://github.com/ReactorKit/WeakMapTable
 // MARK: - AntBusWKMapTable
 final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
     private var dictionary: [Weak<Key>: Value] = [:]

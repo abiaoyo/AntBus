@@ -16,8 +16,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    OCAntBus.printAliasName = YES;
     OCAntBus.printDealloc = YES;
+    OCAntBus.printService = true;
+    OCAntBus.printChannel = true;
     return YES;
 }
 

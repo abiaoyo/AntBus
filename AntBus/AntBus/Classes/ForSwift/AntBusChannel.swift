@@ -5,6 +5,9 @@ class AntBusCSC {
     static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
     
     static func register(_ key:String, _ responder:AnyObject) {
+        if AntBus.printChannel {
+            print("AntBusChannel.single.register:  \(key) \t \(responder)")
+        }
         container.setObject(responder, forKey: key as NSString)
         AntBusDeallocHook.shared.installDeallocHook(for: responder, propertyKey: "AntBusCSC", handlerKey: key) { hkeys in
             for hkey in hkeys {
@@ -17,14 +20,24 @@ class AntBusCSC {
     }
     
     static func responder(_ key:String) -> AnyObject? {
-        return container.object(forKey: key as NSString)
+        let rs = container.object(forKey: key as NSString)
+        if AntBus.printChannel {
+            print("AntBusChannel.single.responder:  \(key) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func remove(_ key:String) {
+        if AntBus.printChannel {
+            print("AntBusChannel.single.remove:  \(key)")
+        }
         container.removeObject(forKey: key as NSString)
     }
     
     static func removeAll() {
+        if AntBus.printChannel {
+            print("AntBusChannel.single.removeAll")
+        }
         container.removeAllObjects()
     }
 }
@@ -51,6 +64,10 @@ class AntBusCMC {
     static let container = NSMutableDictionary.init()
     
     static func register(_ type:String, _ key:String, _ responder:AnyObject) {
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.register:  \(type) \t \(key) \t \(responder)")
+        }
+        
         var typeContainer = container[type] as? NSMutableDictionary
         if typeContainer == nil {
             typeContainer = NSMutableDictionary.init()
@@ -92,23 +109,34 @@ class AntBusCMC {
     }
     
     static func responders(_ type:String, _ key:String) -> [AnyObject]? {
-        return ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
+        let rs = ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func responders(_ type:String) -> [AnyObject]? {
+        var rs:[AnyObject]? = nil
         if let typeContainer = container[type] as? NSMutableDictionary {
-            let rs = NSMutableSet.init()
+            let mset = NSMutableSet.init()
             typeContainer.allKeys.forEach { key in
                 if let keyContainer = typeContainer[key] as? NSHashTable<AnyObject> {
-                    rs.addObjects(from: keyContainer.allObjects)
+                    mset.addObjects(from: keyContainer.allObjects)
                 }
             }
-            return rs.allObjects.compactMap({ $0 as AnyObject})
+            rs = mset.allObjects.compactMap({ $0 as AnyObject})
         }
-        return nil
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.responders:  \(type) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func remove(_ type:String, _ key:String,_ responder:AnyObject) {
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.remove:  \(type) \t \(key) \t \(responder)")
+        }
         ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.remove(responder)
     }
     
@@ -125,6 +153,9 @@ class AntBusCMC {
     }
     
     static func remove(_ type:String, _ key:String) {
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.remove:  \(type) \t \(key)")
+        }
         (container[type] as? NSMutableDictionary)?.removeObject(forKey: key)
     }
     
@@ -135,6 +166,9 @@ class AntBusCMC {
     }
     
     static func remove(_ type:String) {
+        if AntBus.printChannel {
+            print("AntBusChannel.multi.remove:  \(type)")
+        }
         container.removeObject(forKey: type)
     }
 }

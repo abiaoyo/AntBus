@@ -4,18 +4,31 @@ import Foundation
 class AntBusSSC {
     static var container = Dictionary<String,Any>.init()
     static func register(_ key:String, _ responder:Any) {
+        if AntBus.printService {
+            print("AntBusService.single.register:  \(key) \t \(responder)")
+        }
         container[key] = responder
     }
     
     static func responder(_ key:String) -> Any? {
-        return container[key]
+        let rs = container[key]
+        if AntBus.printService {
+            print("AntBusService.single.responder:  \(key) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func remove(_ key:String) {
+        if AntBus.printService {
+            print("AntBusService.single.remove:  \(key)")
+        }
         container.removeValue(forKey: key)
     }
     
     static func removeAll() {
+        if AntBus.printService {
+            print("AntBusService.single.removeAll")
+        }
         container.removeAll()
     }
 }
@@ -43,6 +56,9 @@ class AntBusSMC{
     static var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
     
     static func register(_ type:String, _ key:String, _ responder:Any){
+        if AntBus.printService {
+            print("AntBusService.multi.register:  \(type) \t \(key) \t \(responder)")
+        }
         if let _ = container[type] {
             if let _ = container[type]![key] {
                 container[type]![key]?.append(responder)
@@ -69,27 +85,45 @@ class AntBusSMC{
     }
     
     static func responders(_ type:String, _ key:String) -> [Any]? {
-        return container[type]?[key]
+        let rs = container[type]?[key]
+        if AntBus.printService {
+            print("AntBusService.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func responders(_ type:String)  -> [Any]? {
         let typeContainer = container[type]
         let results = typeContainer?.flatMap({ $0.value })
         let uniqueResults = NSMutableSet.init(array: results ?? [])
-        return uniqueResults.allObjects
+        let rs = uniqueResults.allObjects
+        
+        if AntBus.printService {
+            print("AntBusService.multi.responders:  \(type) \t \(String(describing: rs))")
+        }
+        return rs
     }
     
     static func remove(_ type:String, _ key:String, where shouldBeRemoved: (Any) -> Bool) {
+        if AntBus.printService {
+            print("AntBusService.multi.remove:  \(type) \t \(key) \t where: ..")
+        }
         container[type]?[key]?.removeAll(where: { r in
             return shouldBeRemoved(r)
         })
     }
     
     static func remove(_ type:String, _ key:String){
+        if AntBus.printService {
+            print("AntBusService.multi.remove:  \(type) \t \(key)")
+        }
         container[type]?.removeValue(forKey: key)
     }
     
     static func remove(_ type:String) {
+        if AntBus.printService {
+            print("AntBusService.multi.remove:  \(type)")
+        }
         container.removeValue(forKey: type)
     }
     

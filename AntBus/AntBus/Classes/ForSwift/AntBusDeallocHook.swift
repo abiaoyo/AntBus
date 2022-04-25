@@ -18,7 +18,7 @@ private final class _AntBusDeallocHook {
     
     deinit {
         if AntBus.printDealloc {
-            print("\n--- deinit _AntBusDeallocHook --- \n.type:\(type ?? "") \t \n.propertyKey:\(propertyKey) \t \n.handlerKeys:\(handlerKeys) \n")
+            print("\n--- deinit _AntBusDeallocHook --- \n.type:\(type ?? "") \t \n.propertyKey:\(propertyKey) \t \n.handlerKeys:\(handlerKeys)")
         }
         handler?(handlerKeys)
     }
@@ -43,9 +43,9 @@ final public class AntBusDeallocHook {
         }
         hook = _AntBusDeallocHook()
         hook?.propertyKey = propertyKey
-        hook?.add(handlerKey)
         hook?.handler = handler
         hook?.type = "\(type(of: object))"
+        hook?.add(handlerKey)
         objc_setAssociatedObject(object, keyPointer, hook, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
     

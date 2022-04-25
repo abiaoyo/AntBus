@@ -15,5 +15,14 @@ TODO: Add long description of the pod here.
   s.source           = { :git => 'https://github.com/abiaoyo/AntBus.git', :tag => s.version.to_s }
 
   s.ios.deployment_target = '9.0'
-  s.source_files = 'AntBus/AntBus/Classes/*'
+  s.swift_version = '5.0'
+  
+  s.subspec 'ForSwift' do |ss|
+    ss.source_files         = 'AntBus/AntBus/Classes/ForSwift/*'
+  end
+
+  s.subspec 'ForOC' do |ss|
+    ss.source_files         = 'AntBus/AntBus/Classes/ForOC/*'
+  end
+  
 end
