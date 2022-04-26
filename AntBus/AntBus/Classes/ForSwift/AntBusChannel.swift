@@ -5,9 +5,9 @@ class AntBusCSC {
     static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
     
     static func register(_ key:String, _ responder:AnyObject) {
-        if AntBus.printChannel {
-            print("AntBusChannel.single.register:  \(key) \t \(responder)")
-        }
+        let log = "AntBusChannel.single.register:  \(key) \t \(responder)"
+        AntBus.channelLog?(log)
+        
         container.setObject(responder, forKey: key as NSString)
         AntBusDeallocHook.shared.installDeallocHook(for: responder, propertyKey: "AntBusCSC", handlerKey: key) { hkeys in
             for hkey in hkeys {
@@ -21,23 +21,22 @@ class AntBusCSC {
     
     static func responder(_ key:String) -> AnyObject? {
         let rs = container.object(forKey: key as NSString)
-        if AntBus.printChannel {
-            print("AntBusChannel.single.responder:  \(key) \t \(String(describing: rs))")
-        }
+        
+        let log = "AntBusChannel.single.responder:  \(key) \t \(String(describing: rs))"
+        AntBus.channelLog?(log)
         return rs
     }
     
     static func remove(_ key:String) {
-        if AntBus.printChannel {
-            print("AntBusChannel.single.remove:  \(key)")
-        }
+        let log = "AntBusChannel.single.remove:  \(key)"
+        AntBus.channelLog?(log)
+        
         container.removeObject(forKey: key as NSString)
     }
     
     static func removeAll() {
-        if AntBus.printChannel {
-            print("AntBusChannel.single.removeAll")
-        }
+        let log = "AntBusChannel.single.removeAll"
+        AntBus.channelLog?(log)
         container.removeAllObjects()
     }
 }
@@ -64,9 +63,8 @@ class AntBusCMC {
     static let container = NSMutableDictionary.init()
     
     static func register(_ type:String, _ key:String, _ responder:AnyObject) {
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.register:  \(type) \t \(key) \t \(responder)")
-        }
+        let log = "AntBusChannel.multi.register:  \(type) \t \(key) \t \(responder)"
+        AntBus.channelLog?(log)
         
         var typeContainer = container[type] as? NSMutableDictionary
         if typeContainer == nil {
@@ -110,9 +108,8 @@ class AntBusCMC {
     
     static func responders(_ type:String, _ key:String) -> [AnyObject]? {
         let rs = ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))")
-        }
+        let log = "AntBusChannel.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))"
+        AntBus.channelLog?(log)
         return rs
     }
     
@@ -127,16 +124,14 @@ class AntBusCMC {
             }
             rs = mset.allObjects.compactMap({ $0 as AnyObject})
         }
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.responders:  \(type) \t \(String(describing: rs))")
-        }
+        let log = "AntBusChannel.multi.responders:  \(type) \t \(String(describing: rs))"
+        AntBus.channelLog?(log)
         return rs
     }
     
     static func remove(_ type:String, _ key:String,_ responder:AnyObject) {
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.remove:  \(type) \t \(key) \t \(responder)")
-        }
+        let log = "AntBusChannel.multi.remove:  \(type) \t \(key) \t \(responder)"
+        AntBus.channelLog?(log)
         ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.remove(responder)
     }
     
@@ -153,9 +148,8 @@ class AntBusCMC {
     }
     
     static func remove(_ type:String, _ key:String) {
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.remove:  \(type) \t \(key)")
-        }
+        let log = "AntBusChannel.multi.remove:  \(type) \t \(key)"
+        AntBus.channelLog?(log)
         (container[type] as? NSMutableDictionary)?.removeObject(forKey: key)
     }
     
@@ -166,9 +160,8 @@ class AntBusCMC {
     }
     
     static func remove(_ type:String) {
-        if AntBus.printChannel {
-            print("AntBusChannel.multi.remove:  \(type)")
-        }
+        let log = "AntBusChannel.multi.remove:  \(type)"
+        AntBus.channelLog?(log)
         container.removeObject(forKey: type)
     }
 }

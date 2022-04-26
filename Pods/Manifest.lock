@@ -1,9 +1,5 @@
 PODS:
-  - AntBus (0.1.0):
-    - AntBus/ForOC (= 0.1.0)
-    - AntBus/ForSwift (= 0.1.0)
-  - AntBus/ForOC (0.1.0)
-  - AntBus/ForSwift (0.1.0)
+  - AntBus (0.1.0)
 
 DEPENDENCIES:
   - AntBus (from `AntBus`)
@@ -13,8 +9,8 @@ EXTERNAL SOURCES:
     :path: AntBus
 
 SPEC CHECKSUMS:
-  AntBus: 5ef14a4ae86de9a7512bad0922b2d9e21089f8c4
+  AntBus: 497a4aa1e98dd9145b96d25a0b6d0cf637474f00
 
-PODFILE CHECKSUM: 4ece84791611706a9dfe20f949e81181c17cd104
+PODFILE CHECKSUM: 7caaa2bdbcbd2a7777f7024f40ca8067958efeec
 
 COCOAPODS: 1.11.3

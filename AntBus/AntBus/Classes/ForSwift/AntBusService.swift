@@ -4,31 +4,28 @@ import Foundation
 class AntBusSSC {
     static var container = Dictionary<String,Any>.init()
     static func register(_ key:String, _ responder:Any) {
-        if AntBus.printService {
-            print("AntBusService.single.register:  \(key) \t \(responder)")
-        }
+        let log = "AntBusService.single.register:  \(key) \t \(responder)"
+        AntBus.serviceLog?(log)
+        
         container[key] = responder
     }
     
     static func responder(_ key:String) -> Any? {
         let rs = container[key]
-        if AntBus.printService {
-            print("AntBusService.single.responder:  \(key) \t \(String(describing: rs))")
-        }
+        let log = "AntBusService.single.responder:  \(key) \t \(String(describing: rs))"
+        AntBus.serviceLog?(log)
         return rs
     }
     
     static func remove(_ key:String) {
-        if AntBus.printService {
-            print("AntBusService.single.remove:  \(key)")
-        }
+        let log = "AntBusService.single.remove:  \(key)"
+        AntBus.serviceLog?(log)
         container.removeValue(forKey: key)
     }
     
     static func removeAll() {
-        if AntBus.printService {
-            print("AntBusService.single.removeAll")
-        }
+        let log = "AntBusService.single.removeAll"
+        AntBus.serviceLog?(log)
         container.removeAll()
     }
 }
@@ -56,9 +53,9 @@ class AntBusSMC{
     static var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
     
     static func register(_ type:String, _ key:String, _ responder:Any){
-        if AntBus.printService {
-            print("AntBusService.multi.register:  \(type) \t \(key) \t \(responder)")
-        }
+        let log = "AntBusService.multi.register:  \(type) \t \(key) \t \(responder)"
+        AntBus.serviceLog?(log)
+        
         if let _ = container[type] {
             if let _ = container[type]![key] {
                 container[type]![key]?.append(responder)
@@ -86,9 +83,10 @@ class AntBusSMC{
     
     static func responders(_ type:String, _ key:String) -> [Any]? {
         let rs = container[type]?[key]
-        if AntBus.printService {
-            print("AntBusService.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))")
-        }
+        
+        let log = "AntBusService.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))"
+        AntBus.serviceLog?(log)
+        
         return rs
     }
     
@@ -98,32 +96,30 @@ class AntBusSMC{
         let uniqueResults = NSMutableSet.init(array: results ?? [])
         let rs = uniqueResults.allObjects
         
-        if AntBus.printService {
-            print("AntBusService.multi.responders:  \(type) \t \(String(describing: rs))")
-        }
+        let log = "AntBusService.multi.responders:  \(type) \t \(String(describing: rs))"
+        AntBus.serviceLog?(log)
+        
         return rs
     }
     
     static func remove(_ type:String, _ key:String, where shouldBeRemoved: (Any) -> Bool) {
-        if AntBus.printService {
-            print("AntBusService.multi.remove:  \(type) \t \(key) \t where: ..")
-        }
+        let log = "AntBusService.multi.remove:  \(type) \t \(key) \t where: .."
+        AntBus.serviceLog?(log)
+        
         container[type]?[key]?.removeAll(where: { r in
             return shouldBeRemoved(r)
         })
     }
     
     static func remove(_ type:String, _ key:String){
-        if AntBus.printService {
-            print("AntBusService.multi.remove:  \(type) \t \(key)")
-        }
+        let log = "AntBusService.multi.remove:  \(type) \t \(key)"
+        AntBus.serviceLog?(log)
         container[type]?.removeValue(forKey: key)
     }
     
     static func remove(_ type:String) {
-        if AntBus.printService {
-            print("AntBusService.multi.remove:  \(type)")
-        }
+        let log = "AntBusService.multi.remove:  \(type)"
+        AntBus.serviceLog?(log)
         container.removeValue(forKey: type)
     }
     

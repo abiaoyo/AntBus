@@ -6,6 +6,13 @@
 //
 
 #import "AppDelegate.h"
+
+#ifdef DEBUG
+#define AntBusPrint(format, ...) printf("🍄 %s:(%d) --   %s\n", [[[NSString stringWithUTF8String:__FILE__] lastPathComponent] UTF8String], __LINE__, [[NSString stringWithFormat:(format), ##__VA_ARGS__] UTF8String] )
+#else
+#define AntBusPrint(format, ...)
+#endif
+
 @import AntBus;
 @interface AppDelegate ()
 
@@ -16,9 +23,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    OCAntBus.printDealloc = YES;
-    OCAntBus.printService = true;
-    OCAntBus.printChannel = true;
+    OCAntBus.deallocLog = ^(NSString * _Nonnull log) {
+        [OCAntBus printLog:log];
+    };
+    OCAntBus.serviceLog = ^(NSString * _Nonnull log) {
+        [OCAntBus printLog:log];
+    };
+    OCAntBus.channelLog = ^(NSString * _Nonnull log) {
+        [OCAntBus printLog:log];
+    };
     return YES;
 }
 

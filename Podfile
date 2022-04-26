@@ -10,6 +10,7 @@ target 'AntBusDemo' do
   # Pods for AntBusDemo
   
   pod 'AntBus', :path => 'AntBus'
+#  pod 'AntBus', :path => 'AntBus/ForSwift'
   
 #  target 'HAHATests' do
 #    inherit! :search_paths

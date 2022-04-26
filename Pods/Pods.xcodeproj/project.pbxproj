@@ -7,31 +7,31 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		00CE3D18CBA41A1851162DC958A50864 /* OCAntBusChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2A9741D46980B3AB4B4D1C9BA99B646 /* OCAntBusChannel.swift */; };
-		0A569B735B074E4C00DB93CA972FC55F /* AntBusDeallocHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = FDAB111322B947E15477F04A5A03C7C2 /* AntBusDeallocHook.swift */; };
+		0364022E7EAD4171507BBA5886AE9E45 /* AntBusWKMapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E6ABA9E1444860B17C8558B9CEF1F7 /* AntBusWKMapTable.swift */; };
+		139AE6CC5AC505A619A789BEDB775E52 /* AntBusDeallocHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB1806C9DB5754E3C5FF6EA31181907 /* AntBusDeallocHook.swift */; };
 		15D1474A147059E1516AF318B9351E01 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		1824E0D4DEBA20659BA16D42EF72060E /* AntBus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 7783008E7CDBE3FC732E3240F164565A /* AntBus-dummy.m */; };
 		1830CB8C7DEC840105D513FC32547431 /* Pods-AntBusDemoTests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 22ABB217EEAD7FDA3E2FC4585BDE14B6 /* Pods-AntBusDemoTests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		2395931274C45C6ABDBD26E1CBC99DD6 /* AntBusWKMapTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CF02685BDDFB54030F49E668BD00745 /* AntBusWKMapTable.swift */; };
+		1E3496F9142E700B64455FB324DA65E4 /* AntBusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 10A9E437FBD70F6CC51170203546217F /* AntBusService.swift */; };
 		26B0B2938ACDB6266CB22BCE26FC58FF /* Pods-AntBusDemo-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = CF764868503048ABC15F107259A8B268 /* Pods-AntBusDemo-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		283217699F487F3ABCCBA24B649B56F4 /* AntBusAliasUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 44AE0B8F48881993887C46D581537847 /* AntBusAliasUtil.swift */; };
 		31A6F5C765BADC823C01C8F21D043BF8 /* Pods-AntBusDemo-AntBusDemoUITests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5EA0649C438258AB8635458C34D3CE56 /* Pods-AntBusDemo-AntBusDemoUITests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		38480750BC196D58E608D928B2132DE2 /* AntBusChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA2A4E667E82D8DD6D469E09C91B040C /* AntBusChannel.swift */; };
 		46AF8AE068F541A1BBBF9DE9D19BBF4B /* Pods-AntBusDemo-AntBusDemoUITests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CF9A21D1908CF086753F2313A6200CFA /* Pods-AntBusDemo-AntBusDemoUITests-dummy.m */; };
-		4871542C0DC837E7BF678964B6DDC1BD /* AntBusNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83C20EC008A5D9459844929A01B1F6A3 /* AntBusNotification.swift */; };
+		4711AE78A17A729666E87CA3F19FEDA5 /* OCAntBusListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFAB3FCBAD5BCD1C00F896ED6EDA5E61 /* OCAntBusListener.swift */; };
 		594967DB7EB120D899C319BE4456AC0B /* Pods-AntBusDemo-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A2B95491C57814750A55C1EEEBE1EB6F /* Pods-AntBusDemo-dummy.m */; };
-		6C9A01342200BEEA32B618FE5E5D9B3A /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5432E1570E03B1FD3400A484928EB3DB /* AntBus.swift */; };
-		7F8B2FE87A1B773E40BC18545B9C21A6 /* OCAntBusListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = D904EACF552E0B68A2459CD8A6FF7EF8 /* OCAntBusListener.swift */; };
-		97E3D39CEE0586D34CB0BD16C5D5A736 /* AntBusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F874A56A7ABC37E839FD56D704E9BEA /* AntBusData.swift */; };
-		9B70BDCE9931415A6F4E42BE4B7945ED /* OCAntBusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1155AE3084E5F42DAADE4016564132CE /* OCAntBusService.swift */; };
-		A07CD82E4335BD5C9E444DA37EA651AC /* OCAntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9A3EE9EEFCBDA197FFFF40A9503E93 /* OCAntBus.swift */; };
-		A3BFA5CB770E98752F0ADF6A51A1F996 /* AntBusAliasUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F9F87E216E5E5F8882FD6663D89448C /* AntBusAliasUtil.swift */; };
+		6F369DEB5432864E5A796B8BAAF8575F /* OCAntBusDeallocHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = E358E2FCA37DD674D2F044230AB21520 /* OCAntBusDeallocHook.swift */; };
+		767EE546EA02CA7C65C3AA84DAED7DE2 /* AntBusData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F797C0FABB0C5973B5A2CBFDE39A581 /* AntBusData.swift */; };
+		9311AA6269940B56521AC7AB3AB8555B /* OCAntBusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07D6113FD1053E7522E1627C2F9B319B /* OCAntBusService.swift */; };
+		9D61C4AD26926D8220DCD68C7FF691B6 /* AntBusNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3783EA931027AAC44CD6630C2369C0F7 /* AntBusNotification.swift */; };
 		A421E1B18D8A7EF37CA8E83B04A5B072 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 		ACCD077157C0BC0BB9B5535352653AF7 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
-		CB9FCBF84C4F19A803894B0A8D55ADCF /* AntBusListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = 676123FAB4335801982609EE0B2236C8 /* AntBusListener.swift */; };
+		B3AEA0175B096B0C6AE8D83FFBD049A2 /* OCAntBusChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 452BB63D1F1149C73503B901D965AAAB /* OCAntBusChannel.swift */; };
+		CD59A89523AEF71C0C435308FEA584F3 /* AntBusListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFA45BD56F55CD7B1BA86150568C3AE0 /* AntBusListener.swift */; };
+		CF1BC2F38559CE995C7CC41FB6A36E05 /* OCAntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = F75E8AB466A9EDE5B0D8AD0EB5E41F00 /* OCAntBus.swift */; };
 		D0C6112547C548B74CDE4E1B05037674 /* Pods-AntBusDemoTests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C4014B1615A49C53C042EDBF28B10DD /* Pods-AntBusDemoTests-dummy.m */; };
-		D2CCD147B9F4D47EC62F7373553F1863 /* AntBusChannel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E72055863020138C761DF4437626D93 /* AntBusChannel.swift */; };
-		DBA84661A91633923AB81065DB3B6869 /* OCAntBusDeallocHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = C8F4D4A685FA5916F7AC33133067C571 /* OCAntBusDeallocHook.swift */; };
-		E658BC2F0C0E9342D21627F927B7BEDC /* AntBus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AABCF690F75E93FB529AB9F2D3AD402F /* AntBus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		F7F83ECE1A8C43482DE1EC03DA3B0A6F /* AntBusService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AC40733094A0CF88A3D1364211EE17F /* AntBusService.swift */; };
+		D53D5A1E7A0FCFCF0BC2B14FCC70171D /* AntBus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E0FC2A74F8A34D32D5E037BD610205D /* AntBus.swift */; };
+		E658BC2F0C0E9342D21627F927B7BEDC /* AntBus-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 4BD66E6502CBC015FADECEEE09D187BD /* AntBus-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E832204B18410DEE64E1928A4205F7CA /* AntBus-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = A945FB1D42A409E5105691A2EE9B656C /* AntBus-dummy.m */; };
 		FE268CAEB5F7A4AE37940CE37EA32FEF /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */; };
 /* End PBXBuildFile section */
 
@@ -67,63 +67,63 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		071B7D72A5A7CD022D5AFDA908A7F0A1 /* AntBus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AntBus.modulemap; sourceTree = "<group>"; };
-		0BC087B753EB08963CA9BEECF655E74A /* AntBus.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AntBus.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		1155AE3084E5F42DAADE4016564132CE /* OCAntBusService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCAntBusService.swift; path = AntBus/Classes/ForOC/OCAntBusService.swift; sourceTree = "<group>"; };
+		07D6113FD1053E7522E1627C2F9B319B /* OCAntBusService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OCAntBusService.swift; sourceTree = "<group>"; };
+		10A9E437FBD70F6CC51170203546217F /* AntBusService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusService.swift; sourceTree = "<group>"; };
 		1A2E4F13E2CC5B4DB340F01E6D611320 /* AntBus */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = AntBus; path = AntBus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C4014B1615A49C53C042EDBF28B10DD /* Pods-AntBusDemoTests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AntBusDemoTests-dummy.m"; sourceTree = "<group>"; };
-		1E72055863020138C761DF4437626D93 /* AntBusChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusChannel.swift; path = AntBus/Classes/ForSwift/AntBusChannel.swift; sourceTree = "<group>"; };
 		22ABB217EEAD7FDA3E2FC4585BDE14B6 /* Pods-AntBusDemoTests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AntBusDemoTests-umbrella.h"; sourceTree = "<group>"; };
 		2A9F16968664C67B53C3FE2435604406 /* Pods-AntBusDemoTests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AntBusDemoTests-frameworks.sh"; sourceTree = "<group>"; };
+		2E0FC2A74F8A34D32D5E037BD610205D /* AntBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBus.swift; sourceTree = "<group>"; };
+		3783EA931027AAC44CD6630C2369C0F7 /* AntBusNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusNotification.swift; sourceTree = "<group>"; };
+		39FD718D70408173358EA6841C0DEA6F /* AntBus-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AntBus-Info.plist"; sourceTree = "<group>"; };
+		3BAEF38498952FEE8713B11700E9DD6A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
 		40975D68270FA4C0B592BE9D400E0FD9 /* Pods-AntBusDemo-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AntBusDemo-acknowledgements.markdown"; sourceTree = "<group>"; };
-		4E9A3EE9EEFCBDA197FFFF40A9503E93 /* OCAntBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCAntBus.swift; path = AntBus/Classes/ForOC/OCAntBus.swift; sourceTree = "<group>"; };
+		44AE0B8F48881993887C46D581537847 /* AntBusAliasUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusAliasUtil.swift; sourceTree = "<group>"; };
+		452BB63D1F1149C73503B901D965AAAB /* OCAntBusChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OCAntBusChannel.swift; sourceTree = "<group>"; };
+		4BD66E6502CBC015FADECEEE09D187BD /* AntBus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-umbrella.h"; sourceTree = "<group>"; };
 		52556D82CFFF2CF85999994BBB63DEDD /* Pods-AntBusDemoTests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AntBusDemoTests.modulemap"; sourceTree = "<group>"; };
-		52E62F1DEBC90E9936D8BBB30E90F614 /* AntBus-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "AntBus-Info.plist"; sourceTree = "<group>"; };
-		5432E1570E03B1FD3400A484928EB3DB /* AntBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBus.swift; path = AntBus/Classes/ForSwift/AntBus.swift; sourceTree = "<group>"; };
 		55E0FE05ADCE325487B265CB2A2C8079 /* Pods-AntBusDemo-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-Info.plist"; sourceTree = "<group>"; };
+		56530FCECB39FDC528CEC4C52C97BDE8 /* AntBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.release.xcconfig; sourceTree = "<group>"; };
 		59FF2335D042F52BE1097241222DA80F /* Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo-AntBusDemoUITests.debug.xcconfig"; sourceTree = "<group>"; };
-		5B4503BC433A50E513A8134B3D4B97B9 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		5B8A94588A95BB4049819F5F52B11423 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
 		5DFF9A4152E721099657EFA8670646D2 /* Pods-AntBusDemo-AntBusDemoUITests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-AntBusDemoUITests-acknowledgements.plist"; sourceTree = "<group>"; };
 		5EA0649C438258AB8635458C34D3CE56 /* Pods-AntBusDemo-AntBusDemoUITests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AntBusDemo-AntBusDemoUITests-umbrella.h"; sourceTree = "<group>"; };
 		5FD476BE90CF5CDF22032119DFDD34F9 /* Pods-AntBusDemo-AntBusDemoUITests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-AntBusDemo-AntBusDemoUITests"; path = Pods_AntBusDemo_AntBusDemoUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		676123FAB4335801982609EE0B2236C8 /* AntBusListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusListener.swift; path = AntBus/Classes/ForSwift/AntBusListener.swift; sourceTree = "<group>"; };
-		6AC40733094A0CF88A3D1364211EE17F /* AntBusService.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusService.swift; path = AntBus/Classes/ForSwift/AntBusService.swift; sourceTree = "<group>"; };
 		73010CC983E3809BECEE5348DA1BB8C6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS14.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		7783008E7CDBE3FC732E3240F164565A /* AntBus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AntBus-dummy.m"; sourceTree = "<group>"; };
-		7CF02685BDDFB54030F49E668BD00745 /* AntBusWKMapTable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusWKMapTable.swift; path = AntBus/Classes/ForSwift/AntBusWKMapTable.swift; sourceTree = "<group>"; };
 		7D163F864F9D6CE1394DB093107EF781 /* Pods-AntBusDemo-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-acknowledgements.plist"; sourceTree = "<group>"; };
-		83C20EC008A5D9459844929A01B1F6A3 /* AntBusNotification.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusNotification.swift; path = AntBus/Classes/ForSwift/AntBusNotification.swift; sourceTree = "<group>"; };
 		88C3F686A994F92D90B98D19F5966F91 /* Pods-AntBusDemo-AntBusDemoUITests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemo-AntBusDemoUITests-Info.plist"; sourceTree = "<group>"; };
 		90F5AD30FAAA3B7E7E0C018F4F3C68FC /* Pods-AntBusDemoTests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AntBusDemoTests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		92786E0DE26C966D144014ACBCDB6DCD /* Pods-AntBusDemoTests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemoTests-acknowledgements.plist"; sourceTree = "<group>"; };
 		954776921A60A391DB3AD845278E0BE0 /* Pods-AntBusDemo */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-AntBusDemo"; path = Pods_AntBusDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		9F874A56A7ABC37E839FD56D704E9BEA /* AntBusData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusData.swift; path = AntBus/Classes/ForSwift/AntBusData.swift; sourceTree = "<group>"; };
-		9F9F87E216E5E5F8882FD6663D89448C /* AntBusAliasUtil.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusAliasUtil.swift; path = AntBus/Classes/ForSwift/AntBusAliasUtil.swift; sourceTree = "<group>"; };
-		9FDF88BBF45CB88E567B3FF5481D63CD /* AntBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.debug.xcconfig; sourceTree = "<group>"; };
+		9EB1806C9DB5754E3C5FF6EA31181907 /* AntBusDeallocHook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusDeallocHook.swift; sourceTree = "<group>"; };
+		9F797C0FABB0C5973B5A2CBFDE39A581 /* AntBusData.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusData.swift; sourceTree = "<group>"; };
 		A2B95491C57814750A55C1EEEBE1EB6F /* Pods-AntBusDemo-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AntBusDemo-dummy.m"; sourceTree = "<group>"; };
-		AABCF690F75E93FB529AB9F2D3AD402F /* AntBus-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-umbrella.h"; sourceTree = "<group>"; };
+		A945FB1D42A409E5105691A2EE9B656C /* AntBus-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "AntBus-dummy.m"; sourceTree = "<group>"; };
+		B595555D7CC79A80FBCC059F504C2DCB /* AntBus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.debug.xcconfig; sourceTree = "<group>"; };
 		BBDF6F9ED734B0F12D2C31ABD23DA7DB /* Pods-AntBusDemo-AntBusDemoUITests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AntBusDemo-AntBusDemoUITests.modulemap"; sourceTree = "<group>"; };
+		BC31B66830AFFFD669B7302D49E1B5D2 /* AntBus.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = AntBus.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		BD27AC7054DFCE787E91AFB0FAB0722F /* Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo-AntBusDemoUITests.release.xcconfig"; sourceTree = "<group>"; };
 		C00AADB8175ADEA805B2B8864501D6EA /* Pods-AntBusDemo-AntBusDemoUITests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AntBusDemo-AntBusDemoUITests-frameworks.sh"; sourceTree = "<group>"; };
 		C28EDDD147FBECC80297B2873A8A07E7 /* Pods-AntBusDemoTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemoTests.debug.xcconfig"; sourceTree = "<group>"; };
 		C6A376ADD27FA20FD5C5B09D78C05C72 /* Pods-AntBusDemoTests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-AntBusDemoTests-Info.plist"; sourceTree = "<group>"; };
-		C8F4D4A685FA5916F7AC33133067C571 /* OCAntBusDeallocHook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCAntBusDeallocHook.swift; path = AntBus/Classes/ForOC/OCAntBusDeallocHook.swift; sourceTree = "<group>"; };
 		CC0D37AF8FD20CF84D53258DE2FA809F /* Pods-AntBusDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo.release.xcconfig"; sourceTree = "<group>"; };
 		CF764868503048ABC15F107259A8B268 /* Pods-AntBusDemo-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-AntBusDemo-umbrella.h"; sourceTree = "<group>"; };
 		CF9A21D1908CF086753F2313A6200CFA /* Pods-AntBusDemo-AntBusDemoUITests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-AntBusDemo-AntBusDemoUITests-dummy.m"; sourceTree = "<group>"; };
+		CFAB3FCBAD5BCD1C00F896ED6EDA5E61 /* OCAntBusListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OCAntBusListener.swift; sourceTree = "<group>"; };
 		D840091D889C6BE56A581A02A59541A4 /* Pods-AntBusDemoTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemoTests.release.xcconfig"; sourceTree = "<group>"; };
-		D904EACF552E0B68A2459CD8A6FF7EF8 /* OCAntBusListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCAntBusListener.swift; path = AntBus/Classes/ForOC/OCAntBusListener.swift; sourceTree = "<group>"; };
 		D998CB7B1965D457A8FBFBBAC08150B2 /* Pods-AntBusDemo-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-AntBusDemo-frameworks.sh"; sourceTree = "<group>"; };
 		DB927A553B124793601DDDD369380979 /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		DFA45BD56F55CD7B1BA86150568C3AE0 /* AntBusListener.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusListener.swift; sourceTree = "<group>"; };
+		E358E2FCA37DD674D2F044230AB21520 /* OCAntBusDeallocHook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OCAntBusDeallocHook.swift; sourceTree = "<group>"; };
+		E3E29486E7D8EB5180C993AA7B9D8623 /* AntBus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-prefix.pch"; sourceTree = "<group>"; };
+		E5E6ABA9E1444860B17C8558B9CEF1F7 /* AntBusWKMapTable.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusWKMapTable.swift; sourceTree = "<group>"; };
 		E6188CF9DFDB97B5A6DFD23786944E99 /* Pods-AntBusDemoTests */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = "Pods-AntBusDemoTests"; path = Pods_AntBusDemoTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6672E5B247A21C00CDD59661583A592 /* Pods-AntBusDemo-AntBusDemoUITests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-AntBusDemo-AntBusDemoUITests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		E82FDC4DBCD0BFA177EB3256216A8924 /* Pods-AntBusDemo.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-AntBusDemo.modulemap"; sourceTree = "<group>"; };
-		E9778576BEE0EE31BADE740371994223 /* AntBus-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "AntBus-prefix.pch"; sourceTree = "<group>"; };
-		ECA31503E8AADBC3822D131DCF6A506D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
-		F2A9741D46980B3AB4B4D1C9BA99B646 /* OCAntBusChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OCAntBusChannel.swift; path = AntBus/Classes/ForOC/OCAntBusChannel.swift; sourceTree = "<group>"; };
-		FC801F760EEC7F1078FBBCB37B9C5860 /* AntBus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = AntBus.release.xcconfig; sourceTree = "<group>"; };
-		FDAB111322B947E15477F04A5A03C7C2 /* AntBusDeallocHook.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = AntBusDeallocHook.swift; path = AntBus/Classes/ForSwift/AntBusDeallocHook.swift; sourceTree = "<group>"; };
+		E98DF48E2A80DA80B186B07463B31BEA /* AntBus.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = AntBus.modulemap; sourceTree = "<group>"; };
+		EA2A4E667E82D8DD6D469E09C91B040C /* AntBusChannel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = AntBusChannel.swift; sourceTree = "<group>"; };
+		F75E8AB466A9EDE5B0D8AD0EB5E41F00 /* OCAntBus.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = OCAntBus.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -179,18 +179,6 @@
 			path = "Target Support Files/Pods-AntBusDemo-AntBusDemoUITests";
 			sourceTree = "<group>";
 		};
-		281D70A9C1270E3F4B4CE35D3FF212A8 /* ForOC */ = {
-			isa = PBXGroup;
-			children = (
-				4E9A3EE9EEFCBDA197FFFF40A9503E93 /* OCAntBus.swift */,
-				F2A9741D46980B3AB4B4D1C9BA99B646 /* OCAntBusChannel.swift */,
-				C8F4D4A685FA5916F7AC33133067C571 /* OCAntBusDeallocHook.swift */,
-				D904EACF552E0B68A2459CD8A6FF7EF8 /* OCAntBusListener.swift */,
-				1155AE3084E5F42DAADE4016564132CE /* OCAntBusService.swift */,
-			);
-			name = ForOC;
-			sourceTree = "<group>";
-		};
 		3970B2D3734BF2D6A71330E81A340399 /* Pods-AntBusDemo */ = {
 			isa = PBXGroup;
 			children = (
@@ -208,16 +196,6 @@
 			path = "Target Support Files/Pods-AntBusDemo";
 			sourceTree = "<group>";
 		};
-		49783D2D81A0B225B94804CD5479A317 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				0BC087B753EB08963CA9BEECF655E74A /* AntBus.podspec */,
-				5B4503BC433A50E513A8134B3D4B97B9 /* LICENSE */,
-				ECA31503E8AADBC3822D131DCF6A506D /* README.md */,
-			);
-			name = Pod;
-			sourceTree = "<group>";
-		};
 		578452D2E740E91742655AC8F1636D1F /* iOS */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,20 +204,17 @@
 			name = iOS;
 			sourceTree = "<group>";
 		};
-		8B3630A512EE353F545061E0EF2782DE /* ForSwift */ = {
+		8E5E44228A93117947AB3FBCC675C1C2 /* ForOC */ = {
 			isa = PBXGroup;
 			children = (
-				5432E1570E03B1FD3400A484928EB3DB /* AntBus.swift */,
-				9F9F87E216E5E5F8882FD6663D89448C /* AntBusAliasUtil.swift */,
-				1E72055863020138C761DF4437626D93 /* AntBusChannel.swift */,
-				9F874A56A7ABC37E839FD56D704E9BEA /* AntBusData.swift */,
-				FDAB111322B947E15477F04A5A03C7C2 /* AntBusDeallocHook.swift */,
-				676123FAB4335801982609EE0B2236C8 /* AntBusListener.swift */,
-				83C20EC008A5D9459844929A01B1F6A3 /* AntBusNotification.swift */,
-				6AC40733094A0CF88A3D1364211EE17F /* AntBusService.swift */,
-				7CF02685BDDFB54030F49E668BD00745 /* AntBusWKMapTable.swift */,
+				F75E8AB466A9EDE5B0D8AD0EB5E41F00 /* OCAntBus.swift */,
+				452BB63D1F1149C73503B901D965AAAB /* OCAntBusChannel.swift */,
+				E358E2FCA37DD674D2F044230AB21520 /* OCAntBusDeallocHook.swift */,
+				CFAB3FCBAD5BCD1C00F896ED6EDA5E61 /* OCAntBusListener.swift */,
+				07D6113FD1053E7522E1627C2F9B319B /* OCAntBusService.swift */,
 			);
-			name = ForSwift;
+			name = ForOC;
+			path = AntBus/Classes/ForOC;
 			sourceTree = "<group>";
 		};
 		994ED37504FD6D5EFC58B8F22EDB5A70 /* Products */ = {
@@ -251,6 +226,38 @@
 				E6188CF9DFDB97B5A6DFD23786944E99 /* Pods-AntBusDemoTests */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A391B27CA71E6B288C98C47F7C7C179F /* ForSwift */ = {
+			isa = PBXGroup;
+			children = (
+				2E0FC2A74F8A34D32D5E037BD610205D /* AntBus.swift */,
+				44AE0B8F48881993887C46D581537847 /* AntBusAliasUtil.swift */,
+				EA2A4E667E82D8DD6D469E09C91B040C /* AntBusChannel.swift */,
+				9F797C0FABB0C5973B5A2CBFDE39A581 /* AntBusData.swift */,
+				9EB1806C9DB5754E3C5FF6EA31181907 /* AntBusDeallocHook.swift */,
+				DFA45BD56F55CD7B1BA86150568C3AE0 /* AntBusListener.swift */,
+				3783EA931027AAC44CD6630C2369C0F7 /* AntBusNotification.swift */,
+				10A9E437FBD70F6CC51170203546217F /* AntBusService.swift */,
+				E5E6ABA9E1444860B17C8558B9CEF1F7 /* AntBusWKMapTable.swift */,
+			);
+			name = ForSwift;
+			path = AntBus/Classes/ForSwift;
+			sourceTree = "<group>";
+		};
+		AA9E18D2C1D0E2406EE0C410540DDEE7 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				E98DF48E2A80DA80B186B07463B31BEA /* AntBus.modulemap */,
+				A945FB1D42A409E5105691A2EE9B656C /* AntBus-dummy.m */,
+				39FD718D70408173358EA6841C0DEA6F /* AntBus-Info.plist */,
+				E3E29486E7D8EB5180C993AA7B9D8623 /* AntBus-prefix.pch */,
+				4BD66E6502CBC015FADECEEE09D187BD /* AntBus-umbrella.h */,
+				B595555D7CC79A80FBCC059F504C2DCB /* AntBus.debug.xcconfig */,
+				56530FCECB39FDC528CEC4C52C97BDE8 /* AntBus.release.xcconfig */,
+			);
+			name = "Support Files";
+			path = "../Pods/Target Support Files/AntBus";
 			sourceTree = "<group>";
 		};
 		ACD17B76A8772C7C5AE8CCB86D6D144B /* Pods-AntBusDemoTests */ = {
@@ -283,7 +290,7 @@
 		B9D2AB3FC6D1F42B55634BAF48DC5DC8 /* Development Pods */ = {
 			isa = PBXGroup;
 			children = (
-				D730A67D4B494157081FFAB3BB5F14D1 /* AntBus */,
+				D77EE0B519A4131310AC5BA31A4D05C8 /* AntBus */,
 			);
 			name = "Development Pods";
 			sourceTree = "<group>";
@@ -307,31 +314,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		D730A67D4B494157081FFAB3BB5F14D1 /* AntBus */ = {
+		D77EE0B519A4131310AC5BA31A4D05C8 /* AntBus */ = {
 			isa = PBXGroup;
 			children = (
-				281D70A9C1270E3F4B4CE35D3FF212A8 /* ForOC */,
-				8B3630A512EE353F545061E0EF2782DE /* ForSwift */,
-				49783D2D81A0B225B94804CD5479A317 /* Pod */,
-				F62BEF8C7143FC8E4294FF9008147DC5 /* Support Files */,
+				8E5E44228A93117947AB3FBCC675C1C2 /* ForOC */,
+				A391B27CA71E6B288C98C47F7C7C179F /* ForSwift */,
+				E29E2A3311E6A35241CDE3A6B9AF4CF6 /* Pod */,
+				AA9E18D2C1D0E2406EE0C410540DDEE7 /* Support Files */,
 			);
 			name = AntBus;
 			path = ../AntBus;
 			sourceTree = "<group>";
 		};
-		F62BEF8C7143FC8E4294FF9008147DC5 /* Support Files */ = {
+		E29E2A3311E6A35241CDE3A6B9AF4CF6 /* Pod */ = {
 			isa = PBXGroup;
 			children = (
-				071B7D72A5A7CD022D5AFDA908A7F0A1 /* AntBus.modulemap */,
-				7783008E7CDBE3FC732E3240F164565A /* AntBus-dummy.m */,
-				52E62F1DEBC90E9936D8BBB30E90F614 /* AntBus-Info.plist */,
-				E9778576BEE0EE31BADE740371994223 /* AntBus-prefix.pch */,
-				AABCF690F75E93FB529AB9F2D3AD402F /* AntBus-umbrella.h */,
-				9FDF88BBF45CB88E567B3FF5481D63CD /* AntBus.debug.xcconfig */,
-				FC801F760EEC7F1078FBBCB37B9C5860 /* AntBus.release.xcconfig */,
+				BC31B66830AFFFD669B7302D49E1B5D2 /* AntBus.podspec */,
+				5B8A94588A95BB4049819F5F52B11423 /* LICENSE */,
+				3BAEF38498952FEE8713B11700E9DD6A /* README.md */,
 			);
-			name = "Support Files";
-			path = "../Pods/Target Support Files/AntBus";
+			name = Pod;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -396,7 +398,7 @@
 			buildConfigurationList = 51E1B864F4B6DFDFD30EFAF96A9037DB /* Build configuration list for PBXNativeTarget "AntBus" */;
 			buildPhases = (
 				B562D69C57D4D5149193397D511F5D9A /* Headers */,
-				678E8F24F42A4431FD096C2AD73AE4E9 /* Sources */,
+				2C96905156767DF388E1C5C8AC4B8180 /* Sources */,
 				8E517898E5799DD99347BDFDA16EB000 /* Frameworks */,
 				00C3A2088F6C6D967D0EE09A024DE427 /* Resources */,
 			);
@@ -510,33 +512,33 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		2C96905156767DF388E1C5C8AC4B8180 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D53D5A1E7A0FCFCF0BC2B14FCC70171D /* AntBus.swift in Sources */,
+				E832204B18410DEE64E1928A4205F7CA /* AntBus-dummy.m in Sources */,
+				283217699F487F3ABCCBA24B649B56F4 /* AntBusAliasUtil.swift in Sources */,
+				38480750BC196D58E608D928B2132DE2 /* AntBusChannel.swift in Sources */,
+				767EE546EA02CA7C65C3AA84DAED7DE2 /* AntBusData.swift in Sources */,
+				139AE6CC5AC505A619A789BEDB775E52 /* AntBusDeallocHook.swift in Sources */,
+				CD59A89523AEF71C0C435308FEA584F3 /* AntBusListener.swift in Sources */,
+				9D61C4AD26926D8220DCD68C7FF691B6 /* AntBusNotification.swift in Sources */,
+				1E3496F9142E700B64455FB324DA65E4 /* AntBusService.swift in Sources */,
+				0364022E7EAD4171507BBA5886AE9E45 /* AntBusWKMapTable.swift in Sources */,
+				CF1BC2F38559CE995C7CC41FB6A36E05 /* OCAntBus.swift in Sources */,
+				B3AEA0175B096B0C6AE8D83FFBD049A2 /* OCAntBusChannel.swift in Sources */,
+				6F369DEB5432864E5A796B8BAAF8575F /* OCAntBusDeallocHook.swift in Sources */,
+				4711AE78A17A729666E87CA3F19FEDA5 /* OCAntBusListener.swift in Sources */,
+				9311AA6269940B56521AC7AB3AB8555B /* OCAntBusService.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		56AB444ABE8D0B03A1A45AB742EAEADE /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				D0C6112547C548B74CDE4E1B05037674 /* Pods-AntBusDemoTests-dummy.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		678E8F24F42A4431FD096C2AD73AE4E9 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				6C9A01342200BEEA32B618FE5E5D9B3A /* AntBus.swift in Sources */,
-				1824E0D4DEBA20659BA16D42EF72060E /* AntBus-dummy.m in Sources */,
-				A3BFA5CB770E98752F0ADF6A51A1F996 /* AntBusAliasUtil.swift in Sources */,
-				D2CCD147B9F4D47EC62F7373553F1863 /* AntBusChannel.swift in Sources */,
-				97E3D39CEE0586D34CB0BD16C5D5A736 /* AntBusData.swift in Sources */,
-				0A569B735B074E4C00DB93CA972FC55F /* AntBusDeallocHook.swift in Sources */,
-				CB9FCBF84C4F19A803894B0A8D55ADCF /* AntBusListener.swift in Sources */,
-				4871542C0DC837E7BF678964B6DDC1BD /* AntBusNotification.swift in Sources */,
-				F7F83ECE1A8C43482DE1EC03DA3B0A6F /* AntBusService.swift in Sources */,
-				2395931274C45C6ABDBD26E1CBC99DD6 /* AntBusWKMapTable.swift in Sources */,
-				A07CD82E4335BD5C9E444DA37EA651AC /* OCAntBus.swift in Sources */,
-				00CE3D18CBA41A1851162DC958A50864 /* OCAntBusChannel.swift in Sources */,
-				DBA84661A91633923AB81065DB3B6869 /* OCAntBusDeallocHook.swift in Sources */,
-				7F8B2FE87A1B773E40BC18545B9C21A6 /* OCAntBusListener.swift in Sources */,
-				9B70BDCE9931415A6F4E42BE4B7945ED /* OCAntBusService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -663,7 +665,7 @@
 		};
 		192D1BE7DDFB8B63A5C89225F19570F4 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = FC801F760EEC7F1078FBBCB37B9C5860 /* AntBus.release.xcconfig */;
+			baseConfigurationReference = 56530FCECB39FDC528CEC4C52C97BDE8 /* AntBus.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -910,7 +912,7 @@
 		};
 		D01712AA0738E2F09B7B33D2CDA37D3F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 9FDF88BBF45CB88E567B3FF5481D63CD /* AntBus.debug.xcconfig */;
+			baseConfigurationReference = B595555D7CC79A80FBCC059F504C2DCB /* AntBus.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=appletvos*]" = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";

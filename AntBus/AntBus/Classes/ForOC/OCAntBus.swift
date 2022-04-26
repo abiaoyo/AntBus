@@ -79,28 +79,34 @@ public class OCAntBus: NSObject {
     public static let channel = _OCAntBusChannel.init()
     public static let service = _OCAntBusService.init()
     
-    public static var printDealloc:Bool {
-        get {
-            return AntBus.printDealloc
-        }
+    public static var deallocLog:((_ log: String) -> Void)? {
         set {
-            AntBus.printDealloc = newValue
+            AntBus.deallocLog = newValue
+        }
+        get {
+            return AntBus.deallocLog
         }
     }
-    public static var printService:Bool {
-        get {
-            return AntBus.printService
-        }
+    public static var channelLog:((_ log: String) -> Void)? {
         set {
-            AntBus.printService = newValue
+            AntBus.channelLog = newValue
+        }
+        get {
+            return AntBus.channelLog
         }
     }
-    public static var printChannel:Bool {
-        get {
-            return AntBus.printChannel
-        }
+    public static var serviceLog:((_ log: String) -> Void)? {
         set {
-            AntBus.printChannel = newValue
+            AntBus.serviceLog = newValue
         }
+        get {
+            return AntBus.serviceLog
+        }
+    }
+    
+    
+    
+    public static func printLog(_ str:String) {
+        AntBus.printLog(str)
     }
 }

@@ -30,16 +30,7 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
 
-  #s.source_files = 'AntBus/Classes/**/*'
-  
-  s.subspec 'ForSwift' do |ss|
-    ss.source_files         = 'AntBus/Classes/ForSwift/*'
-  end
-
-  s.subspec 'ForOC' do |ss|
-    ss.dependency 'ForSwift'
-    ss.source_files         = 'AntBus/Classes/ForOC/*'
-  end
+  s.source_files = 'AntBus/Classes/**/*'
   
   # s.resource_bundles = {
   #   'AntBus' => ['AntBus/Assets/*.png']
