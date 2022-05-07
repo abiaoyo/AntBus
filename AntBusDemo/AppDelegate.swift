@@ -14,9 +14,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func registerModules(){
         
-        AntBus.printDealloc = true
-        AntBus.printService = true
-        AntBus.printChannel = true
+        AntBus.deallocLog = { log in
+            AntBus.printLog(log)
+        }
+        AntBus.channelLog = { log in
+            AntBus.printLog(log)
+        }
+        AntBus.serviceLog = { log in
+            AntBus.printLog(log)
+        }
         
         AntBusServiceI<LoginModule>.single.register(LoginModule.init())
         
