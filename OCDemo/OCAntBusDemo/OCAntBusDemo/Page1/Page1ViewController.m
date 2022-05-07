@@ -42,30 +42,30 @@
 //    [OCAntBusDeallocHook.shared uninstallDeallocHookFor:self propertyKey:@"TTT" handlerKey:@"TTTHandler"];
 //    [OCAntBusDeallocHook.shared uninstallDeallocHookFor:self propertyKey:@"TTT"];
     
-    LoginService * loginService = [OCAntBusService.single responderWithClazz:LoginService.class];
+    LoginService * loginService = [OCAntBus.service.single responderWithClazz:LoginService.class];
     [loginService loginWithAccount:@"zhangsan"];
     
-    LoginService * loginService2 = [OCAntBusService.single responderWithInterface:@protocol(ILogin)];
+    LoginService * loginService2 = [OCAntBus.service.single responderWithInterface:@protocol(ILogin)];
     [loginService2 loginWithAccount:@"zhangsan"];
     
-    [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"Page1" responder:self];
-    [OCAntBusChannel.multi registerWithClazz:UIResponder.class key:@"Page1" responder:self];
-    [OCAntBusChannel.multi registerWithClazz:NSObject.class key:@"Page1" responder:self];
+    [OCAntBus.channel.multi registerWithClazz:UIViewController.class key:@"Page1" responder:self];
+    [OCAntBus.channel.multi registerWithClazz:UIResponder.class key:@"Page1" responder:self];
+    [OCAntBus.channel.multi registerWithClazz:NSObject.class key:@"Page1" responder:self];
     
-    NSArray * resps1 = [OCAntBusChannel.multi responderWithClazz:UIViewController.class key:@"Page1"];
-    NSArray * resps2 =[OCAntBusChannel.multi responderWithClazz:UIViewController.class];
+    NSArray * resps1 = [OCAntBus.channel.multi responderWithClazz:UIViewController.class key:@"Page1"];
+    NSArray * resps2 =[OCAntBus.channel.multi responderWithClazz:UIViewController.class];
     
     NSLog(@"resp1: %@",resps1);
     NSLog(@"resp2: %@",resps2);
     
-    NSArray * resps3 =[OCAntBusChannel.multi responderWithClazz:UIResponder.class];
-    NSArray * resps4 =[OCAntBusChannel.multi responderWithClazz:NSObject.class];
+    NSArray * resps3 =[OCAntBus.channel.multi responderWithClazz:UIResponder.class];
+    NSArray * resps4 =[OCAntBus.channel.multi responderWithClazz:NSObject.class];
     
     NSLog(@"resp3: %@",resps3);
     NSLog(@"resp4: %@",resps4);
     
     
-    NSArray * resps5 = [OCAntBusService.multi responderWithClazz:UIViewController.class];
+    NSArray * resps5 = [OCAntBus.service.multi responderWithClazz:UIViewController.class];
     NSLog(@"resps5: %@",resps5);
 }
 

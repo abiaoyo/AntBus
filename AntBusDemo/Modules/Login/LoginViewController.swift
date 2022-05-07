@@ -24,7 +24,7 @@ class LoginViewController: UIViewController {
             print("accountTF.text变动: .oldVal:\(oldVal)  .newVal:\(newVal)")
         }
         self.title = "1234"
-        self.accountTF.text = AntBusServiceI<LoginModule>.single.responder()?.loginInfo.account
+        self.accountTF.text = AntBus.service<LoginModule>.single.responder()?.loginInfo.account
         
         AntBus.deallocHook.installDeallocHook(for: self, propertyKey: "key1", handlerKey: "keyHandler1") { _ in
             
@@ -42,7 +42,7 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func clickLogin(_ sender: Any) {
-        AntBusServiceI<LoginModule>.single.responder()?.login(account: self.accountTF.text!)
+        AntBus.service<LoginModule>.single.responder()?.login(account: self.accountTF.text!)
         self.dismiss(animated: true, completion: nil)
     }
 

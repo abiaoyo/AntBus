@@ -145,9 +145,3 @@ public class OCAntBusChannelCM: NSObject {
         AntBusCMC.remove(aliasName)
     }
 }
-
-@objcMembers
-public class OCAntBusChannel: NSObject {
-    public static let single = OCAntBusChannelCS.init()
-    public static let multi = OCAntBusChannelCM.init()
-}

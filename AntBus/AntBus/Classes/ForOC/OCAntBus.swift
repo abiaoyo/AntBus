@@ -57,17 +57,16 @@ public class OCAntBusNoti: NSObject{
 }
 
 @objcMembers
-public class _OCAntBusChannel: NSObject{
-    public let single = OCAntBusChannel.single
-    public let multi:OCAntBusChannelCM = OCAntBusChannel.multi
+public class OCAntBusChannel: NSObject{
+    public let single = OCAntBusChannelCS.init()
+    public let multi = OCAntBusChannelCM.init()
 }
 
 @objcMembers
-public class _OCAntBusService: NSObject{
-    public let single = OCAntBusService.single
-    public let multi = OCAntBusService.multi
+public class OCAntBusService: NSObject{
+    public let single = OCAntBusServiceSS.init()
+    public let multi = OCAntBusServiceSM.init()
 }
-
 
 @objcMembers
 public class OCAntBus: NSObject {
@@ -76,9 +75,11 @@ public class OCAntBus: NSObject {
     public static let notification = OCAntBusNoti.init()
     public static let deallocHook = OCAntBusDeallocHook.shared
     public static let listener = OCAntBusListener.init()
-    public static let channel = _OCAntBusChannel.init()
-    public static let service = _OCAntBusService.init()
-    
+    public static let channel = OCAntBusChannel.init()
+    public static let service = OCAntBusService.init()
+}
+
+extension OCAntBus {
     public static var deallocLog:((_ log: String) -> Void)? {
         set {
             AntBus.deallocLog = newValue

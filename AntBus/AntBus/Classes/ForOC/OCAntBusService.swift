@@ -176,9 +176,3 @@ public class OCAntBusServiceSM: NSObject {
         AntBusSMC.remove(aliasName)
     }
 }
-
-@objcMembers
-public class OCAntBusService: NSObject {
-    public static let single = OCAntBusServiceSS.init()
-    public static let multi = OCAntBusServiceSM.init()
-}

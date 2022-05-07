@@ -32,27 +32,28 @@
     
     LoginService * loginService = [[LoginService alloc] init];
     
-    [OCAntBusService.single registerWithInterface:@protocol(ILogin) responder:loginService];
-    [OCAntBusService.single registerWithInterface:@protocol(ILogin) responder:loginService];
     
-    [OCAntBusService.single registerWithClazz:LoginService.class responder:loginService];
+    [OCAntBus.service.single registerWithInterface:@protocol(ILogin) responder:loginService];
+    [OCAntBus.service.single registerWithInterface:@protocol(ILogin) responder:loginService];
     
-    [OCAntBusChannel.single registerWithClazz:UIViewController.class responder:self];
-    [OCAntBusChannel.single registerWithInterface:@protocol(UIPage) responder:self];
-    [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
-    [OCAntBusChannel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBus.service.single registerWithClazz:LoginService.class responder:loginService];
+    
+    [OCAntBus.channel.single registerWithClazz:UIViewController.class responder:self];
+    [OCAntBus.channel.single registerWithInterface:@protocol(UIPage) responder:self];
+    [OCAntBus.channel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBus.channel.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
     
     [OCAntBus.channel.single registerWithClazz:UIViewController.class responder:self];
     
     
-    [OCAntBusService.single registerWithClazz:NSNumber.class responder:@(100)];
-    id n = [OCAntBusService.single responderWithClazz:NSNumber.class];
+    [OCAntBus.service.single registerWithClazz:NSNumber.class responder:@(100)];
+    id n = [OCAntBus.service.single responderWithClazz:NSNumber.class];
     NSLog(@"n: %@",n);
     
     
     
-    [OCAntBusService.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
-    [OCAntBusService.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBus.service.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
+    [OCAntBus.service.multi registerWithClazz:UIViewController.class key:@"ViewController" responder:self];
 }
 
 - (IBAction)clickButton1:(id)sender {
@@ -64,13 +65,13 @@
     [self.navigationController pushViewController:vctl animated:YES];
 }
 - (IBAction)clickButton3:(id)sender {
-    id<SFViewPage> viewPage = [OCAntBusService.single responderWithInterface:@protocol(SFViewPage)];
+    id<SFViewPage> viewPage = [OCAntBus.service.single responderWithInterface:@protocol(SFViewPage)];
     NSLog(@"viewPage=%@",viewPage);
     
-    ViewController2 * vctl = [OCAntBusService.single responderWithClazz:ViewController2.class];
+    ViewController2 * vctl = [OCAntBus.service.single responderWithClazz:ViewController2.class];
     NSLog(@"vctl=%@",vctl);
     
-    [[OCAntBusService.single responderWithInterface:@protocol(ILogin)] pushToLoginPageWithNavCtl:self.navigationController];
+    [[OCAntBus.service.single responderWithInterface:@protocol(ILogin)] pushToLoginPageWithNavCtl:self.navigationController];
 }
 
 @end

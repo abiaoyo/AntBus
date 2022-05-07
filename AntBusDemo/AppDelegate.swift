@@ -23,16 +23,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AntBus.serviceLog = { log in
             AntBus.printLog(log)
         }
-        
-        AntBusServiceI<LoginModule>.single.register(LoginModule.init())
+        AntBus.service<LoginModule>.single.register(LoginModule.init())
         
         let h1001Module = H1001Module.init()
         let h2001Module = H2001Module.init()
         let hCommonModule = HCommonModule.init()
         
-        AntBusServiceI<DeviceProtocol>.multi.register(h1001Module.supportSkus(), h1001Module)
-        AntBusServiceI<DeviceProtocol>.multi.register(h2001Module.supportSkus(), h2001Module)
-        AntBusServiceI<DeviceProtocol>.multi.register(hCommonModule.supportSkus(), hCommonModule)
+        AntBus.service<DeviceProtocol>.multi.register(h1001Module.supportSkus(), h1001Module)
+        AntBus.service<DeviceProtocol>.multi.register(h2001Module.supportSkus(), h2001Module)
+        AntBus.service<DeviceProtocol>.multi.register(hCommonModule.supportSkus(), hCommonModule)
+        
+        /*
+         AntBus.service.single(DeviceProtocol.self).register(self)
+         AntBus.service.multi(DeviceProtocol.self).register(self,"1001")
+         AntBus.service.single<DeviceProtocol>.register()
+         */
         
 //        AntBusService.multi(DeviceProtocol.self).register(hCommonModule.supportSkus(), hCommonModule)
         

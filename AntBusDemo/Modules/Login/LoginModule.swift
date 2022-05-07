@@ -14,7 +14,7 @@ class LoginModule: NSObject {
     
     func goLoginPage() {
         let vctl = LoginViewController.init()
-        AntBusChannelI<TabBarProtocol>.single.responder()?.currentNavController().present(vctl, animated: true, completion: nil)
+        AntBus.channel<TabBarProtocol>.single.responder()?.currentNavController().present(vctl, animated: true, completion: nil)
     }
     
     func login(account:String) {
