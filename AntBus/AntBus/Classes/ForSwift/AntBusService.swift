@@ -2,7 +2,9 @@ import Foundation
 
 // Single
 class AntBusSSC {
-    static var container = Dictionary<String,Any>.init()
+    
+    static var container = [String: Any]()
+    
     static func register(_ key:String, _ responder:Any) {
         let log = "AntBusService.single.register:  \(key) \t \(responder)"
         AntBus.serviceLog?(log)
@@ -12,20 +14,24 @@ class AntBusSSC {
     
     static func responder(_ key:String) -> Any? {
         let rs = container[key]
+        
         let log = "AntBusService.single.responder:  \(key) \t \(String(describing: rs))"
         AntBus.serviceLog?(log)
+        
         return rs
     }
     
     static func remove(_ key:String) {
         let log = "AntBusService.single.remove:  \(key)"
         AntBus.serviceLog?(log)
+        
         container.removeValue(forKey: key)
     }
     
     static func removeAll() {
         let log = "AntBusService.single.removeAll"
         AntBus.serviceLog?(log)
+        
         container.removeAll()
     }
 }
@@ -49,13 +55,12 @@ final public class AntBusSS<R: Any> {
 
 // Multi
 class AntBusSMC{
-    /// <aliasName,<key,[responder]>>
-    static var container = Dictionary<String,Dictionary<String,Array<Any>>>.init()
+    
+    static var container = [String:[String:[Any]]]()
     
     static func register(_ type:String, _ key:String, _ responder:Any){
         let log = "AntBusService.multi.register:  \(type) \t \(key) \t \(responder)"
         AntBus.serviceLog?(log)
-        
         if let _ = container[type] {
             if let _ = container[type]![key] {
                 container[type]![key]?.append(responder)
@@ -114,12 +119,14 @@ class AntBusSMC{
     static func remove(_ type:String, _ key:String){
         let log = "AntBusService.multi.remove:  \(type) \t \(key)"
         AntBus.serviceLog?(log)
+        
         container[type]?.removeValue(forKey: key)
     }
     
     static func remove(_ type:String) {
         let log = "AntBusService.multi.remove:  \(type)"
         AntBus.serviceLog?(log)
+        
         container.removeValue(forKey: type)
     }
     
@@ -172,19 +179,11 @@ final public class AntBusSM<R:Any> {
 
 //MARK: - AntBusService
 public struct AntBusServiceI<T:Any> {
-    public static var single:AntBusSS<T>{
-        return AntBusSS<T>.init()
-    }
-    public static var multi:AntBusSM<T>{
-        return AntBusSM<T>.init()
-    }
+    public static var single:AntBusSS<T>{ AntBusSS<T>.init() }
+    public static var multi:AntBusSM<T>{ AntBusSM<T>.init() }
 }
 
 public struct AntBusService{
-    public static func singleI<T:Any>(_ type:T.Type) -> AntBusSS<T> {
-        return AntBusSS<T>.init()
-    }
-    public static func multi<T:Any>(_ type:T.Type) -> AntBusSM<T> {
-        return AntBusSM<T>.init()
-    }
+    public static func singleI<T:Any>(_ type:T.Type) -> AntBusSS<T> { AntBusSS<T>.init() }
+    public static func multi<T:Any>(_ type:T.Type) -> AntBusSM<T> { AntBusSM<T>.init() }
 }

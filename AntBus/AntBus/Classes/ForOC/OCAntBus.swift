@@ -3,7 +3,9 @@ import Foundation
 @objcMembers
 public class OCAntBusData:NSObject{
     
-    public func register(key:String,owner:AnyObject,handler:@escaping AntBusDataHandler){
+    public static let shared = OCAntBusData.init()
+    
+    public func register(key:String,owner:AnyObject,handler:@escaping AntBusData.DataHandler){
         AntBus.data.register(key, owner: owner, handler: handler)
     }
     
@@ -12,7 +14,7 @@ public class OCAntBusData:NSObject{
     }
     
     public func call(key:String) -> Any?{
-        return AntBus.data.call(key).value
+        return AntBus.data.call(key)
     }
     
     public func remove(key:String){
@@ -27,7 +29,9 @@ public class OCAntBusData:NSObject{
 @objcMembers
 public class OCAntBusNoti: NSObject{
     
-    public func register(key:String,owner:AnyObject,handler:@escaping AntBusResultBlock){
+    public static let shared = OCAntBusNoti.init()
+    
+    public func register(key:String,owner:AnyObject,handler:@escaping AntBusNotification.NotificationHandler){
         AntBus.notification.register(key, owner: owner, handler: handler)
     }
     
@@ -58,12 +62,16 @@ public class OCAntBusNoti: NSObject{
 
 @objcMembers
 public class OCAntBusChannel: NSObject{
+    public static let shared = OCAntBusChannel.init()
+    
     public let single = OCAntBusChannelCS.init()
     public let multi = OCAntBusChannelCM.init()
 }
 
 @objcMembers
 public class OCAntBusService: NSObject{
+    public static let shared = OCAntBusService.init()
+    
     public let single = OCAntBusServiceSS.init()
     public let multi = OCAntBusServiceSM.init()
 }
@@ -71,38 +79,27 @@ public class OCAntBusService: NSObject{
 @objcMembers
 public class OCAntBus: NSObject {
     
-    public static let data = OCAntBusData.init()
-    public static let notification = OCAntBusNoti.init()
+    public static let data = OCAntBusData.shared
+    public static let notification = OCAntBusNoti.shared
     public static let deallocHook = OCAntBusDeallocHook.shared
-    public static let listener = OCAntBusListener.init()
-    public static let channel = OCAntBusChannel.init()
-    public static let service = OCAntBusService.init()
+    public static let listener = OCAntBusListener.shared
+    public static let channel = OCAntBusChannel.shared
+    public static let service = OCAntBusService.shared
 }
 
 extension OCAntBus {
+    
     public static var deallocLog:((_ log: String) -> Void)? {
-        set {
-            AntBus.deallocLog = newValue
-        }
-        get {
-            return AntBus.deallocLog
-        }
+        set { AntBus.deallocLog = newValue }
+        get { return AntBus.deallocLog }
     }
     public static var channelLog:((_ log: String) -> Void)? {
-        set {
-            AntBus.channelLog = newValue
-        }
-        get {
-            return AntBus.channelLog
-        }
+        set { AntBus.channelLog = newValue }
+        get { return AntBus.channelLog }
     }
     public static var serviceLog:((_ log: String) -> Void)? {
-        set {
-            AntBus.serviceLog = newValue
-        }
-        get {
-            return AntBus.serviceLog
-        }
+        set { AntBus.serviceLog = newValue }
+        get { return AntBus.serviceLog }
     }
     
     

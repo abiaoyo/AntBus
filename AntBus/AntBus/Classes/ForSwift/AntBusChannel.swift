@@ -2,6 +2,7 @@ import Foundation
 
 //Single
 class AntBusCSC {
+    
     static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
     
     static func register(_ key:String, _ responder:AnyObject) {
@@ -24,6 +25,7 @@ class AntBusCSC {
         
         let log = "AntBusChannel.single.responder:  \(key) \t \(String(describing: rs))"
         AntBus.channelLog?(log)
+        
         return rs
     }
     
@@ -37,6 +39,7 @@ class AntBusCSC {
     static func removeAll() {
         let log = "AntBusChannel.single.removeAll"
         AntBus.channelLog?(log)
+        
         container.removeAllObjects()
     }
 }
@@ -66,17 +69,13 @@ class AntBusCMC {
         let log = "AntBusChannel.multi.register:  \(type) \t \(key) \t \(responder)"
         AntBus.channelLog?(log)
         
-        var typeContainer = container[type] as? NSMutableDictionary
-        if typeContainer == nil {
-            typeContainer = NSMutableDictionary.init()
-            container[type] = typeContainer
-        }
-        var keyContainer = typeContainer![key] as? NSHashTable<AnyObject>
-        if keyContainer == nil {
-            keyContainer = NSHashTable<AnyObject>.weakObjects()
-            typeContainer![key] = keyContainer
-        }
-        keyContainer!.add(responder)
+        let typeContainer = (container[type] as? NSMutableDictionary) ?? NSMutableDictionary.init()
+        container[type] = typeContainer
+        
+        let keyContainer = (typeContainer[key] as? NSHashTable<AnyObject>) ?? NSHashTable<AnyObject>.weakObjects()
+        keyContainer.add(responder)
+        
+        typeContainer[key] = keyContainer
         
         AntBusDeallocHook.shared.installDeallocHook(for: responder, propertyKey: "AntBusCMC", handlerKey: key) { hkeys in
             if let typeContainer = container[type] as? NSMutableDictionary {
@@ -108,13 +107,17 @@ class AntBusCMC {
     
     static func responders(_ type:String, _ key:String) -> [AnyObject]? {
         let rs = ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
+        
         let log = "AntBusChannel.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))"
         AntBus.channelLog?(log)
+        
         return rs
     }
     
     static func responders(_ type:String) -> [AnyObject]? {
+        
         var rs:[AnyObject]? = nil
+        
         if let typeContainer = container[type] as? NSMutableDictionary {
             let mset = NSMutableSet.init()
             typeContainer.allKeys.forEach { key in
@@ -124,14 +127,17 @@ class AntBusCMC {
             }
             rs = mset.allObjects.compactMap({ $0 as AnyObject})
         }
+        
         let log = "AntBusChannel.multi.responders:  \(type) \t \(String(describing: rs))"
         AntBus.channelLog?(log)
+        
         return rs
     }
     
     static func remove(_ type:String, _ key:String,_ responder:AnyObject) {
         let log = "AntBusChannel.multi.remove:  \(type) \t \(key) \t \(responder)"
         AntBus.channelLog?(log)
+        
         ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.remove(responder)
     }
     
@@ -150,6 +156,7 @@ class AntBusCMC {
     static func remove(_ type:String, _ key:String) {
         let log = "AntBusChannel.multi.remove:  \(type) \t \(key)"
         AntBus.channelLog?(log)
+        
         (container[type] as? NSMutableDictionary)?.removeObject(forKey: key)
     }
     
@@ -162,6 +169,7 @@ class AntBusCMC {
     static func remove(_ type:String) {
         let log = "AntBusChannel.multi.remove:  \(type)"
         AntBus.channelLog?(log)
+        
         container.removeObject(forKey: type)
     }
 }
@@ -222,23 +230,11 @@ final public class AntBusCM<R: AnyObject> {
 }
 
 public struct AntBusChannel{
-    public static func singleI<T:AnyObject>(_ type:T.Type) -> AntBusCS<T> {
-        return AntBusCS<T>.init()
-    }
-    public static func multiI<T:AnyObject>(_ type:T.Type) -> AntBusCM<T> {
-        return AntBusCM<T>.init()
-    }
+    public static func singleI<T:AnyObject>(_ type:T.Type) -> AntBusCS<T> { AntBusCS<T>.init() }
+    public static func multiI<T:AnyObject>(_ type:T.Type) -> AntBusCM<T> { AntBusCM<T>.init() }
 }
 
 public struct AntBusChannelI<T:AnyObject>{
-    public static var single:AntBusCS<T> {
-        get {
-            return AntBusCS<T>.init()
-        }
-    }
-    public static var multi:AntBusCM<T> {
-        get {
-            return AntBusCM<T>.init()
-        }
-    }
+    public static var single:AntBusCS<T> { AntBusCS<T>.init() }
+    public static var multi:AntBusCM<T> { AntBusCM<T>.init() }
 }

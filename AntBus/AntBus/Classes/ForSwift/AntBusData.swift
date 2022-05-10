@@ -1,42 +1,46 @@
 import Foundation
 
-public typealias AntBusDataHandler = () -> Any?
-
 final public class AntBusData{
+    
+    public typealias DataHandler = () -> Any?
+    
+    public static let shared = AntBusData()
     
     //<key,owner>
     static private var keyOwnerMap = NSMapTable<NSString,AnyObject>.strongToWeakObjects()
+    
     //<owner,[<key,handler>]>
     static private var ownerHandlersMap = AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>>.init()
     
-    private var keyOwnerMap:NSMapTable<NSString,AnyObject> { get { return AntBusData.keyOwnerMap }}
-    private var ownerHandlersMap:AntBusWKMapTable<AnyObject,NSMapTable<NSString,AnyObject>> { get { AntBusData.ownerHandlersMap }}
-    
     private func clearOwner(_ key:String){
-        if let owner = keyOwnerMap.object(forKey: key as NSString) {
-            ownerHandlersMap.value(forKey: owner)?.removeObject(forKey: key as NSString?)
+        guard let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) else {
+            return
         }
+        AntBusData.ownerHandlersMap.value(forKey: owner)?.removeObject(forKey: key as NSString?)
     }
     
-    private func handler(forKey key: String) -> AntBusDataHandler?{
-        if let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) {
-            return AntBusData.ownerHandlersMap.value(forKey: owner)?.object(forKey: key as NSString) as? AntBusDataHandler
+    private func handler(forKey key: String) -> DataHandler?{
+        guard let owner = AntBusData.keyOwnerMap.object(forKey: key as NSString) else {
+            return nil
         }
-        return nil
+        return AntBusData.ownerHandlersMap.value(forKey: owner)?.object(forKey: key as NSString) as? DataHandler
     }
+}
+
+extension AntBusData {
     
-    // ==================================================================
-    public func register(_ key:String, owner:AnyObject, handler:@escaping AntBusDataHandler){
+    public func register(_ key:String, owner:AnyObject, handler:@escaping DataHandler){
+        
         clearOwner(key)
-        keyOwnerMap.setObject(owner, forKey: key as NSString)
         
-        var khMap = ownerHandlersMap.value(forKey: owner)
-        if khMap == nil {
-            khMap = NSMapTable<NSString,AnyObject>.strongToStrongObjects()
-        }
-        khMap?.setObject(handler as AnyObject, forKey: key as NSString)
+        AntBusData.keyOwnerMap.setObject(owner, forKey: key as NSString)
         
-        ownerHandlersMap.setValue(khMap,forKey:owner)
+        let khMap = AntBusData.ownerHandlersMap.value(forKey: owner) ?? NSMapTable<NSString,AnyObject>.strongToStrongObjects()
+
+        khMap.setObject(handler as AnyObject, forKey: key as NSString)
+        
+        AntBusData.ownerHandlersMap.setValue(khMap,forKey:owner)
+        
         AntBusDeallocHook.shared.installDeallocHook(for: owner, propertyKey: "AntBusData", handlerKey: key) { hkeys in
             AntBusData.keyOwnerMap.removeObject(forKey: key as NSString)
         }
@@ -46,11 +50,11 @@ final public class AntBusData{
         return handler(forKey: key) != nil
     }
     
-    public func call(_ key:String) -> (success:Bool, value:Any?){
-        if let handler = handler(forKey: key) {
-            return (success:true, value:handler())
+    public func call(_ key:String) -> Any?{
+        guard let handler = handler(forKey: key) else {
+            return nil
         }
-        return (success:false, value:nil)
+        return handler()
     }
     
     public func remove(_ key:String){
@@ -58,7 +62,7 @@ final public class AntBusData{
     }
     
     public func removeAll(){
-        keyOwnerMap.removeAllObjects()
-        ownerHandlersMap.removeAll()
+        AntBusData.keyOwnerMap.removeAllObjects()
+        AntBusData.ownerHandlersMap.removeAll()
     }
 }

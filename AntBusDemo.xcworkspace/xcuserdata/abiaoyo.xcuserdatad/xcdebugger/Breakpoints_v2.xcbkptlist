@@ -122,9 +122,9 @@
             filePath = "AntBusDemoTests/AntBusDemoTests.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "174"
-            endingLineNumber = "174"
-            landmarkName = "registerB()"
+            startingLineNumber = "177"
+            endingLineNumber = "177"
+            landmarkName = "testMultiChannel()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

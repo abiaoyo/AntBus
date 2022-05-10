@@ -16,7 +16,7 @@ class SecondPageViewController: UIViewController{
     }
     
     @IBAction func clickChanngeTabBar(_ sender: Any) {
-        let index = AntBus.data.call("root.tabbar.index").value
+        let index = AntBus.data.call("root.tabbar.index")
         print("root.tabbar.index:\(index)")
         
         let tabBar = AntBus.channel<TabBarProtocol>.single.responder()

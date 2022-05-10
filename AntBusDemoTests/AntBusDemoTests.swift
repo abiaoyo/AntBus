@@ -83,11 +83,14 @@ class H6143Module: SkuModule {
 }
 
 
-
 class AntBusDemoTests: XCTestCase {
-
+    
     func testNew() {
-        
+        //AntBusService<SkuModule>.single
+        //AntBus.service<SkuModule>.single
+        /*
+         
+         */
     }
     
     override func setUpWithError() throws {

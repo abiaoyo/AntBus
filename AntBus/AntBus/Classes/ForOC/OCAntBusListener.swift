@@ -3,6 +3,8 @@ import Foundation
 @objcMembers
 public class OCAntBusListener: NSObject {
     
+    public static let shared = OCAntBusListener.init()
+    
     public func listening(keyPath:String, forObject obj:AnyObject, handler:AntBusListenerHandler!) {
         AntBusListener.shared.listening(keyPath: keyPath, for: obj, handler: handler)
     }
