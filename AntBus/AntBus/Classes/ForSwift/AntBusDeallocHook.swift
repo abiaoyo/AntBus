@@ -1,20 +1,19 @@
 import Foundation
 
-public typealias AntBusDeallocHandler = (_ handleKeys:Set<String>) -> Void
+public typealias AntBusDeallocHandler = (_ handleKeys: Set<String>) -> Void
 
 private class _AntBusDeallocHook {
-    
     private var handlerKeys = Set<String>.init()
     
-    var handler:AntBusDeallocHandler?
-    var type:String?
-    var propertyKey:String = ""
+    var handler: AntBusDeallocHandler?
+    var type: String?
+    var propertyKey: String = ""
     
-    func add(_ handlerKey:String) {
+    func add(_ handlerKey: String) {
         handlerKeys.insert(handlerKey)
     }
     
-    func remove(_ handlerKey:String) {
+    func remove(_ handlerKey: String) {
         handlerKeys.remove(handlerKey)
     }
     
@@ -26,21 +25,17 @@ private class _AntBusDeallocHook {
     }
 }
 
-
-final public class AntBusDeallocHook {
+public final class AntBusDeallocHook {
+    public static let shared = AntBusDeallocHook()
     
-    public static let shared = AntBusDeallocHook.init()
-    
-    private init(){}
+    private init() {}
     
     private var AntBusDeallocHookKey: Void?
     
-    public func installDeallocHook(for object: AnyObject, propertyKey:String, handlerKey:String, handler: AntBusDeallocHandler?) {
-        
-        let keyPointer:UnsafeRawPointer! = UnsafeRawPointer.init(bitPattern: propertyKey.hashValue)
+    public func installDeallocHook(for object: AnyObject, propertyKey: String, handlerKey: String, handler: AntBusDeallocHandler?) {
+        let keyPointer: UnsafeRawPointer! = UnsafeRawPointer(bitPattern: propertyKey.hashValue)
         
         guard let hook = objc_getAssociatedObject(object, keyPointer) as? _AntBusDeallocHook else {
-            
             let _hook = _AntBusDeallocHook()
             _hook.propertyKey = propertyKey
             _hook.handler = handler
@@ -57,12 +52,10 @@ final public class AntBusDeallocHook {
         
         let log = "AntBusDeallocHook install _add: .type:\(hook.type ?? "") \t .pKey:\(hook.propertyKey) \t .hKey:\(handlerKey)"
         AntBus.deallocLog?(log)
-        
     }
     
-    public func uninstallDeallocHook(for object: AnyObject, propertyKey:String, handlerKey:String) {
-        
-        let keyPointer:UnsafeRawPointer! = UnsafeRawPointer.init(bitPattern: propertyKey.hashValue)
+    public func uninstallDeallocHook(for object: AnyObject, propertyKey: String, handlerKey: String) {
+        let keyPointer: UnsafeRawPointer! = UnsafeRawPointer(bitPattern: propertyKey.hashValue)
         let hook = objc_getAssociatedObject(object, keyPointer) as? _AntBusDeallocHook
         hook?.remove(handlerKey)
         
@@ -70,13 +63,11 @@ final public class AntBusDeallocHook {
         AntBus.deallocLog?(log)
     }
     
-    public func uninstallDeallocHook(for object: AnyObject, propertyKey:String) {
-        
-        let keyPointer:UnsafeRawPointer! = UnsafeRawPointer.init(bitPattern: propertyKey.hashValue)
+    public func uninstallDeallocHook(for object: AnyObject, propertyKey: String) {
+        let keyPointer: UnsafeRawPointer! = UnsafeRawPointer(bitPattern: propertyKey.hashValue)
         objc_setAssociatedObject(object, keyPointer, nil, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
         
         let log = "AntBusDeallocHook uninstall: .type:\(type(of: object)) \t .pKey:\(propertyKey)"
         AntBus.deallocLog?(log)
     }
-    
 }

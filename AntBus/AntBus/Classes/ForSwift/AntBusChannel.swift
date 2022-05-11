@@ -1,11 +1,10 @@
 import Foundation
 
-//Single
+// Single
 class AntBusCSC {
+    static let container = NSMapTable<NSString, AnyObject>.strongToWeakObjects()
     
-    static let container = NSMapTable<NSString,AnyObject>.strongToWeakObjects();
-    
-    static func register(_ key:String, _ responder:AnyObject) {
+    static func register(_ key: String, _ responder: AnyObject) {
         let log = "AntBusChannel.single.register:  \(key) \t \(responder)"
         AntBus.channelLog?(log)
         
@@ -20,7 +19,7 @@ class AntBusCSC {
         }
     }
     
-    static func responder(_ key:String) -> AnyObject? {
+    static func responder(_ key: String) -> AnyObject? {
         let rs = container.object(forKey: key as NSString)
         
         let log = "AntBusChannel.single.responder:  \(key) \t \(String(describing: rs))"
@@ -29,7 +28,7 @@ class AntBusCSC {
         return rs
     }
     
-    static func remove(_ key:String) {
+    static func remove(_ key: String) {
         let log = "AntBusChannel.single.remove:  \(key)"
         AntBus.channelLog?(log)
         
@@ -44,17 +43,18 @@ class AntBusCSC {
     }
 }
 
-
-final public class AntBusCS<R: AnyObject> {
+public final class AntBusCS<R: AnyObject> {
     init() {}
-    public func register(_ responder:R){
+    public func register(_ responder: R) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCSC.register(aliasName, responder)
     }
-    public func responder() -> R?{
+
+    public func responder() -> R? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         return AntBusCSC.responder(aliasName) as? R
     }
+
     public func remove() {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCSC.remove(aliasName)
@@ -62,14 +62,14 @@ final public class AntBusCS<R: AnyObject> {
 }
 
 // Multi
-class AntBusCMC {
-    static let container = NSMutableDictionary.init()
+enum AntBusCMC {
+    static let container = NSMutableDictionary()
     
-    static func register(_ type:String, _ key:String, _ responder:AnyObject) {
+    static func register(_ type: String, _ key: String, _ responder: AnyObject) {
         let log = "AntBusChannel.multi.register:  \(type) \t \(key) \t \(responder)"
         AntBus.channelLog?(log)
         
-        let typeContainer = (container[type] as? NSMutableDictionary) ?? NSMutableDictionary.init()
+        let typeContainer = (container[type] as? NSMutableDictionary) ?? NSMutableDictionary()
         container[type] = typeContainer
         
         let keyContainer = (typeContainer[key] as? NSHashTable<AnyObject>) ?? NSHashTable<AnyObject>.weakObjects()
@@ -84,7 +84,7 @@ class AntBusCMC {
                         if keyContainer.count == 0 {
                             typeContainer.removeObject(forKey: hkey)
                         }
-                    }else{
+                    } else {
                         typeContainer.removeObject(forKey: hkey)
                     }
                 }
@@ -94,18 +94,20 @@ class AntBusCMC {
             }
         }
     }
-    static func register(_ type:String, _ key:String, _ responders:[AnyObject]) {
+
+    static func register(_ type: String, _ key: String, _ responders: [AnyObject]) {
         responders.forEach { resp in
             register(type, key, resp)
         }
     }
-    static func register(_ type:String, _ keys:[String], _ responder:AnyObject) {
+
+    static func register(_ type: String, _ keys: [String], _ responder: AnyObject) {
         keys.forEach { key in
             register(type, key, responder)
         }
     }
     
-    static func responders(_ type:String, _ key:String) -> [AnyObject]? {
+    static func responders(_ type: String, _ key: String) -> [AnyObject]? {
         let rs = ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.allObjects
         
         let log = "AntBusChannel.multi.responders:  \(type) \t \(key) \t \(String(describing: rs))"
@@ -114,18 +116,17 @@ class AntBusCMC {
         return rs
     }
     
-    static func responders(_ type:String) -> [AnyObject]? {
-        
-        var rs:[AnyObject]? = nil
+    static func responders(_ type: String) -> [AnyObject]? {
+        var rs: [AnyObject]?
         
         if let typeContainer = container[type] as? NSMutableDictionary {
-            let mset = NSMutableSet.init()
+            let mset = NSMutableSet()
             typeContainer.allKeys.forEach { key in
                 if let keyContainer = typeContainer[key] as? NSHashTable<AnyObject> {
                     mset.addObjects(from: keyContainer.allObjects)
                 }
             }
-            rs = mset.allObjects.compactMap({ $0 as AnyObject})
+            rs = mset.allObjects.compactMap { $0 as AnyObject }
         }
         
         let log = "AntBusChannel.multi.responders:  \(type) \t \(String(describing: rs))"
@@ -134,39 +135,39 @@ class AntBusCMC {
         return rs
     }
     
-    static func remove(_ type:String, _ key:String,_ responder:AnyObject) {
+    static func remove(_ type: String, _ key: String, _ responder: AnyObject) {
         let log = "AntBusChannel.multi.remove:  \(type) \t \(key) \t \(responder)"
         AntBus.channelLog?(log)
         
         ((container[type] as? NSMutableDictionary)?[key] as? NSHashTable<AnyObject>)?.remove(responder)
     }
     
-    static func remove(_ type:String, _ keys:[String],_ responder:AnyObject) {
+    static func remove(_ type: String, _ keys: [String], _ responder: AnyObject) {
         keys.forEach { key in
             remove(type, key, responder)
         }
     }
     
-    static func remove(_ type:String, _ key:String,_ responders:[AnyObject]) {
+    static func remove(_ type: String, _ key: String, _ responders: [AnyObject]) {
         responders.forEach { resp in
             remove(type, key, resp)
         }
     }
     
-    static func remove(_ type:String, _ key:String) {
+    static func remove(_ type: String, _ key: String) {
         let log = "AntBusChannel.multi.remove:  \(type) \t \(key)"
         AntBus.channelLog?(log)
         
         (container[type] as? NSMutableDictionary)?.removeObject(forKey: key)
     }
     
-    static func remove(_ type:String, _ keys:[String]) {
+    static func remove(_ type: String, _ keys: [String]) {
         keys.forEach { key in
             remove(type, key)
         }
     }
     
-    static func remove(_ type:String) {
+    static func remove(_ type: String) {
         let log = "AntBusChannel.multi.remove:  \(type)"
         AntBus.channelLog?(log)
         
@@ -174,51 +175,54 @@ class AntBusCMC {
     }
 }
 
-final public class AntBusCM<R: AnyObject> {
+public final class AntBusCM<R: AnyObject> {
     init() {}
-    public func register(_ key:String, _ responder:R) {
+    public func register(_ key: String, _ responder: R) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.register(aliasName, key, responder)
     }
-    public func register(_ key:String, _ responders:[R]) {
+
+    public func register(_ key: String, _ responders: [R]) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.register(aliasName, key, responders)
     }
-    public func register(_ keys:[String], _ responder:R) {
+
+    public func register(_ keys: [String], _ responder: R) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.register(aliasName, keys, responder)
     }
-    public func responders(_ key:String) -> [R]? {
+
+    public func responders(_ key: String) -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusCMC.responders(aliasName, key)?.compactMap({ $0 as? R })
+        return AntBusCMC.responders(aliasName, key)?.compactMap { $0 as? R }
     }
     
     public func responders() -> [R]? {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusCMC.responders(aliasName)?.compactMap({ $0 as? R })
+        return AntBusCMC.responders(aliasName)?.compactMap { $0 as? R }
     }
     
-    public func remove(_ key:String,_ responder:R) {
+    public func remove(_ key: String, _ responder: R) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.remove(aliasName, key, responder)
     }
     
-    public func remove(_ keys:[String],_ responder:R) {
+    public func remove(_ keys: [String], _ responder: R) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.remove(aliasName, keys, responder)
     }
     
-    public func remove(_ key:String,_ responders:[R]) {
+    public func remove(_ key: String, _ responders: [R]) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.remove(aliasName, key, responders)
     }
     
-    public func remove(_ key:String) {
+    public func remove(_ key: String) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.remove(aliasName, key)
     }
     
-    public func remove(_ keys:[String]) {
+    public func remove(_ keys: [String]) {
         let aliasName = DynamicAliasUtil.getAliasName(R.self)
         AntBusCMC.remove(aliasName, keys)
     }
@@ -229,12 +233,12 @@ final public class AntBusCM<R: AnyObject> {
     }
 }
 
-public struct AntBusChannel{
-    public static func singleI<T:AnyObject>(_ type:T.Type) -> AntBusCS<T> { AntBusCS<T>.init() }
-    public static func multiI<T:AnyObject>(_ type:T.Type) -> AntBusCM<T> { AntBusCM<T>.init() }
+public enum AntBusChannel {
+    public static func singleI<T: AnyObject>(_ type: T.Type) -> AntBusCS<T> { AntBusCS<T>.init() }
+    public static func multiI<T: AnyObject>(_ type: T.Type) -> AntBusCM<T> { AntBusCM<T>.init() }
 }
 
-public struct AntBusChannelI<T:AnyObject>{
-    public static var single:AntBusCS<T> { AntBusCS<T>.init() }
-    public static var multi:AntBusCM<T> { AntBusCM<T>.init() }
+public struct AntBusChannelI<T: AnyObject> {
+    public static var single: AntBusCS<T> { AntBusCS<T>.init() }
+    public static var multi: AntBusCM<T> { AntBusCM<T>.init() }
 }

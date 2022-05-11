@@ -1,15 +1,15 @@
 import Foundation
 // from: https://github.com/ReactorKit/WeakMapTable
+
 // MARK: - AntBusWKMapTable
+
 final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
     private var dictionary: [Weak<Key>: Value] = [:]
     private let lock = NSRecursiveLock()
     
     // MARK: Initializing
     
-    public init() {
-    }
-    
+    public init() {}
     
     // MARK: Getting and Setting Values
     
@@ -65,18 +65,17 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
         }
     }
     
-    public func remove(forKey key: Key){
+    public func remove(forKey key: Key) {
         self.setValue(nil, forKey: key)
     }
     
-    public func removeAll(){
+    public func removeAll() {
         self.lock.lock()
         defer {
             self.lock.unlock()
         }
         self.dictionary.removeAll()
     }
-    
     
     // MARK: Getting and Setting Values without Locking
     
@@ -91,7 +90,6 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
             self.dictionary.removeValue(forKey: key)
         }
     }
-    
     
     // MARK: Dealloc Hook
     
@@ -110,7 +108,6 @@ final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
         objc_setAssociatedObject(key, &deallocHookKey, hook, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 }
-
 
 // MARK: - Weak
 
@@ -131,7 +128,6 @@ private final class Weak<T>: Hashable where T: AnyObject {
         return lhs.objectHashValue == rhs.objectHashValue
     }
 }
-
 
 // MARK: - DeallocHook
 

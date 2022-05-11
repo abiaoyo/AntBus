@@ -26,7 +26,9 @@
         NSLog(@"title变动: oldVal=%@     newVal=%@",oldVal,newVal);
     }];
     self.title = @"Page1";
-    
+    [OCAntBus.deallocHook installDeallocHookFor:self propertyKey:@"KKK" handlerKey:@"KKKHandler" handler:^(NSSet<NSString *> * _Nonnull hks) {
+            
+    }];
     [OCAntBusDeallocHook.shared installDeallocHookFor:self propertyKey:@"TTT" handlerKey:@"TTTHandler" handler:^(NSSet<NSString *> * _Nonnull handleKeys) {
         
     }];
