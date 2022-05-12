@@ -1,5 +1,20 @@
 import Foundation
 
+public struct AntBusUtil {
+    
+    public static func isClass(_ responder:Any) -> Bool {
+        
+        return Mirror(reflecting:responder).displayStyle == .class
+    }
+    public static func isStruct(_ responder:Any) -> Bool {
+        return Mirror(reflecting:responder).displayStyle == .struct
+    }
+    public static func isEnum(_ responder:Any) -> Bool {
+        return Mirror(reflecting:responder).displayStyle == .enum
+    }
+}
+
+
 private struct DynamicAlias {
     var name: String!
     var type: Any!

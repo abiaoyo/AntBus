@@ -158,17 +158,15 @@ struct AntBusCMC {
 }
 
 public struct ABC_Single<T: Any> {
-    private func anyObjectFromResponder(_ responder: Any) -> AnyObject? {
-        return responder as AnyObject?
-    }
 
     // ------------------
     public func register(_ responder: T) {
-        guard let responder = anyObjectFromResponder(responder) else {
+        if !AntBusUtil.isClass(responder){
+            assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
         let name = DynamicAliasUtil.getAliasName(T.self)
-        AntBusCSC.register(name, responder)
+        AntBusCSC.register(name, responder as AnyObject)
     }
 
     public func responder() -> T? {
@@ -183,17 +181,17 @@ public struct ABC_Single<T: Any> {
 }
 
 public struct ABC_Multi<T: Any> {
-    private func anyObjectFromResponder(_ responder: Any) -> AnyObject? {
-        return responder as AnyObject?
-    }
 
     // ------------------
     public func register(_ responder: T, forKey key: String) {
-        guard let responder = anyObjectFromResponder(responder) else {
+        
+        if !AntBusUtil.isClass(responder){
+            assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
+        
         let aliasName = DynamicAliasUtil.getAliasName(T.self)
-        AntBusCMC.register(aliasName, key, responder)
+        AntBusCMC.register(aliasName, key, responder as AnyObject)
     }
 
     public func register(_ responders: [T], forKey key: String) {
@@ -221,11 +219,12 @@ public struct ABC_Multi<T: Any> {
 
     // ------------------
     public func remove(_ responder: T, forKey key: String) {
-        guard let responder = anyObjectFromResponder(responder) else {
+        if !AntBusUtil.isClass(responder){
+            assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
         let name = DynamicAliasUtil.getAliasName(T.self)
-        AntBusCMC.remove(name, key, responder)
+        AntBusCMC.remove(name, key, responder as AnyObject)
     }
 
     public func remove(_ responder: T, forKeys keys: [String]) {
