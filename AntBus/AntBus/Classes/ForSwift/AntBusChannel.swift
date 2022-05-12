@@ -1,7 +1,7 @@
 import Foundation
 
 // Single
-class AntBusCSC {
+struct AntBusCSC {
     static let container = NSMapTable<NSString, AnyObject>.strongToWeakObjects()
     
     static func register(_ key: String, _ responder: AnyObject) {
@@ -43,26 +43,8 @@ class AntBusCSC {
     }
 }
 
-public final class AntBusCS<R: AnyObject> {
-    init() {}
-    public func register(_ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCSC.register(aliasName, responder)
-    }
-
-    public func responder() -> R? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusCSC.responder(aliasName) as? R
-    }
-
-    public func remove() {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCSC.remove(aliasName)
-    }
-}
-
 // Multi
-enum AntBusCMC {
+struct AntBusCMC {
     static let container = NSMutableDictionary()
     
     static func register(_ type: String, _ key: String, _ responder: AnyObject) {
@@ -175,70 +157,103 @@ enum AntBusCMC {
     }
 }
 
-public final class AntBusCM<R: AnyObject> {
-    init() {}
-    public func register(_ key: String, _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
+public struct ABC_Single<T: Any> {
+    private func anyObjectFromResponder(_ responder: Any) -> AnyObject? {
+        return responder as AnyObject?
+    }
+
+    // ------------------
+    public func register(_ responder: T) {
+        guard let responder = anyObjectFromResponder(responder) else {
+            return
+        }
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusCSC.register(name, responder)
+    }
+
+    public func responder() -> T? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusCSC.responder(name) as? T
+    }
+
+    public func remove() {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusCSC.remove(name)
+    }
+}
+
+public struct ABC_Multi<T: Any> {
+    private func anyObjectFromResponder(_ responder: Any) -> AnyObject? {
+        return responder as AnyObject?
+    }
+
+    // ------------------
+    public func register(_ responder: T, forKey key: String) {
+        guard let responder = anyObjectFromResponder(responder) else {
+            return
+        }
+        let aliasName = DynamicAliasUtil.getAliasName(T.self)
         AntBusCMC.register(aliasName, key, responder)
     }
 
-    public func register(_ key: String, _ responders: [R]) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.register(aliasName, key, responders)
+    public func register(_ responders: [T], forKey key: String) {
+        responders.forEach { responder in
+            register(responder, forKey: key)
+        }
     }
 
-    public func register(_ keys: [String], _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.register(aliasName, keys, responder)
+    public func register(_ responder: T, forKeys keys: [String]) {
+        keys.forEach { key in
+            register(responder, forKey: key)
+        }
     }
 
-    public func responders(_ key: String) -> [R]? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusCMC.responders(aliasName, key)?.compactMap { $0 as? R }
+    // ------------------
+    public func responders(_ key: String) -> [T]? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusCMC.responders(name, key)?.compactMap { $0 as? T }
     }
-    
-    public func responders() -> [R]? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusCMC.responders(aliasName)?.compactMap { $0 as? R }
+
+    public func responders() -> [T]? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusCMC.responders(name)?.compactMap { $0 as? T }
     }
-    
-    public func remove(_ key: String, _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName, key, responder)
+
+    // ------------------
+    public func remove(_ responder: T, forKey key: String) {
+        guard let responder = anyObjectFromResponder(responder) else {
+            return
+        }
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusCMC.remove(name, key, responder)
     }
-    
-    public func remove(_ keys: [String], _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName, keys, responder)
+
+    public func remove(_ responder: T, forKeys keys: [String]) {
+        keys.forEach { key in
+            remove(responder, forKey: key)
+        }
     }
-    
-    public func remove(_ key: String, _ responders: [R]) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName, key, responders)
+
+    public func remove(_ responders: [T], forKey key: String) {
+        responders.forEach { responder in
+            remove(responder, forKey: key)
+        }
     }
-    
+
     public func remove(_ key: String) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName, key)
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusCMC.remove(name, key)
     }
-    
+
     public func remove(_ keys: [String]) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName, keys)
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        keys.forEach { key in
+            AntBusCMC.remove(name, key)
+        }
     }
-    
-    public func removeAll() {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusCMC.remove(aliasName)
+
+    public func remove() {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusCMC.remove(name)
     }
-}
-
-public enum AntBusChannel {
-    public static func singleI<T: AnyObject>(_ type: T.Type) -> AntBusCS<T> { AntBusCS<T>.init() }
-    public static func multiI<T: AnyObject>(_ type: T.Type) -> AntBusCM<T> { AntBusCM<T>.init() }
-}
-
-public struct AntBusChannelI<T: AnyObject> {
-    public static var single: AntBusCS<T> { AntBusCS<T>.init() }
-    public static var multi: AntBusCM<T> { AntBusCM<T>.init() }
 }

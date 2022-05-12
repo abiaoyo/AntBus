@@ -18,7 +18,7 @@ class FirstPageViewController: UIViewController,IFirstPageController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AntBus.channel<UIViewController>.multi.register("FirstPage", self)
+        AntBus.channel<UIViewController>.multi.register(self, forKey: "FirstPage")
         
         AntBus.notification.register("login.success", owner: self) { [weak self] _ in
             self?.refreshView()

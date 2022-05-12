@@ -29,9 +29,41 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let h2001Module = H2001Module.init()
         let hCommonModule = HCommonModule.init()
         
-        AntBus.service<DeviceProtocol>.multi.register(h1001Module.supportSkus(), h1001Module)
-        AntBus.service<DeviceProtocol>.multi.register(h2001Module.supportSkus(), h2001Module)
-        AntBus.service<DeviceProtocol>.multi.register(hCommonModule.supportSkus(), hCommonModule)
+        AntBus.service<DeviceProtocol>.multi.register(h1001Module, forKeys: h1001Module.supportSkus())
+        AntBus.service<DeviceProtocol>.multi.register(h2001Module, forKeys: h2001Module.supportSkus())
+        AntBus.service<DeviceProtocol>.multi.register(hCommonModule, forKeys: hCommonModule.supportSkus())
+
+
+        
+        
+//        AntBus.service<DeviceProtocol>.multi.register(h1001Module, forKey: "")
+//        AntBus.service<DeviceProtocol>.multi.responders(forKey: "")
+//        AntBus.service<DeviceProtocol>.multi.responders()
+//
+//        AntBus.service<DeviceProtocol>.multi.remove(forKey: "")
+//        AntBus.service<DeviceProtocol>.multi.remove()
+//        AntBus.service<DeviceProtocol>.multi.remove(forKey: "") { resp in
+//            return true
+//        }
+//        AntBus.service<DeviceProtocol>.multi.remove(forKeys: [""])
+//
+//        AntBus.service<DeviceProtocol>.single.register(h1001Module)
+//        AntBus.service<DeviceProtocol>.single.responder()
+//        AntBus.service<DeviceProtocol>.single.remove()
+//
+//        AntBus.channel<DeviceProtocol>.multi.register(h1001Module, forKey: "")
+//        AntBus.channel<DeviceProtocol>.multi.register(h1001Module, forKeys: [""])
+//        AntBus.channel<DeviceProtocol>.multi.register([], forKey: "")
+//        AntBus.channel<DeviceProtocol>.multi.responders()
+//        AntBus.channel<DeviceProtocol>.multi.responders("")
+//
+//        AntBus.channel<DeviceProtocol>.multi.remove()
+//        AntBus.channel<DeviceProtocol>.multi.remove("")
+//        AntBus.channel<DeviceProtocol>.multi.remove([""])
+//        AntBus.channel<DeviceProtocol>.multi.remove(h1001Module, forKeys: [""])
+//        AntBus.channel<DeviceProtocol>.multi.remove(h1001Module, forKey: "")
+//        AntBus.channel<DeviceProtocol>.multi.remove([], forKey: "")
+        
         
         /*
          AntBus.service.single(DeviceProtocol.self).register(self)

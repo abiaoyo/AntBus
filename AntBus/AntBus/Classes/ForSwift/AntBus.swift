@@ -3,17 +3,18 @@ import Foundation
 public enum AntBus {
     public static let data = AntBusData.shared
     public static let notification = AntBusNotification.shared
+    public static let callback = AntBusCallback.shared
     public static let deallocHook = AntBusDeallocHook.shared
     public static let listener = AntBusListener.shared
 
-    public struct service<T: Any> {
-        public static var single: AntBusSS<T> { AntBusServiceI<T>.single }
-        public static var multi: AntBusSM<T> { AntBusSM<T>.init() }
+    public enum channel<T> {
+        public static var single: ABC_Single<T> { ABC_Single<T>.init() }
+        public static var multi: ABC_Multi<T> { ABC_Multi<T>.init() }
     }
 
-    public struct channel<T: AnyObject> {
-        public static var single: AntBusCS<T> { AntBusCS<T>.init() }
-        public static var multi: AntBusCM<T> { AntBusCM<T>.init() }
+    public enum service<T> {
+        public static var single: ABS_Single<T> { ABS_Single<T>.init() }
+        public static var multi: ABS_Multi<T> { ABS_Multi<T>.init() }
     }
 }
 

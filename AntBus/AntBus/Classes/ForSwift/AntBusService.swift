@@ -1,7 +1,7 @@
 import Foundation
 
 // Single
-class AntBusSSC {
+struct AntBusSSC {
     static var container = [String: Any]()
     
     static func register(_ key: String, _ responder: Any) {
@@ -35,26 +35,8 @@ class AntBusSSC {
     }
 }
 
-public final class AntBusSS<R: Any> {
-    init() {}
-    public func register(_ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSSC.register(aliasName, responder)
-    }
-
-    public func responder() -> R? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusSSC.responder(aliasName) as? R
-    }
-
-    public func remove() {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSSC.remove(aliasName)
-    }
-}
-
 // Multi
-enum AntBusSMC {
+struct AntBusSMC {
     static var container = [String: [String: [Any]]]()
     
     static func register(_ type: String, _ key: String, _ responder: Any) {
@@ -130,56 +112,70 @@ enum AntBusSMC {
     }
 }
 
-public final class AntBusSM<R: Any> {
-    public func register(_ key: String, _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.register(aliasName, key, responder)
+public struct ABS_Single<T: Any> {
+    public func register(_ responder: T) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSSC.register(name, responder)
     }
     
-    public func register(_ keys: [String], _ responder: R) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.register(aliasName, keys, responder)
+    public func responder() -> T? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusSSC.responder(name) as? T
+    }
+
+    public func remove() {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSSC.remove(name)
+    }
+}
+
+public struct ABS_Multi<T: Any> {
+    public func register(_ responder: T, forKey key: String) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.register(name, key, responder)
     }
     
-    public func register(_ key: String, _ responders: [R]) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.register(aliasName, key, responders)
+    public func register(_ responder: T, forKeys keys: [String]) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.register(name, keys, responder)
     }
     
-    public func responders(_ key: String) -> [R]? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusSMC.responders(aliasName, key)?.compactMap { $0 as? R }
+    public func register(_ responders: [T], forKey key: String) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.register(name, key, responders)
     }
     
-    public func responders() -> [R]? {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        return AntBusSMC.responders(aliasName)?.compactMap { $0 as? R }
+    public func responders(forKey key: String) -> [T]? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusSMC.responders(name, key)?.compactMap { $0 as? T }
     }
     
-    public func remove(_ key: String, where shouldBeRemoved: (Any) -> Bool) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.remove(aliasName, key, where: shouldBeRemoved)
+    public func responders() -> [T]? {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        return AntBusSMC.responders(name)?.compactMap { $0 as? T }
     }
     
-    public func remove(_ key: String) {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.remove(aliasName, key)
+    public func remove(forKey key: String, where shouldBeRemoved: (T) -> Bool) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.remove(name, key) { resp in
+            shouldBeRemoved(resp as! T)
+        }
+    }
+    
+    public func remove(forKey key: String) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.remove(name, key)
+    }
+    
+    public func remove(forKeys keys: [String]) {
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        keys.forEach { key in
+            AntBusSMC.remove(name, key)
+        }
     }
     
     public func remove() {
-        let aliasName = DynamicAliasUtil.getAliasName(R.self)
-        AntBusSMC.remove(aliasName)
+        let name = DynamicAliasUtil.getAliasName(T.self)
+        AntBusSMC.remove(name)
     }
-}
-
-// MARK: - AntBusService
-
-public struct AntBusServiceI<T: Any> {
-    public static var single: AntBusSS<T> { AntBusSS<T>.init() }
-    public static var multi: AntBusSM<T> { AntBusSM<T>.init() }
-}
-
-public enum AntBusService {
-    public static func singleI<T: Any>(_ type: T.Type) -> AntBusSS<T> { AntBusSS<T>.init() }
-    public static func multi<T: Any>(_ type: T.Type) -> AntBusSM<T> { AntBusSM<T>.init() }
 }

@@ -4,15 +4,15 @@
 //
 //
 
-import UIKit
 import AntBus
+import UIKit
 
-class SecondPageViewController: UIViewController{
-    
+class SecondPageViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.channel<UIViewController>.multi.register("SecondPage", self)
+        AntBus.channel<UIViewController>.multi.register(self, forKey: "SecondPage")
+//        AntBus.channel<UIViewController>.multi.register("SecondPage", self)
     }
     
     @IBAction func clickChanngeTabBar(_ sender: Any) {
@@ -31,8 +31,8 @@ class SecondPageViewController: UIViewController{
     
     @IBAction func clickAntService(_ sender: Any) {
         let hCommonResponders = AntBus.service<DeviceProtocol>.multi.responders()
-        let h1001Responders = AntBus.service<DeviceProtocol>.multi.responders("H1001")
-        let h2001Responders = AntBus.service<DeviceProtocol>.multi.responders("H2001")
+        let h1001Responders = AntBus.service<DeviceProtocol>.multi.responders(forKey: "H1001")
+        let h2001Responders = AntBus.service<DeviceProtocol>.multi.responders(forKey: "H2001")
         print("hCommonResponders:\(hCommonResponders)")
         print("h1001Responders:\(h1001Responders)")
         print("h2001Responders:\(h2001Responders)")
