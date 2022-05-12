@@ -1,7 +1,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'AntBus'
-  s.version          = '1.2.5'
+  s.version          = '1.3.0'
   s.summary          = 'AntBus'
 
 
