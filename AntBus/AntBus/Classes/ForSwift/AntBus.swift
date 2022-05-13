@@ -7,11 +7,13 @@ public enum AntBus {
     public static let deallocHook = AntBusDeallocHook.shared
     public static let listener = AntBusListener.shared
 
+    // weak -> responder
     public enum channel<T> {
         public static var single: ABC_Single<T> { ABC_Single<T>.init() }
         public static var multi: ABC_Multi<T> { ABC_Multi<T>.init() }
     }
 
+    // strong -> responder
     public enum service<T> {
         public static var single: ABS_Single<T> { ABS_Single<T>.init() }
         public static var multi: ABS_Multi<T> { ABS_Multi<T>.init() }

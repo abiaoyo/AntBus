@@ -1,34 +1,33 @@
 import Foundation
 
-public struct AntBusUtil {
-    
-    public static func isClass(_ responder:Any) -> Bool {
+public enum TypeUtil {
+    public static func isClass(_ responder: Any) -> Bool {
+        return Mirror(reflecting: responder).displayStyle == .class
+    }
+
+    public static func isStruct(_ responder: Any) -> Bool {
+        return Mirror(reflecting: responder).displayStyle == .struct
+    }
+
+    public static func isEnum(_ responder: Any) -> Bool {
+        return Mirror(reflecting: responder).displayStyle == .enum
+    }
+}
+
+enum AliasUtil {
+    private struct Alias {
+        var name: String!
+        var type: Any!
         
-        return Mirror(reflecting:responder).displayStyle == .class
+        static func create(_ group: String, type: Any) -> Alias {
+            let name = "\(group)_\(Int(Date().timeIntervalSince1970)%10000)_\(arc4random()%1000)"
+            return Alias(name: name, type: type)
+        }
     }
-    public static func isStruct(_ responder:Any) -> Bool {
-        return Mirror(reflecting:responder).displayStyle == .struct
-    }
-    public static func isEnum(_ responder:Any) -> Bool {
-        return Mirror(reflecting:responder).displayStyle == .enum
-    }
-}
-
-
-private struct DynamicAlias {
-    var name: String!
-    var type: Any!
     
-    static func create(_ group: String, type: Any) -> DynamicAlias {
-        let name = "\(group)_\(Int(Date().timeIntervalSince1970)%10000)_\(arc4random()%1000)"
-        return DynamicAlias(name: name, type: type)
-    }
-}
-
-enum DynamicAliasUtil {
-    private static var aliasGroups = Dictionary<String, [DynamicAlias]>.init()
+    private static var aliasGroups = Dictionary<String, [Alias]>.init()
     
-    private static func _getAliasName(aliasArray: [DynamicAlias], interface: AnyObject) -> String? {
+    private static func _aliasName(aliasArray: [Alias], interface: AnyObject) -> String? {
         for alias in aliasArray {
             if interface === alias.type as AnyObject {
                 return alias.name
@@ -42,7 +41,7 @@ enum DynamicAliasUtil {
         return nil
     }
     
-    private static func _getAliasName(aliasArray: [DynamicAlias], itype: Any.Type) -> String? {
+    private static func _aliasName(aliasArray: [Alias], itype: Any.Type) -> String? {
         for alias in aliasArray {
             if itype == alias.type as? Any.Type {
                 return alias.name
@@ -60,48 +59,48 @@ enum DynamicAliasUtil {
     
     // -----------------------------------------------------------
     
-    private static func _getAliasName(groupKey: String, interface: AnyObject) -> String {
+    private static func _aliasName(groupKey: String, interface: AnyObject) -> String {
         guard let aliasArray = aliasGroups[groupKey] else {
-            let alias = DynamicAlias.create(groupKey, type: interface)
+            let alias = Alias.create(groupKey, type: interface)
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
         
-        if let name = _getAliasName(aliasArray: aliasArray, interface: interface) {
+        if let name = _aliasName(aliasArray: aliasArray, interface: interface) {
             return name
         }
-        let alias = DynamicAlias.create(groupKey, type: interface)
+        let alias = Alias.create(groupKey, type: interface)
         aliasGroups[groupKey]?.append(alias)
         return alias.name
     }
     
-    private static func _getAliasName(groupKey: String, itype: Any.Type) -> String {
+    private static func _aliasName(groupKey: String, itype: Any.Type) -> String {
         guard let aliasArray = aliasGroups[groupKey] else {
-            let alias = DynamicAlias.create(groupKey, type: itype)
+            let alias = Alias.create(groupKey, type: itype)
             aliasGroups[groupKey] = [alias]
             return alias.name
         }
-        if let name = _getAliasName(aliasArray: aliasArray, itype: itype) {
+        if let name = _aliasName(aliasArray: aliasArray, itype: itype) {
             return name
         }
-        let alias = DynamicAlias.create(groupKey, type: itype)
+        let alias = Alias.create(groupKey, type: itype)
         aliasGroups[groupKey]?.append(alias)
         return alias.name
     }
 }
 
-extension DynamicAliasUtil {
-    static func getAliasNameForInterface(_ interface: Protocol) -> String {
+extension AliasUtil {
+    static func aliasForInterface(_ interface: Protocol) -> String {
         let typeName = NSStringFromProtocol(interface)
         let groupKey = typeName.components(separatedBy: ".").last!
-        return _getAliasName(groupKey: groupKey, interface: interface)
+        return _aliasName(groupKey: groupKey, interface: interface)
     }
     
-    static func getAliasNameForType(_ type: AnyObject.Type) -> String {
-        return _getAliasName(groupKey: "\(type)", itype: type)
+    static func aliasForAnyObject(_ type: AnyObject.Type) -> String {
+        return _aliasName(groupKey: "\(type)", itype: type)
     }
     
-    static func getAliasName<T: Any>(_ type: T.Type) -> String {
-        return _getAliasName(groupKey: "\(type)", itype: type)
+    static func aliasForAny<T: Any>(_ type: T.Type) -> String {
+        return _aliasName(groupKey: "\(type)", itype: type)
     }
 }

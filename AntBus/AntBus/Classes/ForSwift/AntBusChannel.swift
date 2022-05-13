@@ -161,21 +161,21 @@ public struct ABC_Single<T: Any> {
 
     // ------------------
     public func register(_ responder: T) {
-        if !AntBusUtil.isClass(responder){
+        if !TypeUtil.isClass(responder){
             assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         AntBusCSC.register(name, responder as AnyObject)
     }
 
     public func responder() -> T? {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         return AntBusCSC.responder(name) as? T
     }
 
     public func remove() {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         AntBusCSC.remove(name)
     }
 }
@@ -185,12 +185,12 @@ public struct ABC_Multi<T: Any> {
     // ------------------
     public func register(_ responder: T, forKey key: String) {
         
-        if !AntBusUtil.isClass(responder){
+        if !TypeUtil.isClass(responder){
             assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
         
-        let aliasName = DynamicAliasUtil.getAliasName(T.self)
+        let aliasName = AliasUtil.aliasForAny(T.self)
         AntBusCMC.register(aliasName, key, responder as AnyObject)
     }
 
@@ -208,22 +208,22 @@ public struct ABC_Multi<T: Any> {
 
     // ------------------
     public func responders(_ key: String) -> [T]? {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         return AntBusCMC.responders(name, key)?.compactMap { $0 as? T }
     }
 
     public func responders() -> [T]? {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         return AntBusCMC.responders(name)?.compactMap { $0 as? T }
     }
 
     // ------------------
     public func remove(_ responder: T, forKey key: String) {
-        if !AntBusUtil.isClass(responder){
+        if !TypeUtil.isClass(responder){
             assert(false, "🍄🍄🍄🍄🍄🍄 responder must be of class type")
             return
         }
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         AntBusCMC.remove(name, key, responder as AnyObject)
     }
 
@@ -240,19 +240,19 @@ public struct ABC_Multi<T: Any> {
     }
 
     public func remove(_ key: String) {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         AntBusCMC.remove(name, key)
     }
 
     public func remove(_ keys: [String]) {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         keys.forEach { key in
             AntBusCMC.remove(name, key)
         }
     }
 
     public func remove() {
-        let name = DynamicAliasUtil.getAliasName(T.self)
+        let name = AliasUtil.aliasForAny(T.self)
         AntBusCMC.remove(name)
     }
 }

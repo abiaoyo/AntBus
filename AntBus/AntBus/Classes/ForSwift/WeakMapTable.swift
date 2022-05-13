@@ -1,9 +1,9 @@
 import Foundation
 // from: https://github.com/ReactorKit/WeakMapTable
 
-// MARK: - AntBusWKMapTable
+// MARK: - WeakMapTable
 
-final class AntBusWKMapTable<Key, Value> where Key: AnyObject {
+final class WeakMapTable<Key, Value> where Key: AnyObject {
     private var dictionary: [Weak<Key>: Value] = [:]
     private let lock = NSRecursiveLock()
     

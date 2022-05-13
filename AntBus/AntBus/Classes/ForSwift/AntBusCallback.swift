@@ -10,7 +10,7 @@ public struct AntBusCallback {
     private static var keyOwnerMap = NSMapTable<NSString, AnyObject>.strongToWeakObjects()
     
     // <owner,[<key,handler>]>
-    private static var ownerHandlersMap = AntBusWKMapTable<AnyObject, NSMapTable<NSString, AnyObject>>.init()
+    private static var ownerHandlersMap = WeakMapTable<AnyObject, NSMapTable<NSString, AnyObject>>.init()
     
     private func clearOwner(_ key: String) {
         guard let owner = AntBusCallback.keyOwnerMap.object(forKey: key as NSString) else {

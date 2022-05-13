@@ -10,7 +10,7 @@ public final class AntBusNotification {
     // <key,owners>
     private static var ownerContainer = Dictionary<String, NSHashTable<AnyObject>>.init()
     // <owner,[<key,handler>]>
-    private static var handlerContainer = AntBusWKMapTable<AnyObject, NSMapTable<NSString, AnyObject>>.init()
+    private static var handlerContainer = WeakMapTable<AnyObject, NSMapTable<NSString, AnyObject>>.init()
     
     public func register(_ key: String, owner: AnyObject, handler: @escaping NotificationHandler) {
         let oTable = AntBusNotification.ownerContainer[key] ?? NSHashTable<AnyObject>.weakObjects()
