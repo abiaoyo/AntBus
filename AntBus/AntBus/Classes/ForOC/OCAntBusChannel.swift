@@ -2,6 +2,10 @@ import Foundation
 
 @objcMembers
 public class OCAntBusChannelCS: NSObject {
+    public func all() -> NSDictionary {
+        return AntBusCSC.container.dictionaryRepresentation() as NSDictionary
+    }
+
     public func register(interface: Protocol, responder: AnyObject) {
         let name = AliasUtil.aliasForInterface(interface)
         AntBusCSC.register(name, responder)
@@ -39,6 +43,10 @@ public class OCAntBusChannelCS: NSObject {
 
 @objcMembers
 public class OCAntBusChannelCM: NSObject {
+    public func all() -> NSDictionary {
+        return AntBusCMC.container.copy() as! NSDictionary
+    }
+
     private func conformsInterface(interface: Protocol, responder: AnyObject) -> Bool {
         return responder.conforms(to: interface)
     }

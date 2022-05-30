@@ -98,17 +98,14 @@ class AntBusDemoTests: XCTestCase {
         
         
         
-        let type = AAAAA()
+//        let type = AAAAA()
+//
+//        AntBus.channel<AAAAA>.single.register(type)
         
-        AntBus.channel<AAAAA>.single.register(type)
         
-//        let rs = Mirror(reflecting:type).displayStyle == .class
-//        
-//        print("rs:\(rs)")
-//        
-//        if let _t = type as AnyObject? {
-//            print("_t:\(_t)")
-//        }
+        AntBus.service<Int>.single.register(1000)
+        let n = AntBus.service<Int>.single.responder()
+        print("n: \(n)")
         
     }
     

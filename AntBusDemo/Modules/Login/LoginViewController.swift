@@ -20,7 +20,7 @@ class LoginViewController: UIViewController {
         AntBus.listener.listening(keyPath: "title", for: self) { oldVal, newVal in
             print("title变动: .oldVal:\(oldVal)  .newVal:\(newVal)")
         }
-        AntBus.listener.listening(keyPath: "accountTF.text", for: self) { oldVal, newVal in
+        AntBus.listener.listening(keyPath: "text", for: self.accountTF) { oldVal, newVal in
             print("accountTF.text变动: .oldVal:\(oldVal)  .newVal:\(newVal)")
         }
         self.title = "1234"

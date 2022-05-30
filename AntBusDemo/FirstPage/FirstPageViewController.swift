@@ -45,12 +45,26 @@ class FirstPageViewController: UIViewController,IFirstPageController {
     
     @IBAction func clickChangeTabBar(_ sender: Any) {
         
-        let index = AntBus.data.call("root.tabbar.index")
-        print("root.tabbar.index:\(index)")
+//        let index = AntBus.data.call("root.tabbar.index")
+//        print("root.tabbar.index:\(index)")
+//
+//        let tabBar = AntBus.channel<TabBarProtocol>.single.responder()
+//        print("tabBar: \(tabBar)")
+//        tabBar?.changeTabIndex(1)
         
-        let tabBar = AntBus.channel<TabBarProtocol>.single.responder()
-        print("tabBar: \(tabBar)")
-        tabBar?.changeTabIndex(1)
+        let sall = AntBus.service<Any>.single.all()
+        print("sall: \(sall)")
+        
+        let mall = AntBus.service<Any>.multi.all()
+        print("mall: \(mall)")
+        
+        
+        
+        let sall2 = AntBus.channel<Any>.single.all()
+        print("sall2: \(sall2)")
+        
+        let mall2 = AntBus.channel<Any>.multi.all()
+        print("mall2: \(mall2)")
     }
     
 }

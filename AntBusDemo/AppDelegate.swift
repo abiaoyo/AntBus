@@ -32,9 +32,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         AntBus.service<DeviceProtocol>.multi.register(h1001Module, forKeys: h1001Module.supportSkus())
         AntBus.service<DeviceProtocol>.multi.register(h2001Module, forKeys: h2001Module.supportSkus())
         AntBus.service<DeviceProtocol>.multi.register(hCommonModule, forKeys: hCommonModule.supportSkus())
-
-
-        
         
 //        AntBus.service<DeviceProtocol>.multi.register(h1001Module, forKey: "")
 //        AntBus.service<DeviceProtocol>.multi.responders(forKey: "")
