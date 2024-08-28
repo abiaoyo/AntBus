@@ -3,11 +3,10 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1823187026737AEE006E4800 /* antbus_demo_modules.plist */; };
 		184C8FF227652D9E00EF906A /* AntBusDemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */; };
 		184C903C276530D500EF906A /* AntBusDemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 184C903B276530D500EF906A /* AntBusDemoTests.swift */; };
 		18F80F8E27EEDF7D00A402C2 /* LoginModule.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18F80F8D27EEDF7D00A402C2 /* LoginModule.swift */; };
@@ -21,6 +20,8 @@
 		1A7EBD5037547FAD6E9092D0 /* Pods_AntBusDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EFD7F1A3EE6EB0A40FF10F59 /* Pods_AntBusDemo.framework */; };
 		324C1DCAEBF9E63A58BFB5A9 /* Pods_AntBusDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BB0AF9D87B6E679051D1F104 /* Pods_AntBusDemoTests.framework */; };
 		411D6FB8415D2459FA1D3E47 /* Pods_AntBusDemo_AntBusDemoUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B499F7EE3E6416344559CD79 /* Pods_AntBusDemo_AntBusDemoUITests.framework */; };
+		53D5DD692C76D2EE00713592 /* LoginService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D5DD682C76D2EE00713592 /* LoginService.swift */; };
+		53D5DD6B2C76D72100713592 /* Demo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 53D5DD6A2C76D72100713592 /* Demo.swift */; };
 		633D4A7A25FA657A002967DB /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7925FA657A002967DB /* AppDelegate.swift */; };
 		633D4A7E25FA657A002967DB /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 633D4A7D25FA657A002967DB /* ViewController.swift */; };
 		633D4A8125FA657A002967DB /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 633D4A7F25FA657A002967DB /* Main.storyboard */; };
@@ -49,7 +50,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1823187026737AEE006E4800 /* antbus_demo_modules.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = antbus_demo_modules.plist; sourceTree = "<group>"; };
 		184C8FEF27652D9D00EF906A /* AntBusDemoUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AntBusDemoUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		184C8FF127652D9E00EF906A /* AntBusDemoUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AntBusDemoUITests.swift; sourceTree = "<group>"; };
 		184C8FF327652D9E00EF906A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +65,8 @@
 		18F80F9927EEF9D700A402C2 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		18F80F9C27EEFA5600A402C2 /* LoginInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginInfo.swift; sourceTree = "<group>"; };
 		53AD38B7D0ADCE7B4030A40C /* Pods-AntBusDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AntBusDemo.debug.xcconfig"; path = "Target Support Files/Pods-AntBusDemo/Pods-AntBusDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		53D5DD682C76D2EE00713592 /* LoginService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginService.swift; sourceTree = "<group>"; };
+		53D5DD6A2C76D72100713592 /* Demo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Demo.swift; sourceTree = "<group>"; };
 		633D4A7625FA657A002967DB /* AntBusDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AntBusDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		633D4A7925FA657A002967DB /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		633D4A7D25FA657A002967DB /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -156,6 +158,7 @@
 				18F80F9C27EEFA5600A402C2 /* LoginInfo.swift */,
 				18F80F8D27EEDF7D00A402C2 /* LoginModule.swift */,
 				18F80F9827EEF9D700A402C2 /* LoginViewController.swift */,
+				53D5DD682C76D2EE00713592 /* LoginService.swift */,
 				18F80F9927EEF9D700A402C2 /* LoginViewController.xib */,
 			);
 			path = Login;
@@ -202,9 +205,9 @@
 				633D4A9325FA659A002967DB /* SecondPage */,
 				633D4A9525FA659A002967DB /* TabBar */,
 				633D4A7925FA657A002967DB /* AppDelegate.swift */,
+				53D5DD6A2C76D72100713592 /* Demo.swift */,
 				18F80F8827EEDF3C00A402C2 /* Modules */,
 				633D4A7D25FA657A002967DB /* ViewController.swift */,
-				1823187026737AEE006E4800 /* antbus_demo_modules.plist */,
 				633D4A7F25FA657A002967DB /* Main.storyboard */,
 				633D4A8225FA657D002967DB /* Assets.xcassets */,
 				633D4A8425FA657D002967DB /* LaunchScreen.storyboard */,
@@ -374,7 +377,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F80F9B27EEF9D700A402C2 /* LoginViewController.xib in Resources */,
-				1823187126737AEE006E4800 /* antbus_demo_modules.plist in Resources */,
 				633D4A8625FA657D002967DB /* LaunchScreen.storyboard in Resources */,
 				633D4A8325FA657D002967DB /* Assets.xcassets in Resources */,
 				633D4A8125FA657A002967DB /* Main.storyboard in Resources */,
@@ -525,8 +527,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F80F9D27EEFA5600A402C2 /* LoginInfo.swift in Sources */,
+				53D5DD692C76D2EE00713592 /* LoginService.swift in Sources */,
 				18F80F9A27EEF9D700A402C2 /* LoginViewController.swift in Sources */,
 				18F80F9527EEE12900A402C2 /* HCommonModule.swift in Sources */,
+				53D5DD6B2C76D72100713592 /* Demo.swift in Sources */,
 				633D4A9E25FA659A002967DB /* TabBarViewController.swift in Sources */,
 				633D4A7E25FA657A002967DB /* ViewController.swift in Sources */,
 				18F80F8E27EEDF7D00A402C2 /* LoginModule.swift in Sources */,

@@ -17,32 +17,31 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AntBus.listener.listening(keyPath: "title", for: self) { oldVal, newVal in
+        AntBus.plus.kvo.add(keyPath: "title", for: self) { oldVal, newVal in
             print("title变动: .oldVal:\(oldVal)  .newVal:\(newVal)")
         }
-        AntBus.listener.listening(keyPath: "text", for: self.accountTF) { oldVal, newVal in
+        AntBus.plus.kvo.add(keyPath: "text", for: self.accountTF) { oldVal, newVal in
             print("accountTF.text变动: .oldVal:\(oldVal)  .newVal:\(newVal)")
         }
         self.title = "1234"
-        self.accountTF.text = AntBus.service<LoginModule>.single.responder()?.loginInfo.account
+        self.accountTF.text = AntBus.service.single.responder(LoginService.self)?.loginInfo.account
         
-        AntBus.deallocHook.installDeallocHook(for: self, propertyKey: "key1", handlerKey: "keyHandler1") { _ in
+        AntBus.plus.deallocHook.install(for: self, propertyKey: "key1", handlerKey: "keyHandle1") { handleKeys in
             
         }
-        AntBus.deallocHook.installDeallocHook(for: self, propertyKey: "key2", handlerKey: "keyHandle2") { _ in
+        AntBus.plus.deallocHook.install(for: self, propertyKey: "key2", handlerKey: "keyHandle2") { handleKeys in
             
         }
-        AntBus.deallocHook.installDeallocHook(for: self, propertyKey: "key2", handlerKey: "keyHandle3") { _ in
+        AntBus.plus.deallocHook.install(for: self, propertyKey: "key3", handlerKey: "keyHandle3") { handleKeys in
             
         }
-        
-        AntBus.deallocHook.installDeallocHook(for: self.dictC, propertyKey: "TestDict", handlerKey: "TestDictHandler") { _ in
-
+        AntBus.plus.deallocHook.install(for: self.dictC, propertyKey: "TestDict", handlerKey: "TestDictHandler") { handleKeys in
+            
         }
     }
 
     @IBAction func clickLogin(_ sender: Any) {
-        AntBus.service<LoginModule>.single.responder()?.login(account: self.accountTF.text!)
+        AntBus.service.single.responder(LoginService.self)?.login(account: self.accountTF.text!)
         self.dismiss(animated: true, completion: nil)
     }
 

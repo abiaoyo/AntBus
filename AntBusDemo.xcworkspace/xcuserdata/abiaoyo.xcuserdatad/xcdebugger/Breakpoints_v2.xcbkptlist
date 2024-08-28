@@ -14,8 +14,8 @@
             filePath = "AntBusDemo/SecondPage/SecondPageViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "18"
-            endingLineNumber = "18"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
             landmarkName = "clickChanngeTabBar(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -34,38 +34,6 @@
             endingLineNumber = "145"
             landmarkName = "remove(_:_:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "ED3BF136-858E-4D13-9A62-265019C37B11 - 66fb9e639ef75dcb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (AntBus.AntBusLogOptions, Swift.String) -&gt; () in static AntBus.AntChannel.singleInterface&lt;&#x3c4;_0_0 where &#x3c4;_0_0: AnyObject&gt;(&#x3c4;_0_0.Type) -&gt; AntBus.AntChannelSingleC&lt;&#x3c4;_0_0&gt;"
-                  moduleName = "AntBus"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntChannel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "144"
-                  endingLineNumber = "144"
-                  offsetFromSymbolStart = "56">
-               </Location>
-               <Location
-                  uuid = "ED3BF136-858E-4D13-9A62-265019C37B11 - 66fb9e639ef75ef2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (AntBus.AntBusLogOptions, Swift.String) -&gt; () in static AntBus.AntChannel.singleInterface&lt;&#x3c4;_0_0 where &#x3c4;_0_0: AnyObject&gt;(&#x3c4;_0_0.Type) -&gt; AntBus.AntChannelSingleC&lt;&#x3c4;_0_0&gt;"
-                  moduleName = "AntBus"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/abiaoyo/Desktop/NewDemo/AntBus/AntBus/AntBus/Classes/AntChannel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "151"
-                  endingLineNumber = "151"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -110,22 +78,6 @@
             endingLineNumber = "67"
             landmarkName = "register(_:_:_:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "B6F0CE2B-6557-4A35-89F4-609299F63A53"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "AntBusDemoTests/AntBusDemoTests.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "193"
-            endingLineNumber = "193"
-            landmarkName = "AntBusDemoTests"
-            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

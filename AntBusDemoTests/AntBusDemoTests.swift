@@ -102,9 +102,10 @@ class AntBusDemoTests: XCTestCase {
 //
 //        AntBus.channel<AAAAA>.single.register(type)
         
-        
-        AntBus.service<Int>.single.register(1000)
-        let n = AntBus.service<Int>.single.responder()
+        AntBus.plus.data.register("a", owner: self) {
+            return 1000
+        }
+        let n = AntBus.plus.data.call("a")
         print("n: \(n)")
         
     }

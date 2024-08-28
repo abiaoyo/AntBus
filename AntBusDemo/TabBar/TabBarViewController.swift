@@ -30,9 +30,10 @@ class TabBarViewController: UITabBarController, TabBarProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AntBus.channel<TabBarProtocol>.single.register(self)
         
-        AntBus.data.register("root.tabbar.index", owner: self) { [weak self] in
+        AntBus.plus.container.single.register(TabBarProtocol.self, object: self)
+        
+        AntBus.plus.data.register("root.tabbar.index", owner: self) { [weak self] in
             return self?.selectedIndex
         }
     }

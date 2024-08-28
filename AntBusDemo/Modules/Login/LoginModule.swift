@@ -8,24 +8,26 @@
 import UIKit
 import AntBus
 
-class LoginModule: NSObject {
+class LoginModule: AntBusServiceSingle, LoginService {
+    static func atbsSingleInitConfig() -> AntBusServiceSingleConfig {
+        AntBusServiceSingleConfig.createForSwift(LoginService.self, cache: true, createService: { LoginModule() })
+    }
     
-    var loginInfo:LoginInfo = LoginInfo.init()
-    
-    func goLoginPage() {
-        let vctl = LoginViewController.init()
-        AntBus.channel<TabBarProtocol>.single.responder()?.currentNavController().present(vctl, animated: true, completion: nil)
+    var loginInfo: LoginInfo = LoginInfo.init()
+
+    func viewController() -> UIViewController {
+        return LoginViewController.init()
     }
     
     func login(account:String) {
         print("Login: .account:\(account)")
         self.loginInfo.account = account
-        AntBus.notification.post("login.success")
+        AntBus.plus.notification.post("login.success")
     }
     
     func logout() {
         self.loginInfo.account = nil
-        AntBus.notification.post("logout.success")
+        AntBus.plus.notification.post("logout.success")
     }
     
     
