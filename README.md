@@ -3,11 +3,12 @@
 AntBus: iOS模块化/组件化/通讯中间件，兼容Swift和OC
 
 ## 安装
+```swift
    只支持Swift使用如下：
    pod 'AntBus', '~> 2.0.0'
    支持OC使用如下：
    pod 'AntBus/OC', '~> 2.0.0'
-   
+```
 
 ## 介绍
 ```swift
@@ -22,7 +23,7 @@ AntBus：
         AntBus.plus.callback        回调
         AntBus.plus.deallocHook     dealloc/deinit回调
         AntBus.plus.kvo             KVO监听
-        AntBus.plus.container       对象窗器
+        AntBus.plus.container       对象容器
 优点：
    模块化方便快捷，简单易用，Swift、OC兼容
 缺点：
