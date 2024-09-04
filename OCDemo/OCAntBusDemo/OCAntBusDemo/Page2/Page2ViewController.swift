@@ -17,10 +17,10 @@ class Page2ViewController: UIViewController ,UIViewPage{
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let resps = AntBus.channel<UIViewController>.multi.responders()
+        let resps = AntBus.plus.container.multiple.objects(UIViewController.self)
         print("resps: \(resps)")
         
-        let loginService = AntBus.service<ILogin>.single.responder()
+        let loginService = AntBus.service.single.responder(ILogin.self)
 //        print("loginService: \(loginService)")
         loginService?.login(withAccount: "lily")
     }

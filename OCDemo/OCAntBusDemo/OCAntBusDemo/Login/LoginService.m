@@ -6,6 +6,11 @@
 //
 
 #import "LoginService.h"
+@import AntBus;
+
+@interface LoginService()<AntBusServiceSingle>
+
+@end
 
 @implementation LoginService
 
@@ -19,6 +24,12 @@
     LoginViewController * vctl = [[LoginViewController alloc] init];
     vctl.title = @"Login";
     [navCtl pushViewController:vctl animated:YES];
+}
+
++ (AntBusServiceSingleConfig * _Nonnull)atbsSingleInitConfig { 
+    return [AntBusServiceSingleConfig createForObjcWithService:@protocol(ILogin) cache:true createService:^id _Nonnull{
+        return [LoginService new];
+    }];
 }
 
 @end

@@ -22,12 +22,14 @@ public class ViewController2: UIViewController, SFViewPage{
     public override func viewDidLoad() {
         super.viewDidLoad()
         self.title2 = "ViewController2"
-        AntBus.service<SFViewPage>.single.register(self)
-        AntBus.service<ViewController2>.single.register(self)
+        
+        AntBus.plus.container.single.register(SFViewPage.self, object: self)
+        AntBus.plus.container.single.register(ViewController2.self, object: self)
+        
     }
     
     @IBAction func clickButton1(_ sender: Any) {
-        let sfviewpages = AntBus.service<SFViewPage>.single.responder()
+        let sfviewpages = AntBus.plus.container.single.object(SFViewPage.self)
         print("sfviewpages: \(sfviewpages)")
     }
 

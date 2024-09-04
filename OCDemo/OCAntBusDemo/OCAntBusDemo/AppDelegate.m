@@ -23,15 +23,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    OCAntBus.deallocLog = ^(NSString * _Nonnull log) {
-        [OCAntBus printLog:log];
-    };
-    OCAntBus.serviceLog = ^(NSString * _Nonnull log) {
-        [OCAntBus printLog:log];
-    };
-    OCAntBus.channelLog = ^(NSString * _Nonnull log) {
-        [OCAntBus printLog:log];
-    };
+    [OCAntBus.log setHandler:^(enum AntBusLogType level, NSString * _Nonnull log) {
+        [OCAntBus.log printLog:log];
+    }];
+    
     return YES;
 }
 
