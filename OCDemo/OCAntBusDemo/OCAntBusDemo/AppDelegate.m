@@ -26,6 +26,8 @@
     [OCAntBus.log setHandler:^(enum AntBusLogType level, NSString * _Nonnull log) {
         [OCAntBus.log printLog:log];
     }];
+    [OCAntBus.service.single registerService];
+    [OCAntBus.service.multiple registerService];
     
     return YES;
 }

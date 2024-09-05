@@ -28,13 +28,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.title = @"OCAntBusChannel";
-    
-    LoginService * loginService = [[LoginService alloc] init];
-    
-    [OCAntBus.plus.container.single registerWithInterface:@protocol(ILogin) object:loginService];
-
-    [OCAntBus.plus.container.single registerWithClazz:LoginService.class object:loginService];
+    self.title = @"AntBus";
     
     [OCAntBus.plus.container.single registerWithClazz:UIViewController.class object:self];
     [OCAntBus.plus.container.single registerWithInterface:@protocol(UIPage) object:self];
