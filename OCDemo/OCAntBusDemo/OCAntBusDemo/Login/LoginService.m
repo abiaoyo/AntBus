@@ -27,9 +27,7 @@
 }
 
 + (AntBusServiceSingleConfig * _Nonnull)atbsSingleInitConfig { 
-    return [AntBusServiceSingleConfig createForObjcWithService:@protocol(ILogin) cache:true createService:^id _Nonnull{
-        return [LoginService new];
-    }];
+    return [AntBusServiceSingleConfig createForObjcWithService:@protocol(ILogin) serviceObj:[LoginService new]];
 }
 
 @end

@@ -10,7 +10,7 @@ import AntBus
 
 class LoginModule: AntBusServiceSingle, LoginService {
     static func atbsSingleInitConfig() -> AntBusServiceSingleConfig {
-        AntBusServiceSingleConfig.createForSwift(LoginService.self, cache: true, createService: { LoginModule() })
+        AntBusServiceSingleConfig.createForSwift(LoginService.self, serviceObj: LoginModule())
     }
     
     var loginInfo: LoginInfo = LoginInfo.init()

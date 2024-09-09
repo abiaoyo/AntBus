@@ -75,18 +75,6 @@ class Demo {
         print("loginService:\(loginService)")
         loginService?.login(account: "")
     }
-
-    func testUpdate(){
-        let allMultipleService1 = AntBus.service.multiple.allService()
-        
-        print("allMultipleService1:\(allMultipleService1 as NSDictionary)")
-        
-        AntBus.service.multiple.update()
-        
-        let allMultipleService2 = AntBus.service.multiple.allService()
-        
-        print("allMultipleService2:\(allMultipleService2 as NSDictionary)")
-    }
     
     func testAll(){
         let allSingleService = AntBus.service.single.allService()

@@ -31,10 +31,6 @@ public class OCATBMultiple: NSObject {
         AntBus.service.multiple.register()
     }
 
-    public func updateService() {
-        AntBus.service.multiple.update()
-    }
-
     public func responder(_ service: Protocol, key: String) -> [AnyObject]? {
         let serviceName = AliasUtil.aliasForInterface(service)
         return ATBMultipleC.responders(serviceName, key) as? [AnyObject]

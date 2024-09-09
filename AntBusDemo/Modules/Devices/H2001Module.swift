@@ -11,11 +11,8 @@ import AntBus
 class H2001Module: AntBusServiceMultiple, DeviceProtocol {
     
     static func atbsMultipleInitConfigs() -> [AntBusServiceMultipleConfig] {
-        let config1 = AntBusServiceMultipleConfig.createForSwift(DeviceProtocol.self, keys: ["H2001"], createService: { H2001Module() })
+        let config1 = AntBusServiceMultipleConfig.createForSwift(DeviceProtocol.self, keys: ["H2001"], serviceObj: H2001Module() )
         return [config1]
-    }
-    static func atbsMultipleUpdateConfigs(timestamp: Int) -> [AntBusServiceMultipleUpdateConfig]? {
-        return nil
     }
     
     func supportSkus() -> [String] {
