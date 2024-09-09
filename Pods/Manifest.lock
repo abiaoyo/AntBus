@@ -1,5 +1,5 @@
 PODS:
-  - AntBus (2.0.0)
+  - AntBus (2.1.0)
 
 DEPENDENCIES:
   - AntBus (from `AntBus`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: AntBus
 
 SPEC CHECKSUMS:
-  AntBus: 65abddfc23c583c2d66947594cf008b1303224ab
+  AntBus: 64a7feba31132a23aa0ffb9ca633dc2648444d4c
 
 PODFILE CHECKSUM: 7caaa2bdbcbd2a7777f7024f40ca8067958efeec
 
