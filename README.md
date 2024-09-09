@@ -1,13 +1,13 @@
-# AntBus 2.0.0 
+# AntBus 2.1.0 
 
 AntBus: iOS模块化/组件化/通讯中间件，兼容Swift和OC
 
 ## 安装
 ```swift
    只支持Swift使用如下：
-   pod 'AntBus', '~> 2.0.0'
+   pod 'AntBus', '~> 2.1.0'
    支持OC使用如下：
-   pod 'AntBus/OC', '~> 2.0.0'
+   pod 'AntBus/OC', '~> 2.1.0'
 ```
 
 ## 介绍
@@ -87,12 +87,7 @@ AntBus：
         })
         return [config]
     }
-    //这里是更新的key变动(保留，一般不会用到）
-    public static func atbsMultipleUpdateConfigs() -> [AntBusServiceMultipleUpdateConfig]? {
-        let config = AntBusServiceMultipleUpdateConfig.createForSwift(DeviceService.self, addKeys: ["H611A"], deleteKeys: [])
-        return [config]
-    }
-    
+        
     //DeviceService
     public func support(_ sku: String, _ version: Int) -> Bool{
          return version <= 2
